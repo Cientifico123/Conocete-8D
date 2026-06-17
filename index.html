@@ -20,7 +20,7 @@
         body { background-color: var(--bg-dark); color: var(--text-white); padding: 10px; min-height: 100vh; }
 
         /* HEADER */
-        .header { display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); border: 2px solid var(--gold); padding: 15px; border-radius: 12px; margin-bottom: 15px; }
+        .header { display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); border: 2px solid var(--gold); padding: 15px; border-radius: 15px; margin-bottom: 15px; }
         .title { color: var(--gold); font-size: 1.5rem; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
         .datetime { color: var(--text-white); font-size: 0.7rem; text-align: right; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 8px; border: 1px solid var(--gold); line-height: 1.2; }
 
@@ -38,16 +38,23 @@
         .view-container { background: var(--bg-card); border: 2px solid var(--gold); border-radius: 12px; padding: 15px; margin-top: 10px; }
         .view-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--gold); padding-bottom: 10px; }
         .view-title { color: var(--gold); font-size: 1.1rem; font-weight: 800; }
-        .btn-back { background: transparent; border: 2px solid var(--gold); color: var(--gold); padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 0.8rem; }
+        .btn-back { background: transparent; border: 2px solid var(--gold); color: var(--gold); padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 0.8rem; cursor: pointer; }
+        .btn-back:hover { background: var(--gold); color: var(--bg-dark); }
 
-        /* TARJETAS DE DATOS */
-        .pred-card { background: rgba(0,0,0,0.2); border-left: 4px solid var(--gold); padding: 12px; margin-bottom: 10px; border-radius: 8px; display: flex; align-items: center; }
+        /* BOTONES */
+        .btn { padding: 10px 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; margin: 5px; }
+        .btn-gold { background: var(--gold); color: var(--bg-dark); }
+        .btn-red { background: var(--red); color: white; }
+        .btn:active { transform: scale(0.95); }
+
+        /* TARJETAS DE DATOS */        .pred-card { background: rgba(0,0,0,0.2); border-left: 4px solid var(--gold); padding: 12px; margin-bottom: 10px; border-radius: 8px; display: flex; align-items: center; }
         .pred-num { background: var(--gold); color: var(--bg-dark); font-size: 1.3rem; font-weight: 900; padding: 8px 10px; border-radius: 8px; margin-right: 12px; min-width: 45px; text-align: center; }
         .pred-info { flex: 1; }
         .pred-lot { font-size: 0.85rem; font-weight: 700; }
         .pred-detail { color: var(--text-gray); font-size: 0.75rem; margin-top: 3px; }
         
-        .status-active { color: var(--green); font-size: 0.7rem; font-weight: bold; }        .status-inactive { color: var(--red); font-size: 0.7rem; font-weight: bold; }
+        .status-active { color: var(--green); font-size: 0.7rem; font-weight: bold; }
+        .status-inactive { color: var(--red); font-size: 0.7rem; font-weight: bold; }
         .no-active { text-align: center; color: var(--text-gray); padding: 20px; font-style: italic; }
 
         /* FORMULARIO */
@@ -55,20 +62,19 @@
         .form-label { color: var(--gold); font-size: 0.8rem; font-weight: bold; display: block; margin-bottom: 4px; }
         .form-control { width: 100%; background: var(--bg-dark); border: 1px solid var(--gold); color: white; padding: 10px; border-radius: 8px; font-size: 1rem; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-        .btn-save { width: 100%; background: var(--gold); color: var(--bg-dark); border: none; padding: 12px; border-radius: 8px; font-weight: 800; font-size: 1rem; margin-top: 10px; }
-
-        /* HISTORIAL COMPLETO */
-        .history-box { max-height: 60vh; overflow-y: auto; margin-top: 15px; border: 1px solid var(--gold); border-radius: 8px; background: rgba(0,0,0,0.2); }
+        
+        /* HISTORIAL */
+        .history-box { max-height: 60vh; overflow-y: auto; margin-top: 15px; border: 1px solid var(--gold); border-radius: 8px; }
         .history-table { width: 100%; border-collapse: collapse; font-size: 0.7rem; }
-        .history-table th { background: var(--gold); color: var(--bg-dark); padding: 8px 4px; position: sticky; top: 0; z-index: 10; font-weight: 800; }
-        .history-table td { padding: 6px 4px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .history-table th { background: var(--gold); color: var(--bg-dark); padding: 8px 4px; position: sticky; top: 0; font-weight: 800; }
+        .history-table td { padding: 6px 4px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .history-table tr:nth-child(even) { background: rgba(255,255,255,0.02); }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <div class="title"> LOTO MIXTA 2026</div>
+        <div class="title">🎰 LOTO MIXTA 2026</div>
         <div class="datetime" id="reloj">Cargando...</div>
     </div>
 
@@ -84,39 +90,112 @@
         <div class="card" onclick="openView('view-historial')"><div class="card-icon">📜</div><div class="card-title">HISTORIAL</div></div>
     </div>
 
-    <!-- VISTAS -->
-    <div id="view-jugar" class="view"><div class="view-container"><div class="view-header"><div class="view-title">🎯 JUGAR HOY</div><button class="btn-back" onclick="closeView()">️</button></div><div id="content-jugar"></div></div></div>
-    <div id="view-arrastres" class="view"><div class="view-container"><div class="view-header"><div class="view-title">🔄 ARRASTRES</div><button class="btn-back" onclick="closeView()">⬅️</button></div><div id="content-arrastres"></div></div></div>
-    <div id="view-monte" class="view"><div class="view-container"><div class="view-header"><div class="view-title"> MONTE CARLO</div><button class="btn-back" onclick="closeView()">⬅️</button></div><div id="content-monte"></div></div></div>
+    <!-- VENTANA JUGAR HOY -->
+    <div id="view-jugar" class="view">
+        <div class="view-container">
+            <div class="view-header">
+                <div class="view-title">🎯 JUGAR HOY</div>
+                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
+            </div>            <div id="content-jugar"></div>
+        </div>
+    </div>
+
+    <!-- VENTANA ARRASTRES -->
+    <div id="view-arrastres" class="view">
+        <div class="view-container">
+            <div class="view-header">
+                <div class="view-title">🔄 ARRASTRES</div>
+                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
+            </div>
+            <div id="content-arrastres"></div>
+        </div>
+    </div>
+
+    <!-- VENTANA MONTE CARLO -->
+    <div id="view-monte" class="view">
+        <div class="view-container">
+            <div class="view-header">
+                <div class="view-title">🎲 MONTE CARLO</div>
+                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
+            </div>
+            <div id="content-monte"></div>
+        </div>
+    </div>
     
+    <!-- VENTANA ACTUALIZAR -->
     <div id="view-actualizar" class="view">
         <div class="view-container">
-            <div class="view-header"><div class="view-title">️ ACTUALIZAR</div><button class="btn-back" onclick="closeView()">️</button></div>
+            <div class="view-header">
+                <div class="view-title">️ ACTUALIZAR</div>
+                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
+            </div>
             <div class="form-group"><label class="form-label">Fecha</label><input type="date" id="inp-fecha" class="form-control"></div>
             <div class="form-group"><label class="form-label">Lotería</label><select id="inp-lot" class="form-control"><option>GEORGIA</option><option>FLORIDA</option><option>NY</option></select></div>
             <div class="form-group"><label class="form-label">Hora</label><select id="inp-hora" class="form-control"><option>12:30</option><option>13:30</option><option>14:30</option><option>19:00</option><option>21:50</option><option>22:30</option><option>23:30</option></select></div>
             <div class="form-row">
-                <div class="form-group"><label class="form-label">1ra</label><input type="number" id="inp-n1" class="form-control"></div>                <div class="form-group"><label class="form-label">2da</label><input type="number" id="inp-n2" class="form-control"></div>
+                <div class="form-group"><label class="form-label">1ra</label><input type="number" id="inp-n1" class="form-control"></div>
+                <div class="form-group"><label class="form-label">2da</label><input type="number" id="inp-n2" class="form-control"></div>
                 <div class="form-group"><label class="form-label">3ra</label><input type="number" id="inp-n3" class="form-control"></div>
             </div>
-            <button class="btn-save" onclick="guardarSorteo()">💾 GUARDAR Y RECALCULAR</button>
+            <button class="btn btn-gold" onclick="guardarSorteo()" style="width:100%; margin-top:10px;">💾 GUARDAR</button>
+            <button class="btn btn-red" onclick="eliminarUltimoSorteo()" style="width:100%; margin-top:10px;">🗑️ ELIMINAR ÚLTIMO</button>
         </div>
     </div>
 
-    <div id="view-frecuencias" class="view"><div class="view-container"><div class="view-header"><div class="view-title">🔥 FRECUENCIAS</div><button class="btn-back" onclick="closeView()">️</button></div><div id="content-frecuencias"></div></div></div>
-    <div id="view-patrones" class="view"><div class="view-container"><div class="view-header"><div class="view-title">🧩 PATRONES</div><button class="btn-back" onclick="closeView()">⬅️</button></div><div id="content-patrones"></div></div></div>
-    <div id="view-tiempos" class="view"><div class="view-container"><div class="view-header"><div class="view-title"> TIEMPOS</div><button class="btn-back" onclick="closeView()">⬅️</button></div><div id="content-tiempos"></div></div></div>
-    <div id="view-impas" class="view"><div class="view-container"><div class="view-header"><div class="view-title">⏰ IMPAS</div><button class="btn-back" onclick="closeView()">️</button></div><div id="content-impas"></div></div></div>
+    <!-- VENTANA FRECUENCIAS -->
+    <div id="view-frecuencias" class="view">
+        <div class="view-container">
+            <div class="view-header">                <div class="view-title">🔥 FRECUENCIAS</div>
+                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
+            </div>
+            <div id="content-frecuencias"></div>
+        </div>
+    </div>
+
+    <!-- VENTANA PATRONES -->
+    <div id="view-patrones" class="view">
+        <div class="view-container">
+            <div class="view-header">
+                <div class="view-title">🧩 PATRONES</div>
+                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
+            </div>
+            <div id="content-patrones"></div>
+        </div>
+    </div>
+
+    <!-- VENTANA TIEMPOS -->
+    <div id="view-tiempos" class="view">
+        <div class="view-container">
+            <div class="view-header">
+                <div class="view-title">⏳ TIEMPOS</div>
+                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
+            </div>
+            <div id="content-tiempos"></div>
+        </div>
+    </div>
+
+    <!-- VENTANA IMPAS -->
+    <div id="view-impas" class="view">
+        <div class="view-container">
+            <div class="view-header">
+                <div class="view-title">⏰ IMPAS</div>
+                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
+            </div>
+            <div id="content-impas"></div>
+        </div>
+    </div>
     
-    <!-- VENTANA HISTORIAL COMPLETO -->
+    <!-- VENTANA HISTORIAL -->
     <div id="view-historial" class="view">
         <div class="view-container">
-            <div class="view-header"><div class="view-title">📜 HISTORIAL COMPLETO</div><button class="btn-back" onclick="closeView()">⬅️</button></div>
-            <div style="color: var(--gold); font-size: 0.8rem; margin-bottom: 10px; text-align: center;" id="total-registros">Cargando base de datos...</div>
+            <div class="view-header">
+                <div class="view-title">📜 HISTORIAL</div>
+                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
+            </div>
+            <div style="color: var(--gold); font-size: 0.8rem; margin-bottom: 10px; text-align: center;" id="total-registros">Cargando...</div>
             <div class="history-box">
-                <table class="history-table">
-                    <thead><tr><th>Fecha</th><th>Lot</th><th>Hora</th><th>1ra</th><th>2da</th><th>3ra</th></tr></thead>
-                    <tbody id="tabla-historial-completo"></tbody>
+                <table class="history-table">                    <thead><tr><th>Fecha</th><th>Lot</th><th>Hora</th><th>1ra</th><th>2da</th><th>3ra</th></tr></thead>
+                    <tbody id="tabla-historial"></tbody>
                 </table>
             </div>
         </div>
@@ -129,37 +208,42 @@
         ];
         let datos = [];
 
+        // RELOJ
         setInterval(() => {
             document.getElementById('reloj').innerText = new Date().toLocaleString('es-ES', {weekday:'short', day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'});
         }, 1000);
 
-        function openView(id) { 
+        // NAVEGACIÓN
+        function openView(viewId) { 
             document.getElementById('main-menu').style.display = 'none'; 
             document.querySelectorAll('.view').forEach(v=>v.classList.remove('active')); 
-            document.getElementById(id).classList.add('active'); 
-            if(id === 'view-historial') renderHistorialCompleto();
+            document.getElementById(viewId).classList.add('active'); 
+            if(viewId === 'view-historial') renderHistorial();
         }
         function closeView() { 
             document.querySelectorAll('.view').forEach(v=>v.classList.remove('active')); 
             document.getElementById('main-menu').style.display = 'grid'; 
         }
 
+        // CARGAR DATOS
         async function cargarDatos() {
-            try {                const res = await fetch('historial.csv');
+            try {
+                const res = await fetch('historial.csv?' + new Date().getTime());
                 const text = await res.text();
                 datos = parseCSV(text);
             } catch (e) {
-                console.log("Usando localStorage");
-                datos = JSON.parse(localStorage.getItem('loto_data') || '[]');
+                console.log("Error cargando CSV");
+                datos = [];
             }
+            
             const nuevos = JSON.parse(localStorage.getItem('loto_nuevos') || '[]');
             if(nuevos.length > 0) datos = datos.concat(nuevos);
+            
             datos.sort((a,b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora));
             
             autocompletarFormulario();
             renderizarTodo();
         }
-
         function parseCSV(text) {
             const lines = text.trim().split('\n');
             const arr = [];
@@ -185,6 +269,7 @@
                 d.setDate(d.getDate() + 1);
                 nextFecha = d.toISOString().split('T')[0];
             }
+            
             document.getElementById('inp-fecha').value = nextFecha;
             document.getElementById('inp-lot').value = HORARIOS[nextIdx].lot;
             document.getElementById('inp-hora').value = HORARIOS[nextIdx].hora;
@@ -194,35 +279,61 @@
             const nuevo = {
                 fecha: document.getElementById('inp-fecha').value,
                 loteria: document.getElementById('inp-lot').value,
-                hora: document.getElementById('inp-hora').value,                n1: parseInt(document.getElementById('inp-n1').value),
+                hora: document.getElementById('inp-hora').value,
+                n1: parseInt(document.getElementById('inp-n1').value),
                 n2: parseInt(document.getElementById('inp-n2').value),
                 n3: parseInt(document.getElementById('inp-n3').value)
             };
-            if(!nuevo.fecha || isNaN(nuevo.n1)) return alert("Faltan datos");
+            
+            if(!nuevo.fecha || isNaN(nuevo.n1)) {
+                alert("❌ Faltan datos");
+                return;
+            }
             
             datos.push(nuevo);
             const nuevos = JSON.parse(localStorage.getItem('loto_nuevos') || '[]');
-            nuevos.push(nuevo);
-            localStorage.setItem('loto_nuevos', JSON.stringify(nuevos));
+            nuevos.push(nuevo);            localStorage.setItem('loto_nuevos', JSON.stringify(nuevos));
             
             datos.sort((a,b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora));
             autocompletarFormulario();
             renderizarTodo();
-            alert("✅ Guardado y recalculado");
+            alert("✅ Sorteo guardado y recalculado");
+        }
+
+        function eliminarUltimoSorteo() {
+            if(datos.length === 0) {
+                alert("❌ No hay sorteos para eliminar");
+                return;
+            }
+            
+            const ultimo = datos[datos.length - 1];
+            const confirmacion = confirm(`¿Eliminar este sorteo?\n\nFecha: ${ultimo.fecha}\nLotería: ${ultimo.loteria}\nHora: ${ultimo.hora}\nNúmeros: ${ultimo.n1} - ${ultimo.n2} - ${ultimo.n3}`);
+            
+            if(confirmacion) {
+                datos.pop();
+                localStorage.setItem('loto_nuevos', JSON.stringify(datos.slice(-100)));
+                autocompletarFormulario();
+                renderizarTodo();
+                alert("✅ Sorteo eliminado");
+            }
         }
 
         function renderizarTodo() {
-            renderJugarHoy(); renderArrastres(); renderMonteCarlo();
-            renderFrecuencias(); renderPatrones(); renderTiempos(); renderImpas();
+            renderJugarHoy();
+            renderArrastres();
+            renderMonteCarlo();
+            renderFrecuencias();
+            renderPatrones();
+            renderTiempos();
+            renderImpas();
         }
 
-        function renderHistorialCompleto() {
-            document.getElementById('total-registros').innerText = `Total de sorteos en base de datos: ${datos.length}`;
-            const tbody = document.getElementById('tabla-historial-completo');
+        function renderHistorial() {
+            document.getElementById('total-registros').innerText = `Total: ${datos.length} sorteos`;
+            const tbody = document.getElementById('tabla-historial');
             let html = '';
-            // Renderizar TODOS los registros desde el primero
-            const todos = [...datos].reverse(); 
-            todos.forEach(d => {
+            const slice = datos.slice(-100).reverse();
+            slice.forEach(d => {
                 html += `<tr><td>${d.fecha}</td><td>${d.loteria.substring(0,3)}</td><td>${d.hora}</td><td>${d.n1}</td><td>${d.n2}</td><td>${d.n3}</td></tr>`;
             });
             tbody.innerHTML = html;
@@ -230,12 +341,12 @@
 
         function renderJugarHoy() {
             const ultimos50 = datos.slice(-50);
-            const freq = {};
-            ultimos50.forEach(d => { freq[d.n1] = (freq[d.n1]||0) + 1; });
+            const freq = {};            ultimos50.forEach(d => { freq[d.n1] = (freq[d.n1]||0) + 1; });
             const top3 = Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,3);
+            
             let html = top3.length === 0 ? '<div class="no-active">Sin datos</div>' : '';
             top3.forEach((t, i) => {
-                html += `<div class="pred-card"><div class="pred-num">${t[0].padStart(2,'0')}</div><div class="pred-info"><div class="pred-lot">Top ${i+1} - Frecuencia Reciente</div><div class="pred-detail">Salió ${t[1]} veces en los últimos 50 sorteos</div></div></div>`;
+                html += `<div class="pred-card"><div class="pred-num">${t[0].padStart(2,'0')}</div><div class="pred-info"><div class="pred-lot">Top ${i+1}</div><div class="pred-detail">Salió ${t[1]} veces (últimos 50)</div></div></div>`;
             });
             document.getElementById('content-jugar').innerHTML = html;
         }
@@ -243,11 +354,13 @@
         function renderArrastres() {
             const ultimos21 = datos.slice(-21);
             const en2da3ra = new Set();
-            ultimos21.forEach(d => { en2da3ra.add(d.n2); en2da3ra.add(d.n3); });            const ultimos7 = datos.slice(-7).map(d => d.n1);
+            ultimos21.forEach(d => { en2da3ra.add(d.n2); en2da3ra.add(d.n3); });
+            const ultimos7 = datos.slice(-7).map(d => d.n1);
             const activos = [...en2da3ra].filter(n => !ultimos7.includes(n)).slice(0,3);
+            
             let html = activos.length === 0 ? '<div class="no-active">No activos</div>' : '';
             activos.forEach(n => {
-                html += `<div class="pred-card"><div class="pred-num">${n.padStart(2,'0')}</div><div class="pred-info"><div class="pred-lot">ARRASTRE ACTIVO <span class="status-active">JUGAR</span></div><div class="pred-detail">Estuvo en 2da/3ra en las últimas 24-72h</div></div></div>`;
+                html += `<div class="pred-card"><div class="pred-num">${String(n).padStart(2,'0')}</div><div class="pred-info"><div class="pred-lot">ARRASTRE <span class="status-active">ACTIVO</span></div><div class="pred-detail">En 2da/3ra (últimas 72h)</div></div></div>`;
             });
             document.getElementById('content-arrastres').innerHTML = html;
         }
@@ -256,9 +369,10 @@
             const freq = {};
             datos.forEach(d => { freq[d.n1] = (freq[d.n1]||0) + 1; });
             const top = Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,3);
-            let html = top.length === 0 ? '<div class="no-active">No hay pronósticos</div>' : '';
+            
+            let html = top.length === 0 ? '<div class="no-active">Sin datos</div>' : '';
             top.forEach((t, i) => {
-                html += `<div class="pred-card"><div class="pred-num">${t[0].padStart(2,'0')}</div><div class="pred-info"><div class="pred-lot">Pronóstico Robusto ${i+1}</div><div class="pred-detail">Frecuencia histórica: ${t[1]} veces</div></div></div>`;
+                html += `<div class="pred-card"><div class="pred-num">${t[0].padStart(2,'0')}</div><div class="pred-info"><div class="pred-lot">Pronóstico ${i+1}</div><div class="pred-detail">Frecuencia: ${t[1]} veces</div></div></div>`;
             });
             document.getElementById('content-monte').innerHTML = html;
         }
@@ -266,33 +380,37 @@
         function renderFrecuencias() {
             const numsSeguidos = [4, 40, 16, 61];
             const ultimos50 = datos.slice(-50).map(d => d.n1);
-            let html = '<div class="view-title" style="font-size:0.9rem; margin-bottom:10px;">Tus Números (04, 40, 16, 61)</div>';
+            
+            let html = '<div style="color:var(--gold); font-size:0.9rem; margin-bottom:10px;">Tus Números (04, 40, 16, 61)</div>';
             numsSeguidos.forEach(n => {
                 const estaActivo = ultimos50.includes(n);
                 const color = estaActivo ? 'var(--green)' : 'var(--red)';
                 const texto = estaActivo ? 'ACTIVO - JUGAR' : 'NO JUGAR';
-                const cls = estaActivo ? 'status-active' : 'status-inactive';
-                html += `<div class="pred-card" style="border-left-color:${color}"><div class="pred-num" style="background:${color}">${n}</div><div class="pred-info"><div class="pred-lot">${texto} <span class="${cls}"></span></div><div class="pred-detail">${estaActivo ? 'Salió en los últimos 50 sorteos' : 'Frío en los últimos 50 sorteos'}</div></div></div>`;
+                html += `<div class="pred-card" style="border-left-color:${color}"><div class="pred-num" style="background:${color}">${String(n).padStart(2,'0')}</div><div class="pred-info"><div class="pred-lot">${texto}</div><div class="pred-detail">${estaActivo ? 'Salió en últimos 50 sorteos' : 'No salió en últimos 50'}</div></div></div>`;
             });
             document.getElementById('content-frecuencias').innerHTML = html;
         }
-
         function renderPatrones() {
             const percutados = [16, 61, 40, 4];
             let html = '';
+            
             percutados.forEach(p => {
                 const acomp2da = {}, acomp3ra = {};
                 datos.filter(d => d.n1 === p).forEach(d => {
                     acomp2da[d.n2] = (acomp2da[d.n2]||0) + 1;
                     acomp3ra[d.n3] = (acomp3ra[d.n3]||0) + 1;
                 });
+                
                 const top2da = Object.entries(acomp2da).sort((a,b)=>b[1]-a[1])[0];
                 const top3ra = Object.entries(acomp3ra).sort((a,b)=>b[1]-a[1])[0];
+                
                 if(top2da || top3ra) {
-                    html += `<div class="view-title" style="font-size:0.85rem; margin:10px 0;">Percusiones del ${p}</div>`;
+                    html += `<div style="color:var(--gold); font-size:0.85rem; margin:10px 0 5px 0;">Percusiones del ${p}</div>`;
                     if(top2da) html += `<div class="pred-card"><div class="pred-num">${top2da[0].padStart(2,'0')}</div><div class="pred-info"><div class="pred-lot">ALLANA en 2da <span class="status-active">ACTIVO</span></div><div class="pred-detail">Acompaña al ${p} (${top2da[1]} veces)</div></div></div>`;
                     if(top3ra) html += `<div class="pred-card"><div class="pred-num">${top3ra[0].padStart(2,'0')}</div><div class="pred-info"><div class="pred-lot">ALLANA en 3ra <span class="status-active">ACTIVO</span></div><div class="pred-detail">Acompaña al ${p} (${top3ra[1]} veces)</div></div></div>`;
-                }            });
+                }
+            });
+            
             if(html === '') html = '<div class="no-active">No activos</div>';
             document.getElementById('content-patrones').innerHTML = html;
         }
@@ -305,7 +423,8 @@
                 freqHoy[d.n1] = (freqHoy[d.n1]||0) + 1;
             });
             const top = Object.entries(freqHoy).sort((a,b)=>b[1]-a[1]).slice(0,3);
-            let html = `<div class="view-title" style="font-size:0.9rem; margin-bottom:10px;">Activos para ${hoy}</div>`;
+            
+            let html = `<div style="color:var(--gold); font-size:0.9rem; margin-bottom:10px;">Activos para ${hoy}</div>`;
             if(top.length === 0) html += '<div class="no-active">No activos</div>';
             else {
                 top.forEach(t => {
@@ -320,18 +439,18 @@
             const impas = [];
             for(let i=0; i<100; i++) {
                 const idx = ultimos100.indexOf(i);
-                impas.push({n:i, impa: idx === -1 ? 100 : idx});
-            }
+                impas.push({n:i, impa: idx === -1 ? 100 : idx});            }
             const vencidos = impas.sort((a,b)=>b.impa-a.impa).slice(0,3);
+            
             let html = '';
             vencidos.forEach(v => {
-                html += `<div class="pred-card" style="border-left-color:var(--red)"><div class="pred-num" style="background:var(--red)">${v.n}</div><div class="pred-info"><div class="pred-lot">IMPAS VENCIDO <span class="status-inactive">URGENTE</span></div><div class="pred-detail">Lleva ${v.impa} sorteos sin salir en 1ra</div></div></div>`;
+                html += `<div class="pred-card" style="border-left-color:var(--red)"><div class="pred-num" style="background:var(--red)">${v.n}</div><div class="pred-info"><div class="pred-lot">IMPAS VENCIDO <span class="status-inactive">URGENTE</span></div><div class="pred-detail">Lleva ${v.impa} sorteos sin salir</div></div></div>`;
             });
             document.getElementById('content-impas').innerHTML = html;
         }
 
+        // INICIAR
         cargarDatos();
     </script>
 </body>
 </html>
-
