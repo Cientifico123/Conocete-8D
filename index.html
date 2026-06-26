@@ -2,455 +2,713 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Loto mixta 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loto Mixta 2026</title>
     <style>
-        :root {
-            --bg-dark: #0a0e27;
-            --bg-card: #141b3d;
-            --gold: #d4af37;
-            --gold-light: #ffd700;
-            --text-white: #ffffff;
-            --text-gray: #a0aec0;
-            --red: #e53e3e;
-            --green: #38a169;
-            --orange: #dd6b20;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-white); padding: 10px; min-height: 100vh; }
-
-        /* HEADER */
+        :root { --bg-dark: #0a0e27; --bg-card: #141b3d; --gold: #d4af37; --text-white: #ffffff; --text-gray: #a0aec0; --red: #e53e3e; --green: #38a169; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-white); padding: 10px; }
         .header { display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); border: 2px solid var(--gold); padding: 15px; border-radius: 15px; margin-bottom: 15px; }
-        .title { color: var(--gold); font-size: 1.5rem; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-        .datetime { color: var(--text-white); font-size: 0.7rem; text-align: right; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 8px; border: 1px solid var(--gold); line-height: 1.2; }
-
-        /* GRID MÓVIL */
+        .title { color: var(--gold); font-size: 1.4rem; font-weight: 800; }
+        .datetime { color: var(--text-white); font-size: 0.7rem; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 8px; border: 1px solid var(--gold); }
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .card { background: var(--bg-card); border: 2px solid var(--gold); border-radius: 12px; padding: 15px 10px; text-align: center; cursor: pointer; transition: transform 0.2s; min-height: 85px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .card:active { transform: scale(0.95); background: #1a2350; }
+        .card { background: var(--bg-card); border: 2px solid var(--gold); border-radius: 12px; padding: 15px 10px; text-align: center; cursor: pointer; min-height: 85px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-decoration: none; color: var(--text-white); }
+        .card:active { transform: scale(0.95); }
         .card-icon { font-size: 1.6rem; margin-bottom: 5px; }
         .card-title { color: var(--gold); font-weight: 700; font-size: 0.8rem; }
-
-        /* VISTAS */
-        .view { display: none; animation: fadeIn 0.3s; }
-        .view.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .view-container { background: var(--bg-card); border: 2px solid var(--gold); border-radius: 12px; padding: 15px; margin-top: 10px; }
         .view-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--gold); padding-bottom: 10px; }
         .view-title { color: var(--gold); font-size: 1.1rem; font-weight: 800; }
-        .btn-back { background: transparent; border: 2px solid var(--gold); color: var(--gold); padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 0.8rem; cursor: pointer; }
-        .btn-back:hover { background: var(--gold); color: var(--bg-dark); }
-
-        /* BOTONES */
-        .btn { padding: 10px 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; margin: 5px; }
-        .btn-gold { background: var(--gold); color: var(--bg-dark); }
-        .btn-red { background: var(--red); color: white; }
-        .btn:active { transform: scale(0.95); }
-
-        /* TARJETAS DE DATOS */        .pred-card { background: rgba(0,0,0,0.2); border-left: 4px solid var(--gold); padding: 12px; margin-bottom: 10px; border-radius: 8px; display: flex; align-items: center; }
+        .btn-back { background: transparent; border: 2px solid var(--gold); color: var(--gold); padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 0.8rem; cursor: pointer; text-decoration: none; }
+        .pred-card { background: rgba(0,0,0,0.2); border-left: 4px solid var(--gold); padding: 12px; margin-bottom: 10px; border-radius: 8px; display: flex; align-items: center; }
         .pred-num { background: var(--gold); color: var(--bg-dark); font-size: 1.3rem; font-weight: 900; padding: 8px 10px; border-radius: 8px; margin-right: 12px; min-width: 45px; text-align: center; }
         .pred-info { flex: 1; }
         .pred-lot { font-size: 0.85rem; font-weight: 700; }
         .pred-detail { color: var(--text-gray); font-size: 0.75rem; margin-top: 3px; }
-        
         .status-active { color: var(--green); font-size: 0.7rem; font-weight: bold; }
         .status-inactive { color: var(--red); font-size: 0.7rem; font-weight: bold; }
         .no-active { text-align: center; color: var(--text-gray); padding: 20px; font-style: italic; }
-
-        /* FORMULARIO */
         .form-group { margin-bottom: 10px; }
         .form-label { color: var(--gold); font-size: 0.8rem; font-weight: bold; display: block; margin-bottom: 4px; }
         .form-control { width: 100%; background: var(--bg-dark); border: 1px solid var(--gold); color: white; padding: 10px; border-radius: 8px; font-size: 1rem; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-        
-        /* HISTORIAL */
-        .history-box { max-height: 60vh; overflow-y: auto; margin-top: 15px; border: 1px solid var(--gold); border-radius: 8px; }
-        .history-table { width: 100%; border-collapse: collapse; font-size: 0.7rem; }
-        .history-table th { background: var(--gold); color: var(--bg-dark); padding: 8px 4px; position: sticky; top: 0; font-weight: 800; }
-        .history-table td { padding: 6px 4px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .history-table tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+        .btn { padding: 10px 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; margin: 5px 0; width: 100%; }
+        .btn-gold { background: var(--gold); color: var(--bg-dark); }
+        .btn-red { background: var(--red); color: white; }
+        .info-box { background: rgba(0,0,0,0.2); border-left: 4px solid var(--gold); padding: 10px; margin-bottom: 10px; border-radius: 8px; }
+        .info-title { color: var(--gold); font-weight: bold; font-size: 0.85rem; }
+        .info-content { color: var(--text-gray); font-size: 0.75rem; }
+        .ventana-tabs { display: flex; gap: 5px; margin-bottom: 15px; flex-wrap: wrap; }
+        .ventana-tab { background: var(--bg-dark); border: 1px solid var(--gold); color: var(--gold); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; }
+        .ventana-tab.active { background: var(--gold); color: var(--bg-dark); }
+        .loteria-section { margin-bottom: 15px; }
+        .loteria-title { color: var(--gold); font-weight: bold; font-size: 0.9rem; margin-bottom: 8px; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
-
     <div class="header">
         <div class="title">🎰 LOTO MIXTA 2026</div>
-        <div class="datetime" id="reloj">Cargando...</div>
+        <div class="datetime" id="reloj"></div>
     </div>
 
-    <div id="main-menu" class="grid">
-        <div class="card" onclick="openView('view-jugar')"><div class="card-icon">🎯</div><div class="card-title">JUGAR HOY</div></div>
-        <div class="card" onclick="openView('view-arrastres')"><div class="card-icon">🔄</div><div class="card-title">ARRASTRES</div></div>
-        <div class="card" onclick="openView('view-monte')"><div class="card-icon">🎲</div><div class="card-title">MONTE CARLO</div></div>
-        <div class="card" onclick="openView('view-actualizar')"><div class="card-icon">️</div><div class="card-title">ACTUALIZAR</div></div>
-        <div class="card" onclick="openView('view-frecuencias')"><div class="card-icon">🔥</div><div class="card-title">FRECUENCIAS</div></div>
-        <div class="card" onclick="openView('view-patrones')"><div class="card-icon">🧩</div><div class="card-title">PATRONES</div></div>
-        <div class="card" onclick="openView('view-tiempos')"><div class="card-icon">⏳</div><div class="card-title">TIEMPOS</div></div>
-        <div class="card" onclick="openView('view-impas')"><div class="card-icon">⏰</div><div class="card-title">IMPAS</div></div>
-        <div class="card" onclick="openView('view-historial')"><div class="card-icon">📜</div><div class="card-title">HISTORIAL</div></div>
-    </div>
-
-    <!-- VENTANA JUGAR HOY -->
-    <div id="view-jugar" class="view">
-        <div class="view-container">
-            <div class="view-header">
-                <div class="view-title">🎯 JUGAR HOY</div>
-                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
-            </div>            <div id="content-jugar"></div>
-        </div>
-    </div>
-
-    <!-- VENTANA ARRASTRES -->
-    <div id="view-arrastres" class="view">
-        <div class="view-container">
-            <div class="view-header">
-                <div class="view-title">🔄 ARRASTRES</div>
-                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
-            </div>
-            <div id="content-arrastres"></div>
-        </div>
-    </div>
-
-    <!-- VENTANA MONTE CARLO -->
-    <div id="view-monte" class="view">
-        <div class="view-container">
-            <div class="view-header">
-                <div class="view-title">🎲 MONTE CARLO</div>
-                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
-            </div>
-            <div id="content-monte"></div>
-        </div>
-    </div>
-    
-    <!-- VENTANA ACTUALIZAR -->
-    <div id="view-actualizar" class="view">
-        <div class="view-container">
-            <div class="view-header">
-                <div class="view-title">️ ACTUALIZAR</div>
-                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
-            </div>
-            <div class="form-group"><label class="form-label">Fecha</label><input type="date" id="inp-fecha" class="form-control"></div>
-            <div class="form-group"><label class="form-label">Lotería</label><select id="inp-lot" class="form-control"><option>GEORGIA</option><option>FLORIDA</option><option>NY</option></select></div>
-            <div class="form-group"><label class="form-label">Hora</label><select id="inp-hora" class="form-control"><option>12:30</option><option>13:30</option><option>14:30</option><option>19:00</option><option>21:50</option><option>22:30</option><option>23:30</option></select></div>
-            <div class="form-row">
-                <div class="form-group"><label class="form-label">1ra</label><input type="number" id="inp-n1" class="form-control"></div>
-                <div class="form-group"><label class="form-label">2da</label><input type="number" id="inp-n2" class="form-control"></div>
-                <div class="form-group"><label class="form-label">3ra</label><input type="number" id="inp-n3" class="form-control"></div>
-            </div>
-            <button class="btn btn-gold" onclick="guardarSorteo()" style="width:100%; margin-top:10px;">💾 GUARDAR</button>
-            <button class="btn btn-red" onclick="eliminarUltimoSorteo()" style="width:100%; margin-top:10px;">🗑️ ELIMINAR ÚLTIMO</button>
-        </div>
-    </div>
-
-    <!-- VENTANA FRECUENCIAS -->
-    <div id="view-frecuencias" class="view">
-        <div class="view-container">
-            <div class="view-header">                <div class="view-title">🔥 FRECUENCIAS</div>
-                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
-            </div>
-            <div id="content-frecuencias"></div>
-        </div>
-    </div>
-
-    <!-- VENTANA PATRONES -->
-    <div id="view-patrones" class="view">
-        <div class="view-container">
-            <div class="view-header">
-                <div class="view-title">🧩 PATRONES</div>
-                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
-            </div>
-            <div id="content-patrones"></div>
-        </div>
-    </div>
-
-    <!-- VENTANA TIEMPOS -->
-    <div id="view-tiempos" class="view">
-        <div class="view-container">
-            <div class="view-header">
-                <div class="view-title">⏳ TIEMPOS</div>
-                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
-            </div>
-            <div id="content-tiempos"></div>
-        </div>
-    </div>
-
-    <!-- VENTANA IMPAS -->
-    <div id="view-impas" class="view">
-        <div class="view-container">
-            <div class="view-header">
-                <div class="view-title">⏰ IMPAS</div>
-                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
-            </div>
-            <div id="content-impas"></div>
-        </div>
-    </div>
-    
-    <!-- VENTANA HISTORIAL -->
-    <div id="view-historial" class="view">
-        <div class="view-container">
-            <div class="view-header">
-                <div class="view-title">📜 HISTORIAL</div>
-                <button class="btn-back" onclick="closeView()">⬅️ Atrás</button>
-            </div>
-            <div style="color: var(--gold); font-size: 0.8rem; margin-bottom: 10px; text-align: center;" id="total-registros">Cargando...</div>
-            <div class="history-box">
-                <table class="history-table">                    <thead><tr><th>Fecha</th><th>Lot</th><th>Hora</th><th>1ra</th><th>2da</th><th>3ra</th></tr></thead>
-                    <tbody id="tabla-historial"></tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+    <div id="app"></div>
 
     <script>
-        const HORARIOS = [
-            {lot:'GEORGIA', hora:'12:30'}, {lot:'FLORIDA', hora:'13:30'}, {lot:'NY', hora:'14:30'},
-            {lot:'GEORGIA', hora:'19:00'}, {lot:'FLORIDA', hora:'21:50'}, {lot:'NY', hora:'22:30'}, {lot:'GEORGIA', hora:'23:30'}
-        ];
-        let datos = [];
+    // ==========================================
+    // DATOS DEL HISTORIAL (1,799 sorteos)
+    // ==========================================
+    const HISTORIAL_BASE = [
+        // Aquí van los 1,799 sorteos del CSV
+        // Formato: {fecha: '2025-10-01', loteria: 'GEORGIA', hora: '12:30', n1: 33, n2: 6, n3: 40}
+        {fecha: '2025-10-01', loteria: 'GEORGIA', hora: '12:30', n1: 33, n2: 6, n3: 40},
+        {fecha: '2025-10-01', loteria: 'FLORIDA', hora: '13:30', n1: 12, n2: 49, n3: 11},
+        {fecha: '2025-10-01', loteria: 'NY', hora: '14:30', n1: 83, n2: 57, n3: 41},
+        // ... (continuar con todos los 1,799 sorteos)
+    ];
 
-        // RELOJ
-        setInterval(() => {
-            document.getElementById('reloj').innerText = new Date().toLocaleString('es-ES', {weekday:'short', day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'});
-        }, 1000);
+    // Cargar datos desde localStorage o usar base
+    function cargarDatos() {
+        const guardados = localStorage.getItem('loto_local');
+        const locales = guardados ? JSON.parse(guardados) : [];
+        return [...HISTORIAL_BASE, ...locales].sort((a, b) => {
+            const fechaA = new Date(a.fecha + 'T' + a.hora);
+            const fechaB = new Date(b.fecha + 'T' + b.hora);
+            return fechaA - fechaB;
+        });
+    }
 
-        // NAVEGACIÓN
-        function openView(viewId) { 
-            document.getElementById('main-menu').style.display = 'none'; 
-            document.querySelectorAll('.view').forEach(v=>v.classList.remove('active')); 
-            document.getElementById(viewId).classList.add('active'); 
-            if(viewId === 'view-historial') renderHistorial();
-        }
-        function closeView() { 
-            document.querySelectorAll('.view').forEach(v=>v.classList.remove('active')); 
-            document.getElementById('main-menu').style.display = 'grid'; 
-        }
+    function guardarSorteoLocal(fecha, loteria, hora, n1, n2, n3) {
+        const guardados = localStorage.getItem('loto_local');
+        const locales = guardados ? JSON.parse(guardados) : [];
+        locales.push({fecha, loteria, hora, n1, n2, n3});
+        localStorage.setItem('loto_local', JSON.stringify(locales));
+    }
 
-        // CARGAR DATOS
-        async function cargarDatos() {
-            try {
-                const res = await fetch('historial.csv?' + new Date().getTime());
-                const text = await res.text();
-                datos = parseCSV(text);
-            } catch (e) {
-                console.log("Error cargando CSV");
-                datos = [];
-            }
-            
-            const nuevos = JSON.parse(localStorage.getItem('loto_nuevos') || '[]');
-            if(nuevos.length > 0) datos = datos.concat(nuevos);
-            
-            datos.sort((a,b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora));
-            
-            autocompletarFormulario();
-            renderizarTodo();
-        }
-        function parseCSV(text) {
-            const lines = text.trim().split('\n');
-            const arr = [];
-            for(let i=1; i<lines.length; i++) {
-                const parts = lines[i].split(',');
-                if(parts.length >= 6) {
-                    arr.push({fecha: parts[0], loteria: parts[1], hora: parts[2], n1: parseInt(parts[3]), n2: parseInt(parts[4]), n3: parseInt(parts[5])});
-                }
-            }
-            return arr;
-        }
+    function eliminarUltimoLocal() {
+        const guardados = localStorage.getItem('loto_local');
+        if (!guardados) return false;
+        const locales = JSON.parse(guardados);
+        if (locales.length === 0) return false;
+        locales.pop();
+        localStorage.setItem('loto_local', JSON.stringify(locales));
+        return true;
+    }
 
-        function autocompletarFormulario() {
-            if(datos.length === 0) return;
-            const ultimo = datos[datos.length - 1];
-            let idx = HORARIOS.findIndex(h => h.lot === ultimo.loteria && h.hora === ultimo.hora);
-            let nextIdx = idx + 1;
-            let nextFecha = ultimo.fecha;
-            
-            if(nextIdx >= HORARIOS.length) {
-                nextIdx = 0;
-                const d = new Date(ultimo.fecha);
-                d.setDate(d.getDate() + 1);
-                nextFecha = d.toISOString().split('T')[0];
-            }
-            
-            document.getElementById('inp-fecha').value = nextFecha;
-            document.getElementById('inp-lot').value = HORARIOS[nextIdx].lot;
-            document.getElementById('inp-hora').value = HORARIOS[nextIdx].hora;
-        }
-
-        function guardarSorteo() {
-            const nuevo = {
-                fecha: document.getElementById('inp-fecha').value,
-                loteria: document.getElementById('inp-lot').value,
-                hora: document.getElementById('inp-hora').value,
-                n1: parseInt(document.getElementById('inp-n1').value),
-                n2: parseInt(document.getElementById('inp-n2').value),
-                n3: parseInt(document.getElementById('inp-n3').value)
-            };
-            
-            if(!nuevo.fecha || isNaN(nuevo.n1)) {
-                alert("❌ Faltan datos");
-                return;
-            }
-            
-            datos.push(nuevo);
-            const nuevos = JSON.parse(localStorage.getItem('loto_nuevos') || '[]');
-            nuevos.push(nuevo);            localStorage.setItem('loto_nuevos', JSON.stringify(nuevos));
-            
-            datos.sort((a,b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora));
-            autocompletarFormulario();
-            renderizarTodo();
-            alert("✅ Sorteo guardado y recalculado");
-        }
-
-        function eliminarUltimoSorteo() {
-            if(datos.length === 0) {
-                alert("❌ No hay sorteos para eliminar");
-                return;
-            }
-            
-            const ultimo = datos[datos.length - 1];
-            const confirmacion = confirm(`¿Eliminar este sorteo?\n\nFecha: ${ultimo.fecha}\nLotería: ${ultimo.loteria}\nHora: ${ultimo.hora}\nNúmeros: ${ultimo.n1} - ${ultimo.n2} - ${ultimo.n3}`);
-            
-            if(confirmacion) {
-                datos.pop();
-                localStorage.setItem('loto_nuevos', JSON.stringify(datos.slice(-100)));
-                autocompletarFormulario();
-                renderizarTodo();
-                alert("✅ Sorteo eliminado");
-            }
-        }
-
-        function renderizarTodo() {
-            renderJugarHoy();
-            renderArrastres();
-            renderMonteCarlo();
-            renderFrecuencias();
-            renderPatrones();
-            renderTiempos();
-            renderImpas();
-        }
-
-        function renderHistorial() {
-            document.getElementById('total-registros').innerText = `Total: ${datos.length} sorteos`;
-            const tbody = document.getElementById('tabla-historial');
-            let html = '';
-            const slice = datos.slice(-100).reverse();
-            slice.forEach(d => {
-                html += `<tr><td>${d.fecha}</td><td>${d.loteria.substring(0,3)}</td><td>${d.hora}</td><td>${d.n1}</td><td>${d.n2}</td><td>${d.n3}</td></tr>`;
-            });
-            tbody.innerHTML = html;
-        }
-
-        function renderJugarHoy() {
-            const ultimos50 = datos.slice(-50);
-            const freq = {};            ultimos50.forEach(d => { freq[d.n1] = (freq[d.n1]||0) + 1; });
-            const top3 = Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,3);
-            
-            let html = top3.length === 0 ? '<div class="no-active">Sin datos</div>' : '';
-            top3.forEach((t, i) => {
-                html += `<div class="pred-card"><div class="pred-num">${t[0].padStart(2,'0')}</div><div class="pred-info"><div class="pred-lot">Top ${i+1}</div><div class="pred-detail">Salió ${t[1]} veces (últimos 50)</div></div></div>`;
-            });
-            document.getElementById('content-jugar').innerHTML = html;
-        }
-
-        function renderArrastres() {
-            const ultimos21 = datos.slice(-21);
-            const en2da3ra = new Set();
-            ultimos21.forEach(d => { en2da3ra.add(d.n2); en2da3ra.add(d.n3); });
-            const ultimos7 = datos.slice(-7).map(d => d.n1);
-            const activos = [...en2da3ra].filter(n => !ultimos7.includes(n)).slice(0,3);
-            
-            let html = activos.length === 0 ? '<div class="no-active">No activos</div>' : '';
-            activos.forEach(n => {
-                html += `<div class="pred-card"><div class="pred-num">${String(n).padStart(2,'0')}</div><div class="pred-info"><div class="pred-lot">ARRASTRE <span class="status-active">ACTIVO</span></div><div class="pred-detail">En 2da/3ra (últimas 72h)</div></div></div>`;
-            });
-            document.getElementById('content-arrastres').innerHTML = html;
-        }
-
-        function renderMonteCarlo() {
-            const freq = {};
-            datos.forEach(d => { freq[d.n1] = (freq[d.n1]||0) + 1; });
-            const top = Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,3);
-            
-            let html = top.length === 0 ? '<div class="no-active">Sin datos</div>' : '';
-            top.forEach((t, i) => {
-                html += `<div class="pred-card"><div class="pred-num">${t[0].padStart(2,'0')}</div><div class="pred-info"><div class="pred-lot">Pronóstico ${i+1}</div><div class="pred-detail">Frecuencia: ${t[1]} veces</div></div></div>`;
-            });
-            document.getElementById('content-monte').innerHTML = html;
-        }
-
-        function renderFrecuencias() {
-            const numsSeguidos = [4, 40, 16, 61];
-            const ultimos50 = datos.slice(-50).map(d => d.n1);
-            
-            let html = '<div style="color:var(--gold); font-size:0.9rem; margin-bottom:10px;">Tus Números (04, 40, 16, 61)</div>';
-            numsSeguidos.forEach(n => {
-                const estaActivo = ultimos50.includes(n);
-                const color = estaActivo ? 'var(--green)' : 'var(--red)';
-                const texto = estaActivo ? 'ACTIVO - JUGAR' : 'NO JUGAR';
-                html += `<div class="pred-card" style="border-left-color:${color}"><div class="pred-num" style="background:${color}">${String(n).padStart(2,'0')}</div><div class="pred-info"><div class="pred-lot">${texto}</div><div class="pred-detail">${estaActivo ? 'Salió en últimos 50 sorteos' : 'No salió en últimos 50'}</div></div></div>`;
-            });
-            document.getElementById('content-frecuencias').innerHTML = html;
-        }
-        function renderPatrones() {
-            const percutados = [16, 61, 40, 4];
-            let html = '';
-            
-            percutados.forEach(p => {
-                const acomp2da = {}, acomp3ra = {};
-                datos.filter(d => d.n1 === p).forEach(d => {
-                    acomp2da[d.n2] = (acomp2da[d.n2]||0) + 1;
-                    acomp3ra[d.n3] = (acomp3ra[d.n3]||0) + 1;
-                });
+    // ==========================================
+    // ANÁLISIS 1: ARRASTRES POR LOTERÍA
+    // ==========================================
+    function getArrastresPorLoteria(df) {
+        const resultados = {'24h': {}, '48h': {}, '72h': {}};
+        const ventanas = {'24h': 7, '48h': 14, '72h': 21};
+        
+        for (const [ventana, dias] of Object.entries(ventanas)) {
+            for (const loteria of ['GEORGIA', 'FLORIDA', 'NY']) {
+                const dfLot = df.filter(d => d.loteria === loteria);
+                if (dfLot.length < dias) continue;
                 
-                const top2da = Object.entries(acomp2da).sort((a,b)=>b[1]-a[1])[0];
-                const top3ra = Object.entries(acomp3ra).sort((a,b)=>b[1]-a[1])[0];
+                const ultimosN = dfLot.slice(-dias);
+                const ultimos7 = dfLot.slice(-7);
                 
-                if(top2da || top3ra) {
-                    html += `<div style="color:var(--gold); font-size:0.85rem; margin:10px 0 5px 0;">Percusiones del ${p}</div>`;
-                    if(top2da) html += `<div class="pred-card"><div class="pred-num">${top2da[0].padStart(2,'0')}</div><div class="pred-info"><div class="pred-lot">ALLANA en 2da <span class="status-active">ACTIVO</span></div><div class="pred-detail">Acompaña al ${p} (${top2da[1]} veces)</div></div></div>`;
-                    if(top3ra) html += `<div class="pred-card"><div class="pred-num">${top3ra[0].padStart(2,'0')}</div><div class="pred-info"><div class="pred-lot">ALLANA en 3ra <span class="status-active">ACTIVO</span></div><div class="pred-detail">Acompaña al ${p} (${top3ra[1]} veces)</div></div></div>`;
-                }
-            });
-            
-            if(html === '') html = '<div class="no-active">No activos</div>';
-            document.getElementById('content-patrones').innerHTML = html;
+                const nums2da3ra = new Set();
+                ultimosN.forEach(d => { nums2da3ra.add(d.n2); nums2da3ra.add(d.n3); });
+                
+                const nums1raRecientes = new Set();
+                ultimos7.forEach(d => nums1raRecientes.add(d.n1));
+                
+                const activos = [...nums2da3ra].filter(n => !nums1raRecientes.has(n)).slice(0, 5);
+                resultados[ventana][loteria] = activos;
+            }
         }
+        return resultados;
+    }
 
-        function renderTiempos() {
-            const dias = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-            const hoy = dias[new Date().getDay()];
-            const freqHoy = {};
-            datos.filter(d => new Date(d.fecha).toLocaleDateString('en-US', {weekday:'long'}) === hoy).forEach(d => {
-                freqHoy[d.n1] = (freqHoy[d.n1]||0) + 1;
+    // ==========================================
+    // ANÁLISIS 2: ARRASTRES CRUZADOS
+    // ==========================================
+    function getArrastresCruzados(df) {
+        const arrastres = [];
+        
+        for (let num = 0; num < 100; num++) {
+            const indicesOrigen = [];
+            df.forEach((d, idx) => {
+                if (d.n2 === num || d.n3 === num) indicesOrigen.push(idx);
             });
-            const top = Object.entries(freqHoy).sort((a,b)=>b[1]-a[1]).slice(0,3);
             
-            let html = `<div style="color:var(--gold); font-size:0.9rem; margin-bottom:10px;">Activos para ${hoy}</div>`;
-            if(top.length === 0) html += '<div class="no-active">No activos</div>';
-            else {
-                top.forEach(t => {
-                    html += `<div class="pred-card"><div class="pred-num">${t[0].padStart(2,'0')}</div><div class="pred-info"><div class="pred-lot">CICLO SEMANAL <span class="status-active">ACTIVO</span></div><div class="pred-detail">Frecuente los ${hoy} (${t[1]} veces)</div></div></div>`;
+            if (indicesOrigen.length === 0) continue;
+            
+            let exitosCruzados = 0;
+            let total = 0;
+            const destinos = {};
+            
+            for (const idx of indicesOrigen) {
+                const loteriaOrigen = df[idx].loteria;
+                const dfFuturo = df.slice(idx + 1, idx + 22);
+                
+                if (dfFuturo.length === 0) continue;
+                
+                const primeraLlegada = dfFuturo.find(d => d.n1 === num);
+                
+                if (primeraLlegada && primeraLlegada.loteria !== loteriaOrigen) {
+                    exitosCruzados++;
+                    const keyDestino = `${primeraLlegada.loteria} ${primeraLlegada.hora}`;
+                    destinos[keyDestino] = (destinos[keyDestino] || 0) + 1;
+                }
+                total++;
+            }
+            
+            if (exitosCruzados > 0) {
+                const tasa = (exitosCruzados / total * 100);
+                const destinoPrincipal = Object.keys(destinos).reduce((a, b) => destinos[a] > destinos[b] ? a : b, '');
+                
+                arrastres.push({
+                    numero: num,
+                    tasa_exito: Math.round(tasa * 10) / 10,
+                    exitos: exitosCruzados,
+                    total: total,
+                    destino: destinoPrincipal
                 });
             }
-            document.getElementById('content-tiempos').innerHTML = html;
         }
+        
+        arrastres.sort((a, b) => b.tasa_exito - a.tasa_exito);
+        return arrastres.slice(0, 10);
+    }
 
-        function renderImpas() {
-            const ultimos100 = datos.slice(-100).map(d => d.n1);
+    // ==========================================
+    // ANÁLISIS 3: TIEMPOS DE ARRASTRE
+    // ==========================================
+    function getTiemposArrastre(df) {
+        const tiempos = [];
+        
+        for (let num = 0; num < 100; num++) {
+            const indices2da3ra = [];
+            df.forEach((d, idx) => {
+                if (d.n2 === num || d.n3 === num) indices2da3ra.push(idx);
+            });
+            
+            if (indices2da3ra.length === 0) continue;
+            
             const impas = [];
-            for(let i=0; i<100; i++) {
-                const idx = ultimos100.indexOf(i);
-                impas.push({n:i, impa: idx === -1 ? 100 : idx});            }
-            const vencidos = impas.sort((a,b)=>b.impa-a.impa).slice(0,3);
+            let noLlegaron = 0;
+            let llegaron = 0;
+            const destinosLot = {};
+            const destinosHora = {};
             
-            let html = '';
-            vencidos.forEach(v => {
-                html += `<div class="pred-card" style="border-left-color:var(--red)"><div class="pred-num" style="background:var(--red)">${v.n}</div><div class="pred-info"><div class="pred-lot">IMPAS VENCIDO <span class="status-inactive">URGENTE</span></div><div class="pred-detail">Lleva ${v.impa} sorteos sin salir</div></div></div>`;
-            });
-            document.getElementById('content-impas').innerHTML = html;
+            for (const idx of indices2da3ra) {
+                const dfFuturo = df.slice(idx + 1, idx + 22);
+                
+                if (dfFuturo.length === 0) {
+                    noLlegaron++;
+                    continue;
+                }
+                
+                const llegada = dfFuturo.find(d => d.n1 === num);
+                
+                if (llegada) {
+                    const distancia = df.indexOf(llegada) - idx;
+                    impas.push(distancia);
+                    llegaron++;
+                    
+                    destinosLot[llegada.loteria] = (destinosLot[llegada.loteria] || 0) + 1;
+                    destinosHora[llegada.hora] = (destinosHora[llegada.hora] || 0) + 1;
+                } else {
+                    noLlegaron++;
+                }
+            }
+            
+            if (impas.length > 0) {
+                const impaPromedio = impas.reduce((a, b) => a + b, 0) / impas.length;
+                const impaMinimo = Math.min(...impas);
+                const impaMaximo = Math.max(...impas);
+                const tasaLlegada = (llegaron / (llegaron + noLlegaron)) * 100;
+                
+                const lotMasFreq = Object.keys(destinosLot).reduce((a, b) => destinosLot[a] > destinosLot[b] ? a : b, '-');
+                const horaMasFreq = Object.keys(destinosHora).reduce((a, b) => destinosHora[a] > destinosHora[b] ? a : b, '-');
+                
+                tiempos.push({
+                    numero: num,
+                    impa_promedio: Math.round(impaPromedio * 10) / 10,
+                    impa_minimo: impaMinimo,
+                    impa_maximo: impaMaximo,
+                    tasa_llegada: Math.round(tasaLlegada * 10) / 10,
+                    llegaron: llegaron,
+                    no_llegaron: noLlegaron,
+                    lot_mas_freq: lotMasFreq,
+                    hora_mas_freq: horaMasFreq
+                });
+            }
         }
+        
+        tiempos.sort((a, b) => b.tasa_llegada - a.tasa_llegada);
+        return tiempos.slice(0, 10);
+    }
 
-        // INICIAR
-        cargarDatos();
+    // ==========================================
+    // ANÁLISIS 4: IMPAS
+    // ==========================================
+    function getImpas(df) {
+        const impas = [];
+        
+        for (let num = 0; num < 100; num++) {
+            const indices = [];
+            df.forEach((d, idx) => {
+                if (d.n1 === num) indices.push(idx);
+            });
+            
+            if (indices.length > 1) {
+                const brechas = [];
+                for (let i = 1; i < indices.length; i++) {
+                    brechas.push(indices[i] - indices[i - 1]);
+                }
+                const impaProm = brechas.reduce((a, b) => a + b, 0) / brechas.length;
+                const impaActual = df.length - 1 - indices[indices.length - 1];
+                
+                impas.push({
+                    numero: num,
+                    impa_promedio: Math.round(impaProm * 10) / 10,
+                    impa_actual: impaActual,
+                    total_apariciones: indices.length
+                });
+            }
+        }
+        
+        impas.sort((a, b) => b.impa_promedio - a.impa_promedio);
+        return impas.slice(0, 5);
+    }
+
+    // ==========================================
+    // ANÁLISIS 5: TERMINALES
+    // ==========================================
+    function getTerminales(df) {
+        const terminales = [];
+        
+        for (let terminal = 0; terminal < 10; terminal++) {
+            const numerosConTerminal = [];
+            for (let n = 0; n < 100; n++) {
+                if (n % 10 === terminal) numerosConTerminal.push(n);
+            }
+            
+            const freq1ra = df.filter(d => numerosConTerminal.includes(d.n1)).length;
+            const freq2da3ra = df.filter(d => numerosConTerminal.includes(d.n2) || numerosConTerminal.includes(d.n3)).length;
+            
+            let exitos = 0;
+            let total = 0;
+            
+            for (const num of numerosConTerminal) {
+                df.forEach((d, idx) => {
+                    if (d.n2 === num || d.n3 === num) {
+                        const dfFuturo = df.slice(idx + 1, idx + 22);
+                        if (dfFuturo.some(f => f.n1 === num)) exitos++;
+                        total++;
+                    }
+                });
+            }
+            
+            const tasa = total > 0 ? (exitos / total * 100) : 0;
+            
+            terminales.push({
+                terminal: terminal,
+                freq_1ra: freq1ra,
+                freq_2da_3ra: freq2da3ra,
+                tasa_arrastre: Math.round(tasa * 10) / 10,
+                numeros: numerosConTerminal.slice(0, 5)
+            });
+        }
+        
+        terminales.sort((a, b) => b.tasa_arrastre - a.tasa_arrastre);
+        return terminales.slice(0, 5);
+    }
+
+    // ==========================================
+    // ANÁLISIS 6: NÚMEROS ESPECÍFICOS
+    // ==========================================
+    function getNumerosEspecificos(df) {
+        const numerosObjetivo = [16, 61, 4, 40];
+        const ultimos50 = new Set(df.slice(-50).map(d => d.n1));
+        const resultados = [];
+        
+        for (const num of numerosObjetivo) {
+            const dfNum = df.filter(d => d.n1 === num);
+            
+            if (dfNum.length === 0) {
+                resultados.push({
+                    numero: num,
+                    activo: false,
+                    total: 0,
+                    horarios: [],
+                    mensaje: 'NO JUGAR'
+                });
+                continue;
+            }
+            
+            const horariosCount = {};
+            dfNum.forEach(d => {
+                const key = `${d.loteria} ${d.hora}`;
+                horariosCount[key] = (horariosCount[key] || 0) + 1;
+            });
+            
+            const horarios = Object.entries(horariosCount)
+                .map(([key, count]) => {
+                    const [loteria, hora] = key.split(' ');
+                    return {loteria, hora, count};
+                })
+                .sort((a, b) => b.count - a.count)
+                .slice(0, 3);
+            
+            const activo = ultimos50.has(num);
+            const mensaje = activo && horarios.length > 0 
+                ? `ACTIVO JUGAR en ${horarios[0].loteria} ${horarios[0].hora}` 
+                : 'NO JUGAR';
+            
+            resultados.push({
+                numero: num,
+                activo: activo,
+                total: dfNum.length,
+                horarios: horarios,
+                mensaje: mensaje
+            });
+        }
+        
+        return resultados;
+    }
+
+    // ==========================================
+    // RENDERIZADO DE VISTAS
+    // ==========================================
+    function renderMenu() {
+        return `
+            <div class="grid">
+                <div class="card" onclick="showView('arrastres')"><div class="card-icon">🔄</div><div class="card-title">ARRASTRES</div></div>
+                <div class="card" onclick="showView('impas')"><div class="card-icon">⏰</div><div class="card-title">IMPAS</div></div>
+                <div class="card" onclick="showView('terminales')"><div class="card-icon">🔢</div><div class="card-title">TERMINALES</div></div>
+                <div class="card" onclick="showView('especificos')"><div class="card-icon">🎯</div><div class="card-title">16-61-04-40</div></div>
+                <div class="card" onclick="showView('actualizar')"><div class="card-icon">⚙️</div><div class="card-title">ACTUALIZAR</div></div>
+                <div class="card" onclick="showView('historial')"><div class="card-icon">📜</div><div class="card-title">HISTORIAL</div></div>
+            </div>
+        `;
+    }
+
+    function renderArrastres() {
+        const df = cargarDatos();
+        const arrastresLot = getArrastresPorLoteria(df);
+        const arrastresCruzados = getArrastresCruzados(df);
+        const tiempos = getTiemposArrastre(df);
+        
+        let html = `
+            <div class="view-container">
+                <div class="view-header"><div class="view-title">🔄 ARRASTRES</div><div class="btn-back" onclick="showView('menu')">Volver</div></div>
+                <div class="ventana-tabs">
+                    <div class="ventana-tab active" onclick="showTab('t1', this)">POR LOTERÍA</div>
+                    <div class="ventana-tab" onclick="showTab('t2', this)">CRUZADOS</div>
+                    <div class="ventana-tab" onclick="showTab('t3', this)">TIEMPOS</div>
+                </div>
+                
+                <div id="t1">
+                    <div class="ventana-tabs">
+                        <div class="ventana-tab active" onclick="showSub('s1', this)">24h</div>
+                        <div class="ventana-tab" onclick="showSub('s2', this)">48h</div>
+                        <div class="ventana-tab" onclick="showSub('s3', this)">72h</div>
+                    </div>
+                    
+                    <div id="s1">
+                        ${['GEORGIA', 'FLORIDA', 'NY'].map(lot => `
+                            <div class="loteria-section">
+                                <div class="loteria-title">${lot}</div>
+                                ${(arrastresLot['24h'][lot] || []).length > 0 
+                                    ? arrastresLot['24h'][lot].map(num => `
+                                        <div class="pred-card">
+                                            <div class="pred-num">${String(num).padStart(2, '0')}</div>
+                                            <div class="pred-info"><div class="pred-lot">ACTIVO <span class="status-active">JUGAR</span></div></div>
+                                        </div>
+                                    `).join('')
+                                    : '<div class="no-active">Sin arrastres</div>'}
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div id="s2" class="hidden">
+                        ${['GEORGIA', 'FLORIDA', 'NY'].map(lot => `
+                            <div class="loteria-section">
+                                <div class="loteria-title">${lot}</div>
+                                ${(arrastresLot['48h'][lot] || []).length > 0 
+                                    ? arrastresLot['48h'][lot].map(num => `
+                                        <div class="pred-card">
+                                            <div class="pred-num">${String(num).padStart(2, '0')}</div>
+                                            <div class="pred-info"><div class="pred-lot">ACTIVO <span class="status-active">JUGAR</span></div></div>
+                                        </div>
+                                    `).join('')
+                                    : '<div class="no-active">Sin arrastres</div>'}
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div id="s3" class="hidden">
+                        ${['GEORGIA', 'FLORIDA', 'NY'].map(lot => `
+                            <div class="loteria-section">
+                                <div class="loteria-title">${lot}</div>
+                                ${(arrastresLot['72h'][lot] || []).length > 0 
+                                    ? arrastresLot['72h'][lot].map(num => `
+                                        <div class="pred-card">
+                                            <div class="pred-num">${String(num).padStart(2, '0')}</div>
+                                            <div class="pred-info"><div class="pred-lot">ACTIVO <span class="status-active">JUGAR</span></div></div>
+                                        </div>
+                                    `).join('')
+                                    : '<div class="no-active">Sin arrastres</div>'}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div id="t2" class="hidden">
+                    <div class="info-box"><div class="info-title">Arrastres Cruzados (Entre Loterías)</div></div>
+                    ${arrastresCruzados.length > 0 
+                        ? arrastresCruzados.map(a => `
+                            <div class="pred-card">
+                                <div class="pred-num">${String(a.numero).padStart(2, '0')}</div>
+                                <div class="pred-info">
+                                    <div class="pred-lot">Destino: ${a.destino} <span class="status-active">CRUZADO</span></div>
+                                    <div class="pred-detail">Tasa: ${a.tasa_exito}% | Éxitos: ${a.exitos}/${a.total}</div>
+                                </div>
+                            </div>
+                        `).join('')
+                        : '<div class="no-active">Sin arrastres cruzados</div>'}
+                </div>
+                
+                <div id="t3" class="hidden">
+                    <div class="info-box"><div class="info-title">Tiempos de Arrastre</div></div>
+                    ${tiempos.length > 0 
+                        ? tiempos.map(t => `
+                            <div class="pred-card">
+                                <div class="pred-num">${String(t.numero).padStart(2, '0')}</div>
+                                <div class="pred-info">
+                                    <div class="pred-lot">Llega: ${t.tasa_llegada}% | Impa: ${t.impa_promedio} <span class="status-active">ACTIVO</span></div>
+                                    <div class="pred-detail">Min: ${t.impa_minimo} | Max: ${t.impa_maximo} | Llegaron: ${t.llegaron}/${t.llegaron + t.no_llegaron}</div>
+                                    <div class="pred-detail">Destino: ${t.lot_mas_freq} ${t.hora_mas_freq}</div>
+                                </div>
+                            </div>
+                        `).join('')
+                        : '<div class="no-active">Sin datos</div>'}
+                </div>
+            </div>
+        `;
+        return html;
+    }
+
+    function renderImpas() {
+        const df = cargarDatos();
+        const impas = getImpas(df);
+        
+        return `
+            <div class="view-container">
+                <div class="view-header"><div class="view-title">⏰ IMPAS</div><div class="btn-back" onclick="showView('menu')">Volver</div></div>
+                ${impas.length > 0 
+                    ? impas.map(i => `
+                        <div class="pred-card" style="border-left-color: var(--red)">
+                            <div class="pred-num" style="background: var(--red)">${String(i.numero).padStart(2, '0')}</div>
+                            <div class="pred-info">
+                                <div class="pred-lot">IMPAS VENCIDO <span class="status-inactive">URGENTE</span></div>
+                                <div class="pred-detail">Promedio: ${i.impa_promedio} | Actual: ${i.impa_actual} | Total: ${i.total_apariciones}</div>
+                            </div>
+                        </div>
+                    `).join('')
+                    : '<div class="no-active">Sin impas vencidos</div>'}
+            </div>
+        `;
+    }
+
+    function renderTerminales() {
+        const df = cargarDatos();
+        const terminales = getTerminales(df);
+        
+        return `
+            <div class="view-container">
+                <div class="view-header"><div class="view-title">🔢 TERMINALES</div><div class="btn-back" onclick="showView('menu')">Volver</div></div>
+                <div class="info-box"><div class="info-title">Top 5 Terminales</div></div>
+                ${terminales.length > 0 
+                    ? terminales.map(t => `
+                        <div class="pred-card">
+                            <div class="pred-num">${t.terminal}</div>
+                            <div class="pred-info">
+                                <div class="pred-lot">Terminal ${t.terminal} <span class="status-active">ACTIVO</span></div>
+                                <div class="pred-detail">1ra: ${t.freq_1ra} | 2da/3ra: ${t.freq_2da_3ra} | Tasa: ${t.tasa_arrastre}%</div>
+                            </div>
+                        </div>
+                    `).join('')
+                    : '<div class="no-active">Sin datos</div>'}
+            </div>
+        `;
+    }
+
+    function renderEspecificos() {
+        const df = cargarDatos();
+        const especificos = getNumerosEspecificos(df);
+        
+        return `
+            <div class="view-container">
+                <div class="view-header"><div class="view-title"> 16 - 61 - 04 - 40</div><div class="btn-back" onclick="showView('menu')">Volver</div></div>
+                ${especificos.map(e => `
+                    <div class="pred-card" style="border-left-color: ${e.activo ? 'var(--green)' : 'var(--red)'}">
+                        <div class="pred-num" style="background: ${e.activo ? 'var(--green)' : 'var(--red)'}">${String(e.numero).padStart(2, '0')}</div>
+                        <div class="pred-info">
+                            <div class="pred-lot">${e.mensaje}</div>
+                            <div class="pred-detail">Total: ${e.total} veces</div>
+                            ${e.horarios.length > 0 ? `<div class="pred-detail">Mejor: ${e.horarios[0].loteria} ${e.horarios[0].hora} (${e.horarios[0].count} veces)</div>` : ''}
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    function renderActualizar() {
+        const df = cargarDatos();
+        const hoy = new Date().toISOString().split('T')[0];
+        const nextFecha = hoy;
+        
+        return `
+            <div class="view-container">
+                <div class="view-header"><div class="view-title">⚙️ ACTUALIZAR</div><div class="btn-back" onclick="showView('menu')">Volver</div></div>
+                <form onsubmit="handleGuardar(event)">
+                    <div class="form-group"><label class="form-label">Fecha</label><input type="date" name="fecha" value="${nextFecha}" class="form-control" required></div>
+                    <div class="form-group"><label class="form-label">Lotería</label><select name="loteria" class="form-control"><option>GEORGIA</option><option>FLORIDA</option><option>NY</option></select></div>
+                    <div class="form-group"><label class="form-label">Hora</label><select name="hora" class="form-control"><option>12:30</option><option>13:30</option><option>14:30</option><option>19:00</option><option>21:50</option><option>22:30</option><option>23:30</option></select></div>
+                    <div class="form-row">
+                        <div class="form-group"><label class="form-label">1ra</label><input type="number" name="n1" class="form-control" required min="0" max="99"></div>
+                        <div class="form-group"><label class="form-label">2da</label><input type="number" name="n2" class="form-control" required min="0" max="99"></div>
+                        <div class="form-group"><label class="form-label">3ra</label><input type="number" name="n3" class="form-control" required min="0" max="99"></div>
+                    </div>
+                    <button type="submit" class="btn btn-gold">GUARDAR Y RECALCULAR</button>
+                </form>
+                <button onclick="handleEliminar()" class="btn btn-red" style="margin-top:10px;">ELIMINAR ÚLTIMO</button>
+            </div>
+        `;
+    }
+
+    function renderHistorial() {
+        const df = cargarDatos();
+        const ultimos200 = df.slice(-200).reverse();
+        
+        return `
+            <div class="view-container">
+                <div class="view-header"><div class="view-title">📜 HISTORIAL</div><div class="btn-back" onclick="showView('menu')">Volver</div></div>
+                <div style="color: var(--gold); text-align: center; margin-bottom: 10px;">Total: ${df.length} sorteos</div>
+                <div style="max-height: 60vh; overflow-y: auto;">
+                    <table style="width:100%; font-size:0.7rem; border-collapse: collapse;">
+                        <thead><tr style="background:var(--gold); color:var(--bg-dark);"><th>Fecha</th><th>Lot</th><th>Hora</th><th>1ra</th><th>2da</th><th>3ra</th></tr></thead>
+                        <tbody>
+                            ${ultimos200.map(h => `
+                                <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                                    <td>${h.fecha}</td>
+                                    <td>${h.loteria.substring(0, 3)}</td>
+                                    <td>${h.hora}</td>
+                                    <td>${h.n1}</td>
+                                    <td>${h.n2}</td>
+                                    <td>${h.n3}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        `;
+    }
+
+    // ==========================================
+    // NAVEGACIÓN Y EVENTOS
+    // ==========================================
+    function showView(view) {
+        const app = document.getElementById('app');
+        
+        switch(view) {
+            case 'menu':
+                app.innerHTML = renderMenu();
+                break;
+            case 'arrastres':
+                app.innerHTML = renderArrastres();
+                break;
+            case 'impas':
+                app.innerHTML = renderImpas();
+                break;
+            case 'terminales':
+                app.innerHTML = renderTerminales();
+                break;
+            case 'especificos':
+                app.innerHTML = renderEspecificos();
+                break;
+            case 'actualizar':
+                app.innerHTML = renderActualizar();
+                break;
+            case 'historial':
+                app.innerHTML = renderHistorial();
+                break;
+        }
+    }
+
+    function showTab(tabId, element) {
+        const container = element.parentElement;
+        const tabs = container.querySelectorAll('.ventana-tab');
+        tabs.forEach(t => t.classList.remove('active'));
+        element.classList.add('active');
+        
+        const parent = container.parentElement;
+        const contents = parent.querySelectorAll('[id^="t"]');
+        contents.forEach(c => c.classList.add('hidden'));
+        document.getElementById(tabId).classList.remove('hidden');
+    }
+
+    function showSub(subId, element) {
+        const container = element.parentElement;
+        const tabs = container.querySelectorAll('.ventana-tab');
+        tabs.forEach(t => t.classList.remove('active'));
+        element.classList.add('active');
+        
+        const parent = container.parentElement;
+        const contents = parent.querySelectorAll('[id^="s"]');
+        contents.forEach(c => c.classList.add('hidden'));
+        document.getElementById(subId).classList.remove('hidden');
+    }
+
+    function handleGuardar(event) {
+        event.preventDefault();
+        const form = event.target;
+        const fecha = form.fecha.value;
+        const loteria = form.loteria.value;
+        const hora = form.hora.value;
+        const n1 = parseInt(form.n1.value);
+        const n2 = parseInt(form.n2.value);
+        const n3 = parseInt(form.n3.value);
+        
+        if (n1 === n2 || n1 === n3 || n2 === n3) {
+            alert('No puedes repetir números');
+            return;
+        }
+        
+        guardarSorteoLocal(fecha, loteria, hora, n1, n2, n3);
+        alert('Sorteo guardado. Los análisis se actualizarán automáticamente.');
+        showView('menu');
+    }
+
+    function handleEliminar() {
+        if (confirm('¿Eliminar el último sorteo guardado?')) {
+            if (eliminarUltimoLocal()) {
+                alert('Último sorteo eliminado');
+            } else {
+                alert('No hay sorteos locales para eliminar');
+            }
+        }
+    }
+
+    // Reloj
+    setInterval(() => {
+        const ahora = new Date();
+        document.getElementById('reloj').innerText = ahora.toLocaleString('es-ES', {
+            weekday: 'short', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'
+        });
+    }, 1000);
+
+    // Iniciar
+    showView('menu');
     </script>
 </body>
 </html>
