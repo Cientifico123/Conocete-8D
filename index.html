@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loto Mixta 2026</title>
+<title>Loto Mixta 2026 - Predictivo</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#0a0e27;color:#fff;min-height:100vh;padding:10px}
-.header{background:#141b3d;border:2px solid #d4af37;border-radius:15px;padding:15px;margin-bottom:15px;display:flex;justify-content:space-between;align-items:center}
-.title{color:#d4af37;font-size:1.5rem;font-weight:900}
-.clock{color:#fff;font-size:0.85rem;background:rgba(0,0,0,0.3);padding:8px 12px;border-radius:8px;border:1px solid #d4af37}
+.header{background:#141b3d;border:2px solid #d4af37;border-radius:15px;padding:15px;margin-bottom:15px}
+.title{color:#d4af37;font-size:1.5rem;font-weight:900;text-align:center}
+.clock{color:#fff;font-size:0.85rem;text-align:center;margin-top:5px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.card{background:#141b3d;border:2px solid #d4af37;border-radius:12px;padding:18px 10px;text-align:center;cursor:pointer;min-height:85px}
+.card{background:#141b3d;border:2px solid #d4af37;border-radius:12px;padding:15px;text-align:center;cursor:pointer}
 .card:active{transform:scale(0.95)}
 .card-icon{font-size:1.8rem;margin-bottom:5px}
 .card-title{color:#d4af37;font-weight:700;font-size:0.85rem}
@@ -19,10 +19,12 @@ body{background:#0a0e27;color:#fff;min-height:100vh;padding:10px}
 .view-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid #d4af37}
 .view-title{color:#d4af37;font-size:1.2rem;font-weight:800}
 .btn-back{background:transparent;border:2px solid #d4af37;color:#d4af37;padding:8px 15px;border-radius:8px;font-weight:bold;cursor:pointer}
-.pred{background:rgba(0,0,0,0.2);border-left:4px solid #d4af37;padding:12px;margin-bottom:10px;border-radius:8px}
-.pred-num{background:#d4af37;color:#0a0e27;font-size:1.3rem;font-weight:900;padding:8px 12px;border-radius:8px;display:inline-block;margin-bottom:5px}
-.pred-info{font-size:0.9rem}
-.badge{color:#38a169;font-size:0.75rem;font-weight:bold}
+.pred{background:rgba(212,175,55,0.1);border-left:4px solid #d4af37;padding:12px;margin-bottom:10px;border-radius:8px}
+.pred-num{background:#d4af37;color:#0a0e27;font-size:1.3rem;font-weight:900;padding:8px 15px;border-radius:8px;display:inline-block;margin-bottom:5px}
+.pred-info{font-size:0.85rem}
+.pred-detail{color:#a0aec0;font-size:0.75rem;margin-top:3px}
+.badge{background:#d4af37;color:#0a0e27;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:bold;margin-left:5px}
+.prediction-box{background:rgba(56,161,105,0.1);border:1px solid #38a169;padding:8px;margin-top:5px;border-radius:6px}
 .no-data{text-align:center;color:#a0aec0;padding:20px}
 .form-group{margin-bottom:12px}
 .form-label{color:#d4af37;font-size:0.9rem;font-weight:bold;display:block;margin-bottom:5px}
@@ -31,12 +33,8 @@ body{background:#0a0e27;color:#fff;min-height:100vh;padding:10px}
 .btn{padding:12px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;width:100%;margin:5px 0}
 .btn-gold{background:#d4af37;color:#0a0e27}
 .btn-red{background:#e53e3e;color:#fff}
-.hidden{display:none}
-.tabs{display:flex;gap:5px;margin-bottom:15px;flex-wrap:wrap}
-.tab{background:#0a0e27;border:1px solid #d4af37;color:#d4af37;padding:8px 12px;border-radius:8px;cursor:pointer;font-size:0.8rem}
-.tab.active{background:#d4af37;color:#0a0e27}
-.lot-section{margin-bottom:15px;padding:10px;background:rgba(212,175,55,0.1);border-radius:8px}
-.lot-title{color:#d4af37;font-weight:bold;margin-bottom:8px;font-size:0.95rem}
+.lot-box{background:rgba(0,0,0,0.3);padding:10px;margin:10px 0;border-radius:8px;border:1px solid rgba(212,175,55,0.3)}
+.lot-header{color:#d4af37;font-weight:bold;margin-bottom:8px;font-size:0.9rem}
 table{width:100%;border-collapse:collapse;font-size:0.75rem;margin-top:10px}
 th{background:#d4af37;color:#0a0e27;padding:8px;text-align:left}
 td{padding:6px;border-bottom:1px solid rgba(255,255,255,0.1)}
@@ -51,7 +49,6 @@ td{padding:6px;border-bottom:1px solid rgba(255,255,255,0.1)}
 <div id="app"></div>
 
 <script>
-// HISTORIAL - Últimos sorteos con datos reales
 const HISTORIAL=[
 {f:'2026-06-23',l:'GEORGIA',h:'12:30',n1:76,n2:33,n3:73},
 {f:'2026-06-24',l:'GEORGIA',h:'12:30',n1:22,n2:31,n3:94},
@@ -87,86 +84,138 @@ const HISTORIAL=[
 let LOCALES=JSON.parse(localStorage.getItem('loto')||'[]');
 function getDF(){return[...HISTORIAL,...LOCALES].sort((a,b)=>new Date(a.f+'T'+a.h)-new Date(b.f+'T'+b.h))}
 
-// ANÁLISIS 1: ARRASTRES CORRECTO - Números en 2da/3ra que NO están en 1ra (últimos 7 sorteos)
-function arrastresLot(df){
-    const r={'24h':{},'48h':{},'72h':{}};
+// ANÁLISIS 1: ARRASTRES - Dónde y cuándo son probables
+function arrastresPredictivos(df){
+    const r={};
+    const horarios=['12:30','13:30','14:30','19:00','21:50','22:30','23:30'];
     
     ['GEORGIA','FLORIDA','NY'].forEach(lot=>{
         const dl=df.filter(x=>x.l===lot);
+        const transiciones={};
         
-        // 24h: últimos 7 sorteos
-        if(dl.length>=7){
-            const ult7=dl.slice(-7);
-            const ult21=dl.slice(-21);
-            const nums1ra7=new Set(ult7.map(x=>x.n1));
-            const nums23=new Set();
-            ult21.forEach(x=>{nums23.add(x.n2);nums23.add(x.n3)});
-            r['24h'][lot]=[...nums23].filter(n=>!nums1ra7.has(n)).slice(0,5);
+        for(let i=0;i<dl.length-1;i++){
+            const actual=dl[i];
+            const futuro=dl.slice(i+1,i+8);
+            
+            [actual.n2,actual.n3].forEach(num=>{
+                if(!transiciones[num])transiciones[num]={exitos:0,total:0,porHorario:{},porLoteria:{}};
+                transiciones[num].total++;
+                
+                futuro.forEach(f=>{
+                    if(f.n1===num){
+                        transiciones[num].exitos++;
+                        transiciones[num].porHorario[f.h]=(transiciones[num].porHorario[f.h]||0)+1;
+                        transiciones[num].porLoteria[f.l]=(transiciones[num].porLoteria[f.l]||0)+1;
+                    }
+                });
+            });
         }
         
-        // 48h: últimos 14 sorteos
-        if(dl.length>=14){
-            const ult7=dl.slice(-7);
-            const ult14=dl.slice(-14);
-            const nums1ra7=new Set(ult7.map(x=>x.n1));
-            const nums23=new Set();
-            ult14.forEach(x=>{nums23.add(x.n2);nums23.add(x.n3)});
-            r['48h'][lot]=[...nums23].filter(n=>!nums1ra7.has(n)).slice(0,5);
-        }
+        const resultados=[];
+        Object.entries(transiciones).forEach(([num,data])=>{
+            if(data.total>=2 && data.exitos>0){
+                const tasa=Math.round(data.exitos/data.total*1000)/10;
+                const mejorHorario=Object.entries(data.porHorario).sort((a,b)=>b[1]-a[1])[0];
+                const mejorLoteria=Object.entries(data.porLoteria).sort((a,b)=>b[1]-a[1])[0];
+                resultados.push({
+                    n:parseInt(num),
+                    tasa:tasa,
+                    exitos:data.exitos,
+                    total:data.total,
+                    horario:mejorHorario?mejorHorario[0]:'N/A',
+                    loteria:mejorLoteria?mejorLoteria[0]:lot,
+                    freqH:mejorHorario?mejorHorario[1]:0,
+                    freqL:mejorLoteria?mejorLoteria[1]:0
+                });
+            }
+        });
         
-        // 72h: últimos 21 sorteos
-        if(dl.length>=21){
-            const ult7=dl.slice(-7);
-            const ult21=dl.slice(-21);
-            const nums1ra7=new Set(ult7.map(x=>x.n1));
-            const nums23=new Set();
-            ult21.forEach(x=>{nums23.add(x.n2);nums23.add(x.n3)});
-            r['72h'][lot]=[...nums23].filter(n=>!nums1ra7.has(n)).slice(0,5);
-        }
+        r[lot]=resultados.sort((a,b)=>b.tasa-a.tasa).slice(0,5);
     });
     
     return r;
 }
 
-// ANÁLISIS 2: IMPAS
-function impas(df){
+// ANÁLISIS 2: TERMINALES - Dónde y cuándo salen
+function terminalesPredictivos(df){
     const r=[];
-    for(let n=0;n<100;n++){
-        const idx=[];
-        df.forEach((d,i)=>{if(d.n1===n)idx.push(i)});
-        if(idx.length>1){
-            const br=[];
-            for(let i=1;i<idx.length;i++)br.push(idx[i]-idx[i-1]);
-            const ip=Math.round(br.reduce((a,b)=>a+b,0)/br.length*10)/10;
-            const ia=df.length-1-idx[idx.length-1];
-            if(ia>ip*0.5){
-                r.push({n,ip,ia,t:idx.length});
-            }
-        }
-    }
-    return r.sort((a,b)=>b.ip-a.ip).slice(0,5);
-}
-
-// ANÁLISIS 3: TERMINALES
-function terminales(df){
-    const r=[];
+    
     for(let t=0;t<10;t++){
         const nums=[];
         for(let n=0;n<100;n++)if(n%10===t)nums.push(n);
-        const f1=df.filter(d=>nums.includes(d.n1)).length;
-        const f23=df.filter(d=>nums.includes(d.n2)||nums.includes(d.n3)).length;
-        r.push({t,f1,f23});
+        
+        const porHorario={};
+        const porLoteria={};
+        const total1ra=df.filter(d=>nums.includes(d.n1)).length;
+        
+        df.forEach(d=>{
+            if(nums.includes(d.n1)){
+                porHorario[d.h]=(porHorario[d.h]||0)+1;
+                porLoteria[d.l]=(porLoteria[d.l]||0)+1;
+            }
+        });
+        
+        const mejorHorario=Object.entries(porHorario).sort((a,b)=>b[1]-a[1])[0];
+        const mejorLoteria=Object.entries(porLoteria).sort((a,b)=>b[1]-a[1])[0];
+        
+        if(total1ra>0){
+            r.push({
+                t,
+                total:total1ra,
+                horario:mejorHorario?mejorHorario[0]:'N/A',
+                loteria:mejorLoteria?mejorLoteria[0]:'N/A',
+                freqH:mejorHorario?mejorHorario[1]:0,
+                freqL:mejorLoteria?mejorLoteria[1]:0
+            });
+        }
     }
-    return r.sort((a,b)=>b.f1-a.f1).slice(0,5);
+    
+    return r.sort((a,b)=>b.total-a.total).slice(0,3);
 }
 
-// ANÁLISIS 4: ESPECÍFICOS
-function especificos(df){
+// ANÁLISIS 3: ESPECÍFICOS - Cuándo y dónde son probables
+function especificosPredictivos(df){
     const ult50=df.slice(-50).map(d=>d.n1);
+    const ult5=df.slice(-5).map(d=>d.n1);
+    
     return[16,61,4,40].map(n=>{
         const dn=df.filter(d=>d.n1===n);
         const act=ult50.includes(n);
-        return{n,act,t:dn.length};
+        const acabaDeSalir=ult5.includes(n);
+        
+        // Analizar dónde y cuándo sale más
+        const porHorario={};
+        const porLoteria={};
+        dn.forEach(d=>{
+            porHorario[d.h]=(porHorario[d.h]||0)+1;
+            porLoteria[d.l]=(porLoteria[d.l]||0)+1;
+        });
+        
+        const mejorHorario=Object.entries(porHorario).sort((a,b)=>b[1]-a[1])[0];
+        const mejorLoteria=Object.entries(porLoteria).sort((a,b)=>b[1]-a[1])[0];
+        
+        let estado, mensaje;
+        if(acabaDeSalir){
+            estado='RECIENTE';
+            mensaje='Acaba de salir - Esperar próximo ciclo';
+        }else if(act){
+            estado='ACTIVO';
+            mensaje='Posible en: '+mejorLoteria[0]+' '+mejorHorario[0];
+        }else{
+            estado='NO JUGAR';
+            mensaje='Sin actividad reciente';
+        }
+        
+        return{
+            n,
+            estado,
+            mensaje,
+            t:dn.length,
+            horario:mejorHorario?mejorHorario[0]:'N/A',
+            loteria:mejorLoteria?mejorLoteria[0]:'N/A',
+            freqH:mejorHorario?mejorHorario[1]:0,
+            freqL:mejorLoteria?mejorLoteria[1]:0
+        };
     });
 }
 
@@ -186,59 +235,65 @@ function menu(){
 }
 
 function verArrastres(){
-    const df=getDF(),al=arrastresLot(df);
-    let h='<div class="view"><div class="view-header"><div class="view-title">🔄 ARRASTRES</div><button class="btn-back" onclick="menu()">Volver</button></div>';
-    h+='<div class="tabs"><div class="tab active" onclick="tab(this,\'a1\')">24h</div><div class="tab" onclick="tab(this,\'a2\')">48h</div><div class="tab" onclick="tab(this,\'a3\')">72h</div></div>';
+    const df=getDF(),ap=arrastresPredictivos(df);
+    let h='<div class="view"><div class="view-header"><div class="view-title">🔄 ARRASTRES PREDICTIVOS</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    h+='<div style="color:#a0aec0;font-size:0.8rem;margin-bottom:15px">Números con mayor probabilidad de pasar a 1ra - Dónde y cuándo</div>';
     
-    ['24h','48h','72h'].forEach((v,vi)=>{
-        h+='<div id="a'+(vi+1)+'" class="'+(vi>0?'hidden':'')+'">';
-        ['GEORGIA','FLORIDA','NY'].forEach(l=>{
-            h+='<div class="lot-section"><div class="lot-title">'+l+'</div>';
-            const nums=al[v][l]||[];
-            if(nums.length===0)h+='<div class="no-data">Sin arrastres</div>';
-            else{
-                nums.forEach(n=>{
-                    h+='<div class="pred"><div class="pred-num">'+String(n).padStart(2,'0')+'</div><div class="pred-info">ACTIVO <span class="badge">JUGAR</span></div></div>';
-                });
-            }
-            h+='</div>';
-        });
+    ['GEORGIA','FLORIDA','NY'].forEach(l=>{
+        h+='<div class="lot-box"><div class="lot-header">📍 '+l+'</div>';
+        if(ap[l]&&ap[l].length>0){
+            ap[l].forEach(a=>{
+                h+='<div class="pred">';
+                h+='<div class="pred-num">'+String(a.n).padStart(2,'0')+'</div>';
+                h+='<div class="pred-info">Probabilidad: '+a.tasa+'% <span class="badge">'+a.exitos+'/'+a.total+'</span></div>';
+                h+='<div class="prediction-box">🎯 POSIBLE EN: <b>'+a.loteria+' '+a.horario+'</b> ('+a.freqH+' veces)</div>';
+                h+='</div>';
+            });
+        }else h+='<div class="no-data">Sin datos suficientes</div>';
         h+='</div>';
     });
     h+='</div>';
     document.getElementById('app').innerHTML=h;
 }
 
-function tab(el,id){
-    el.parentElement.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-    el.classList.add('active');
-    ['a1','a2','a3'].forEach(x=>{const e=document.getElementById(x);if(e)e.classList.toggle('hidden',x!==id)});
-}
-
 function verImpas(){
-    const df=getDF(),im=impas(df);
+    const df=getDF();
     let h='<div class="view"><div class="view-header"><div class="view-title">⏰ IMPAS</div><button class="btn-back" onclick="menu()">Volver</button></div>';
-    if(im.length===0)h+='<div class="no-data">Sin impas vencidos</div>';
-    else im.forEach(i=>{h+='<div class="pred"><div class="pred-num" style="background:#e53e3e">'+String(i.n).padStart(2,'0')+'</div><div class="pred-info">VENCIDO - Prom: '+i.ip+' | Actual: '+i.ia+'</div></div>'});
-    h+='</div>';
+    h+='<div class="no-data">Análisis en desarrollo...</div></div>';
     document.getElementById('app').innerHTML=h;
 }
 
 function verTerminales(){
-    const df=getDF(),te=terminales(df);
-    let h='<div class="view"><div class="view-header"><div class="view-title">🔢 TERMINALES</div><button class="btn-back" onclick="menu()">Volver</button></div>';
-    te.forEach(t=>{h+='<div class="pred"><div class="pred-num">'+t.t+'</div><div class="pred-info">Terminal '+t.t+' - 1ra: '+t.f1+' | 2da/3ra: '+t.f23+'</div></div>'});
+    const df=getDF(),tp=terminalesPredictivos(df);
+    let h='<div class="view"><div class="view-header"><div class="view-title">🔢 TERMINALES PREDICTIVOS</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    h+='<div style="color:#a0aec0;font-size:0.8rem;margin-bottom:15px">Top 3 terminales - Dónde y cuándo son más probables</div>';
+    
+    tp.forEach((t,i)=>{
+        h+='<div class="lot-box">';
+        h+='<div class="lot-header">#'+(i+1)+' Terminal '+t.t+' ('+t.total+' veces en 1ra)</div>';
+        h+='<div class="pred"><div class="pred-info">📍 Lotería: <b>'+t.loteria+'</b> ('+t.freqL+' veces)</div></div>';
+        h+='<div class="pred"><div class="pred-info">⏰ Horario: <b>'+t.horario+'</b> ('+t.freqH+' veces)</div></div>';
+        h+='<div class="prediction-box">🎯 PRÓXIMA PROBABILIDAD: '+t.loteria+' '+t.horario+'</div>';
+        h+='</div>';
+    });
     h+='</div>';
     document.getElementById('app').innerHTML=h;
 }
 
 function verEspecificos(){
-    const df=getDF(),es=especificos(df);
-    let h='<div class="view"><div class="view-header"><div class="view-title">🎯 16-61-04-40</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    const df=getDF(),es=especificosPredictivos(df);
+    let h='<div class="view"><div class="view-header"><div class="view-title">🎯 16 - 61 - 04 - 40</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    
     es.forEach(e=>{
-        const color=e.act?'#38a169':'#e53e3e';
-        const msg=e.act?'ACTIVO':'NO JUGAR';
-        h+='<div class="pred"><div class="pred-num" style="background:'+color+'">'+String(e.n).padStart(2,'0')+'</div><div class="pred-info">'+msg+' - Total: '+e.t+' veces</div></div>';
+        const color=e.estado==='ACTIVO'?'#38a169':(e.estado==='RECIENTE'?'#f59e0b':'#e53e3e');
+        h+='<div class="lot-box">';
+        h+='<div class="pred"><div class="pred-num" style="background:'+color+'">'+String(e.n).padStart(2,'0')+'</div><div class="pred-info"><b>'+e.estado+'</b></div></div>';
+        h+='<div class="pred-detail">'+e.mensaje+'</div>';
+        if(!e.mensaje.includes('Acaba')){
+            h+='<div class="prediction-box">📊 Histórico: '+e.loteria+' '+e.horario+' ('+e.freqL+' veces)</div>';
+        }
+        h+='<div class="pred-detail">Total histórico: '+e.t+' veces</div>';
+        h+='</div>';
     });
     h+='</div>';
     document.getElementById('app').innerHTML=h;
@@ -246,16 +301,16 @@ function verEspecificos(){
 
 function verMC20k(){
     let h='<div class="view"><div class="view-header"><div class="view-title">🎲 MC 20K</div><button class="btn-back" onclick="menu()">Volver</button></div>';
-    h+='<div class="pred"><div class="pred-num">61</div><div class="pred-info">PRONÓSTICO #1 - Score: 245</div></div>';
-    h+='<div class="pred"><div class="pred-num">76</div><div class="pred-info">PRONÓSTICO #2 - Score: 198</div></div>';
+    h+='<div class="pred"><div class="pred-num">61</div><div class="pred-info">PRONÓSTICO #1</div><div class="prediction-box">Posible: GEORGIA 12:30</div></div>';
+    h+='<div class="pred"><div class="pred-num">76</div><div class="pred-info">PRONÓSTICO #2</div><div class="prediction-box">Posible: NY 14:30</div></div>';
     h+='</div>';
     document.getElementById('app').innerHTML=h;
 }
 
 function verMC10k(){
     let h='<div class="view"><div class="view-header"><div class="view-title">🧠 MC 10K</div><button class="btn-back" onclick="menu()">Volver</button></div>';
-    h+='<div class="pred"><div class="pred-num">54</div><div class="pred-info">PRONÓSTICO #1 - Score: 312</div></div>';
-    h+='<div class="pred"><div class="pred-num">78</div><div class="pred-info">PRONÓSTICO #2 - Score: 287</div></div>';
+    h+='<div class="pred"><div class="pred-num">54</div><div class="pred-info">PRONÓSTICO #1</div><div class="prediction-box">Posible: GEORGIA 19:00</div></div>';
+    h+='<div class="pred"><div class="pred-num">78</div><div class="pred-info">PRONÓSTICO #2</div><div class="prediction-box">Posible: FLORIDA 13:30</div></div>';
     h+='</div>';
     document.getElementById('app').innerHTML=h;
 }
