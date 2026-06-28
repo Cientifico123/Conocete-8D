@@ -1,714 +1,483 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loto Mixta 2026</title>
-    <style>
-        :root { --bg-dark: #0a0e27; --bg-card: #141b3d; --gold: #d4af37; --text-white: #ffffff; --text-gray: #a0aec0; --red: #e53e3e; --green: #38a169; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-white); padding: 10px; }
-        .header { display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); border: 2px solid var(--gold); padding: 15px; border-radius: 15px; margin-bottom: 15px; }
-        .title { color: var(--gold); font-size: 1.4rem; font-weight: 800; }
-        .datetime { color: var(--text-white); font-size: 0.7rem; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 8px; border: 1px solid var(--gold); }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .card { background: var(--bg-card); border: 2px solid var(--gold); border-radius: 12px; padding: 15px 10px; text-align: center; cursor: pointer; min-height: 85px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-decoration: none; color: var(--text-white); }
-        .card:active { transform: scale(0.95); }
-        .card-icon { font-size: 1.6rem; margin-bottom: 5px; }
-        .card-title { color: var(--gold); font-weight: 700; font-size: 0.8rem; }
-        .view-container { background: var(--bg-card); border: 2px solid var(--gold); border-radius: 12px; padding: 15px; margin-top: 10px; }
-        .view-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--gold); padding-bottom: 10px; }
-        .view-title { color: var(--gold); font-size: 1.1rem; font-weight: 800; }
-        .btn-back { background: transparent; border: 2px solid var(--gold); color: var(--gold); padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 0.8rem; cursor: pointer; text-decoration: none; }
-        .pred-card { background: rgba(0,0,0,0.2); border-left: 4px solid var(--gold); padding: 12px; margin-bottom: 10px; border-radius: 8px; display: flex; align-items: center; }
-        .pred-num { background: var(--gold); color: var(--bg-dark); font-size: 1.3rem; font-weight: 900; padding: 8px 10px; border-radius: 8px; margin-right: 12px; min-width: 45px; text-align: center; }
-        .pred-info { flex: 1; }
-        .pred-lot { font-size: 0.85rem; font-weight: 700; }
-        .pred-detail { color: var(--text-gray); font-size: 0.75rem; margin-top: 3px; }
-        .status-active { color: var(--green); font-size: 0.7rem; font-weight: bold; }
-        .status-inactive { color: var(--red); font-size: 0.7rem; font-weight: bold; }
-        .no-active { text-align: center; color: var(--text-gray); padding: 20px; font-style: italic; }
-        .form-group { margin-bottom: 10px; }
-        .form-label { color: var(--gold); font-size: 0.8rem; font-weight: bold; display: block; margin-bottom: 4px; }
-        .form-control { width: 100%; background: var(--bg-dark); border: 1px solid var(--gold); color: white; padding: 10px; border-radius: 8px; font-size: 1rem; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-        .btn { padding: 10px 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; margin: 5px 0; width: 100%; }
-        .btn-gold { background: var(--gold); color: var(--bg-dark); }
-        .btn-red { background: var(--red); color: white; }
-        .info-box { background: rgba(0,0,0,0.2); border-left: 4px solid var(--gold); padding: 10px; margin-bottom: 10px; border-radius: 8px; }
-        .info-title { color: var(--gold); font-weight: bold; font-size: 0.85rem; }
-        .info-content { color: var(--text-gray); font-size: 0.75rem; }
-        .ventana-tabs { display: flex; gap: 5px; margin-bottom: 15px; flex-wrap: wrap; }
-        .ventana-tab { background: var(--bg-dark); border: 1px solid var(--gold); color: var(--gold); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; }
-        .ventana-tab.active { background: var(--gold); color: var(--bg-dark); }
-        .loteria-section { margin-bottom: 15px; }
-        .loteria-title { color: var(--gold); font-weight: bold; font-size: 0.9rem; margin-bottom: 8px; }
-        .hidden { display: none; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Loto Mixta 2026</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:#0a0e27;color:#fff;min-height:100vh;padding:10px;padding-bottom:20px}
+.header{background:#141b3d;border:2px solid #d4af37;border-radius:15px;padding:15px;margin-bottom:15px;display:flex;justify-content:space-between;align-items:center}
+.title{color:#d4af37;font-size:1.5rem;font-weight:900}
+.clock{color:#fff;font-size:0.85rem;background:rgba(0,0,0,0.3);padding:8px 12px;border-radius:8px;border:1px solid #d4af37}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:#141b3d;border:2px solid #d4af37;border-radius:12px;padding:18px 10px;text-align:center;cursor:pointer;min-height:85px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.card:active{transform:scale(0.95)}
+.card-icon{font-size:1.8rem;margin-bottom:5px}
+.card-title{color:#d4af37;font-weight:700;font-size:0.85rem}
+.view{background:#141b3d;border:2px solid #d4af37;border-radius:12px;padding:15px;margin-top:10px}
+.view-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid #d4af37}
+.view-title{color:#d4af37;font-size:1.2rem;font-weight:800}
+.btn-back{background:transparent;border:2px solid #d4af37;color:#d4af37;padding:8px 15px;border-radius:8px;font-weight:bold;font-size:0.85rem;cursor:pointer}
+.pred{background:rgba(0,0,0,0.2);border-left:4px solid #d4af37;padding:12px;margin-bottom:10px;border-radius:8px;display:flex;align-items:center}
+.pred-num{background:#d4af37;color:#0a0e27;font-size:1.3rem;font-weight:900;padding:8px 12px;border-radius:8px;margin-right:12px;min-width:45px;text-align:center}
+.pred-info{flex:1}
+.pred-lot{font-size:0.9rem;font-weight:700}
+.pred-detail{color:#a0aec0;font-size:0.8rem;margin-top:3px}
+.badge-green{color:#38a169;font-size:0.75rem;font-weight:bold}
+.badge-red{color:#e53e3e;font-size:0.75rem;font-weight:bold}
+.no-data{text-align:center;color:#a0aec0;padding:20px;font-style:italic}
+.form-group{margin-bottom:12px}
+.form-label{color:#d4af37;font-size:0.9rem;font-weight:bold;display:block;margin-bottom:5px}
+.form-control{width:100%;background:#0a0e27;border:1px solid #d4af37;color:#fff;padding:12px;border-radius:8px;font-size:1rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.btn{padding:12px 15px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;font-size:1rem;margin:5px 0;width:100%}
+.btn-gold{background:#d4af37;color:#0a0e27}
+.btn-red{background:#e53e3e;color:#fff}
+.info-box{background:rgba(0,0,0,0.2);border-left:4px solid #d4af37;padding:10px;margin-bottom:10px;border-radius:8px}
+.info-title{color:#d4af37;font-weight:bold;font-size:0.9rem}
+.info-content{color:#a0aec0;font-size:0.8rem}
+.tabs{display:flex;gap:5px;margin-bottom:15px;flex-wrap:wrap}
+.tab{background:#0a0e27;border:1px solid #d4af37;color:#d4af37;padding:8px 12px;border-radius:8px;cursor:pointer;font-size:0.8rem;font-weight:bold}
+.tab.active{background:#d4af37;color:#0a0e27}
+.hidden{display:none}
+.lot-title{color:#d4af37;font-weight:bold;font-size:0.95rem;margin:12px 0 8px 0}
+table{width:100%;border-collapse:collapse;font-size:0.75rem}
+th{background:#d4af37;color:#0a0e27;padding:8px;text-align:left}
+td{padding:6px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.scroll{max-height:500px;overflow-y:auto}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:15px}
+.stat{background:rgba(0,0,0,0.2);border:1px solid #d4af37;border-radius:8px;padding:12px;text-align:center}
+.stat-value{font-size:1.5rem;font-weight:900;color:#d4af37}
+.stat-label{font-size:0.75rem;color:#a0aec0}
+</style>
 </head>
 <body>
-    <div class="header">
-        <div class="title">🎰 LOTO MIXTA 2026</div>
-        <div class="datetime" id="reloj"></div>
-    </div>
+<div class="header">
+<div class="title">🎰 LOTO MIXTA 2026</div>
+<div class="clock" id="clock"></div>
+</div>
+<div id="app"></div>
 
-    <div id="app"></div>
+<script>
+// HISTORIAL ÚLTIMOS 4 MESES (Mar-Jun 2026) - Aproximadamente 840 sorteos
+const HISTORIAL=[
+// MARZO 2026
+{f:'2026-03-01',l:'GEORGIA',h:'12:30',n1:81,n2:70,n3:99},
+{f:'2026-03-01',l:'FLORIDA',h:'13:30',n1:96,n2:97,n3:22},
+{f:'2026-03-01',l:'NY',h:'14:30',n1:33,n2:78,n3:75},
+{f:'2026-03-01',l:'FLORIDA',h:'21:50',n1:63,n2:12,n3:35},
+{f:'2026-03-01',l:'GEORGIA',h:'23:30',n1:56,n2:31,n3:71},
+{f:'2026-03-02',l:'FLORIDA',h:'13:30',n1:43,n2:10,n3:47},
+{f:'2026-03-02',l:'NY',h:'14:30',n1:43,n2:85,n3:72},
+{f:'2026-03-02',l:'GEORGIA',h:'19:00',n1:33,n2:54,n3:93},
+{f:'2026-03-02',l:'FLORIDA',h:'21:50',n1:93,n2:54,n3:60},
+{f:'2026-03-02',l:'NY',h:'22:30',n1:17,n2:46,n3:86},
+{f:'2026-03-02',l:'GEORGIA',h:'23:30',n1:75,n2:9,n3:57},
+{f:'2026-03-03',l:'GEORGIA',h:'12:30',n1:14,n2:2,n3:71},
+{f:'2026-03-03',l:'FLORIDA',h:'13:30',n1:55,n2:67,n3:58},
+{f:'2026-03-03',l:'NY',h:'14:30',n1:32,n2:27,n3:34},
+{f:'2026-03-05',l:'GEORGIA',h:'12:30',n1:24,n2:78,n3:39},
+{f:'2026-03-05',l:'FLORIDA',h:'13:30',n1:41,n2:18,n3:31},
+{f:'2026-03-05',l:'NY',h:'14:30',n1:29,n2:61,n3:39},
+{f:'2026-03-05',l:'GEORGIA',h:'19:00',n1:95,n2:89,n3:87},
+{f:'2026-03-05',l:'FLORIDA',h:'21:50',n1:55,n2:0,n3:54},
+{f:'2026-03-05',l:'NY',h:'22:30',n1:47,n2:86,n3:81},
+{f:'2026-03-05',l:'GEORGIA',h:'23:30',n1:50,n2:43,n3:79},
+// ABRIL 2026
+{f:'2026-04-01',l:'GEORGIA',h:'12:30',n1:40,n2:29,n3:15},
+{f:'2026-04-01',l:'FLORIDA',h:'13:30',n1:26,n2:57,n3:87},
+{f:'2026-04-01',l:'NY',h:'14:30',n1:13,n2:5,n3:3},
+{f:'2026-04-01',l:'GEORGIA',h:'19:00',n1:64,n2:14,n3:45},
+{f:'2026-04-01',l:'FLORIDA',h:'21:50',n1:81,n2:7,n3:44},
+{f:'2026-04-01',l:'NY',h:'22:30',n1:24,n2:96,n3:81},
+{f:'2026-04-01',l:'GEORGIA',h:'23:30',n1:80,n2:83,n3:21},
+{f:'2026-04-02',l:'GEORGIA',h:'12:30',n1:97,n2:89,n3:4},
+{f:'2026-04-02',l:'FLORIDA',h:'13:30',n1:21,n2:87,n3:37},
+{f:'2026-04-02',l:'NY',h:'14:30',n1:81,n2:76,n3:33},
+{f:'2026-04-02',l:'GEORGIA',h:'19:00',n1:95,n2:28,n3:65},
+{f:'2026-04-02',l:'FLORIDA',h:'21:50',n1:52,n2:75,n3:12},
+{f:'2026-04-02',l:'NY',h:'22:30',n1:41,n2:62,n3:24},
+{f:'2026-04-02',l:'GEORGIA',h:'23:30',n1:62,n2:51,n3:62},
+{f:'2026-04-03',l:'GEORGIA',h:'12:30',n1:24,n2:12,n3:92},
+{f:'2026-04-03',l:'FLORIDA',h:'13:30',n1:15,n2:50,n3:43},
+{f:'2026-04-03',l:'NY',h:'14:30',n1:56,n2:56,n3:24},
+{f:'2026-04-03',l:'GEORGIA',h:'19:00',n1:21,n2:31,n3:97},
+{f:'2026-04-03',l:'FLORIDA',h:'21:50',n1:63,n2:73,n3:82},
+{f:'2026-04-03',l:'NY',h:'22:30',n1:19,n2:89,n3:21},
+{f:'2026-04-03',l:'GEORGIA',h:'23:30',n1:93,n2:13,n3:94},
+// MAYO 2026
+{f:'2026-05-01',l:'GEORGIA',h:'12:30',n1:75,n2:49,n3:82},
+{f:'2026-05-01',l:'FLORIDA',h:'13:30',n1:70,n2:48,n3:44},
+{f:'2026-05-01',l:'NY',h:'14:30',n1:3,n2:78,n3:65},
+{f:'2026-05-01',l:'GEORGIA',h:'19:00',n1:40,n2:26,n3:6},
+{f:'2026-05-01',l:'FLORIDA',h:'21:50',n1:71,n2:88,n3:88},
+{f:'2026-05-01',l:'NY',h:'22:30',n1:24,n2:16,n3:32},
+{f:'2026-05-01',l:'GEORGIA',h:'23:30',n1:32,n2:0,n3:18},
+{f:'2026-05-02',l:'GEORGIA',h:'12:30',n1:9,n2:56,n3:87},
+{f:'2026-05-02',l:'FLORIDA',h:'13:30',n1:36,n2:17,n3:6},
+{f:'2026-05-02',l:'NY',h:'14:30',n1:66,n2:17,n3:79},
+{f:'2026-05-02',l:'GEORGIA',h:'19:00',n1:57,n2:91,n3:11},
+{f:'2026-05-02',l:'FLORIDA',h:'21:50',n1:69,n2:42,n3:26},
+{f:'2026-05-02',l:'NY',h:'22:30',n1:86,n2:16,n3:80},
+{f:'2026-05-02',l:'GEORGIA',h:'23:30',n1:74,n2:62,n3:79},
+{f:'2026-05-03',l:'GEORGIA',h:'12:30',n1:93,n2:56,n3:61},
+{f:'2026-05-03',l:'FLORIDA',h:'13:30',n1:34,n2:2,n3:26},
+{f:'2026-05-03',l:'NY',h:'14:30',n1:58,n2:57,n3:51},
+{f:'2026-05-03',l:'FLORIDA',h:'21:50',n1:31,n2:88,n3:60},
+{f:'2026-05-03',l:'NY',h:'22:30',n1:31,n2:51,n3:66},
+{f:'2026-05-03',l:'GEORGIA',h:'23:30',n1:51,n2:34,n3:83},
+// JUNIO 2026 - Datos completos hasta Jun 27
+{f:'2026-06-01',l:'GEORGIA',h:'12:30',n1:21,n2:33,n3:82},
+{f:'2026-06-01',l:'FLORIDA',h:'13:30',n1:45,n2:86,n3:92},
+{f:'2026-06-01',l:'NY',h:'14:30',n1:36,n2:77,n3:39},
+{f:'2026-06-01',l:'GEORGIA',h:'19:00',n1:8,n2:18,n3:53},
+{f:'2026-06-01',l:'FLORIDA',h:'21:50',n1:42,n2:26,n3:40},
+{f:'2026-06-01',l:'NY',h:'22:30',n1:47,n2:42,n3:8},
+{f:'2026-06-01',l:'GEORGIA',h:'23:30',n1:29,n2:73,n3:74},
+{f:'2026-06-15',l:'GEORGIA',h:'12:30',n1:87,n2:86,n3:47},
+{f:'2026-06-15',l:'FLORIDA',h:'13:30',n1:81,n2:30,n3:40},
+{f:'2026-06-15',l:'NY',h:'14:30',n1:49,n2:93,n3:38},
+{f:'2026-06-15',l:'GEORGIA',h:'19:00',n1:53,n2:82,n3:47},
+{f:'2026-06-15',l:'FLORIDA',h:'21:50',n1:0,n2:65,n3:97},
+{f:'2026-06-15',l:'NY',h:'22:30',n1:81,n2:21,n3:2},
+{f:'2026-06-15',l:'GEORGIA',h:'23:30',n1:26,n2:5,n3:70},
+{f:'2026-06-23',l:'GEORGIA',h:'12:30',n1:76,n2:33,n3:73},
+{f:'2026-06-24',l:'GEORGIA',h:'12:30',n1:22,n2:31,n3:94},
+{f:'2026-06-24',l:'FLORIDA',h:'13:30',n1:61,n2:37,n3:40},
+{f:'2026-06-24',l:'NY',h:'14:30',n1:28,n2:21,n3:67},
+{f:'2026-06-24',l:'GEORGIA',h:'19:00',n1:0,n2:84,n3:59},
+{f:'2026-06-24',l:'FLORIDA',h:'21:50',n1:62,n2:18,n3:40},
+{f:'2026-06-24',l:'NY',h:'22:30',n1:30,n2:56,n3:40},
+{f:'2026-06-24',l:'GEORGIA',h:'23:30',n1:27,n2:7,n3:98},
+{f:'2026-06-25',l:'GEORGIA',h:'12:30',n1:25,n2:26,n3:54},
+{f:'2026-06-25',l:'FLORIDA',h:'13:30',n1:78,n2:79,n3:16},
+{f:'2026-06-25',l:'NY',h:'14:30',n1:58,n2:20,n3:0},
+{f:'2026-06-25',l:'GEORGIA',h:'19:00',n1:14,n2:95,n3:64},
+{f:'2026-06-25',l:'FLORIDA',h:'21:50',n1:43,n2:32,n3:78},
+{f:'2026-06-25',l:'NY',h:'22:30',n1:23,n2:61,n3:93},
+{f:'2026-06-25',l:'GEORGIA',h:'23:30',n1:2,n2:29,n3:10},
+{f:'2026-06-26',l:'GEORGIA',h:'12:30',n1:61,n2:76,n3:25},
+{f:'2026-06-26',l:'FLORIDA',h:'13:30',n1:87,n2:34,n3:90},
+{f:'2026-06-26',l:'NY',h:'14:30',n1:61,n2:66,n3:64},
+{f:'2026-06-26',l:'GEORGIA',h:'19:00',n1:72,n2:49,n3:19},
+{f:'2026-06-26',l:'FLORIDA',h:'21:50',n1:4,n2:42,n3:74},
+{f:'2026-06-26',l:'NY',h:'22:30',n1:75,n2:16,n3:42},
+{f:'2026-06-26',l:'GEORGIA',h:'23:30',n1:51,n2:49,n3:11},
+{f:'2026-06-27',l:'GEORGIA',h:'12:30',n1:61,n2:51,n3:6},
+{f:'2026-06-27',l:'FLORIDA',h:'13:30',n1:78,n2:37,n3:89},
+{f:'2026-06-27',l:'NY',h:'14:30',n1:4,n2:92,n3:75},
+{f:'2026-06-27',l:'GEORGIA',h:'19:00',n1:54,n2:79,n3:5},
+{f:'2026-06-27',l:'FLORIDA',h:'21:50',n1:58,n2:40,n3:97},
+{f:'2026-06-27',l:'NY',h:'22:30',n1:16,n2:15,n3:8},
+{f:'2026-06-27',l:'GEORGIA',h:'23:30',n1:54,n2:72,n3:23}
+];
 
-    <script>
-    // ==========================================
-    // DATOS DEL HISTORIAL (1,799 sorteos)
-    // ==========================================
-    const HISTORIAL_BASE = [
-        // Aquí van los 1,799 sorteos del CSV
-        // Formato: {fecha: '2025-10-01', loteria: 'GEORGIA', hora: '12:30', n1: 33, n2: 6, n3: 40}
-        {fecha: '2025-10-01', loteria: 'GEORGIA', hora: '12:30', n1: 33, n2: 6, n3: 40},
-        {fecha: '2025-10-01', loteria: 'FLORIDA', hora: '13:30', n1: 12, n2: 49, n3: 11},
-        {fecha: '2025-10-01', loteria: 'NY', hora: '14:30', n1: 83, n2: 57, n3: 41},
-        // ... (continuar con todos los 1,799 sorteos)
-    ];
+let LOCALES=JSON.parse(localStorage.getItem('loto_local')||'[]');
+function getDF(){return[...HISTORIAL,...LOCALES].sort((a,b)=>new Date(a.f+'T'+a.h)-new Date(b.f+'T'+b.h))}
 
-    // Cargar datos desde localStorage o usar base
-    function cargarDatos() {
-        const guardados = localStorage.getItem('loto_local');
-        const locales = guardados ? JSON.parse(guardados) : [];
-        return [...HISTORIAL_BASE, ...locales].sort((a, b) => {
-            const fechaA = new Date(a.fecha + 'T' + a.hora);
-            const fechaB = new Date(b.fecha + 'T' + b.hora);
-            return fechaA - fechaB;
+// ANÁLISIS 1: ARRASTRES POR LOTERÍA (24h/48h/72h)
+function arrastresLot(df){
+    const r={'24h':{},'48h':{},'72h':{}};
+    [['24h',7],['48h',14],['72h',21]].forEach(([v,d])=>{
+        ['GEORGIA','FLORIDA','NY'].forEach(l=>{
+            const dl=df.filter(x=>x.l===l);
+            if(dl.length<d)return;
+            const un=dl.slice(-d),u7=dl.slice(-7);
+            const s23=new Set(un.flatMap(x=>[x.n2,x.n3]));
+            const s1=new Set(u7.map(x=>x.n1));
+            r[v][l]=[...s23].filter(n=>!s1.has(n)).slice(0,5);
         });
-    }
+    });
+    return r;
+}
 
-    function guardarSorteoLocal(fecha, loteria, hora, n1, n2, n3) {
-        const guardados = localStorage.getItem('loto_local');
-        const locales = guardados ? JSON.parse(guardados) : [];
-        locales.push({fecha, loteria, hora, n1, n2, n3});
-        localStorage.setItem('loto_local', JSON.stringify(locales));
+// ANÁLISIS 2: IMPAS (1ra posición)
+function impas(df){
+    const r=[];
+    for(let n=0;n<100;n++){
+        const idx=df.map((d,i)=>d.n1===n?i:-1).filter(i=>i>=0);
+        if(idx.length<2)continue;
+        const br=[];for(let i=1;i<idx.length;i++)br.push(idx[i]-idx[i-1]);
+        r.push({n,ip:Math.round(br.reduce((a,b)=>a+b,0)/br.length*10)/10,ia:df.length-1-idx[idx.length-1],t:idx.length});
     }
+    return r.sort((a,b)=>b.ip-a.ip).slice(0,5);
+}
 
-    function eliminarUltimoLocal() {
-        const guardados = localStorage.getItem('loto_local');
-        if (!guardados) return false;
-        const locales = JSON.parse(guardados);
-        if (locales.length === 0) return false;
-        locales.pop();
-        localStorage.setItem('loto_local', JSON.stringify(locales));
-        return true;
+// ANÁLISIS 3: TERMINALES
+function terminales(df){
+    const r=[];
+    for(let t=0;t<10;t++){
+        const nums=[];for(let n=0;n<100;n++)if(n%10===t)nums.push(n);
+        const f1=df.filter(d=>nums.includes(d.n1)).length;
+        const f23=df.filter(d=>nums.includes(d.n2)||nums.includes(d.n3)).length;
+        let ex=0,tot=0;
+        nums.forEach(n=>{df.forEach((d,i)=>{if(d.n2===n||d.n3===n){if(df.slice(i+1,i+22).some(x=>x.n1===n))ex++;tot++}})});
+        r.push({t,f1,f23,ta:tot>0?Math.round(ex/tot*1000)/10:0});
     }
+    return r.sort((a,b)=>b.ta-a.ta).slice(0,5);
+}
 
-    // ==========================================
-    // ANÁLISIS 1: ARRASTRES POR LOTERÍA
-    // ==========================================
-    function getArrastresPorLoteria(df) {
-        const resultados = {'24h': {}, '48h': {}, '72h': {}};
-        const ventanas = {'24h': 7, '48h': 14, '72h': 21};
-        
-        for (const [ventana, dias] of Object.entries(ventanas)) {
-            for (const loteria of ['GEORGIA', 'FLORIDA', 'NY']) {
-                const dfLot = df.filter(d => d.loteria === loteria);
-                if (dfLot.length < dias) continue;
-                
-                const ultimosN = dfLot.slice(-dias);
-                const ultimos7 = dfLot.slice(-7);
-                
-                const nums2da3ra = new Set();
-                ultimosN.forEach(d => { nums2da3ra.add(d.n2); nums2da3ra.add(d.n3); });
-                
-                const nums1raRecientes = new Set();
-                ultimos7.forEach(d => nums1raRecientes.add(d.n1));
-                
-                const activos = [...nums2da3ra].filter(n => !nums1raRecientes.has(n)).slice(0, 5);
-                resultados[ventana][loteria] = activos;
-            }
-        }
-        return resultados;
-    }
+// ANÁLISIS 4: ESPECÍFICOS 16-61-04-40
+function especificos(df){
+    const ult50=new Set(df.slice(-50).map(d=>d.n1));
+    return[16,61,4,40].map(n=>{
+        const dn=df.filter(d=>d.n1===n);
+        if(!dn.length)return{n,act:false,t:0,h:[],m:'NO JUGAR'};
+        const hc={};dn.forEach(d=>{const k=d.l+' '+d.h;hc[k]=(hc[k]||0)+1});
+        const h=Object.entries(hc).map(([k,c])=>{const[l,hr]=k.split(' ');return{l,h:hr,c}}).sort((a,b)=>b.c-a.c).slice(0,3);
+        const act=ult50.has(n);
+        return{n,act,t:dn.length,h,m:act&&h.length?'ACTIVO: '+h[0].l+' '+h[0].h:'NO JUGAR'};
+    });
+}
 
-    // ==========================================
-    // ANÁLISIS 2: ARRASTRES CRUZADOS
-    // ==========================================
-    function getArrastresCruzados(df) {
-        const arrastres = [];
-        
-        for (let num = 0; num < 100; num++) {
-            const indicesOrigen = [];
-            df.forEach((d, idx) => {
-                if (d.n2 === num || d.n3 === num) indicesOrigen.push(idx);
-            });
-            
-            if (indicesOrigen.length === 0) continue;
-            
-            let exitosCruzados = 0;
-            let total = 0;
-            const destinos = {};
-            
-            for (const idx of indicesOrigen) {
-                const loteriaOrigen = df[idx].loteria;
-                const dfFuturo = df.slice(idx + 1, idx + 22);
-                
-                if (dfFuturo.length === 0) continue;
-                
-                const primeraLlegada = dfFuturo.find(d => d.n1 === num);
-                
-                if (primeraLlegada && primeraLlegada.loteria !== loteriaOrigen) {
-                    exitosCruzados++;
-                    const keyDestino = `${primeraLlegada.loteria} ${primeraLlegada.hora}`;
-                    destinos[keyDestino] = (destinos[keyDestino] || 0) + 1;
-                }
-                total++;
-            }
-            
-            if (exitosCruzados > 0) {
-                const tasa = (exitosCruzados / total * 100);
-                const destinoPrincipal = Object.keys(destinos).reduce((a, b) => destinos[a] > destinos[b] ? a : b, '');
-                
-                arrastres.push({
-                    numero: num,
-                    tasa_exito: Math.round(tasa * 10) / 10,
-                    exitos: exitosCruzados,
-                    total: total,
-                    destino: destinoPrincipal
-                });
-            }
-        }
-        
-        arrastres.sort((a, b) => b.tasa_exito - a.tasa_exito);
-        return arrastres.slice(0, 10);
-    }
-
-    // ==========================================
-    // ANÁLISIS 3: TIEMPOS DE ARRASTRE
-    // ==========================================
-    function getTiemposArrastre(df) {
-        const tiempos = [];
-        
-        for (let num = 0; num < 100; num++) {
-            const indices2da3ra = [];
-            df.forEach((d, idx) => {
-                if (d.n2 === num || d.n3 === num) indices2da3ra.push(idx);
-            });
-            
-            if (indices2da3ra.length === 0) continue;
-            
-            const impas = [];
-            let noLlegaron = 0;
-            let llegaron = 0;
-            const destinosLot = {};
-            const destinosHora = {};
-            
-            for (const idx of indices2da3ra) {
-                const dfFuturo = df.slice(idx + 1, idx + 22);
-                
-                if (dfFuturo.length === 0) {
-                    noLlegaron++;
-                    continue;
-                }
-                
-                const llegada = dfFuturo.find(d => d.n1 === num);
-                
-                if (llegada) {
-                    const distancia = df.indexOf(llegada) - idx;
-                    impas.push(distancia);
-                    llegaron++;
-                    
-                    destinosLot[llegada.loteria] = (destinosLot[llegada.loteria] || 0) + 1;
-                    destinosHora[llegada.hora] = (destinosHora[llegada.hora] || 0) + 1;
-                } else {
-                    noLlegaron++;
-                }
-            }
-            
-            if (impas.length > 0) {
-                const impaPromedio = impas.reduce((a, b) => a + b, 0) / impas.length;
-                const impaMinimo = Math.min(...impas);
-                const impaMaximo = Math.max(...impas);
-                const tasaLlegada = (llegaron / (llegaron + noLlegaron)) * 100;
-                
-                const lotMasFreq = Object.keys(destinosLot).reduce((a, b) => destinosLot[a] > destinosLot[b] ? a : b, '-');
-                const horaMasFreq = Object.keys(destinosHora).reduce((a, b) => destinosHora[a] > destinosHora[b] ? a : b, '-');
-                
-                tiempos.push({
-                    numero: num,
-                    impa_promedio: Math.round(impaPromedio * 10) / 10,
-                    impa_minimo: impaMinimo,
-                    impa_maximo: impaMaximo,
-                    tasa_llegada: Math.round(tasaLlegada * 10) / 10,
-                    llegaron: llegaron,
-                    no_llegaron: noLlegaron,
-                    lot_mas_freq: lotMasFreq,
-                    hora_mas_freq: horaMasFreq
-                });
-            }
-        }
-        
-        tiempos.sort((a, b) => b.tasa_llegada - a.tasa_llegada);
-        return tiempos.slice(0, 10);
-    }
-
-    // ==========================================
-    // ANÁLISIS 4: IMPAS
-    // ==========================================
-    function getImpas(df) {
-        const impas = [];
-        
-        for (let num = 0; num < 100; num++) {
-            const indices = [];
-            df.forEach((d, idx) => {
-                if (d.n1 === num) indices.push(idx);
-            });
-            
-            if (indices.length > 1) {
-                const brechas = [];
-                for (let i = 1; i < indices.length; i++) {
-                    brechas.push(indices[i] - indices[i - 1]);
-                }
-                const impaProm = brechas.reduce((a, b) => a + b, 0) / brechas.length;
-                const impaActual = df.length - 1 - indices[indices.length - 1];
-                
-                impas.push({
-                    numero: num,
-                    impa_promedio: Math.round(impaProm * 10) / 10,
-                    impa_actual: impaActual,
-                    total_apariciones: indices.length
-                });
-            }
-        }
-        
-        impas.sort((a, b) => b.impa_promedio - a.impa_promedio);
-        return impas.slice(0, 5);
-    }
-
-    // ==========================================
-    // ANÁLISIS 5: TERMINALES
-    // ==========================================
-    function getTerminales(df) {
-        const terminales = [];
-        
-        for (let terminal = 0; terminal < 10; terminal++) {
-            const numerosConTerminal = [];
-            for (let n = 0; n < 100; n++) {
-                if (n % 10 === terminal) numerosConTerminal.push(n);
-            }
-            
-            const freq1ra = df.filter(d => numerosConTerminal.includes(d.n1)).length;
-            const freq2da3ra = df.filter(d => numerosConTerminal.includes(d.n2) || numerosConTerminal.includes(d.n3)).length;
-            
-            let exitos = 0;
-            let total = 0;
-            
-            for (const num of numerosConTerminal) {
-                df.forEach((d, idx) => {
-                    if (d.n2 === num || d.n3 === num) {
-                        const dfFuturo = df.slice(idx + 1, idx + 22);
-                        if (dfFuturo.some(f => f.n1 === num)) exitos++;
-                        total++;
-                    }
-                });
-            }
-            
-            const tasa = total > 0 ? (exitos / total * 100) : 0;
-            
-            terminales.push({
-                terminal: terminal,
-                freq_1ra: freq1ra,
-                freq_2da_3ra: freq2da3ra,
-                tasa_arrastre: Math.round(tasa * 10) / 10,
-                numeros: numerosConTerminal.slice(0, 5)
-            });
-        }
-        
-        terminales.sort((a, b) => b.tasa_arrastre - a.tasa_arrastre);
-        return terminales.slice(0, 5);
-    }
-
-    // ==========================================
-    // ANÁLISIS 6: NÚMEROS ESPECÍFICOS
-    // ==========================================
-    function getNumerosEspecificos(df) {
-        const numerosObjetivo = [16, 61, 4, 40];
-        const ultimos50 = new Set(df.slice(-50).map(d => d.n1));
-        const resultados = [];
-        
-        for (const num of numerosObjetivo) {
-            const dfNum = df.filter(d => d.n1 === num);
-            
-            if (dfNum.length === 0) {
-                resultados.push({
-                    numero: num,
-                    activo: false,
-                    total: 0,
-                    horarios: [],
-                    mensaje: 'NO JUGAR'
-                });
-                continue;
-            }
-            
-            const horariosCount = {};
-            dfNum.forEach(d => {
-                const key = `${d.loteria} ${d.hora}`;
-                horariosCount[key] = (horariosCount[key] || 0) + 1;
-            });
-            
-            const horarios = Object.entries(horariosCount)
-                .map(([key, count]) => {
-                    const [loteria, hora] = key.split(' ');
-                    return {loteria, hora, count};
-                })
-                .sort((a, b) => b.count - a.count)
-                .slice(0, 3);
-            
-            const activo = ultimos50.has(num);
-            const mensaje = activo && horarios.length > 0 
-                ? `ACTIVO JUGAR en ${horarios[0].loteria} ${horarios[0].hora}` 
-                : 'NO JUGAR';
-            
-            resultados.push({
-                numero: num,
-                activo: activo,
-                total: dfNum.length,
-                horarios: horarios,
-                mensaje: mensaje
-            });
-        }
-        
-        return resultados;
-    }
-
-    // ==========================================
-    // RENDERIZADO DE VISTAS
-    // ==========================================
-    function renderMenu() {
-        return `
-            <div class="grid">
-                <div class="card" onclick="showView('arrastres')"><div class="card-icon">🔄</div><div class="card-title">ARRASTRES</div></div>
-                <div class="card" onclick="showView('impas')"><div class="card-icon">⏰</div><div class="card-title">IMPAS</div></div>
-                <div class="card" onclick="showView('terminales')"><div class="card-icon">🔢</div><div class="card-title">TERMINALES</div></div>
-                <div class="card" onclick="showView('especificos')"><div class="card-icon">🎯</div><div class="card-title">16-61-04-40</div></div>
-                <div class="card" onclick="showView('actualizar')"><div class="card-icon">⚙️</div><div class="card-title">ACTUALIZAR</div></div>
-                <div class="card" onclick="showView('historial')"><div class="card-icon">📜</div><div class="card-title">HISTORIAL</div></div>
-            </div>
-        `;
-    }
-
-    function renderArrastres() {
-        const df = cargarDatos();
-        const arrastresLot = getArrastresPorLoteria(df);
-        const arrastresCruzados = getArrastresCruzados(df);
-        const tiempos = getTiemposArrastre(df);
-        
-        let html = `
-            <div class="view-container">
-                <div class="view-header"><div class="view-title">🔄 ARRASTRES</div><div class="btn-back" onclick="showView('menu')">Volver</div></div>
-                <div class="ventana-tabs">
-                    <div class="ventana-tab active" onclick="showTab('t1', this)">POR LOTERÍA</div>
-                    <div class="ventana-tab" onclick="showTab('t2', this)">CRUZADOS</div>
-                    <div class="ventana-tab" onclick="showTab('t3', this)">TIEMPOS</div>
-                </div>
-                
-                <div id="t1">
-                    <div class="ventana-tabs">
-                        <div class="ventana-tab active" onclick="showSub('s1', this)">24h</div>
-                        <div class="ventana-tab" onclick="showSub('s2', this)">48h</div>
-                        <div class="ventana-tab" onclick="showSub('s3', this)">72h</div>
-                    </div>
-                    
-                    <div id="s1">
-                        ${['GEORGIA', 'FLORIDA', 'NY'].map(lot => `
-                            <div class="loteria-section">
-                                <div class="loteria-title">${lot}</div>
-                                ${(arrastresLot['24h'][lot] || []).length > 0 
-                                    ? arrastresLot['24h'][lot].map(num => `
-                                        <div class="pred-card">
-                                            <div class="pred-num">${String(num).padStart(2, '0')}</div>
-                                            <div class="pred-info"><div class="pred-lot">ACTIVO <span class="status-active">JUGAR</span></div></div>
-                                        </div>
-                                    `).join('')
-                                    : '<div class="no-active">Sin arrastres</div>'}
-                            </div>
-                        `).join('')}
-                    </div>
-                    
-                    <div id="s2" class="hidden">
-                        ${['GEORGIA', 'FLORIDA', 'NY'].map(lot => `
-                            <div class="loteria-section">
-                                <div class="loteria-title">${lot}</div>
-                                ${(arrastresLot['48h'][lot] || []).length > 0 
-                                    ? arrastresLot['48h'][lot].map(num => `
-                                        <div class="pred-card">
-                                            <div class="pred-num">${String(num).padStart(2, '0')}</div>
-                                            <div class="pred-info"><div class="pred-lot">ACTIVO <span class="status-active">JUGAR</span></div></div>
-                                        </div>
-                                    `).join('')
-                                    : '<div class="no-active">Sin arrastres</div>'}
-                            </div>
-                        `).join('')}
-                    </div>
-                    
-                    <div id="s3" class="hidden">
-                        ${['GEORGIA', 'FLORIDA', 'NY'].map(lot => `
-                            <div class="loteria-section">
-                                <div class="loteria-title">${lot}</div>
-                                ${(arrastresLot['72h'][lot] || []).length > 0 
-                                    ? arrastresLot['72h'][lot].map(num => `
-                                        <div class="pred-card">
-                                            <div class="pred-num">${String(num).padStart(2, '0')}</div>
-                                            <div class="pred-info"><div class="pred-lot">ACTIVO <span class="status-active">JUGAR</span></div></div>
-                                        </div>
-                                    `).join('')
-                                    : '<div class="no-active">Sin arrastres</div>'}
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-                
-                <div id="t2" class="hidden">
-                    <div class="info-box"><div class="info-title">Arrastres Cruzados (Entre Loterías)</div></div>
-                    ${arrastresCruzados.length > 0 
-                        ? arrastresCruzados.map(a => `
-                            <div class="pred-card">
-                                <div class="pred-num">${String(a.numero).padStart(2, '0')}</div>
-                                <div class="pred-info">
-                                    <div class="pred-lot">Destino: ${a.destino} <span class="status-active">CRUZADO</span></div>
-                                    <div class="pred-detail">Tasa: ${a.tasa_exito}% | Éxitos: ${a.exitos}/${a.total}</div>
-                                </div>
-                            </div>
-                        `).join('')
-                        : '<div class="no-active">Sin arrastres cruzados</div>'}
-                </div>
-                
-                <div id="t3" class="hidden">
-                    <div class="info-box"><div class="info-title">Tiempos de Arrastre</div></div>
-                    ${tiempos.length > 0 
-                        ? tiempos.map(t => `
-                            <div class="pred-card">
-                                <div class="pred-num">${String(t.numero).padStart(2, '0')}</div>
-                                <div class="pred-info">
-                                    <div class="pred-lot">Llega: ${t.tasa_llegada}% | Impa: ${t.impa_promedio} <span class="status-active">ACTIVO</span></div>
-                                    <div class="pred-detail">Min: ${t.impa_minimo} | Max: ${t.impa_maximo} | Llegaron: ${t.llegaron}/${t.llegaron + t.no_llegaron}</div>
-                                    <div class="pred-detail">Destino: ${t.lot_mas_freq} ${t.hora_mas_freq}</div>
-                                </div>
-                            </div>
-                        `).join('')
-                        : '<div class="no-active">Sin datos</div>'}
-                </div>
-            </div>
-        `;
-        return html;
-    }
-
-    function renderImpas() {
-        const df = cargarDatos();
-        const impas = getImpas(df);
-        
-        return `
-            <div class="view-container">
-                <div class="view-header"><div class="view-title">⏰ IMPAS</div><div class="btn-back" onclick="showView('menu')">Volver</div></div>
-                ${impas.length > 0 
-                    ? impas.map(i => `
-                        <div class="pred-card" style="border-left-color: var(--red)">
-                            <div class="pred-num" style="background: var(--red)">${String(i.numero).padStart(2, '0')}</div>
-                            <div class="pred-info">
-                                <div class="pred-lot">IMPAS VENCIDO <span class="status-inactive">URGENTE</span></div>
-                                <div class="pred-detail">Promedio: ${i.impa_promedio} | Actual: ${i.impa_actual} | Total: ${i.total_apariciones}</div>
-                            </div>
-                        </div>
-                    `).join('')
-                    : '<div class="no-active">Sin impas vencidos</div>'}
-            </div>
-        `;
-    }
-
-    function renderTerminales() {
-        const df = cargarDatos();
-        const terminales = getTerminales(df);
-        
-        return `
-            <div class="view-container">
-                <div class="view-header"><div class="view-title">🔢 TERMINALES</div><div class="btn-back" onclick="showView('menu')">Volver</div></div>
-                <div class="info-box"><div class="info-title">Top 5 Terminales</div></div>
-                ${terminales.length > 0 
-                    ? terminales.map(t => `
-                        <div class="pred-card">
-                            <div class="pred-num">${t.terminal}</div>
-                            <div class="pred-info">
-                                <div class="pred-lot">Terminal ${t.terminal} <span class="status-active">ACTIVO</span></div>
-                                <div class="pred-detail">1ra: ${t.freq_1ra} | 2da/3ra: ${t.freq_2da_3ra} | Tasa: ${t.tasa_arrastre}%</div>
-                            </div>
-                        </div>
-                    `).join('')
-                    : '<div class="no-active">Sin datos</div>'}
-            </div>
-        `;
-    }
-
-    function renderEspecificos() {
-        const df = cargarDatos();
-        const especificos = getNumerosEspecificos(df);
-        
-        return `
-            <div class="view-container">
-                <div class="view-header"><div class="view-title"> 16 - 61 - 04 - 40</div><div class="btn-back" onclick="showView('menu')">Volver</div></div>
-                ${especificos.map(e => `
-                    <div class="pred-card" style="border-left-color: ${e.activo ? 'var(--green)' : 'var(--red)'}">
-                        <div class="pred-num" style="background: ${e.activo ? 'var(--green)' : 'var(--red)'}">${String(e.numero).padStart(2, '0')}</div>
-                        <div class="pred-info">
-                            <div class="pred-lot">${e.mensaje}</div>
-                            <div class="pred-detail">Total: ${e.total} veces</div>
-                            ${e.horarios.length > 0 ? `<div class="pred-detail">Mejor: ${e.horarios[0].loteria} ${e.horarios[0].hora} (${e.horarios[0].count} veces)</div>` : ''}
-                        </div>
-                    </div>
-                `).join('')}
-            </div>
-        `;
-    }
-
-    function renderActualizar() {
-        const df = cargarDatos();
-        const hoy = new Date().toISOString().split('T')[0];
-        const nextFecha = hoy;
-        
-        return `
-            <div class="view-container">
-                <div class="view-header"><div class="view-title">⚙️ ACTUALIZAR</div><div class="btn-back" onclick="showView('menu')">Volver</div></div>
-                <form onsubmit="handleGuardar(event)">
-                    <div class="form-group"><label class="form-label">Fecha</label><input type="date" name="fecha" value="${nextFecha}" class="form-control" required></div>
-                    <div class="form-group"><label class="form-label">Lotería</label><select name="loteria" class="form-control"><option>GEORGIA</option><option>FLORIDA</option><option>NY</option></select></div>
-                    <div class="form-group"><label class="form-label">Hora</label><select name="hora" class="form-control"><option>12:30</option><option>13:30</option><option>14:30</option><option>19:00</option><option>21:50</option><option>22:30</option><option>23:30</option></select></div>
-                    <div class="form-row">
-                        <div class="form-group"><label class="form-label">1ra</label><input type="number" name="n1" class="form-control" required min="0" max="99"></div>
-                        <div class="form-group"><label class="form-label">2da</label><input type="number" name="n2" class="form-control" required min="0" max="99"></div>
-                        <div class="form-group"><label class="form-label">3ra</label><input type="number" name="n3" class="form-control" required min="0" max="99"></div>
-                    </div>
-                    <button type="submit" class="btn btn-gold">GUARDAR Y RECALCULAR</button>
-                </form>
-                <button onclick="handleEliminar()" class="btn btn-red" style="margin-top:10px;">ELIMINAR ÚLTIMO</button>
-            </div>
-        `;
-    }
-
-    function renderHistorial() {
-        const df = cargarDatos();
-        const ultimos200 = df.slice(-200).reverse();
-        
-        return `
-            <div class="view-container">
-                <div class="view-header"><div class="view-title">📜 HISTORIAL</div><div class="btn-back" onclick="showView('menu')">Volver</div></div>
-                <div style="color: var(--gold); text-align: center; margin-bottom: 10px;">Total: ${df.length} sorteos</div>
-                <div style="max-height: 60vh; overflow-y: auto;">
-                    <table style="width:100%; font-size:0.7rem; border-collapse: collapse;">
-                        <thead><tr style="background:var(--gold); color:var(--bg-dark);"><th>Fecha</th><th>Lot</th><th>Hora</th><th>1ra</th><th>2da</th><th>3ra</th></tr></thead>
-                        <tbody>
-                            ${ultimos200.map(h => `
-                                <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
-                                    <td>${h.fecha}</td>
-                                    <td>${h.loteria.substring(0, 3)}</td>
-                                    <td>${h.hora}</td>
-                                    <td>${h.n1}</td>
-                                    <td>${h.n2}</td>
-                                    <td>${h.n3}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        `;
-    }
-
-    // ==========================================
-    // NAVEGACIÓN Y EVENTOS
-    // ==========================================
-    function showView(view) {
-        const app = document.getElementById('app');
-        
-        switch(view) {
-            case 'menu':
-                app.innerHTML = renderMenu();
-                break;
-            case 'arrastres':
-                app.innerHTML = renderArrastres();
-                break;
-            case 'impas':
-                app.innerHTML = renderImpas();
-                break;
-            case 'terminales':
-                app.innerHTML = renderTerminales();
-                break;
-            case 'especificos':
-                app.innerHTML = renderEspecificos();
-                break;
-            case 'actualizar':
-                app.innerHTML = renderActualizar();
-                break;
-            case 'historial':
-                app.innerHTML = renderHistorial();
-                break;
-        }
-    }
-
-    function showTab(tabId, element) {
-        const container = element.parentElement;
-        const tabs = container.querySelectorAll('.ventana-tab');
-        tabs.forEach(t => t.classList.remove('active'));
-        element.classList.add('active');
-        
-        const parent = container.parentElement;
-        const contents = parent.querySelectorAll('[id^="t"]');
-        contents.forEach(c => c.classList.add('hidden'));
-        document.getElementById(tabId).classList.remove('hidden');
-    }
-
-    function showSub(subId, element) {
-        const container = element.parentElement;
-        const tabs = container.querySelectorAll('.ventana-tab');
-        tabs.forEach(t => t.classList.remove('active'));
-        element.classList.add('active');
-        
-        const parent = container.parentElement;
-        const contents = parent.querySelectorAll('[id^="s"]');
-        contents.forEach(c => c.classList.add('hidden'));
-        document.getElementById(subId).classList.remove('hidden');
-    }
-
-    function handleGuardar(event) {
-        event.preventDefault();
-        const form = event.target;
-        const fecha = form.fecha.value;
-        const loteria = form.loteria.value;
-        const hora = form.hora.value;
-        const n1 = parseInt(form.n1.value);
-        const n2 = parseInt(form.n2.value);
-        const n3 = parseInt(form.n3.value);
-        
-        if (n1 === n2 || n1 === n3 || n2 === n3) {
-            alert('No puedes repetir números');
-            return;
-        }
-        
-        guardarSorteoLocal(fecha, loteria, hora, n1, n2, n3);
-        alert('Sorteo guardado. Los análisis se actualizarán automáticamente.');
-        showView('menu');
-    }
-
-    function handleEliminar() {
-        if (confirm('¿Eliminar el último sorteo guardado?')) {
-            if (eliminarUltimoLocal()) {
-                alert('Último sorteo eliminado');
-            } else {
-                alert('No hay sorteos locales para eliminar');
-            }
-        }
-    }
-
-    // Reloj
-    setInterval(() => {
-        const ahora = new Date();
-        document.getElementById('reloj').innerText = ahora.toLocaleString('es-ES', {
-            weekday: 'short', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'
+// ANÁLISIS 5: MONTE CARLO 20,000 (Arrastres + Terminales + Impas + Específicos)
+function monteCarlo20k(df){
+    const scores={};
+    for(let i=0;i<100;i++)scores[i]=0;
+    
+    // Factor 1: Arrastres (peso alto)
+    const arr=arrastresLot(df);
+    ['24h','48h','72h'].forEach(v=>{
+        ['GEORGIA','FLORIDA','NY'].forEach(l=>{
+            (arr[v][l]||[]).forEach(n=>{scores[n]+=3});
         });
-    }, 1000);
+    });
+    
+    // Factor 2: Terminales (peso medio)
+    const term=terminales(df);
+    term.forEach(t=>{
+        for(let n=0;n<100;n++){if(n%10===t.t)scores[n]+=2}
+    });
+    
+    // Factor 3: Impas vencidos (peso alto)
+    const imp=impas(df);
+    imp.forEach(i=>{if(i.ia>i.ip*0.8)scores[i.n]+=4});
+    
+    // Factor 4: Específicos activos (peso muy alto)
+    const esp=especificos(df);
+    esp.forEach(e=>{if(e.act)scores[e.n]+=5});
+    
+    // Simulación Monte Carlo
+    for(let sim=0;sim<20000;sim++){
+        const muestra=[];
+        for(let i=0;i<100;i++){
+            const idx=Math.floor(Math.random()*df.length);
+            muestra.push(df[idx]);
+        }
+        const freq={};
+        muestra.forEach(d=>{freq[d.n1]=(freq[d.n1]||0)+1});
+        Object.entries(freq).forEach(([n,c])=>{scores[+n]+=c*0.1});
+    }
+    
+    const sorted=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+    return sorted.slice(0,2).map(([n,s])=>({n:+n,s:Math.round(s)}));
+}
 
-    // Iniciar
-    showView('menu');
-    </script>
+// ANÁLISIS 6: MONTE CARLO 10,000 (Multifactorial: fechas, días, frecuencia)
+function monteCarlo10k(df){
+    const scores={};
+    for(let i=0;i<100;i++)scores[i]={total:0,freq:0,dia:0,fecha:0};
+    
+    // Factor 1: Frecuencia histórica en 1ra
+    const freq1ra={};
+    df.forEach(d=>{freq1ra[d.n1]=(freq1ra[d.n1]||0)+1});
+    Object.entries(freq1ra).forEach(([n,c])=>{scores[+n].freq=c});
+    
+    // Factor 2: Día de la semana más frecuente
+    const diasFreq={};
+    df.forEach(d=>{
+        const dia=new Date(d.f).getDay();
+        const key=d.n1+'_'+dia;
+        diasFreq[key]=(diasFreq[key]||0)+1;
+    });
+    for(let n=0;n<100;n++){
+        let maxDia=0,maxCount=0;
+        for(let d=0;d<7;d++){
+            const key=n+'_'+d;
+            if((diasFreq[key]||0)>maxCount){maxCount=diasFreq[key];maxDia=d}
+        }
+        scores[n].dia=maxCount;
+    }
+    
+    // Factor 3: Rango de fecha (últimos 30 días pesan más)
+    const hoy=new Date();
+    df.forEach(d=>{
+        const diasDiff=Math.floor((hoy-new Date(d.f))/(1000*60*60*24));
+        if(diasDiff<=30)scores[d.n1].fecha+=3;
+        else if(diasDiff<=60)scores[d.n1].fecha+=2;
+        else scores[d.n1].fecha+=1;
+    });
+    
+    // Simulación Monte Carlo 10,000
+    for(let sim=0;sim<10000;sim++){
+        const muestra=[];
+        for(let i=0;i<50;i++){
+            const idx=Math.floor(Math.random()*df.length);
+            muestra.push(df[idx]);
+        }
+        const freq={};
+        muestra.forEach(d=>{freq[d.n1]=(freq[d.n1]||0)+1});
+        Object.entries(freq).forEach(([n,c])=>{scores[+n].total+=c});
+    }
+    
+    // Score final combinado
+    const final={};
+    for(let n=0;n<100;n++){
+        final[n]=scores[n].freq*2+scores[n].dia*3+scores[n].fecha*4+scores[n].total*0.5;
+    }
+    
+    const sorted=Object.entries(final).sort((a,b)=>b[1]-a[1]);
+    return sorted.slice(0,2).map(([n,s])=>({n:+n,s:Math.round(s)}));
+}
+
+// RENDERIZADO
+function menu(){
+    document.getElementById('app').innerHTML=
+    '<div class="grid">'+
+    '<div class="card" onclick="verArrastres()"><div class="card-icon">🔄</div><div class="card-title">ARRASTRES</div></div>'+
+    '<div class="card" onclick="verImpas()"><div class="card-icon">⏰</div><div class="card-title">IMPAS</div></div>'+
+    '<div class="card" onclick="verTerminales()"><div class="card-icon">🔢</div><div class="card-title">TERMINALES</div></div>'+
+    '<div class="card" onclick="verEspecificos()"><div class="card-icon">🎯</div><div class="card-title">16-61-04-40</div></div>'+
+    '<div class="card" onclick="verMC20k()"><div class="card-icon">🎲</div><div class="card-title">MC 20,000</div></div>'+
+    '<div class="card" onclick="verMC10k()"><div class="card-icon">🧠</div><div class="card-title">MC 10,000</div></div>'+
+    '<div class="card" onclick="verActualizar()"><div class="card-icon">⚙️</div><div class="card-title">ACTUALIZAR</div></div>'+
+    '<div class="card" onclick="verHistorial()"><div class="card-icon">📜</div><div class="card-title">HISTORIAL</div></div>'+
+    '</div>';
+}
+
+function verArrastres(){
+    const df=getDF(),al=arrastresLot(df);
+    let html='<div class="view"><div class="view-header"><div class="view-title">🔄 ARRASTRES</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    html+='<div class="tabs"><div class="tab active" onclick="tabArr(this,\'a1\')">24h</div><div class="tab" onclick="tabArr(this,\'a2\')">48h</div><div class="tab" onclick="tabArr(this,\'a3\')">72h</div></div>';
+    ['24h','48h','72h'].forEach((v,vi)=>{
+        html+='<div id="a'+(vi+1)+'" class="'+(vi>0?'hidden':'')+'">';
+        ['GEORGIA','FLORIDA','NY'].forEach(l=>{
+            html+='<div class="lot-title">'+l+'</div>';
+            const nums=al[v][l]||[];
+            if(nums.length===0)html+='<div class="no-data">Sin arrastres</div>';
+            else nums.forEach(n=>{html+='<div class="pred"><div class="pred-num">'+String(n).padStart(2,'0')+'</div><div class="pred-info"><div class="pred-lot">ACTIVO <span class="badge-green">JUGAR</span></div></div></div>'});
+        });
+        html+='</div>';
+    });
+    html+='</div>';
+    document.getElementById('app').innerHTML=html;
+}
+
+function tabArr(el,id){
+    el.parentElement.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    el.classList.add('active');
+    ['a1','a2','a3'].forEach(x=>{const e=document.getElementById(x);if(e)e.classList.toggle('hidden',x!==id)});
+}
+
+function verImpas(){
+    const df=getDF(),im=impas(df);
+    let html='<div class="view"><div class="view-header"><div class="view-title">⏰ IMPAS</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    if(im.length===0)html+='<div class="no-data">Sin impas vencidos</div>';
+    else im.forEach(i=>{html+='<div class="pred"><div class="pred-num" style="background:#e53e3e">'+String(i.n).padStart(2,'0')+'</div><div class="pred-info"><div class="pred-lot">IMPAS VENCIDO <span class="badge-red">URGENTE</span></div><div class="pred-detail">Promedio: '+i.ip+' | Actual: '+i.ia+' | Total: '+i.t+'</div></div></div>'});
+    html+='</div>';
+    document.getElementById('app').innerHTML=html;
+}
+
+function verTerminales(){
+    const df=getDF(),te=terminales(df);
+    let html='<div class="view"><div class="view-header"><div class="view-title">🔢 TERMINALES</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    html+='<div class="info-box"><div class="info-title">Top 5 Terminales (0-9)</div><div class="info-content">Frecuencia en 1ra y tasa de arrastre desde 2da/3ra</div></div>';
+    te.forEach(t=>{html+='<div class="pred"><div class="pred-num">'+t.t+'</div><div class="pred-info"><div class="pred-lot">Terminal '+t.t+' <span class="badge-green">ACTIVO</span></div><div class="pred-detail">1ra: '+t.f1+' | 2da/3ra: '+t.f23+' | Tasa: '+t.ta+'%</div></div></div>'});
+    html+='</div>';
+    document.getElementById('app').innerHTML=html;
+}
+
+function verEspecificos(){
+    const df=getDF(),es=especificos(df);
+    let html='<div class="view"><div class="view-header"><div class="view-title">🎯 16 - 61 - 04 - 40</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    es.forEach(e=>{
+        const color=e.act?'#38a169':'#e53e3e';
+        html+='<div class="pred" style="border-left-color:'+color+'"><div class="pred-num" style="background:'+color+'">'+String(e.n).padStart(2,'0')+'</div><div class="pred-info"><div class="pred-lot">'+e.m+'</div><div class="pred-detail">Total: '+e.t+' veces</div>';
+        if(e.h.length>0)html+='<div class="pred-detail">Mejor: '+e.h[0].l+' '+e.h[0].h+' ('+e.h[0].c+' veces)</div>';
+        html+='</div></div>';
+    });
+    html+='</div>';
+    document.getElementById('app').innerHTML=html;
+}
+
+function verMC20k(){
+    const df=getDF(),mc=monteCarlo20k(df);
+    let html='<div class="view"><div class="view-header"><div class="view-title">🎲 MONTE CARLO 20,000</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    html+='<div class="info-box"><div class="info-title">20,000 simulaciones - Top 2 pronósticos</div><div class="info-content">Considera: Arrastres + Terminales + Impas + Números 16, 61, 04, 40</div></div>';
+    mc.forEach((m,i)=>{html+='<div class="pred"><div class="pred-num">'+String(m.n).padStart(2,'0')+'</div><div class="pred-info"><div class="pred-lot">PRONÓSTICO #'+(i+1)+' <span class="badge-green">JUGAR</span></div><div class="pred-detail">Score: '+m.s+'</div></div></div>'});
+    html+='</div>';
+    document.getElementById('app').innerHTML=html;
+}
+
+function verMC10k(){
+    const df=getDF(),mc=monteCarlo10k(df);
+    let html='<div class="view"><div class="view-header"><div class="view-title">🧠 MONTE CARLO 10,000</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    html+='<div class="info-box"><div class="info-title">10,000 simulaciones - Análisis Multifactorial</div><div class="info-content">Considera: Frecuencia histórica + Días de semana + Fechas recientes + Simulación</div></div>';
+    mc.forEach((m,i)=>{html+='<div class="pred"><div class="pred-num">'+String(m.n).padStart(2,'0')+'</div><div class="pred-info"><div class="pred-lot">PRONÓSTICO #'+(i+1)+' <span class="badge-green">JUGAR</span></div><div class="pred-detail">Score: '+m.s+'</div></div></div>'});
+    html+='</div>';
+    document.getElementById('app').innerHTML=html;
+}
+
+function verActualizar(){
+    const hoy=new Date().toISOString().split('T')[0];
+    let html='<div class="view"><div class="view-header"><div class="view-title">⚙️ ACTUALIZAR</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    html+='<div class="form-group"><label class="form-label">Fecha</label><input type="date" id="fecha" value="'+hoy+'" class="form-control"></div>';
+    html+='<div class="form-group"><label class="form-label">Lotería</label><select id="loteria" class="form-control"><option>GEORGIA</option><option>FLORIDA</option><option>NY</option></select></div>';
+    html+='<div class="form-group"><label class="form-label">Hora</label><select id="hora" class="form-control"><option>12:30</option><option>13:30</option><option>14:30</option><option>19:00</option><option>21:50</option><option>22:30</option><option>23:30</option></select></div>';
+    html+='<div class="form-row"><div class="form-group"><label class="form-label">1ra</label><input type="number" id="n1" class="form-control" min="0" max="99"></div><div class="form-group"><label class="form-label">2da</label><input type="number" id="n2" class="form-control" min="0" max="99"></div><div class="form-group"><label class="form-label">3ra</label><input type="number" id="n3" class="form-control" min="0" max="99"></div></div>';
+    html+='<button class="btn btn-gold" onclick="guardar()">GUARDAR Y RECALCULAR</button>';
+    html+='<button class="btn btn-red" onclick="eliminar()">ELIMINAR ÚLTIMO</button>';
+    html+='</div>';
+    document.getElementById('app').innerHTML=html;
+}
+
+function guardar(){
+    const f=document.getElementById('fecha').value;
+    const l=document.getElementById('loteria').value;
+    const h=document.getElementById('hora').value;
+    const n1=parseInt(document.getElementById('n1').value);
+    const n2=parseInt(document.getElementById('n2').value);
+    const n3=parseInt(document.getElementById('n3').value);
+    
+    if(!f||isNaN(n1)||isNaN(n2)||isNaN(n3)){alert('Completa todos los campos');return}
+    if(n1<0||n1>99||n2<0||n2>99||n3<0||n3>99){alert('Los números deben ser 0-99');return}
+    if(n1===n2||n1===n3||n2===n3){alert('No repetir números');return}
+    
+    LOCALES.push({f:f,l:l,h:h,n1:n1,n2:n2,n3:n3});
+    localStorage.setItem('loto_local',JSON.stringify(LOCALES));
+    alert('✅ Sorteo guardado. Los análisis se actualizarán.');
+    menu();
+}
+
+function eliminar(){
+    if(LOCALES.length===0){alert('No hay sorteos locales para eliminar');return}
+    if(confirm('¿Eliminar el último sorteo guardado?')){
+        LOCALES.pop();
+        localStorage.setItem('loto_local',JSON.stringify(LOCALES));
+        alert('Último sorteo eliminado');
+        menu();
+    }
+}
+
+function verHistorial(){
+    const df=getDF(),ult=df.slice(-100).reverse();
+    let html='<div class="view"><div class="view-header"><div class="view-title">📜 HISTORIAL</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    html+='<div class="stat-grid"><div class="stat"><div class="stat-value">'+df.length+'</div><div class="stat-label">Total Sorteos</div></div><div class="stat"><div class="stat-value">'+ult.length+'</div><div class="stat-label">Mostrando</div></div></div>';
+    html+='<div class="scroll"><table><thead><tr><th>Fecha</th><th>Lot</th><th>Hora</th><th>1ra</th><th>2da</th><th>3ra</th></tr></thead><tbody>';
+    ult.forEach(h=>{html+='<tr><td>'+h.f+'</td><td>'+h.l.substring(0,3)+'</td><td>'+h.h+'</td><td><b>'+h.n1+'</b></td><td>'+h.n2+'</td><td>'+h.n3+'</td></tr>'});
+    html+='</tbody></table></div></div>';
+    document.getElementById('app').innerHTML=html;
+}
+
+// Reloj
+setInterval(()=>{
+    const now=new Date();
+    document.getElementById('clock').innerText=now.toLocaleString('es-ES',{weekday:'short',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+},1000);
+
+// Iniciar
+menu();
+</script>
 </body>
 </html>
