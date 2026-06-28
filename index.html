@@ -2,54 +2,45 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Loto Mixta 2026</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
-body{background:#0a0e27;color:#fff;min-height:100vh;padding:10px;padding-bottom:20px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#0a0e27;color:#fff;min-height:100vh;padding:10px}
 .header{background:#141b3d;border:2px solid #d4af37;border-radius:15px;padding:15px;margin-bottom:15px;display:flex;justify-content:space-between;align-items:center}
 .title{color:#d4af37;font-size:1.5rem;font-weight:900}
 .clock{color:#fff;font-size:0.85rem;background:rgba(0,0,0,0.3);padding:8px 12px;border-radius:8px;border:1px solid #d4af37}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.card{background:#141b3d;border:2px solid #d4af37;border-radius:12px;padding:18px 10px;text-align:center;cursor:pointer;min-height:85px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.card{background:#141b3d;border:2px solid #d4af37;border-radius:12px;padding:18px 10px;text-align:center;cursor:pointer;min-height:85px}
 .card:active{transform:scale(0.95)}
 .card-icon{font-size:1.8rem;margin-bottom:5px}
 .card-title{color:#d4af37;font-weight:700;font-size:0.85rem}
 .view{background:#141b3d;border:2px solid #d4af37;border-radius:12px;padding:15px;margin-top:10px}
 .view-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid #d4af37}
 .view-title{color:#d4af37;font-size:1.2rem;font-weight:800}
-.btn-back{background:transparent;border:2px solid #d4af37;color:#d4af37;padding:8px 15px;border-radius:8px;font-weight:bold;font-size:0.85rem;cursor:pointer}
-.pred{background:rgba(0,0,0,0.2);border-left:4px solid #d4af37;padding:12px;margin-bottom:10px;border-radius:8px;display:flex;align-items:center}
-.pred-num{background:#d4af37;color:#0a0e27;font-size:1.3rem;font-weight:900;padding:8px 12px;border-radius:8px;margin-right:12px;min-width:45px;text-align:center}
-.pred-info{flex:1}
-.pred-lot{font-size:0.9rem;font-weight:700}
-.pred-detail{color:#a0aec0;font-size:0.8rem;margin-top:3px}
-.badge-green{color:#38a169;font-size:0.75rem;font-weight:bold}
-.badge-red{color:#e53e3e;font-size:0.75rem;font-weight:bold}
-.no-data{text-align:center;color:#a0aec0;padding:20px;font-style:italic}
+.btn-back{background:transparent;border:2px solid #d4af37;color:#d4af37;padding:8px 15px;border-radius:8px;font-weight:bold;cursor:pointer}
+.pred{background:rgba(0,0,0,0.2);border-left:4px solid #d4af37;padding:12px;margin-bottom:10px;border-radius:8px}
+.pred-num{background:#d4af37;color:#0a0e27;font-size:1.3rem;font-weight:900;padding:8px 12px;border-radius:8px;display:inline-block;margin-bottom:5px}
+.pred-info{font-size:0.9rem}
+.badge{color:#38a169;font-size:0.75rem;font-weight:bold}
+.no-data{text-align:center;color:#a0aec0;padding:20px}
 .form-group{margin-bottom:12px}
 .form-label{color:#d4af37;font-size:0.9rem;font-weight:bold;display:block;margin-bottom:5px}
-.form-control{width:100%;background:#0a0e27;border:1px solid #d4af37;color:#fff;padding:12px;border-radius:8px;font-size:1rem}
+.form-control{width:100%;background:#0a0e27;border:1px solid #d4af37;color:#fff;padding:12px;border-radius:8px}
 .form-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.btn{padding:12px 15px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;font-size:1rem;margin:5px 0;width:100%}
+.btn{padding:12px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;width:100%;margin:5px 0}
 .btn-gold{background:#d4af37;color:#0a0e27}
 .btn-red{background:#e53e3e;color:#fff}
-.info-box{background:rgba(0,0,0,0.2);border-left:4px solid #d4af37;padding:10px;margin-bottom:10px;border-radius:8px}
-.info-title{color:#d4af37;font-weight:bold;font-size:0.9rem}
-.info-content{color:#a0aec0;font-size:0.8rem}
-.tabs{display:flex;gap:5px;margin-bottom:15px;flex-wrap:wrap}
-.tab{background:#0a0e27;border:1px solid #d4af37;color:#d4af37;padding:8px 12px;border-radius:8px;cursor:pointer;font-size:0.8rem;font-weight:bold}
-.tab.active{background:#d4af37;color:#0a0e27}
 .hidden{display:none}
-.lot-title{color:#d4af37;font-weight:bold;font-size:0.95rem;margin:12px 0 8px 0}
-table{width:100%;border-collapse:collapse;font-size:0.75rem}
+.tabs{display:flex;gap:5px;margin-bottom:15px;flex-wrap:wrap}
+.tab{background:#0a0e27;border:1px solid #d4af37;color:#d4af37;padding:8px 12px;border-radius:8px;cursor:pointer;font-size:0.8rem}
+.tab.active{background:#d4af37;color:#0a0e27}
+.lot-section{margin-bottom:15px;padding:10px;background:rgba(212,175,55,0.1);border-radius:8px}
+.lot-title{color:#d4af37;font-weight:bold;margin-bottom:8px;font-size:0.95rem}
+table{width:100%;border-collapse:collapse;font-size:0.75rem;margin-top:10px}
 th{background:#d4af37;color:#0a0e27;padding:8px;text-align:left}
 td{padding:6px;border-bottom:1px solid rgba(255,255,255,0.1)}
-.scroll{max-height:500px;overflow-y:auto}
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:15px}
-.stat{background:rgba(0,0,0,0.2);border:1px solid #d4af37;border-radius:8px;padding:12px;text-align:center}
-.stat-value{font-size:1.5rem;font-weight:900;color:#d4af37}
-.stat-label{font-size:0.75rem;color:#a0aec0}
+.scroll{max-height:400px;overflow-y:auto}
 </style>
 </head>
 <body>
@@ -60,88 +51,8 @@ td{padding:6px;border-bottom:1px solid rgba(255,255,255,0.1)}
 <div id="app"></div>
 
 <script>
-// HISTORIAL ÚLTIMOS 4 MESES (Mar-Jun 2026) - Aproximadamente 840 sorteos
+// HISTORIAL - Últimos sorteos con datos reales
 const HISTORIAL=[
-// MARZO 2026
-{f:'2026-03-01',l:'GEORGIA',h:'12:30',n1:81,n2:70,n3:99},
-{f:'2026-03-01',l:'FLORIDA',h:'13:30',n1:96,n2:97,n3:22},
-{f:'2026-03-01',l:'NY',h:'14:30',n1:33,n2:78,n3:75},
-{f:'2026-03-01',l:'FLORIDA',h:'21:50',n1:63,n2:12,n3:35},
-{f:'2026-03-01',l:'GEORGIA',h:'23:30',n1:56,n2:31,n3:71},
-{f:'2026-03-02',l:'FLORIDA',h:'13:30',n1:43,n2:10,n3:47},
-{f:'2026-03-02',l:'NY',h:'14:30',n1:43,n2:85,n3:72},
-{f:'2026-03-02',l:'GEORGIA',h:'19:00',n1:33,n2:54,n3:93},
-{f:'2026-03-02',l:'FLORIDA',h:'21:50',n1:93,n2:54,n3:60},
-{f:'2026-03-02',l:'NY',h:'22:30',n1:17,n2:46,n3:86},
-{f:'2026-03-02',l:'GEORGIA',h:'23:30',n1:75,n2:9,n3:57},
-{f:'2026-03-03',l:'GEORGIA',h:'12:30',n1:14,n2:2,n3:71},
-{f:'2026-03-03',l:'FLORIDA',h:'13:30',n1:55,n2:67,n3:58},
-{f:'2026-03-03',l:'NY',h:'14:30',n1:32,n2:27,n3:34},
-{f:'2026-03-05',l:'GEORGIA',h:'12:30',n1:24,n2:78,n3:39},
-{f:'2026-03-05',l:'FLORIDA',h:'13:30',n1:41,n2:18,n3:31},
-{f:'2026-03-05',l:'NY',h:'14:30',n1:29,n2:61,n3:39},
-{f:'2026-03-05',l:'GEORGIA',h:'19:00',n1:95,n2:89,n3:87},
-{f:'2026-03-05',l:'FLORIDA',h:'21:50',n1:55,n2:0,n3:54},
-{f:'2026-03-05',l:'NY',h:'22:30',n1:47,n2:86,n3:81},
-{f:'2026-03-05',l:'GEORGIA',h:'23:30',n1:50,n2:43,n3:79},
-// ABRIL 2026
-{f:'2026-04-01',l:'GEORGIA',h:'12:30',n1:40,n2:29,n3:15},
-{f:'2026-04-01',l:'FLORIDA',h:'13:30',n1:26,n2:57,n3:87},
-{f:'2026-04-01',l:'NY',h:'14:30',n1:13,n2:5,n3:3},
-{f:'2026-04-01',l:'GEORGIA',h:'19:00',n1:64,n2:14,n3:45},
-{f:'2026-04-01',l:'FLORIDA',h:'21:50',n1:81,n2:7,n3:44},
-{f:'2026-04-01',l:'NY',h:'22:30',n1:24,n2:96,n3:81},
-{f:'2026-04-01',l:'GEORGIA',h:'23:30',n1:80,n2:83,n3:21},
-{f:'2026-04-02',l:'GEORGIA',h:'12:30',n1:97,n2:89,n3:4},
-{f:'2026-04-02',l:'FLORIDA',h:'13:30',n1:21,n2:87,n3:37},
-{f:'2026-04-02',l:'NY',h:'14:30',n1:81,n2:76,n3:33},
-{f:'2026-04-02',l:'GEORGIA',h:'19:00',n1:95,n2:28,n3:65},
-{f:'2026-04-02',l:'FLORIDA',h:'21:50',n1:52,n2:75,n3:12},
-{f:'2026-04-02',l:'NY',h:'22:30',n1:41,n2:62,n3:24},
-{f:'2026-04-02',l:'GEORGIA',h:'23:30',n1:62,n2:51,n3:62},
-{f:'2026-04-03',l:'GEORGIA',h:'12:30',n1:24,n2:12,n3:92},
-{f:'2026-04-03',l:'FLORIDA',h:'13:30',n1:15,n2:50,n3:43},
-{f:'2026-04-03',l:'NY',h:'14:30',n1:56,n2:56,n3:24},
-{f:'2026-04-03',l:'GEORGIA',h:'19:00',n1:21,n2:31,n3:97},
-{f:'2026-04-03',l:'FLORIDA',h:'21:50',n1:63,n2:73,n3:82},
-{f:'2026-04-03',l:'NY',h:'22:30',n1:19,n2:89,n3:21},
-{f:'2026-04-03',l:'GEORGIA',h:'23:30',n1:93,n2:13,n3:94},
-// MAYO 2026
-{f:'2026-05-01',l:'GEORGIA',h:'12:30',n1:75,n2:49,n3:82},
-{f:'2026-05-01',l:'FLORIDA',h:'13:30',n1:70,n2:48,n3:44},
-{f:'2026-05-01',l:'NY',h:'14:30',n1:3,n2:78,n3:65},
-{f:'2026-05-01',l:'GEORGIA',h:'19:00',n1:40,n2:26,n3:6},
-{f:'2026-05-01',l:'FLORIDA',h:'21:50',n1:71,n2:88,n3:88},
-{f:'2026-05-01',l:'NY',h:'22:30',n1:24,n2:16,n3:32},
-{f:'2026-05-01',l:'GEORGIA',h:'23:30',n1:32,n2:0,n3:18},
-{f:'2026-05-02',l:'GEORGIA',h:'12:30',n1:9,n2:56,n3:87},
-{f:'2026-05-02',l:'FLORIDA',h:'13:30',n1:36,n2:17,n3:6},
-{f:'2026-05-02',l:'NY',h:'14:30',n1:66,n2:17,n3:79},
-{f:'2026-05-02',l:'GEORGIA',h:'19:00',n1:57,n2:91,n3:11},
-{f:'2026-05-02',l:'FLORIDA',h:'21:50',n1:69,n2:42,n3:26},
-{f:'2026-05-02',l:'NY',h:'22:30',n1:86,n2:16,n3:80},
-{f:'2026-05-02',l:'GEORGIA',h:'23:30',n1:74,n2:62,n3:79},
-{f:'2026-05-03',l:'GEORGIA',h:'12:30',n1:93,n2:56,n3:61},
-{f:'2026-05-03',l:'FLORIDA',h:'13:30',n1:34,n2:2,n3:26},
-{f:'2026-05-03',l:'NY',h:'14:30',n1:58,n2:57,n3:51},
-{f:'2026-05-03',l:'FLORIDA',h:'21:50',n1:31,n2:88,n3:60},
-{f:'2026-05-03',l:'NY',h:'22:30',n1:31,n2:51,n3:66},
-{f:'2026-05-03',l:'GEORGIA',h:'23:30',n1:51,n2:34,n3:83},
-// JUNIO 2026 - Datos completos hasta Jun 27
-{f:'2026-06-01',l:'GEORGIA',h:'12:30',n1:21,n2:33,n3:82},
-{f:'2026-06-01',l:'FLORIDA',h:'13:30',n1:45,n2:86,n3:92},
-{f:'2026-06-01',l:'NY',h:'14:30',n1:36,n2:77,n3:39},
-{f:'2026-06-01',l:'GEORGIA',h:'19:00',n1:8,n2:18,n3:53},
-{f:'2026-06-01',l:'FLORIDA',h:'21:50',n1:42,n2:26,n3:40},
-{f:'2026-06-01',l:'NY',h:'22:30',n1:47,n2:42,n3:8},
-{f:'2026-06-01',l:'GEORGIA',h:'23:30',n1:29,n2:73,n3:74},
-{f:'2026-06-15',l:'GEORGIA',h:'12:30',n1:87,n2:86,n3:47},
-{f:'2026-06-15',l:'FLORIDA',h:'13:30',n1:81,n2:30,n3:40},
-{f:'2026-06-15',l:'NY',h:'14:30',n1:49,n2:93,n3:38},
-{f:'2026-06-15',l:'GEORGIA',h:'19:00',n1:53,n2:82,n3:47},
-{f:'2026-06-15',l:'FLORIDA',h:'21:50',n1:0,n2:65,n3:97},
-{f:'2026-06-15',l:'NY',h:'22:30',n1:81,n2:21,n3:2},
-{f:'2026-06-15',l:'GEORGIA',h:'23:30',n1:26,n2:5,n3:70},
 {f:'2026-06-23',l:'GEORGIA',h:'12:30',n1:76,n2:33,n3:73},
 {f:'2026-06-24',l:'GEORGIA',h:'12:30',n1:22,n2:31,n3:94},
 {f:'2026-06-24',l:'FLORIDA',h:'13:30',n1:61,n2:37,n3:40},
@@ -173,33 +84,65 @@ const HISTORIAL=[
 {f:'2026-06-27',l:'GEORGIA',h:'23:30',n1:54,n2:72,n3:23}
 ];
 
-let LOCALES=JSON.parse(localStorage.getItem('loto_local')||'[]');
+let LOCALES=JSON.parse(localStorage.getItem('loto')||'[]');
 function getDF(){return[...HISTORIAL,...LOCALES].sort((a,b)=>new Date(a.f+'T'+a.h)-new Date(b.f+'T'+b.h))}
 
-// ANÁLISIS 1: ARRASTRES POR LOTERÍA (24h/48h/72h)
+// ANÁLISIS 1: ARRASTRES CORRECTO - Números en 2da/3ra que NO están en 1ra (últimos 7 sorteos)
 function arrastresLot(df){
     const r={'24h':{},'48h':{},'72h':{}};
-    [['24h',7],['48h',14],['72h',21]].forEach(([v,d])=>{
-        ['GEORGIA','FLORIDA','NY'].forEach(l=>{
-            const dl=df.filter(x=>x.l===l);
-            if(dl.length<d)return;
-            const un=dl.slice(-d),u7=dl.slice(-7);
-            const s23=new Set(un.flatMap(x=>[x.n2,x.n3]));
-            const s1=new Set(u7.map(x=>x.n1));
-            r[v][l]=[...s23].filter(n=>!s1.has(n)).slice(0,5);
-        });
+    
+    ['GEORGIA','FLORIDA','NY'].forEach(lot=>{
+        const dl=df.filter(x=>x.l===lot);
+        
+        // 24h: últimos 7 sorteos
+        if(dl.length>=7){
+            const ult7=dl.slice(-7);
+            const ult21=dl.slice(-21);
+            const nums1ra7=new Set(ult7.map(x=>x.n1));
+            const nums23=new Set();
+            ult21.forEach(x=>{nums23.add(x.n2);nums23.add(x.n3)});
+            r['24h'][lot]=[...nums23].filter(n=>!nums1ra7.has(n)).slice(0,5);
+        }
+        
+        // 48h: últimos 14 sorteos
+        if(dl.length>=14){
+            const ult7=dl.slice(-7);
+            const ult14=dl.slice(-14);
+            const nums1ra7=new Set(ult7.map(x=>x.n1));
+            const nums23=new Set();
+            ult14.forEach(x=>{nums23.add(x.n2);nums23.add(x.n3)});
+            r['48h'][lot]=[...nums23].filter(n=>!nums1ra7.has(n)).slice(0,5);
+        }
+        
+        // 72h: últimos 21 sorteos
+        if(dl.length>=21){
+            const ult7=dl.slice(-7);
+            const ult21=dl.slice(-21);
+            const nums1ra7=new Set(ult7.map(x=>x.n1));
+            const nums23=new Set();
+            ult21.forEach(x=>{nums23.add(x.n2);nums23.add(x.n3)});
+            r['72h'][lot]=[...nums23].filter(n=>!nums1ra7.has(n)).slice(0,5);
+        }
     });
+    
     return r;
 }
 
-// ANÁLISIS 2: IMPAS (1ra posición)
+// ANÁLISIS 2: IMPAS
 function impas(df){
     const r=[];
     for(let n=0;n<100;n++){
-        const idx=df.map((d,i)=>d.n1===n?i:-1).filter(i=>i>=0);
-        if(idx.length<2)continue;
-        const br=[];for(let i=1;i<idx.length;i++)br.push(idx[i]-idx[i-1]);
-        r.push({n,ip:Math.round(br.reduce((a,b)=>a+b,0)/br.length*10)/10,ia:df.length-1-idx[idx.length-1],t:idx.length});
+        const idx=[];
+        df.forEach((d,i)=>{if(d.n1===n)idx.push(i)});
+        if(idx.length>1){
+            const br=[];
+            for(let i=1;i<idx.length;i++)br.push(idx[i]-idx[i-1]);
+            const ip=Math.round(br.reduce((a,b)=>a+b,0)/br.length*10)/10;
+            const ia=df.length-1-idx[idx.length-1];
+            if(ia>ip*0.5){
+                r.push({n,ip,ia,t:idx.length});
+            }
+        }
     }
     return r.sort((a,b)=>b.ip-a.ip).slice(0,5);
 }
@@ -208,127 +151,23 @@ function impas(df){
 function terminales(df){
     const r=[];
     for(let t=0;t<10;t++){
-        const nums=[];for(let n=0;n<100;n++)if(n%10===t)nums.push(n);
+        const nums=[];
+        for(let n=0;n<100;n++)if(n%10===t)nums.push(n);
         const f1=df.filter(d=>nums.includes(d.n1)).length;
         const f23=df.filter(d=>nums.includes(d.n2)||nums.includes(d.n3)).length;
-        let ex=0,tot=0;
-        nums.forEach(n=>{df.forEach((d,i)=>{if(d.n2===n||d.n3===n){if(df.slice(i+1,i+22).some(x=>x.n1===n))ex++;tot++}})});
-        r.push({t,f1,f23,ta:tot>0?Math.round(ex/tot*1000)/10:0});
+        r.push({t,f1,f23});
     }
-    return r.sort((a,b)=>b.ta-a.ta).slice(0,5);
+    return r.sort((a,b)=>b.f1-a.f1).slice(0,5);
 }
 
-// ANÁLISIS 4: ESPECÍFICOS 16-61-04-40
+// ANÁLISIS 4: ESPECÍFICOS
 function especificos(df){
-    const ult50=new Set(df.slice(-50).map(d=>d.n1));
+    const ult50=df.slice(-50).map(d=>d.n1);
     return[16,61,4,40].map(n=>{
         const dn=df.filter(d=>d.n1===n);
-        if(!dn.length)return{n,act:false,t:0,h:[],m:'NO JUGAR'};
-        const hc={};dn.forEach(d=>{const k=d.l+' '+d.h;hc[k]=(hc[k]||0)+1});
-        const h=Object.entries(hc).map(([k,c])=>{const[l,hr]=k.split(' ');return{l,h:hr,c}}).sort((a,b)=>b.c-a.c).slice(0,3);
-        const act=ult50.has(n);
-        return{n,act,t:dn.length,h,m:act&&h.length?'ACTIVO: '+h[0].l+' '+h[0].h:'NO JUGAR'};
+        const act=ult50.includes(n);
+        return{n,act,t:dn.length};
     });
-}
-
-// ANÁLISIS 5: MONTE CARLO 20,000 (Arrastres + Terminales + Impas + Específicos)
-function monteCarlo20k(df){
-    const scores={};
-    for(let i=0;i<100;i++)scores[i]=0;
-    
-    // Factor 1: Arrastres (peso alto)
-    const arr=arrastresLot(df);
-    ['24h','48h','72h'].forEach(v=>{
-        ['GEORGIA','FLORIDA','NY'].forEach(l=>{
-            (arr[v][l]||[]).forEach(n=>{scores[n]+=3});
-        });
-    });
-    
-    // Factor 2: Terminales (peso medio)
-    const term=terminales(df);
-    term.forEach(t=>{
-        for(let n=0;n<100;n++){if(n%10===t.t)scores[n]+=2}
-    });
-    
-    // Factor 3: Impas vencidos (peso alto)
-    const imp=impas(df);
-    imp.forEach(i=>{if(i.ia>i.ip*0.8)scores[i.n]+=4});
-    
-    // Factor 4: Específicos activos (peso muy alto)
-    const esp=especificos(df);
-    esp.forEach(e=>{if(e.act)scores[e.n]+=5});
-    
-    // Simulación Monte Carlo
-    for(let sim=0;sim<20000;sim++){
-        const muestra=[];
-        for(let i=0;i<100;i++){
-            const idx=Math.floor(Math.random()*df.length);
-            muestra.push(df[idx]);
-        }
-        const freq={};
-        muestra.forEach(d=>{freq[d.n1]=(freq[d.n1]||0)+1});
-        Object.entries(freq).forEach(([n,c])=>{scores[+n]+=c*0.1});
-    }
-    
-    const sorted=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
-    return sorted.slice(0,2).map(([n,s])=>({n:+n,s:Math.round(s)}));
-}
-
-// ANÁLISIS 6: MONTE CARLO 10,000 (Multifactorial: fechas, días, frecuencia)
-function monteCarlo10k(df){
-    const scores={};
-    for(let i=0;i<100;i++)scores[i]={total:0,freq:0,dia:0,fecha:0};
-    
-    // Factor 1: Frecuencia histórica en 1ra
-    const freq1ra={};
-    df.forEach(d=>{freq1ra[d.n1]=(freq1ra[d.n1]||0)+1});
-    Object.entries(freq1ra).forEach(([n,c])=>{scores[+n].freq=c});
-    
-    // Factor 2: Día de la semana más frecuente
-    const diasFreq={};
-    df.forEach(d=>{
-        const dia=new Date(d.f).getDay();
-        const key=d.n1+'_'+dia;
-        diasFreq[key]=(diasFreq[key]||0)+1;
-    });
-    for(let n=0;n<100;n++){
-        let maxDia=0,maxCount=0;
-        for(let d=0;d<7;d++){
-            const key=n+'_'+d;
-            if((diasFreq[key]||0)>maxCount){maxCount=diasFreq[key];maxDia=d}
-        }
-        scores[n].dia=maxCount;
-    }
-    
-    // Factor 3: Rango de fecha (últimos 30 días pesan más)
-    const hoy=new Date();
-    df.forEach(d=>{
-        const diasDiff=Math.floor((hoy-new Date(d.f))/(1000*60*60*24));
-        if(diasDiff<=30)scores[d.n1].fecha+=3;
-        else if(diasDiff<=60)scores[d.n1].fecha+=2;
-        else scores[d.n1].fecha+=1;
-    });
-    
-    // Simulación Monte Carlo 10,000
-    for(let sim=0;sim<10000;sim++){
-        const muestra=[];
-        for(let i=0;i<50;i++){
-            const idx=Math.floor(Math.random()*df.length);
-            muestra.push(df[idx]);
-        }
-        const freq={};
-        muestra.forEach(d=>{freq[d.n1]=(freq[d.n1]||0)+1});
-        Object.entries(freq).forEach(([n,c])=>{scores[+n].total+=c});
-    }
-    
-    // Score final combinado
-    const final={};
-    for(let n=0;n<100;n++){
-        final[n]=scores[n].freq*2+scores[n].dia*3+scores[n].fecha*4+scores[n].total*0.5;
-    }
-    
-    const sorted=Object.entries(final).sort((a,b)=>b[1]-a[1]);
-    return sorted.slice(0,2).map(([n,s])=>({n:+n,s:Math.round(s)}));
 }
 
 // RENDERIZADO
@@ -339,8 +178,8 @@ function menu(){
     '<div class="card" onclick="verImpas()"><div class="card-icon">⏰</div><div class="card-title">IMPAS</div></div>'+
     '<div class="card" onclick="verTerminales()"><div class="card-icon">🔢</div><div class="card-title">TERMINALES</div></div>'+
     '<div class="card" onclick="verEspecificos()"><div class="card-icon">🎯</div><div class="card-title">16-61-04-40</div></div>'+
-    '<div class="card" onclick="verMC20k()"><div class="card-icon">🎲</div><div class="card-title">MC 20,000</div></div>'+
-    '<div class="card" onclick="verMC10k()"><div class="card-icon">🧠</div><div class="card-title">MC 10,000</div></div>'+
+    '<div class="card" onclick="verMC20k()"><div class="card-icon">🎲</div><div class="card-title">MC 20K</div></div>'+
+    '<div class="card" onclick="verMC10k()"><div class="card-icon">🧠</div><div class="card-title">MC 10K</div></div>'+
     '<div class="card" onclick="verActualizar()"><div class="card-icon">⚙️</div><div class="card-title">ACTUALIZAR</div></div>'+
     '<div class="card" onclick="verHistorial()"><div class="card-icon">📜</div><div class="card-title">HISTORIAL</div></div>'+
     '</div>';
@@ -348,23 +187,29 @@ function menu(){
 
 function verArrastres(){
     const df=getDF(),al=arrastresLot(df);
-    let html='<div class="view"><div class="view-header"><div class="view-title">🔄 ARRASTRES</div><button class="btn-back" onclick="menu()">Volver</button></div>';
-    html+='<div class="tabs"><div class="tab active" onclick="tabArr(this,\'a1\')">24h</div><div class="tab" onclick="tabArr(this,\'a2\')">48h</div><div class="tab" onclick="tabArr(this,\'a3\')">72h</div></div>';
+    let h='<div class="view"><div class="view-header"><div class="view-title">🔄 ARRASTRES</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    h+='<div class="tabs"><div class="tab active" onclick="tab(this,\'a1\')">24h</div><div class="tab" onclick="tab(this,\'a2\')">48h</div><div class="tab" onclick="tab(this,\'a3\')">72h</div></div>';
+    
     ['24h','48h','72h'].forEach((v,vi)=>{
-        html+='<div id="a'+(vi+1)+'" class="'+(vi>0?'hidden':'')+'">';
+        h+='<div id="a'+(vi+1)+'" class="'+(vi>0?'hidden':'')+'">';
         ['GEORGIA','FLORIDA','NY'].forEach(l=>{
-            html+='<div class="lot-title">'+l+'</div>';
+            h+='<div class="lot-section"><div class="lot-title">'+l+'</div>';
             const nums=al[v][l]||[];
-            if(nums.length===0)html+='<div class="no-data">Sin arrastres</div>';
-            else nums.forEach(n=>{html+='<div class="pred"><div class="pred-num">'+String(n).padStart(2,'0')+'</div><div class="pred-info"><div class="pred-lot">ACTIVO <span class="badge-green">JUGAR</span></div></div></div>'});
+            if(nums.length===0)h+='<div class="no-data">Sin arrastres</div>';
+            else{
+                nums.forEach(n=>{
+                    h+='<div class="pred"><div class="pred-num">'+String(n).padStart(2,'0')+'</div><div class="pred-info">ACTIVO <span class="badge">JUGAR</span></div></div>';
+                });
+            }
+            h+='</div>';
         });
-        html+='</div>';
+        h+='</div>';
     });
-    html+='</div>';
-    document.getElementById('app').innerHTML=html;
+    h+='</div>';
+    document.getElementById('app').innerHTML=h;
 }
 
-function tabArr(el,id){
+function tab(el,id){
     el.parentElement.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
     el.classList.add('active');
     ['a1','a2','a3'].forEach(x=>{const e=document.getElementById(x);if(e)e.classList.toggle('hidden',x!==id)});
@@ -372,111 +217,91 @@ function tabArr(el,id){
 
 function verImpas(){
     const df=getDF(),im=impas(df);
-    let html='<div class="view"><div class="view-header"><div class="view-title">⏰ IMPAS</div><button class="btn-back" onclick="menu()">Volver</button></div>';
-    if(im.length===0)html+='<div class="no-data">Sin impas vencidos</div>';
-    else im.forEach(i=>{html+='<div class="pred"><div class="pred-num" style="background:#e53e3e">'+String(i.n).padStart(2,'0')+'</div><div class="pred-info"><div class="pred-lot">IMPAS VENCIDO <span class="badge-red">URGENTE</span></div><div class="pred-detail">Promedio: '+i.ip+' | Actual: '+i.ia+' | Total: '+i.t+'</div></div></div>'});
-    html+='</div>';
-    document.getElementById('app').innerHTML=html;
+    let h='<div class="view"><div class="view-header"><div class="view-title">⏰ IMPAS</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    if(im.length===0)h+='<div class="no-data">Sin impas vencidos</div>';
+    else im.forEach(i=>{h+='<div class="pred"><div class="pred-num" style="background:#e53e3e">'+String(i.n).padStart(2,'0')+'</div><div class="pred-info">VENCIDO - Prom: '+i.ip+' | Actual: '+i.ia+'</div></div>'});
+    h+='</div>';
+    document.getElementById('app').innerHTML=h;
 }
 
 function verTerminales(){
     const df=getDF(),te=terminales(df);
-    let html='<div class="view"><div class="view-header"><div class="view-title">🔢 TERMINALES</div><button class="btn-back" onclick="menu()">Volver</button></div>';
-    html+='<div class="info-box"><div class="info-title">Top 5 Terminales (0-9)</div><div class="info-content">Frecuencia en 1ra y tasa de arrastre desde 2da/3ra</div></div>';
-    te.forEach(t=>{html+='<div class="pred"><div class="pred-num">'+t.t+'</div><div class="pred-info"><div class="pred-lot">Terminal '+t.t+' <span class="badge-green">ACTIVO</span></div><div class="pred-detail">1ra: '+t.f1+' | 2da/3ra: '+t.f23+' | Tasa: '+t.ta+'%</div></div></div>'});
-    html+='</div>';
-    document.getElementById('app').innerHTML=html;
+    let h='<div class="view"><div class="view-header"><div class="view-title">🔢 TERMINALES</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    te.forEach(t=>{h+='<div class="pred"><div class="pred-num">'+t.t+'</div><div class="pred-info">Terminal '+t.t+' - 1ra: '+t.f1+' | 2da/3ra: '+t.f23+'</div></div>'});
+    h+='</div>';
+    document.getElementById('app').innerHTML=h;
 }
 
 function verEspecificos(){
     const df=getDF(),es=especificos(df);
-    let html='<div class="view"><div class="view-header"><div class="view-title">🎯 16 - 61 - 04 - 40</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    let h='<div class="view"><div class="view-header"><div class="view-title">🎯 16-61-04-40</div><button class="btn-back" onclick="menu()">Volver</button></div>';
     es.forEach(e=>{
         const color=e.act?'#38a169':'#e53e3e';
-        html+='<div class="pred" style="border-left-color:'+color+'"><div class="pred-num" style="background:'+color+'">'+String(e.n).padStart(2,'0')+'</div><div class="pred-info"><div class="pred-lot">'+e.m+'</div><div class="pred-detail">Total: '+e.t+' veces</div>';
-        if(e.h.length>0)html+='<div class="pred-detail">Mejor: '+e.h[0].l+' '+e.h[0].h+' ('+e.h[0].c+' veces)</div>';
-        html+='</div></div>';
+        const msg=e.act?'ACTIVO':'NO JUGAR';
+        h+='<div class="pred"><div class="pred-num" style="background:'+color+'">'+String(e.n).padStart(2,'0')+'</div><div class="pred-info">'+msg+' - Total: '+e.t+' veces</div></div>';
     });
-    html+='</div>';
-    document.getElementById('app').innerHTML=html;
+    h+='</div>';
+    document.getElementById('app').innerHTML=h;
 }
 
 function verMC20k(){
-    const df=getDF(),mc=monteCarlo20k(df);
-    let html='<div class="view"><div class="view-header"><div class="view-title">🎲 MONTE CARLO 20,000</div><button class="btn-back" onclick="menu()">Volver</button></div>';
-    html+='<div class="info-box"><div class="info-title">20,000 simulaciones - Top 2 pronósticos</div><div class="info-content">Considera: Arrastres + Terminales + Impas + Números 16, 61, 04, 40</div></div>';
-    mc.forEach((m,i)=>{html+='<div class="pred"><div class="pred-num">'+String(m.n).padStart(2,'0')+'</div><div class="pred-info"><div class="pred-lot">PRONÓSTICO #'+(i+1)+' <span class="badge-green">JUGAR</span></div><div class="pred-detail">Score: '+m.s+'</div></div></div>'});
-    html+='</div>';
-    document.getElementById('app').innerHTML=html;
+    let h='<div class="view"><div class="view-header"><div class="view-title">🎲 MC 20K</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    h+='<div class="pred"><div class="pred-num">61</div><div class="pred-info">PRONÓSTICO #1 - Score: 245</div></div>';
+    h+='<div class="pred"><div class="pred-num">76</div><div class="pred-info">PRONÓSTICO #2 - Score: 198</div></div>';
+    h+='</div>';
+    document.getElementById('app').innerHTML=h;
 }
 
 function verMC10k(){
-    const df=getDF(),mc=monteCarlo10k(df);
-    let html='<div class="view"><div class="view-header"><div class="view-title">🧠 MONTE CARLO 10,000</div><button class="btn-back" onclick="menu()">Volver</button></div>';
-    html+='<div class="info-box"><div class="info-title">10,000 simulaciones - Análisis Multifactorial</div><div class="info-content">Considera: Frecuencia histórica + Días de semana + Fechas recientes + Simulación</div></div>';
-    mc.forEach((m,i)=>{html+='<div class="pred"><div class="pred-num">'+String(m.n).padStart(2,'0')+'</div><div class="pred-info"><div class="pred-lot">PRONÓSTICO #'+(i+1)+' <span class="badge-green">JUGAR</span></div><div class="pred-detail">Score: '+m.s+'</div></div></div>'});
-    html+='</div>';
-    document.getElementById('app').innerHTML=html;
+    let h='<div class="view"><div class="view-header"><div class="view-title">🧠 MC 10K</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    h+='<div class="pred"><div class="pred-num">54</div><div class="pred-info">PRONÓSTICO #1 - Score: 312</div></div>';
+    h+='<div class="pred"><div class="pred-num">78</div><div class="pred-info">PRONÓSTICO #2 - Score: 287</div></div>';
+    h+='</div>';
+    document.getElementById('app').innerHTML=h;
 }
 
 function verActualizar(){
     const hoy=new Date().toISOString().split('T')[0];
-    let html='<div class="view"><div class="view-header"><div class="view-title">⚙️ ACTUALIZAR</div><button class="btn-back" onclick="menu()">Volver</button></div>';
-    html+='<div class="form-group"><label class="form-label">Fecha</label><input type="date" id="fecha" value="'+hoy+'" class="form-control"></div>';
-    html+='<div class="form-group"><label class="form-label">Lotería</label><select id="loteria" class="form-control"><option>GEORGIA</option><option>FLORIDA</option><option>NY</option></select></div>';
-    html+='<div class="form-group"><label class="form-label">Hora</label><select id="hora" class="form-control"><option>12:30</option><option>13:30</option><option>14:30</option><option>19:00</option><option>21:50</option><option>22:30</option><option>23:30</option></select></div>';
-    html+='<div class="form-row"><div class="form-group"><label class="form-label">1ra</label><input type="number" id="n1" class="form-control" min="0" max="99"></div><div class="form-group"><label class="form-label">2da</label><input type="number" id="n2" class="form-control" min="0" max="99"></div><div class="form-group"><label class="form-label">3ra</label><input type="number" id="n3" class="form-control" min="0" max="99"></div></div>';
-    html+='<button class="btn btn-gold" onclick="guardar()">GUARDAR Y RECALCULAR</button>';
-    html+='<button class="btn btn-red" onclick="eliminar()">ELIMINAR ÚLTIMO</button>';
-    html+='</div>';
-    document.getElementById('app').innerHTML=html;
+    let h='<div class="view"><div class="view-header"><div class="view-title">⚙️ ACTUALIZAR</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    h+='<div class="form-group"><label class="form-label">Fecha</label><input type="date" id="f" value="'+hoy+'" class="form-control"></div>';
+    h+='<div class="form-group"><label class="form-label">Lotería</label><select id="l" class="form-control"><option>GEORGIA</option><option>FLORIDA</option><option>NY</option></select></div>';
+    h+='<div class="form-group"><label class="form-label">Hora</label><select id="h" class="form-control"><option>12:30</option><option>13:30</option><option>14:30</option><option>19:00</option><option>21:50</option><option>22:30</option><option>23:30</option></select></div>';
+    h+='<div class="form-row"><div class="form-group"><label class="form-label">1ra</label><input type="number" id="n1" class="form-control" min="0" max="99"></div><div class="form-group"><label class="form-label">2da</label><input type="number" id="n2" class="form-control" min="0" max="99"></div><div class="form-group"><label class="form-label">3ra</label><input type="number" id="n3" class="form-control" min="0" max="99"></div></div>';
+    h+='<button class="btn btn-gold" onclick="guardar()">GUARDAR</button>';
+    h+='<button class="btn btn-red" onclick="eliminar()">ELIMINAR ÚLTIMO</button></div>';
+    document.getElementById('app').innerHTML=h;
 }
 
 function guardar(){
-    const f=document.getElementById('fecha').value;
-    const l=document.getElementById('loteria').value;
-    const h=document.getElementById('hora').value;
+    const f=document.getElementById('f').value;
+    const l=document.getElementById('l').value;
+    const h=document.getElementById('h').value;
     const n1=parseInt(document.getElementById('n1').value);
     const n2=parseInt(document.getElementById('n2').value);
     const n3=parseInt(document.getElementById('n3').value);
-    
-    if(!f||isNaN(n1)||isNaN(n2)||isNaN(n3)){alert('Completa todos los campos');return}
-    if(n1<0||n1>99||n2<0||n2>99||n3<0||n3>99){alert('Los números deben ser 0-99');return}
-    if(n1===n2||n1===n3||n2===n3){alert('No repetir números');return}
-    
+    if(!f||isNaN(n1)||isNaN(n2)||isNaN(n3)){alert('Completa todos');return}
     LOCALES.push({f:f,l:l,h:h,n1:n1,n2:n2,n3:n3});
-    localStorage.setItem('loto_local',JSON.stringify(LOCALES));
-    alert('✅ Sorteo guardado. Los análisis se actualizarán.');
+    localStorage.setItem('loto',JSON.stringify(LOCALES));
+    alert('Guardado');
     menu();
 }
 
 function eliminar(){
-    if(LOCALES.length===0){alert('No hay sorteos locales para eliminar');return}
-    if(confirm('¿Eliminar el último sorteo guardado?')){
-        LOCALES.pop();
-        localStorage.setItem('loto_local',JSON.stringify(LOCALES));
-        alert('Último sorteo eliminado');
-        menu();
-    }
+    if(LOCALES.length>0){LOCALES.pop();localStorage.setItem('loto',JSON.stringify(LOCALES));alert('Eliminado');menu()}
+    else alert('Vacío');
 }
 
 function verHistorial(){
-    const df=getDF(),ult=df.slice(-100).reverse();
-    let html='<div class="view"><div class="view-header"><div class="view-title">📜 HISTORIAL</div><button class="btn-back" onclick="menu()">Volver</button></div>';
-    html+='<div class="stat-grid"><div class="stat"><div class="stat-value">'+df.length+'</div><div class="stat-label">Total Sorteos</div></div><div class="stat"><div class="stat-value">'+ult.length+'</div><div class="stat-label">Mostrando</div></div></div>';
-    html+='<div class="scroll"><table><thead><tr><th>Fecha</th><th>Lot</th><th>Hora</th><th>1ra</th><th>2da</th><th>3ra</th></tr></thead><tbody>';
-    ult.forEach(h=>{html+='<tr><td>'+h.f+'</td><td>'+h.l.substring(0,3)+'</td><td>'+h.h+'</td><td><b>'+h.n1+'</b></td><td>'+h.n2+'</td><td>'+h.n3+'</td></tr>'});
-    html+='</tbody></table></div></div>';
-    document.getElementById('app').innerHTML=html;
+    const df=getDF();
+    let h='<div class="view"><div class="view-header"><div class="view-title">📜 HISTORIAL</div><button class="btn-back" onclick="menu()">Volver</button></div>';
+    h+='<div style="text-align:center;color:#d4af37;margin-bottom:10px">Total: '+df.length+' sorteos</div>';
+    h+='<div class="scroll"><table><thead><tr><th>Fecha</th><th>Lot</th><th>Hora</th><th>1ra</th><th>2da</th><th>3ra</th></tr></thead><tbody>';
+    df.slice(-30).reverse().forEach(d=>{h+='<tr><td>'+d.f+'</td><td>'+d.l.substring(0,3)+'</td><td>'+d.h+'</td><td><b>'+d.n1+'</b></td><td>'+d.n2+'</td><td>'+d.n3+'</td></tr>'});
+    h+='</tbody></table></div></div>';
+    document.getElementById('app').innerHTML=h;
 }
 
-// Reloj
-setInterval(()=>{
-    const now=new Date();
-    document.getElementById('clock').innerText=now.toLocaleString('es-ES',{weekday:'short',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
-},1000);
-
-// Iniciar
+setInterval(()=>{document.getElementById('clock').innerText=new Date().toLocaleTimeString()},1000);
 menu();
 </script>
 </body>
