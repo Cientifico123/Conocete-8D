@@ -26,6 +26,10 @@ body{font-family:Arial;background:#0a0e27;color:#fff;padding:10px}
 .jugar{background:rgba(56,161,105,0.2);border:1px solid #38a169;color:#68d391;padding:10px;margin:5px 0;border-radius:6px;font-weight:bold}
 .no-jugar{background:rgba(229,62,62,0.2);border:1px solid #e53e3e;color:#fc8181;padding:10px;margin:5px 0;border-radius:6px;font-weight:bold}
 .info-box{background:rgba(102,126,234,0.15);border:1px solid #667eea;padding:8px;margin:5px 0;border-radius:6px;font-size:0.85rem}
+.stats-box{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.stat-item{background:rgba(212,175,55,0.1);padding:10px;border-radius:8px;text-align:center}
+.stat-value{font-size:1.5rem;font-weight:bold;color:#d4af37}
+.stat-label{font-size:0.75rem;color:#a0aec0}
 </style>
 </head>
 <body>
@@ -35,6 +39,13 @@ body{font-family:Arial;background:#0a0e27;color:#fff;padding:10px}
 <div id="app"></div>
 
 <script>
+// HORARIOS VÁLIDOS POR LOTERÍA
+var HORARIOS_VALIDOS={
+    'GEORGIA':['12:30','19:00','23:30'],
+    'FLORIDA':['13:30','21:50'],
+    'NY':['14:30','22:30']
+};
+
 var HISTORIAL=[
 {f:'2026-03-01',l:'GEORGIA',h:'12:30',n1:81,n2:70,n3:99},
 {f:'2026-03-01',l:'FLORIDA',h:'13:30',n1:96,n2:97,n3:22},
@@ -132,6 +143,7 @@ var HISTORIAL=[
 
 var LOCALES=[];
 var ultimoSorteo={l:'GEORGIA',h:'19:00',f:'2026-06-27'};
+var pronosticosGenerados=[];
 
 function getDF(){return HISTORIAL.concat(LOCALES);}
 
@@ -201,7 +213,11 @@ function getArrastresConImpas(){
         });
         var mejorH='',maxH=0;
         var mejorL='',maxL=0;
-        Object.keys(porHorario).forEach(function(h){if(porHorario[h]>maxH){maxH=porHorario[h];mejorH=h;}});
+        Object.keys(porHorario).forEach(function(h){
+            if(porHorario[h]>maxH && HORARIOS_VALIDOS[mejorL||'GEORGIA'].indexOf(h)>=0){
+                maxH=porHorario[h];mejorH=h;
+            }
+        });
         Object.keys(porLoteria).forEach(function(l){if(porLoteria[l]>maxL){maxL=porLoteria[l];mejorL=l;}});
         
         var impa=impasMap[num]||null;
@@ -259,7 +275,11 @@ function getJugarHoy(){
         var s=scores[n];
         var mejorH='',maxH=0;
         var mejorL='',maxL=0;
-        Object.keys(s.horarios).forEach(function(h){if(s.horarios[h]>maxH){maxH=s.horarios[h];mejorH=h;}});
+        Object.keys(s.horarios).forEach(function(h){
+            if(s.horarios[h]>maxH && HORARIOS_VALIDOS[Object.keys(s.loterias).sort(function(a,b){return s.loterias[b]-s.loterias[a];})[0]||'GEORGIA'].indexOf(h)>=0){
+                maxH=s.horarios[h];mejorH=h;
+            }
+        });
         Object.keys(s.loterias).forEach(function(l){if(s.loterias[l]>maxL){maxL=s.loterias[l];mejorL=l;}});
         
         var totalScore=s.freq*2+s.recencia+s.arrastre+s.impa;
@@ -278,7 +298,7 @@ function menu(){
     html+='<div class="card" onclick="verImpas()"><div style="font-size:2rem">⏰</div><div>IMPAS</div></div>';
     html+='<div class="card" onclick="verTerminales()"><div style="font-size:2rem">🔢</div><div>TERMINALES</div></div>';
     html+='<div class="card" onclick="verEspecificos()"><div style="font-size:2rem">🎯</div><div>16-61-04-40</div></div>';
-    html+='<div class="card" onclick="verMC20k()"><div style="font-size:2rem"></div><div>MC 20K</div></div>';
+    html+='<div class="card" onclick="verMC20k()"><div style="font-size:2rem">🎲</div><div>MC 20K</div></div>';
     html+='<div class="card" onclick="verMC10k()"><div style="font-size:2rem">🧠</div><div>MC 10K</div></div>';
     html+='<div class="card" onclick="verActualizar()"><div style="font-size:2rem">⚙️</div><div>ACTUALIZAR</div></div>';
     html+='<div class="card" onclick="verHistorial()"><div style="font-size:2rem">📜</div><div>HISTORIAL</div></div>';
@@ -340,7 +360,7 @@ function verImpas(){
     html+='<h2>⏰ IMPAS</h2>';
     html+='<button class="btn" style="width:auto;padding:8px 15px" onclick="menu()">VOLVER</button>';
     html+='</div>';
-    html+='<div class="section"><div class="section-title"> Números vencidos (más probables de salir)</div>';
+    html+='<div class="section"><div class="section-title">🎯 Números vencidos (más probables de salir)</div>';
     if(impas.length===0){
         html+='<div style="text-align:center;padding:20px;color:#a0aec0">Sin datos</div>';
     }else{
@@ -380,7 +400,7 @@ function verTerminales(){
         });
         var mejorH='',maxH=0;
         var mejorL='',maxL=0;
-        Object.keys(porHorario).forEach(function(h){if(porHorario[h]>maxH){maxH=porHorario[h];mejorH=h;}});
+        Object.keys(porHorario).forEach(function(h){if(porHorario[h]>maxH && HORARIOS_VALIDOS[mejorL||'GEORGIA'].indexOf(h)>=0){maxH=porHorario[h];mejorH=h;}});
         Object.keys(porLoteria).forEach(function(l){if(porLoteria[l]>maxL){maxL=porLoteria[l];mejorL=l;}});
         if(mejorH && !(mejorL===ultimoSorteo.l && mejorH===ultimoSorteo.h)){
             r.push({t:t,total:total,horario:mejorH,loteria:mejorL,freq:maxL});
@@ -406,7 +426,7 @@ function verTerminales(){
 function verEspecificos(){
     var html='<div class="view">';
     html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">';
-    html+='<h2> 16 - 61 - 04 - 40</h2>';
+    html+='<h2>🎯 16 - 61 - 04 - 40</h2>';
     html+='<button class="btn" style="width:auto;padding:8px 15px" onclick="menu()">VOLVER</button>';
     html+='</div>';
     
@@ -465,7 +485,7 @@ function verMC20k(){
         if(s.score>0){
             var mejorH='',maxH=0;
             var mejorL='',maxL=0;
-            Object.keys(s.horarios).forEach(function(h){if(s.horarios[h]>maxH){maxH=s.horarios[h];mejorH=h;}});
+            Object.keys(s.horarios).forEach(function(h){if(s.horarios[h]>maxH && HORARIOS_VALIDOS[Object.keys(s.loterias).sort(function(a,b){return s.loterias[b]-s.loterias[a];})[0]||'GEORGIA'].indexOf(h)>=0){maxH=s.horarios[h];mejorH=h;}});
             Object.keys(s.loterias).forEach(function(l){if(s.loterias[l]>maxL){maxL=s.loterias[l];mejorL=l;}});
             if(!(mejorL===ultimoSorteo.l && mejorH===ultimoSorteo.h)){
                 resultados.push({n:parseInt(n),score:s.score,horario:mejorH,loteria:mejorL});
@@ -523,7 +543,7 @@ function verMC10k(){
         if(s.score>0){
             var mejorH='',maxH=0;
             var mejorL='',maxL=0;
-            Object.keys(s.horarios).forEach(function(h){if(s.horarios[h]>maxH){maxH=s.horarios[h];mejorH=h;}});
+            Object.keys(s.horarios).forEach(function(h){if(s.horarios[h]>maxH && HORARIOS_VALIDOS[Object.keys(s.loterias).sort(function(a,b){return s.loterias[b]-s.loterias[a];})[0]||'GEORGIA'].indexOf(h)>=0){maxH=s.horarios[h];mejorH=h;}});
             Object.keys(s.loterias).forEach(function(l){if(s.loterias[l]>maxL){maxL=s.loterias[l];mejorL=l;}});
             if(!(mejorL===ultimoSorteo.l && mejorH===ultimoSorteo.h)){
                 resultados.push({n:parseInt(n),score:s.score,horario:mejorH||'14:30',loteria:mejorL||'NY'});
@@ -618,7 +638,7 @@ function guardar(){
     LOCALES.push({f:f,l:l,h:h,n1:n1,n2:n2,n3:n3});
     ultimoSorteo={l:l,h:h,f:f};
     
-    alert('✅ Guardado\n Total: '+getDF().length+' sorteos\n🔄 Ventanas recalculadas');
+    alert('✅ Guardado\n📊 Total: '+getDF().length+' sorteos\n🔄 Ventanas recalculadas');
     menu();
 }
 
