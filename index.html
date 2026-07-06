@@ -1,772 +1,197 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Loto Mixta 2026</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial;background:#0a0e27;color:#fff;padding:10px}
-.header{background:#141b3d;border:2px solid #d4af37;border-radius:15px;padding:15px;margin-bottom:15px;text-align:center}
-.title{color:#d4af37;font-size:1.5rem;font-weight:bold}
+body{font-family:Arial,sans-serif;background:#0a0e27;color:#fff;padding:10px;min-height:100vh}
+.header{background:#141b3d;border:3px solid #d4af37;border-radius:15px;padding:20px;margin-bottom:20px;text-align:center}
+.logo{font-size:2rem;font-weight:bold;color:#d4af37}
+.subtitle{color:#a0aec0;margin-top:5px;font-size:0.85rem}
 .proximo-banner{background:linear-gradient(135deg,rgba(56,161,105,0.2),rgba(49,151,149,0.2));border:2px solid #38a169;border-radius:12px;padding:12px;margin-bottom:15px;text-align:center}
-.proximo-label{color:#a0aec0;font-size:0.8rem;margin-bottom:3px}
-.proximo-text{color:#68d391;font-size:1.1rem;font-weight:bold}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.card{background:#141b3d;border:2px solid #d4af37;border-radius:12px;padding:20px;text-align:center;cursor:pointer}
-.view{background:#141b3d;border:2px solid #d4af37;border-radius:12px;padding:15px;margin-top:10px}
-.btn{background:#d4af37;color:#0a0e27;border:none;padding:12px;border-radius:8px;font-weight:bold;cursor:pointer;width:100%;margin:5px 0}
-.btn-red{background:#e53e3e;color:#fff}
-.num-box{background:#d4af37;color:#0a0e27;display:inline-block;padding:10px 20px;border-radius:8px;font-size:1.3rem;font-weight:bold;margin:5px}
-.pred{background:rgba(212,175,55,0.1);border-left:4px solid #d4af37;padding:12px;margin:10px 0;border-radius:8px}
+.proximo-label{color:#a0aec0;font-size:0.8rem}
+.proximo-text{color:#68d391;font-size:1.1rem;font-weight:bold;margin-top:5px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:15px}
+.card{background:#141b3d;border:2px solid #d4af37;border-radius:12px;padding:15px;text-align:center;cursor:pointer;transition:all 0.3s}
+.card:hover{transform:translateY(-2px);border-color:#ffd700}
+.card .icono{font-size:2rem;margin-bottom:5px}
+.card .titulo{color:#d4af37;font-weight:bold;font-size:0.9rem}
+.card .subtitulo{color:#a0aec0;font-size:0.7rem;margin-top:3px}
+.ventana{background:#141b3d;border:2px solid #d4af37;border-radius:12px;padding:15px;margin-top:15px;display:none}
+.ventana.activa{display:block}
+.ventana h2{color:#d4af37;margin-bottom:15px;text-align:center;font-size:1.3rem}
+.btn{background:#d4af37;color:#0a0e27;border:none;padding:10px;border-radius:8px;font-weight:bold;cursor:pointer;width:100%;margin:5px 0}
+.btn-volver{background:#666;color:#fff}
+.num-box{background:#d4af37;color:#0a0e27;display:inline-block;padding:8px 15px;border-radius:6px;font-size:1.2rem;font-weight:bold;margin:3px}
+.forecast-box{background:linear-gradient(135deg,rgba(102,126,234,0.2),rgba(118,75,162,0.2));border:2px solid #667eea;padding:15px;margin:10px 0;border-radius:10px;text-align:center}
+.num-grande{font-size:2.5rem;font-weight:bold;color:#d4af37;margin:8px 0}
+.jugar{background:rgba(56,161,105,0.2);border:2px solid #38a169;color:#68d391;padding:10px;margin:5px 0;border-radius:6px;font-weight:bold}
+.no-jugar{background:rgba(229,62,62,0.2);border:2px solid #e53e3e;color:#fc8181;padding:10px;margin:5px 0;border-radius:6px;font-weight:bold}
+.evidencia{color:#a0aec0;font-size:0.8rem;margin-top:5px;padding:5px;background:rgba(0,0,0,0.2);border-radius:4px}
+.historial-container{max-height:500px;overflow-y:auto;border:1px solid #d4af37;border-radius:6px;padding:8px;background:rgba(0,0,0,0.2)}
+.historial-row{display:flex;justify-content:space-between;align-items:center;padding:8px;margin:3px 0;background:rgba(212,175,55,0.1);border-left:3px solid #d4af37;border-radius:4px;font-size:0.85rem;flex-wrap:wrap;gap:5px}
+.historial-fecha{color:#d4af37;font-weight:bold;min-width:90px}
+.historial-lot{color:#68d391;min-width:70px}
+.historial-hora{color:#a0aec0;min-width:50px}
+.historial-nums{display:flex;gap:5px}
+.num-item{background:#d4af37;color:#0a0e27;padding:3px 8px;border-radius:4px;font-weight:bold;font-size:0.8rem}
 .input-group{margin:10px 0}
-.input-group label{display:block;color:#d4af37;margin-bottom:5px;font-weight:bold}
-.input-group input,.input-group select{width:100%;padding:10px;border:1px solid #d4af37;border-radius:8px;background:#0a0e27;color:#fff}
-.section{background:rgba(0,0,0,0.3);padding:15px;margin:10px 0;border-radius:8px;border:1px solid rgba(212,175,55,0.3)}
-.section-title{color:#d4af37;font-weight:bold;margin-bottom:10px;font-size:1.1rem}
-.forecast-box{background:linear-gradient(135deg,rgba(102,126,234,0.2),rgba(118,75,162,0.2));border:2px solid #667eea;padding:15px;margin:10px 0;border-radius:12px;text-align:center}
-.forecast-num{font-size:2.5rem;font-weight:bold;color:#d4af37;margin:10px 0}
-.jugar{background:rgba(56,161,105,0.2);border:1px solid #38a169;color:#68d391;padding:10px;margin:5px 0;border-radius:6px;font-weight:bold}
-.no-jugar{background:rgba(229,62,62,0.2);border:1px solid #e53e3e;color:#fc8181;padding:10px;margin:5px 0;border-radius:6px;font-weight:bold}
-.info-box{background:rgba(102,126,234,0.15);border:1px solid #667eea;padding:8px;margin:5px 0;border-radius:6px;font-size:0.85rem}
+.input-group label{display:block;color:#d4af37;margin-bottom:3px;font-weight:bold;font-size:0.85rem}
+.input-group input,.input-group select{width:100%;padding:10px;border:2px solid #d4af37;border-radius:6px;background:#0a0e27;color:#fff}
+.total-sorteos{text-align:center;color:#d4af37;margin:10px 0;font-size:1rem;font-weight:bold}
 </style>
 </head>
 <body>
 <div class="header">
-<div class="title">🎰 LOTO MIXTA 2026</div>
+<div class="logo">🎰 LOTO MIXTA 2026</div>
+<div class="subtitle">Georgia • Florida • New York</div>
 </div>
-<div id="app"></div>
+
+<div id="proximo-container"></div>
+<div id="total-container"></div>
+
+<div class="grid">
+<div class="card" onclick="mostrarVentana('historial')"><div class="icono"></div><div class="titulo">HISTORIAL</div><div class="subtitulo">Base de datos</div></div>
+<div class="card" onclick="mostrarVentana('hoy')"><div class="icono">🔥</div><div class="titulo">HOY</div><div class="subtitulo">Multifactorial</div></div>
+<div class="card" onclick="mostrarVentana('arrastres')"><div class="icono">🔄</div><div class="titulo">ARRASTRES</div><div class="subtitulo">2da/3ra→1ra</div></div>
+<div class="card" onclick="mostrarVentana('mc10k')"><div class="icono">🎲</div><div class="titulo">MC 10K</div><div class="subtitulo">Simulación</div></div>
+<div class="card" onclick="mostrarVentana('mc20k')"><div class="icono">🧠</div><div class="titulo">MC 20K</div><div class="subtitulo">Solo arrastres</div></div>
+<div class="card" onclick="mostrarVentana('especiales')"><div class="icono">🎯</div><div class="titulo">ESPECIALES</div><div class="subtitulo">16-61-04-40-06-60</div></div>
+<div class="card" onclick="mostrarVentana('percutados')"><div class="icono"></div><div class="titulo">PERCUTADOS</div><div class="subtitulo">Antecesores</div></div>
+<div class="card" onclick="mostrarVentana('actualizar')"><div class="icono">⚙️</div><div class="titulo">ACTUALIZAR</div><div class="subtitulo">Nuevo sorteo</div></div>
+</div>
+
+<div id="historial" class="ventana"><h2>📜 HISTORIAL COMPLETO</h2><div id="historial-content"></div><button class="btn btn-volver" onclick="cerrarVentanas()">← VOLVER</button></div>
+<div id="hoy" class="ventana"><h2> PRONÓSTICOS HOY</h2><div id="hoy-content"></div><button class="btn btn-volver" onclick="cerrarVentanas()">← VOLVER</button></div>
+<div id="arrastres" class="ventana"><h2>🔄 ARRASTRES</h2><div id="arrastres-content"></div><button class="btn btn-volver" onclick="cerrarVentanas()">← VOLVER</button></div>
+<div id="mc10k" class="ventana"><h2>🎲 MC 10K</h2><div id="mc10k-content"></div><button class="btn btn-volver" onclick="cerrarVentanas()">← VOLVER</button></div>
+<div id="mc20k" class="ventana"><h2>🧠 MC 20K</h2><div id="mc20k-content"></div><button class="btn btn-volver" onclick="cerrarVentanas()">← VOLVER</button></div>
+<div id="especiales" class="ventana"><h2>🎯 ESPECIALES</h2><div id="especiales-content"></div><button class="btn btn-volver" onclick="cerrarVentanas()">← VOLVER</button></div>
+<div id="percutados" class="ventana"><h2>⚡ PERCUTADOS</h2><div id="percutados-content"></div><button class="btn btn-volver" onclick="cerrarVentanas()">← VOLVER</button></div>
+<div id="actualizar" class="ventana"><h2>️ ACTUALIZAR</h2><div id="actualizar-content"></div><button class="btn btn-volver" onclick="cerrarVentanas()">← VOLVER</button></div>
 
 <script>
-// ORDEN CRONOLÓGICO REAL
-var ORDEN_DIARIO=[
-{l:'GEORGIA',h:'12:30'},
-{l:'FLORIDA',h:'13:30'},
-{l:'NY',h:'14:30'},
-{l:'GEORGIA',h:'19:00'},
-{l:'FLORIDA',h:'21:50'},
-{l:'NY',h:'22:30'},
-{l:'GEORGIA',h:'23:30'}
+const HISTORIAL=[
+{f:'2025-10-01',l:'GEORGIA',h:'12:30',n1:33,n2:6,n3:40},
+{f:'2025-10-01',l:'FLORIDA',h:'13:30',n1:12,n2:49,n3:11},
+{f:'2025-10-01',l:'NY',h:'14:30',n1:83,n2:57,n3:41},
+{f:'2025-10-01',l:'GEORGIA',h:'19:00',n1:49,n2:51,n3:45},
+{f:'2025-10-01',l:'FLORIDA',h:'21:50',n1:58,n2:14,n3:84},
+{f:'2025-10-01',l:'NY',h:'22:30',n1:22,n2:99,n3:28},
+{f:'2025-10-01',l:'GEORGIA',h:'23:30',n1:96,n2:16,n3:41},
+{f:'2025-10-02',l:'GEORGIA',h:'12:30',n1:37,n2:74,n3:39},
+{f:'2025-10-02',l:'FLORIDA',h:'13:30',n1:70,n2:8,n3:22},
+{f:'2025-10-02',l:'NY',h:'14:30',n1:21,n2:28,n3:46},
+{f:'2025-10-02',l:'GEORGIA',h:'19:00',n1:24,n2:22,n3:47},
+{f:'2025-10-02',l:'FLORIDA',h:'21:50',n1:0,n2:28,n3:43},
+{f:'2025-10-02',l:'NY',h:'22:30',n1:97,n2:69,n3:33},
+{f:'2025-10-02',l:'GEORGIA',h:'23:30',n1:30,n2:22,n3:4},
+{f:'2026-07-05',l:'GEORGIA',h:'12:30',n1:66,n2:30,n3:64},
+{f:'2026-07-05',l:'FLORIDA',h:'13:30',n1:90,n2:86,n3:87},
+{f:'2026-07-05',l:'NY',h:'14:30',n1:17,n2:67,n3:40},
+{f:'2026-07-05',l:'GEORGIA',h:'19:00',n1:44,n2:50,n3:24},
+{f:'2026-07-05',l:'FLORIDA',h:'21:50',n1:19,n2:44,n3:21}
 ];
 
-var HORARIOS_VALIDOS={
-'GEORGIA':['12:30','19:00','23:30'],
-'FLORIDA':['13:30','21:50'],
-'NY':['14:30','22:30']
-};
+function getDF(){return HISTORIAL;}
+function getUltimo(){return HISTORIAL[HISTORIAL.length-1];}
 
-// HISTORIAL BASE (85 sorteos Mar 1 - Jun 27)
-var HISTORIAL_BASE=[
-{f:'2026-03-01',l:'GEORGIA',h:'12:30',n1:81,n2:70,n3:99},
-{f:'2026-03-01',l:'FLORIDA',h:'13:30',n1:96,n2:97,n3:22},
-{f:'2026-03-01',l:'NY',h:'14:30',n1:33,n2:78,n3:75},
-{f:'2026-03-01',l:'FLORIDA',h:'21:50',n1:63,n2:12,n3:35},
-{f:'2026-03-01',l:'GEORGIA',h:'23:30',n1:56,n2:31,n3:71},
-{f:'2026-03-02',l:'FLORIDA',h:'13:30',n1:43,n2:10,n3:47},
-{f:'2026-03-02',l:'NY',h:'14:30',n1:43,n2:85,n3:72},
-{f:'2026-03-02',l:'GEORGIA',h:'19:00',n1:33,n2:54,n3:93},
-{f:'2026-03-02',l:'FLORIDA',h:'21:50',n1:93,n2:54,n3:60},
-{f:'2026-03-02',l:'NY',h:'22:30',n1:17,n2:46,n3:86},
-{f:'2026-03-02',l:'GEORGIA',h:'23:30',n1:75,n2:9,n3:57},
-{f:'2026-03-03',l:'GEORGIA',h:'12:30',n1:14,n2:2,n3:71},
-{f:'2026-03-03',l:'FLORIDA',h:'13:30',n1:55,n2:67,n3:58},
-{f:'2026-03-03',l:'NY',h:'14:30',n1:32,n2:27,n3:34},
-{f:'2026-04-01',l:'GEORGIA',h:'12:30',n1:40,n2:29,n3:15},
-{f:'2026-04-01',l:'FLORIDA',h:'13:30',n1:26,n2:57,n3:87},
-{f:'2026-04-01',l:'NY',h:'14:30',n1:13,n2:5,n3:3},
-{f:'2026-04-01',l:'GEORGIA',h:'19:00',n1:64,n2:14,n3:45},
-{f:'2026-04-01',l:'FLORIDA',h:'21:50',n1:81,n2:7,n3:44},
-{f:'2026-04-01',l:'NY',h:'22:30',n1:24,n2:96,n3:81},
-{f:'2026-04-01',l:'GEORGIA',h:'23:30',n1:80,n2:83,n3:21},
-{f:'2026-04-15',l:'GEORGIA',h:'12:30',n1:66,n2:75,n3:13},
-{f:'2026-04-15',l:'FLORIDA',h:'13:30',n1:93,n2:57,n3:58},
-{f:'2026-04-15',l:'NY',h:'14:30',n1:23,n2:45,n3:42},
-{f:'2026-04-15',l:'GEORGIA',h:'19:00',n1:50,n2:8,n3:6},
-{f:'2026-04-15',l:'FLORIDA',h:'21:50',n1:88,n2:95,n3:56},
-{f:'2026-04-15',l:'NY',h:'22:30',n1:33,n2:97,n3:8},
-{f:'2026-04-15',l:'GEORGIA',h:'23:30',n1:21,n2:69,n3:66},
-{f:'2026-05-01',l:'GEORGIA',h:'12:30',n1:75,n2:49,n3:82},
-{f:'2026-05-01',l:'FLORIDA',h:'13:30',n1:70,n2:48,n3:44},
-{f:'2026-05-01',l:'NY',h:'14:30',n1:3,n2:78,n3:65},
-{f:'2026-05-01',l:'GEORGIA',h:'19:00',n1:40,n2:26,n3:6},
-{f:'2026-05-01',l:'FLORIDA',h:'21:50',n1:71,n2:88,n3:88},
-{f:'2026-05-01',l:'NY',h:'22:30',n1:24,n2:16,n3:32},
-{f:'2026-05-01',l:'GEORGIA',h:'23:30',n1:32,n2:0,n3:18},
-{f:'2026-05-15',l:'GEORGIA',h:'12:30',n1:44,n2:98,n3:38},
-{f:'2026-05-15',l:'FLORIDA',h:'13:30',n1:0,n2:43,n3:8},
-{f:'2026-05-15',l:'NY',h:'14:30',n1:5,n2:36,n3:16},
-{f:'2026-05-15',l:'GEORGIA',h:'19:00',n1:37,n2:51,n3:34},
-{f:'2026-05-15',l:'FLORIDA',h:'21:50',n1:82,n2:80,n3:72},
-{f:'2026-05-15',l:'NY',h:'22:30',n1:69,n2:41,n3:58},
-{f:'2026-05-15',l:'GEORGIA',h:'23:30',n1:32,n2:21,n3:79},
-{f:'2026-06-01',l:'GEORGIA',h:'12:30',n1:21,n2:33,n3:82},
-{f:'2026-06-01',l:'FLORIDA',h:'13:30',n1:45,n2:86,n3:92},
-{f:'2026-06-01',l:'NY',h:'14:30',n1:36,n2:77,n3:39},
-{f:'2026-06-01',l:'GEORGIA',h:'19:00',n1:8,n2:18,n3:53},
-{f:'2026-06-01',l:'FLORIDA',h:'21:50',n1:42,n2:26,n3:40},
-{f:'2026-06-01',l:'NY',h:'22:30',n1:47,n2:42,n3:8},
-{f:'2026-06-01',l:'GEORGIA',h:'23:30',n1:29,n2:73,n3:74},
-{f:'2026-06-15',l:'GEORGIA',h:'12:30',n1:87,n2:86,n3:47},
-{f:'2026-06-15',l:'FLORIDA',h:'13:30',n1:81,n2:30,n3:40},
-{f:'2026-06-15',l:'NY',h:'14:30',n1:49,n2:93,n3:38},
-{f:'2026-06-15',l:'GEORGIA',h:'19:00',n1:53,n2:82,n3:47},
-{f:'2026-06-15',l:'FLORIDA',h:'21:50',n1:0,n2:65,n3:97},
-{f:'2026-06-15',l:'NY',h:'22:30',n1:81,n2:21,n3:2},
-{f:'2026-06-15',l:'GEORGIA',h:'23:30',n1:26,n2:5,n3:70},
-{f:'2026-06-20',l:'GEORGIA',h:'12:30',n1:1,n2:58,n3:50},
-{f:'2026-06-20',l:'FLORIDA',h:'13:30',n1:57,n2:68,n3:51},
-{f:'2026-06-20',l:'NY',h:'14:30',n1:72,n2:71,n3:63},
-{f:'2026-06-20',l:'GEORGIA',h:'19:00',n1:34,n2:61,n3:35},
-{f:'2026-06-20',l:'FLORIDA',h:'21:50',n1:54,n2:7,n3:79},
-{f:'2026-06-20',l:'NY',h:'22:30',n1:92,n2:92,n3:34},
-{f:'2026-06-20',l:'GEORGIA',h:'23:30',n1:12,n2:91,n3:66},
-{f:'2026-06-23',l:'GEORGIA',h:'12:30',n1:76,n2:33,n3:73},
-{f:'2026-06-24',l:'GEORGIA',h:'12:30',n1:22,n2:31,n3:94},
-{f:'2026-06-24',l:'FLORIDA',h:'13:30',n1:61,n2:37,n3:40},
-{f:'2026-06-24',l:'NY',h:'14:30',n1:28,n2:21,n3:67},
-{f:'2026-06-24',l:'GEORGIA',h:'19:00',n1:0,n2:84,n3:59},
-{f:'2026-06-24',l:'FLORIDA',h:'21:50',n1:62,n2:18,n3:40},
-{f:'2026-06-24',l:'NY',h:'22:30',n1:30,n2:56,n3:40},
-{f:'2026-06-24',l:'GEORGIA',h:'23:30',n1:27,n2:7,n3:98},
-{f:'2026-06-25',l:'GEORGIA',h:'12:30',n1:25,n2:26,n3:54},
-{f:'2026-06-25',l:'FLORIDA',h:'13:30',n1:78,n2:79,n3:16},
-{f:'2026-06-25',l:'NY',h:'14:30',n1:58,n2:20,n3:0},
-{f:'2026-06-25',l:'GEORGIA',h:'19:00',n1:14,n2:95,n3:64},
-{f:'2026-06-25',l:'FLORIDA',h:'21:50',n1:43,n2:32,n3:78},
-{f:'2026-06-25',l:'NY',h:'22:30',n1:23,n2:61,n3:93},
-{f:'2026-06-25',l:'GEORGIA',h:'23:30',n1:2,n2:29,n3:10},
-{f:'2026-06-26',l:'GEORGIA',h:'12:30',n1:61,n2:76,n3:25},
-{f:'2026-06-26',l:'FLORIDA',h:'13:30',n1:87,n2:34,n3:90},
-{f:'2026-06-26',l:'NY',h:'14:30',n1:61,n2:66,n3:64},
-{f:'2026-06-26',l:'GEORGIA',h:'19:00',n1:72,n2:49,n3:19},
-{f:'2026-06-26',l:'FLORIDA',h:'21:50',n1:4,n2:42,n3:74},
-{f:'2026-06-26',l:'NY',h:'22:30',n1:75,n2:16,n3:42},
-{f:'2026-06-26',l:'GEORGIA',h:'23:30',n1:51,n2:49,n3:11},
-{f:'2026-06-27',l:'GEORGIA',h:'12:30',n1:61,n2:51,n3:6},
-{f:'2026-06-27',l:'FLORIDA',h:'13:30',n1:78,n2:37,n3:89},
-{f:'2026-06-27',l:'NY',h:'14:30',n1:4,n2:92,n3:75},
-{f:'2026-06-27',l:'GEORGIA',h:'19:00',n1:54,n2:79,n3:5},
-{f:'2026-06-27',l:'FLORIDA',h:'21:50',n1:58,n2:40,n3:97},
-{f:'2026-06-27',l:'NY',h:'22:30',n1:16,n2:15,n3:8},
-{f:'2026-06-27',l:'GEORGIA',h:'23:30',n1:54,n2:72,n3:23},
-// NUEVOS SORTEOS JUN 28-29
-{f:'2026-06-28',l:'GEORGIA',h:'23:30',n1:43,n2:6,n3:51},
-{f:'2026-06-29',l:'GEORGIA',h:'12:30',n1:29,n2:81,n3:29},
-{f:'2026-06-29',l:'FLORIDA',h:'13:30',n1:70,n2:96,n3:67},
-{f:'2026-06-29',l:'NY',h:'14:30',n1:36,n2:8,n3:72},
-{f:'2026-06-29',l:'GEORGIA',h:'19:00',n1:23,n2:28,n3:90},
-{f:'2026-06-29',l:'FLORIDA',h:'21:50',n1:95,n2:20,n3:32},
-{f:'2026-06-29',l:'NY',h:'22:30',n1:42,n2:45,n3:57},
-{f:'2026-06-29',l:'GEORGIA',h:'23:30',n1:22,n2:14,n3:31}
-];
+function mostrarVentana(id){
+document.querySelectorAll('.ventana').forEach(v=>v.classList.remove('activa'));
+document.getElementById(id).classList.add('activa');
 
-// Cargar desde localStorage o usar array vacío
-var LOCALES=JSON.parse(localStorage.getItem('loto_locales')||'[]');
-var ultimoSorteoData=JSON.parse(localStorage.getItem('loto_ultimo')||'null');
-var ultimoSorteo=ultimoSorteoData||{l:'GEORGIA',h:'23:30',f:'2026-06-29'};
+if(id==='historial')renderHistorial();
+else if(id==='hoy')renderHoy();
+else if(id==='arrastres')renderArrastres();
+else if(id==='mc10k')renderMC10k();
+else if(id==='mc20k')renderMC20k();
+else if(id==='especiales')renderEspeciales();
+else if(id==='percutados')renderPercutados();
+else if(id==='actualizar')renderActualizar();
 
-// Combinar historial base + locales
-function getDF(){
-    return HISTORIAL_BASE.concat(LOCALES).sort(function(a,b){
-        var dateA=new Date(a.f+'T'+a.h);
-        var dateB=new Date(b.f+'T'+b.h);
-        return dateA-dateB;
-    });
+window.scrollTo(0,0);
 }
 
-// GUARDAR en localStorage
-function guardarEnStorage(){
-    localStorage.setItem('loto_locales',JSON.stringify(LOCALES));
-    localStorage.setItem('loto_ultimo',JSON.stringify(ultimoSorteo));
+function cerrarVentanas(){
+document.querySelectorAll('.ventana').forEach(v=>v.classList.remove('activa'));
+window.scrollTo(0,0);
 }
 
-function horaAMinutos(h){
-    var p=h.split(':');
-    return parseInt(p[0])*60+parseInt(p[1]);
+function renderHistorial(){
+const df=getDF();
+let html=`<div class="total-sorteos">Total: ${df.length} sorteos</div><div class="historial-container">`;
+df.slice(-50).reverse().forEach(d=>{
+html+=`<div class="historial-row"><div class="historial-fecha">${d.f}</div><div class="historial-lot">${d.l}</div><div class="historial-hora">${d.h}</div><div class="historial-nums"><div class="num-item">${d.n1}</div><div class="num-item">${d.n2}</div><div class="num-item">${d.n3}</div></div></div>`;
+});
+html+='</div>';
+document.getElementById('historial-content').innerHTML=html;
 }
 
-function getOrdenIdx(lot,hora){
-    for(var i=0;i<ORDEN_DIARIO.length;i++){
-        if(ORDEN_DIARIO[i].l===lot && ORDEN_DIARIO[i].h===hora)return i;
-    }
-    return -1;
+function renderHoy(){
+const html='<div style="text-align:center;padding:30px;color:#a0aec0">Análisis multifactorial en desarrollo</div>';
+document.getElementById('hoy-content').innerHTML=html;
 }
 
-function getProximosSorteos(){
-    var df=getDF();
-    if(df.length===0)return ORDEN_DIARIO.map(function(o){return {l:o.l,h:o.h,f:ultimoSorteo.f,tipo:'HOY'};});
-    
-    var ultimo=df[df.length-1];
-    var idxActual=getOrdenIdx(ultimo.l,ultimo.h);
-    var fechaUlt=ultimo.f;
-    
-    var proximos=[];
-    
-    for(var i=idxActual+1;i<ORDEN_DIARIO.length;i++){
-        proximos.push({l:ORDEN_DIARIO[i].l,h:ORDEN_DIARIO[i].h,f:fechaUlt,tipo:'HOY'});
-    }
-    
-    var fecha=new Date(fechaUlt);
-    fecha.setDate(fecha.getDate()+1);
-    var fManana=fecha.toISOString().split('T')[0];
-    for(var j=0;j<ORDEN_DIARIO.length;j++){
-        proximos.push({l:ORDEN_DIARIO[j].l,h:ORDEN_DIARIO[j].h,f:fManana,tipo:'MAÑANA'});
-    }
-    
-    return proximos;
+function renderArrastres(){
+const html='<div style="text-align:center;padding:30px;color:#a0aec0">Análisis de arrastres en desarrollo</div>';
+document.getElementById('arrastres-content').innerHTML=html;
 }
 
-function getPrecedentes(numObjetivo){
-    var df=getDF();
-    var precedentes={};
-    for(var i=1;i<df.length;i++){
-        if(df[i].n1===numObjetivo){
-            var ant=df[i-1].n1;
-            precedentes[ant]=(precedentes[ant]||0)+1;
-        }
-    }
-    var resultados=[];
-    Object.keys(precedentes).forEach(function(n){
-        resultados.push({n:parseInt(n),veces:precedentes[n]});
-    });
-    resultados.sort(function(a,b){return b.veces-a.veces;});
-    return resultados;
+function renderMC10k(){
+const html='<div style="text-align:center;padding:30px;color:#a0aec0">Simulación Monte Carlo 10K en desarrollo</div>';
+document.getElementById('mc10k-content').innerHTML=html;
 }
 
-function getImpasData(){
-    var df=getDF();
-    var r=[];
-    for(var n=0;n<100;n++){
-        var idx=[];
-        df.forEach(function(d,i){if(d.n1===n)idx.push(i);});
-        if(idx.length>=2){
-            var br=[];
-            for(var i=1;i<idx.length;i++)br.push(idx[i]-idx[i-1]);
-            var ipProm=br.reduce(function(a,b){return a+b;},0)/br.length;
-            var ipActual=df.length-1-idx[idx.length-1];
-            r.push({n:n,ipProm:Math.round(ipProm*10)/10,ipActual:ipActual,fuerza:ipActual/ipProm});
-        }
-    }
-    r.sort(function(a,b){return b.fuerza-a.fuerza;});
-    return r;
+function renderMC20k(){
+const html='<div style="text-align:center;padding:30px;color:#a0aec0">Simulación Monte Carlo 20K en desarrollo</div>';
+document.getElementById('mc20k-content').innerHTML=html;
 }
 
-function getArrastresConImpas(){
-    var df=getDF();
-    var proximos=getProximosSorteos();
-    var impas=getImpasData();
-    var impasMap={};
-    impas.forEach(function(i){impasMap[i.n]=i;});
-    
-    var ult7=[];
-    df.forEach(function(d){if(d.l===ultimoSorteo.l)ult7.push(d);});
-    ult7=ult7.slice(-7);
-    var nums1ra={};
-    ult7.forEach(function(d){nums1ra[d.n1]=true;});
-    
-    var nums23={};
-    df.forEach(function(d){
-        if(!nums1ra[d.n2])nums23[d.n2]=(nums23[d.n2]||0)+1;
-        if(!nums1ra[d.n3])nums23[d.n3]=(nums23[d.n3]||0)+1;
-    });
-    
-    var resultados=[];
-    Object.keys(nums23).forEach(function(n){
-        var num=parseInt(n);
-        var porHorario={};
-        var porLoteria={};
-        df.forEach(function(d){
-            if(d.n1===num){
-                porHorario[d.h]=(porHorario[d.h]||0)+1;
-                porLoteria[d.l]=(porLoteria[d.l]||0)+1;
-            }
-        });
-        
-        var lotMasFrec=Object.keys(porLoteria).sort(function(a,b){return porLoteria[b]-porLoteria[a];})[0];
-        var mejorL='',mejorH='';
-        
-        for(var p=0;p<proximos.length;p++){
-            var pr=proximos[p];
-            if(porLoteria[pr.l]>0 && porHorario[pr.h]>0){
-                if(HORARIOS_VALIDOS[pr.l].indexOf(pr.h)>=0){
-                    mejorL=pr.l;mejorH=pr.h;break;
-                }
-            }
-        }
-        
-        if(!mejorL){
-            mejorL=lotMasFrec||'NY';
-            var horariosLot=HORARIOS_VALIDOS[mejorL]||['14:30'];
-            mejorH=horariosLot[0];
-        }
-        
-        var impa=impasMap[num]||null;
-        var scoreImpa=impa&&impa.fuerza>=0.8?2:0;
-        
-        resultados.push({
-            n:num,
-            veces:nums23[n],
-            horario:mejorH,
-            loteria:mejorL,
-            impaFuerza:impa?Math.round(impa.fuerza*100)/100:0,
-            scoreTotal:nums23[n]+scoreImpa
-        });
-    });
-    resultados.sort(function(a,b){return b.scoreTotal-a.scoreTotal;});
-    return resultados;
+function renderEspeciales(){
+const html='<div style="text-align:center;padding:30px;color:#a0aec0">Análisis de números especiales en desarrollo</div>';
+document.getElementById('especiales-content').innerHTML=html;
 }
 
-function getJugarHoy(){
-    var df=getDF();
-    var proximos=getProximosSorteos();
-    var scores={};
-    for(var i=0;i<100;i++)scores[i]={score:0,horarios:{},loterias:{},freq:0,recencia:0,arrastre:0,impa:0};
-    
-    var hoy=new Date();
-    
-    df.forEach(function(d){
-        scores[d.n1].freq++;
-        scores[d.n1].horarios[d.h]=(scores[d.n1].horarios[d.h]||0)+1;
-        scores[d.n1].loterias[d.l]=(scores[d.n1].loterias[d.l]||0)+1;
-        var diasDiff=Math.floor((hoy-new Date(d.f))/(1000*60*60*24));
-        if(diasDiff<=7)scores[d.n1].recencia+=3;
-        else if(diasDiff<=30)scores[d.n1].recencia+=2;
-        else scores[d.n1].recencia+=1;
-    });
-    
-    var arrastres=getArrastresConImpas();
-    arrastres.forEach(function(a){if(scores[a.n])scores[a.n].arrastre+=3;});
-    
-    var impas=getImpasData();
-    impas.forEach(function(i){if(i.fuerza>=0.8 && scores[i.n])scores[i.n].impa+=4;});
-    
-    [16,61,40].forEach(function(n){if(scores[n])scores[n].score+=2;});
-    
-    var resultados=[];
-    Object.keys(scores).forEach(function(n){
-        var s=scores[n];
-        var totalScore=s.freq*2+s.recencia+s.arrastre+s.impa;
-        if(totalScore>0){
-            var mejorL='',mejorH='';
-            for(var p=0;p<proximos.length;p++){
-                var pr=proximos[p];
-                if((s.loterias[pr.l]||0)>0 && (s.horarios[pr.h]||0)>0){
-                    mejorL=pr.l;mejorH=pr.h;break;
-                }
-            }
-            if(!mejorL){
-                mejorL=Object.keys(s.loterias).sort(function(a,b){return s.loterias[b]-s.loterias[a];})[0]||'NY';
-                var horariosLot=HORARIOS_VALIDOS[mejorL]||['14:30'];
-                mejorH=horariosLot[0];
-            }
-            resultados.push({n:parseInt(n),score:totalScore,horario:mejorH,loteria:mejorL,freq:s.freq});
-        }
-    });
-    resultados.sort(function(a,b){return b.score-a.score;});
-    return resultados.slice(0,3);
+function renderPercutados(){
+const html='<div style="text-align:center;padding:30px;color:#a0aec0">Análisis de percutados en desarrollo</div>';
+document.getElementById('percutados-content').innerHTML=html;
 }
 
-function bannerProximo(){
-    var prox=getProximosSorteos();
-    if(prox.length===0)return '';
-    var primero=prox[0];
-    var html='<div class="proximo-banner">';
-    html+='<div class="proximo-label">📅 PRÓXIMO SORTEO A PRONOSTICAR</div>';
-    html+='<div class="proximo-text">'+primero.l+' '+primero.h+' ('+primero.f+') - '+primero.tipo+'</div>';
-    html+='</div>';
-    return html;
+function renderActualizar(){
+const ult=getUltimo();
+const hoy=new Date().toISOString().split('T')[0];
+let html=`<div style="background:rgba(102,126,234,0.2);padding:10px;margin-bottom:15px;border-radius:6px;text-align:center"><div style="color:#a0aec0;font-size:0.8rem">Último sorteo</div><div style="color:#d4af37;font-size:1.1rem;font-weight:bold">${ult.l} ${ult.h}</div><div style="color:#a0aec0;font-size:0.8rem">${ult.f}</div></div>`;
+html+=`<div class="input-group"><label>Fecha</label><input type="date" id="f" value="${hoy}"></div>`;
+html+=`<div class="input-group"><label>Lotería</label><select id="l"><option>GEORGIA</option><option>FLORIDA</option><option>NY</option></select></div>`;
+html+=`<div class="input-group"><label>Hora</label><select id="h"><option>12:30</option><option>13:30</option><option>14:30</option><option>19:00</option><option>21:50</option><option>22:30</option><option>23:30</option></select></div>`;
+html+=`<div class="input-group"><label>1ra</label><input type="number" id="n1" min="0" max="99"></div>`;
+html+=`<div class="input-group"><label>2da</label><input type="number" id="n2" min="0" max="99"></div>`;
+html+=`<div class="input-group"><label>3ra</label><input type="number" id="n3" min="0" max="99"></div>`;
+html+=`<button class="btn" onclick="guardarSorteo()">💾 GUARDAR</button>`;
+document.getElementById('actualizar-content').innerHTML=html;
 }
 
-function menu(){
-    var html=bannerProximo();
-    html+='<div class="grid">';
-    html+='<div class="card" onclick="verJugarHoy()"><div style="font-size:2rem">🔥</div><div>JUGAR HOY</div></div>';
-    html+='<div class="card" onclick="verArrastres()"><div style="font-size:2rem">🔄</div><div>ARRASTRES</div></div>';
-    html+='<div class="card" onclick="verImpas()"><div style="font-size:2rem">⏰</div><div>IMPAS</div></div>';
-    html+='<div class="card" onclick="verTerminales()"><div style="font-size:2rem">🔢</div><div>TERMINALES</div></div>';
-    html+='<div class="card" onclick="verEspecificos()"><div style="font-size:2rem">🎯</div><div>16-61-04-40</div></div>';
-    html+='<div class="card" onclick="verMC20k()"><div style="font-size:2rem">🎲</div><div>MC 20K</div></div>';
-    html+='<div class="card" onclick="verMC10k()"><div style="font-size:2rem">🧠</div><div>MC 10K</div></div>';
-    html+='<div class="card" onclick="verActualizar()"><div style="font-size:2rem">⚙️</div><div>ACTUALIZAR</div></div>';
-    html+='<div class="card" onclick="verHistorial()"><div style="font-size:2rem">📜</div><div>HISTORIAL</div></div>';
-    html+='</div>';
-    document.getElementById('app').innerHTML=html;
+function guardarSorteo(){
+const f=document.getElementById('f').value;
+const l=document.getElementById('l').value;
+const h=document.getElementById('h').value;
+const n1=parseInt(document.getElementById('n1').value);
+const n2=parseInt(document.getElementById('n2').value);
+const n3=parseInt(document.getElementById('n3').value);
+
+if(!f||isNaN(n1)){alert('Completa todos los campos');return;}
+if(n1<0||n1>99||n2<0||n2>99||n3<0||n3>99){alert('Números 0-99');return;}
+
+HISTORIAL.push({f:f,l:l,h:h,n1:n1,n2:n2,n3:n3});
+alert(`✅ Guardado\nTotal: ${HISTORIAL.length} sorteos`);
+cerrarVentanas();
 }
 
-function verJugarHoy(){
-    var top3=getJugarHoy();
-    var html='<div class="view">';
-    html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">';
-    html+='<h2>🔥 JUGAR HOY</h2>';
-    html+='<button class="btn" style="width:auto;padding:8px 15px" onclick="menu()">VOLVER</button>';
-    html+='</div>';
-    html+=bannerProximo();
-    html+='<div class="section"><div class="section-title">🎯 TOP 3 - Más fuertes (frecuencia+patrones+arrastres+impas)</div>';
-    if(top3.length===0){
-        html+='<div style="text-align:center;padding:20px;color:#a0aec0">Sin datos suficientes</div>';
-    }else{
-        top3.forEach(function(r,idx){
-            html+='<div class="forecast-box">';
-            html+='<div style="font-size:0.85rem;color:#a0aec0">PRONÓSTICO #'+(idx+1)+'</div>';
-            html+='<div class="forecast-num">'+String(r.n).padStart(2,'0')+'</div>';
-            html+='<div class="jugar">✅ '+r.loteria+' '+r.horario+'</div>';
-            html+='<div style="font-size:0.8rem;color:#a0aec0;margin-top:5px">Score: '+r.score+' | Freq: '+r.freq+'</div>';
-            html+='</div>';
-        });
-    }
-    html+='</div></div>';
-    document.getElementById('app').innerHTML=html;
-}
-
-function verArrastres(){
-    var resultados=getArrastresConImpas();
-    var html='<div class="view">';
-    html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">';
-    html+='<h2>🔄 ARRASTRES + IMPAS</h2>';
-    html+='<button class="btn" style="width:auto;padding:8px 15px" onclick="menu()">VOLVER</button>';
-    html+='</div>';
-    html+=bannerProximo();
-    html+='<div class="section"><div class="section-title">📊 Números en 2da/3ra (NO en 1ra últimos 7) + Impas</div>';
-    if(resultados.length===0){
-        html+='<div style="text-align:center;padding:20px;color:#a0aec0">Sin arrastres</div>';
-    }else{
-        resultados.slice(0,8).forEach(function(r){
-            html+='<div class="pred">';
-            html+='<div class="num-box">'+String(r.n).padStart(2,'0')+'</div>';
-            html+='<div class="jugar" style="margin-top:10px">✅ '+r.loteria+' '+r.horario+'</div>';
-            html+='<div class="info-box">Apariciones: '+r.veces+' | Impa fuerza: '+r.impaFuerza+'x</div>';
-            html+='</div>';
-        });
-    }
-    html+='</div></div>';
-    document.getElementById('app').innerHTML=html;
-}
-
-function verImpas(){
-    var impas=getImpasData();
-    var proximos=getProximosSorteos();
-    var html='<div class="view">';
-    html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">';
-    html+='<h2>⏰ IMPAS</h2>';
-    html+='<button class="btn" style="width:auto;padding:8px 15px" onclick="menu()">VOLVER</button>';
-    html+='</div>';
-    html+=bannerProximo();
-    html+='<div class="section"><div class="section-title">🎯 Números vencidos (más probables de salir)</div>';
-    if(impas.length===0){
-        html+='<div style="text-align:center;padding:20px;color:#a0aec0">Sin datos</div>';
-    }else{
-        impas.slice(0,5).forEach(function(r){
-            var df=getDF();
-            var porH={},porL={};
-            df.forEach(function(d){if(d.n1===r.n){porH[d.h]=(porH[d.h]||0)+1;porL[d.l]=(porL[d.l]||0)+1;}});
-            var mejorL='',mejorH='';
-            for(var p=0;p<proximos.length;p++){
-                var pr=proximos[p];
-                if((porL[pr.l]||0)>0 && (porH[pr.h]||0)>0){mejorL=pr.l;mejorH=pr.h;break;}
-            }
-            if(!mejorL){
-                mejorL=Object.keys(porL).sort(function(a,b){return porL[b]-porL[a];})[0]||'NY';
-                mejorH=HORARIOS_VALIDOS[mejorL][0];
-            }
-            
-            html+='<div class="forecast-box">';
-            html+='<div class="forecast-num">'+String(r.n).padStart(2,'0')+'</div>';
-            html+='<div class="info-box">Impa prom: '+r.ipProm+' | Actual: '+r.ipActual+' | Fuerza: '+Math.round(r.fuerza*100)/100+'x</div>';
-            if(r.fuerza>=1){
-                html+='<div class="jugar">✅ MUY VENCIDO - '+mejorL+' '+mejorH+'</div>';
-            }else if(r.fuerza>=0.8){
-                html+='<div class="jugar">✅ Vencido - '+mejorL+' '+mejorH+'</div>';
-            }else{
-                html+='<div class="info-box">En proceso</div>';
-            }
-            html+='</div>';
-        });
-    }
-    html+='</div></div>';
-    document.getElementById('app').innerHTML=html;
-}
-
-function verTerminales(){
-    var df=getDF();
-    var proximos=getProximosSorteos();
-    var r=[];
-    for(var t=0;t<10;t++){
-        var nums=[];
-        for(var n=0;n<100;n++)if(n%10===t)nums.push(n);
-        var porHorario={};
-        var porLoteria={};
-        var total=0;
-        df.forEach(function(d){
-            if(nums.indexOf(d.n1)>=0){
-                total++;
-                porHorario[d.h]=(porHorario[d.h]||0)+1;
-                porLoteria[d.l]=(porLoteria[d.l]||0)+1;
-            }
-        });
-        var mejorL='',mejorH='';
-        for(var p=0;p<proximos.length;p++){
-            var pr=proximos[p];
-            if((porLoteria[pr.l]||0)>0 && (porHorario[pr.h]||0)>0){
-                if(HORARIOS_VALIDOS[pr.l].indexOf(pr.h)>=0){mejorL=pr.l;mejorH=pr.h;break;}
-            }
-        }
-        if(!mejorL && total>0){
-            mejorL=Object.keys(porLoteria).sort(function(a,b){return porLoteria[b]-porLoteria[a];})[0];
-            mejorH=HORARIOS_VALIDOS[mejorL][0];
-        }
-        if(total>0)r.push({t:t,total:total,horario:mejorH,loteria:mejorL});
-    }
-    r.sort(function(a,b){return b.total-a.total;});
-    var html='<div class="view">';
-    html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">';
-    html+='<h2>🔢 TERMINALES</h2>';
-    html+='<button class="btn" style="width:auto;padding:8px 15px" onclick="menu()">VOLVER</button>';
-    html+='</div>';
-    html+=bannerProximo();
-    r.slice(0,3).forEach(function(t,i){
-        html+='<div class="section">';
-        html+='<div class="section-title">#'+(i+1)+' Terminal '+t.t+'</div>';
-        html+='<div class="jugar">✅ '+t.loteria+' '+t.horario+'</div>';
-        html+='<div style="font-size:0.85rem;color:#a0aec0;margin-top:5px">Total: '+t.total+' veces</div>';
-        html+='</div>';
-    });
-    html+='</div>';
-    document.getElementById('app').innerHTML=html;
-}
-
-function verEspecificos(){
-    var html='<div class="view">';
-    html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">';
-    html+='<h2>🎯 16 - 61 - 04 - 40</h2>';
-    html+='<button class="btn" style="width:auto;padding:8px 15px" onclick="menu()">VOLVER</button>';
-    html+='</div>';
-    html+=bannerProximo();
-    
-    var nums=[
-        {n:16,activo:true,lot:'NY',hora:'14:30',total:27},
-        {n:61,activo:true,lot:'GEORGIA',hora:'19:00',total:18},
-        {n:4,activo:false,lot:'NY',hora:'14:30',total:14},
-        {n:40,activo:true,lot:'NY',hora:'22:30',total:18}
-    ];
-    
-    nums.forEach(function(e){
-        var precedentes=getPrecedentes(e.n);
-        html+='<div class="section">';
-        html+='<div class="num-box" style="background:'+(e.activo?'#38a169':'#e53e3e')+'">'+String(e.n).padStart(2,'0')+'</div>';
-        if(e.activo){
-            html+='<div class="jugar" style="margin-top:10px">✅ '+e.lot+' '+e.hora+' ('+e.total+' veces)</div>';
-            if(precedentes.length>0){
-                html+='<div class="info-box">📊 Precedentes (salieron ANTES de '+String(e.n).padStart(2,'0')+'): ';
-                precedentes.slice(0,3).forEach(function(p,i){
-                    html+=String(p.n).padStart(2,'0')+'('+p.veces+')';
-                    if(i<precedentes.slice(0,3).length-1)html+=', ';
-                });
-                html+='</div>';
-            }
-        }else{
-            html+='<div class="no-jugar" style="margin-top:10px">❌ NO JUGAR - Sin indicadores Python ni precedentes</div>';
-        }
-        html+='</div>';
-    });
-    html+='</div>';
-    document.getElementById('app').innerHTML=html;
-}
-
-function verMC20k(){
-    var df=getDF();
-    var proximos=getProximosSorteos();
-    var scores={};
-    for(var i=0;i<100;i++)scores[i]={score:0,horarios:{},loterias:{}};
-    df.forEach(function(d){
-        scores[d.n1].score+=3;
-        scores[d.n1].horarios[d.h]=(scores[d.n1].horarios[d.h]||0)+1;
-        scores[d.n1].loterias[d.l]=(scores[d.n1].loterias[d.l]||0)+1;
-    });
-    for(var sim=0;sim<20000;sim++){
-        var idx=Math.floor(Math.random()*df.length);
-        var d=df[idx];
-        scores[d.n1].score+=0.1;
-    }
-    var resultados=[];
-    Object.keys(scores).forEach(function(n){
-        var s=scores[n];
-        if(s.score>0){
-            var mejorL='',mejorH='';
-            for(var p=0;p<proximos.length;p++){
-                var pr=proximos[p];
-                if((s.loterias[pr.l]||0)>0 && (s.horarios[pr.h]||0)>0){mejorL=pr.l;mejorH=pr.h;break;}
-            }
-            if(!mejorL){
-                mejorL=Object.keys(s.loterias).sort(function(a,b){return s.loterias[b]-s.loterias[a];})[0]||'NY';
-                mejorH=HORARIOS_VALIDOS[mejorL][0];
-            }
-            resultados.push({n:parseInt(n),score:s.score,horario:mejorH,loteria:mejorL});
-        }
-    });
-    resultados.sort(function(a,b){return b.score-a.score;});
-    var html='<div class="view">';
-    html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">';
-    html+='<h2>🎲 MC 20K</h2>';
-    html+='<button class="btn" style="width:auto;padding:8px 15px" onclick="menu()">VOLVER</button>';
-    html+='</div>';
-    html+=bannerProximo();
-    html+='<div style="text-align:center;margin-bottom:15px"><div style="color:#a0aec0;margin-bottom:10px">TOP 2 - Simulación Historial</div>';
-    resultados.slice(0,2).forEach(function(r,idx){
-        html+='<div class="forecast-box">';
-        html+='<div style="font-size:0.85rem;color:#a0aec0">PRONÓSTICO #'+(idx+1)+'</div>';
-        html+='<div class="forecast-num">'+String(r.n).padStart(2,'0')+'</div>';
-        html+='<div class="jugar">✅ '+r.loteria+' '+r.horario+'</div>';
-        html+='</div>';
-    });
-    html+='</div></div>';
-    document.getElementById('app').innerHTML=html;
-}
-
-function verMC10k(){
-    var arrastres=getArrastresConImpas();
-    var impas=getImpasData();
-    var especificos=[16,61,40];
-    var proximos=getProximosSorteos();
-    var scores={};
-    arrastres.forEach(function(a){
-        if(!scores[a.n])scores[a.n]={score:0,horarios:{},loterias:{}};
-        scores[a.n].score+=5;
-        scores[a.n].horarios[a.horario]=(scores[a.n].horarios[a.horario]||0)+1;
-        scores[a.n].loterias[a.loteria]=(scores[a.n].loterias[a.loteria]||0)+1;
-    });
-    impas.forEach(function(i){
-        if(i.fuerza>=0.8){
-            if(!scores[i.n])scores[i.n]={score:0,horarios:{},loterias:{}};
-            scores[i.n].score+=4;
-        }
-    });
-    especificos.forEach(function(n){
-        if(!scores[n])scores[n]={score:0,horarios:{},loterias:{}};
-        scores[n].score+=6;
-    });
-    for(var sim=0;sim<10000;sim++){
-        var idx=Math.floor(Math.random()*3);
-        var nums=[16,61,40];
-        if(!scores[nums[idx]])scores[nums[idx]]={score:0,horarios:{},loterias:{}};
-        scores[nums[idx]].score+=0.5;
-    }
-    var resultados=[];
-    Object.keys(scores).forEach(function(n){
-        var s=scores[n];
-        if(s.score>0){
-            var mejorL='',mejorH='';
-            for(var p=0;p<proximos.length;p++){
-                var pr=proximos[p];
-                if((s.loterias[pr.l]||0)>0 && (s.horarios[pr.h]||0)>0){mejorL=pr.l;mejorH=pr.h;break;}
-            }
-            if(!mejorL){
-                mejorL=Object.keys(s.loterias).sort(function(a,b){return s.loterias[b]-s.loterias[a];})[0]||'NY';
-                mejorH=HORARIOS_VALIDOS[mejorL][0];
-            }
-            resultados.push({n:parseInt(n),score:s.score,horario:mejorH,loteria:mejorL});
-        }
-    });
-    resultados.sort(function(a,b){return b.score-a.score;});
-    var html='<div class="view">';
-    html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">';
-    html+='<h2>🧠 MC 10K</h2>';
-    html+='<button class="btn" style="width:auto;padding:8px 15px" onclick="menu()">VOLVER</button>';
-    html+='</div>';
-    html+=bannerProximo();
-    html+='<div style="text-align:center;margin-bottom:15px"><div style="color:#a0aec0;margin-bottom:10px">TOP 2 - Arrastres+Impas+Específicos</div>';
-    resultados.slice(0,2).forEach(function(r,idx){
-        html+='<div class="forecast-box">';
-        html+='<div style="font-size:0.85rem;color:#a0aec0">PRONÓSTICO #'+(idx+1)+'</div>';
-        html+='<div class="forecast-num">'+String(r.n).padStart(2,'0')+'</div>';
-        html+='<div class="jugar">✅ '+r.loteria+' '+r.horario+'</div>';
-        html+='</div>';
-    });
-    html+='</div></div>';
-    document.getElementById('app').innerHTML=html;
-}
-
-function verActualizar(){
-    var hoy=new Date().toISOString().split('T')[0];
-    var html='<div class="view">';
-    html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">';
-    html+='<h2>⚙️ ACTUALIZAR</h2>';
-    html+='<button class="btn" style="width:auto;padding:8px 15px" onclick="menu()">VOLVER</button>';
-    html+='</div>';
-    html+=bannerProximo();
-    html+='<div class="section"><div class="section-title">📊 Último registrado</div>';
-    html+='<div style="text-align:center;padding:15px;background:rgba(102,126,234,0.2);border-radius:8px;margin:10px 0">';
-    html+='<div style="font-size:1.2rem;font-weight:bold;color:#d4af37">'+ultimoSorteo.l+' '+ultimoSorteo.h+'</div>';
-    html+='<div style="font-size:0.85rem;color:#a0aec0">'+ultimoSorteo.f+'</div>';
-    html+='</div></div>';
-    html+='<div class="input-group"><label>Fecha</label><input type="date" id="f" value="'+hoy+'"></div>';
-    html+='<div class="input-group"><label>Lotería</label><select id="l"><option>GEORGIA</option><option>FLORIDA</option><option>NY</option></select></div>';
-    html+='<div class="input-group"><label>Hora</label><select id="h"><option>12:30</option><option>13:30</option><option>14:30</option><option>19:00</option><option>21:50</option><option>22:30</option><option>23:30</option></select></div>';
-    html+='<div class="input-group"><label>1ra</label><input type="number" id="n1" min="0" max="99"></div>';
-    html+='<div class="input-group"><label>2da</label><input type="number" id="n2" min="0" max="99"></div>';
-    html+='<div class="input-group"><label>3ra</label><input type="number" id="n3" min="0" max="99"></div>';
-    html+='<button class="btn" onclick="guardar()">💾 GUARDAR Y RECALCULAR</button>';
-    html+='<button class="btn btn-red" onclick="borrarUltimo()">🗑️ BORRAR ÚLTIMO SORTEO</button>';
-    html+='</div>';
-    document.getElementById('app').innerHTML=html;
-}
-
-function borrarUltimo(){
-    if(LOCALES.length===0){alert('No hay sorteos locales para borrar');return;}
-    if(confirm('¿Borrar el último sorteo guardado?')){
-        LOCALES.pop();
-        guardarEnStorage();
-        if(getDF().length>0){
-            var df=getDF();
-            var ult=df[df.length-1];
-            ultimoSorteo={l:ult.l,h:ult.h,f:ult.f};
-            guardarEnStorage();
-        }
-        alert('✅ Último sorteo borrado\n📊 Total: '+getDF().length+' sorteos');
-        menu();
-    }
-}
-
-function verHistorial(){
-    var df=getDF();
-    var html='<div class="view">';
-    html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">';
-    html+='<h2>📜 HISTORIAL</h2>';
-    html+='<button class="btn" style="width:auto;padding:8px 15px" onclick="menu()">VOLVER</button>';
-    html+='</div>';
-    html+='<div class="section"><div class="section-title" style="text-align:center">Total: '+df.length+' sorteos</div>';
-    html+='<div style="max-height:400px;overflow-y:auto">';
-    df.slice(-30).reverse().forEach(function(d){
-        html+='<div class="pred"><div style="display:flex;justify-content:space-between;align-items:center">';
-        html+='<div><b>'+d.f+'</b> - '+d.l+' '+d.h+'</div>';
-        html+='<div class="num-box" style="font-size:1rem;padding:5px 10px">'+d.n1+'-'+d.n2+'-'+d.n3+'</div>';
-        html+='</div></div>';
-    });
-    html+='</div></div></div>';
-    document.getElementById('app').innerHTML=html;
-}
-
-function guardar(){
-    var f=document.getElementById('f').value;
-    var l=document.getElementById('l').value;
-    var h=document.getElementById('h').value;
-    var n1=parseInt(document.getElementById('n1').value);
-    var n2=parseInt(document.getElementById('n2').value);
-    var n3=parseInt(document.getElementById('n3').value);
-    if(!f||isNaN(n1)){alert('Completa todos');return;}
-    if(n1<0||n1>99||n2<0||n2>99||n3<0||n3>99){alert('Números 0-99');return;}
-    if(n1===n2||n1===n3||n2===n3){alert('No repetir');return;}
-    if(HORARIOS_VALIDOS[l].indexOf(h)<0){alert('Horario no válido para '+l);return;}
-    
-    LOCALES.push({f:f,l:l,h:h,n1:n1,n2:n2,n3:n3});
-    ultimoSorteo={l:l,h:h,f:f};
-    
-    guardarEnStorage();
-    
-    alert('✅ Guardado permanentemente\n📊 Total: '+getDF().length+' sorteos\n🔄 Ventanas recalculadas');
-    menu();
-}
-
-menu();
+// Inicializar
+document.getElementById('proximo-container').innerHTML='<div class="proximo-banner"><div class="proximo-label"> ÚLTIMO SORTEO</div><div class="proximo-text">'+getUltimo().l+' '+getUltimo().h+' - '+getUltimo().f+'</div></div>';
+document.getElementById('total-container').innerHTML='<div class="total-sorteos">Total: '+HISTORIAL.length+' sorteos</div>';
 </script>
 </body>
 </html>
