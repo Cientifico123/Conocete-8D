@@ -6,2761 +6,529 @@
 <title>🎰 LOTO MIXTO 2026</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Georgia',serif;background:linear-gradient(135deg,#0f1e3d 0%,#1a2f5a 50%,#2a4a8a 100%);min-height:100vh;color:#f4e4bc;padding:10px}
-.container{max-width:1400px;margin:0 auto}
-header{background:linear-gradient(135deg,#1a2f5a 0%,#2a4a8a 100%);color:#d4af37;padding:25px;text-align:center;border-radius:12px;border:2px solid #d4af37;margin-bottom:15px;box-shadow:0 8px 25px rgba(0,0,0,0.4)}
-header h1{font-size:2.4em;text-shadow:2px 2px 4px rgba(0,0,0,0.6);letter-spacing:2px}
-header p{color:#c0c0c0;font-style:italic;margin-top:8px;font-size:1.05em}
-.tabs{display:flex;flex-wrap:wrap;gap:6px;background:#0f1e3d;padding:12px;border-radius:10px;border:1px solid #d4af37;margin-bottom:15px}
-.tab{padding:10px 16px;cursor:pointer;background:#1a2f5a;color:#c0c0c0;border:1px solid #4a6aaa;border-radius:6px;font-weight:bold;font-size:0.9em;transition:all 0.3s;white-space:nowrap}
-.tab:hover{background:#2a4a8a;color:#d4af37}
-.tab.active{background:#d4af37;color:#1a2f5a;border-color:#d4af37}
-.panel{display:none;background:linear-gradient(135deg,#1a2f5a 0%,#2a4a8a 100%);padding:22px;border-radius:12px;border:2px solid #d4af37;box-sha tudow:0 8px 25px rgba(0,0,0,0.4);min-height:500px}
+body{font-family:'Segoe UI',Tahoma,sans-serif;background:linear-gradient(135deg,#1e3c72 0%,#2a5298 100%);min-height:100vh;padding:10px}
+.container{max-width:1200px;margin:0 auto;background:white;border-radius:15px;box-shadow:0 10px 40px rgba(0,0,0,0.3);overflow:hidden}
+header{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:20px;text-align:center}
+header h1{font-size:2em;margin-bottom:5px}
+.nav-tabs{display:flex;background:#f5f5f5;border-bottom:3px solid #667eea;flex-wrap:wrap}
+.nav-tab{flex:1;padding:15px;cursor:pointer;background:#f5f5f5;border:none;font-size:16px;font-weight:bold;transition:all 0.3s;min-width:120px}
+.nav-tab:hover{background:#e0e0e0}
+.nav-tab.active{background:#667eea;color:white}
+.panel{display:none;padding:20px;animation:fadeIn 0.3s}
 .panel.active{display:block}
-.panel h2{color:#d4af37;margin-bottom:18px;font-size:1.7em;border-bottom:2px solid #d4af37;padding-bottom:8px}
-.panel h3{color:#f4e4bc;margin:18px 0 10px 0;font-size:1.2em}
-.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:18px;padding:15px;background:rgba(15,30,61,0.6);border-radius:8px;border:1px solid #4a6aaa}
-.control-group label{display:block;color:#d4af37;font-weight:bold;margin-bottom:4px;font-size:0.85em}
-.control-group select,.control-group input,.control-group textarea{width:100%;padding:8px;background:#0f1e3d;color:#f4e4bc;border:1px solid #d4af37;border-radius:5px;font-size:0.95em;font-family:inherit}
-.control-group select:focus,.control-group input:focus,.control-group textarea:focus{outline:none;border-color:#f4e4bc;box-shadow:0 0 5px #d4af37}
-button{padding:10px 22px;background:#d4af37;color:#1a2f5a;border:none;border-radius:6px;font-weight:bold;cursor:pointer;font-size:0.95em;transition:all 0.3s;margin:4px}
-button:hover{background:#f4e4bc;transform:translateY(-2px);box-shadow:0 4px 10px rgba(0,0,0,0.3)}
-button:active{transform:translateY(0)}
-table{width:100%;border-collapse:collapse;margin:12px 0;background:rgba(15,30,61,0.4);border-radius:8px;overflow:hidden}
-th{background:#d4af37;color:#1a2f5a;padding:10px;text-align:left;font-weight:bold;font-size:0.9em}
-td{padding:8px 10px;border-bottom:1px solid #4a6aaa;color:#f4e4bc;font-size:0.9em}
-tr:hover{background:rgba(212,175,55,0.1)}
-.stat-card{background:linear-gradient(135deg,#1a2f5a 0%,#2a4a8a 100%);padding:15px;border-radius:8px;border-left:4px solid #d4af37;margin:10px 0;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
-.stat-card h4{color:#d4af37;margin-bottom:8px;font-size:0.95em}
-.stat-value{font-size:1.8em;color:#f4e4bc;font-weight:bold}
-.stat-label{color:#c0c0c0;font-size:0.85em}
-.verdict{padding:14px;border-radius:8px;margin:10px 0;font-weight:bold;border-left:4px solid}
-.verdict-jugar{background:rgba(40,167,69,0.2);border-color:#28a745;color:#90ee90}
-.verdict-observar{background:rgba(255,193,7,0.2);border-color:#ffc107;color:#f4e4bc}
-.verdict-no-jugar{background:rgba(220,53,69,0.2);border-color:#dc3545;color:#ffcccc}
-.verdict-arrastre{background:rgba(23,162,184,0.2);border-color:#17a2b8;color:#b0e0e6}
-.number-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(70px,1fr));gap:6px;margin:12px 0}
-.number-cell{padding:12px 6px;text-align:center;background:#1a2f5a;border:1px solid #4a6aaa;border-radius:6px;cursor:pointer;transition:all 0.3s;font-weight:bold;color:#f4e4bc;font-size:0.95em}
-.number-cell:hover{background:#d4af37;color:#1a2f5a;transform:scale(1.05)}
-.number-cell.hot{background:#8b0000;border-color:#ff4444}
-.number-cell.warm{background:#5c4a00;border-color:#d4af37}
-.number-cell.cold{background:#0a2a4a;border-color:#4a6aaa}
-.warning{background:rgba(255,193,7,0.15);border:1px solid #d4af37;padding:12px;border-radius:8px;margin:12px 0;color:#f4e4bc;font-size:0.9em}
-.warning strong{color:#d4af37}
-.chart-bar{height:22px;background:linear-gradient(90deg,#d4af37 0%,#f4e4bc 100%);border-radius:4px;display:flex;align-items:center;padding:0 8px;color:#1a2f5a;font-weight:bold;font-size:0.8em;margin:4px 0;min-width:30px}
-.chart-row{display:grid;grid-template-columns:60px 1fr 80px;gap:8px;align-items:center;margin:4px 0}
-.chart-label{color:#d4af37;font-weight:bold;font-size:0.9em}
-.chart-value{color:#f4e4bc;text-align:right;font-size:0.9em}
-.badge{padding:3px 8px;border-radius:10px;font-size:0.8em;font-weight:bold;display:inline-block}
-.badge-success{background:#28a745;color:white}
-.badge-warning{background:#ffc107;color:#1a2f5a}
-.badge-danger{background:#dc3545;color:white}
-.badge-info{background:#17a2b8;color:white}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:1000;overflow-y:auto}
-.modal.active{display:flex;justify-content:center;align-items:center}
-.modal-content{background:linear-gradient(135deg,#1a2f5a 0%,#2a4a8a 100%);padding:25px;border-radius:12px;max-width:800px;width:90%;max-height:90vh;overflow-y:auto;border:2px solid #d4af37}
-.modal-content h2{color:#d4af37;margin-bottom:15px}
-.modal-content h3{color:#f4e4bc;margin:12px 0 8px 0;font-size:1.05em}
-.modal-content p{margin:5px 0;color:#c0c0c0;font-size:0.9em}
-.close-btn{background:#dc3545;color:white;padding:10px 20px;border:none;border-radius:6px;cursor:pointer;font-weight:bold;margin-top:15px}
-.close-btn:hover{background:#c82333}
-.form-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:12px;padding:12px;background:rgba(15,30,61,0.5);border-radius:6px;border:1px solid #4a6aaa}
-.form-row label{color:#d4af37;font-weight:bold;font-size:0.85em;display:block;margin-bottom:4px}
-.form-row input{width:100%;padding:7px;background:#0f1e3d;color:#f4e4bc;border:1px solid #d4af37;border-radius:4px}
-.info-box{background:rgba(15,30,61,0.6);padding:12px;border-radius:8px;border:1px solid #4a6aaa;margin:10px 0}
-.info-box p{margin:4px 0;color:#c0c0c0;font-size:0.9em}
-.info-box strong{color:#d4af37}
-@media(max-width:768px){header h1{font-size:1.6em}.tab{padding:8px 10px;font-size:0.8em}.panel{padding:15px}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.card{background:#f8f9fa;border-radius:10px;padding:20px;margin-bottom:20px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+.card h2{color:#667eea;margin-bottom:15px;font-size:1.5em}
+.forecast-box{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:20px;border-radius:10px;margin:10px 0;box-shadow:0 4px 15px rgba(0,0,0,0.2)}
+.forecast-box h3{font-size:1.3em;margin-bottom:10px}
+.numbers{font-size:2em;font-weight:bold;letter-spacing:5px;margin:10px 0}
+.info-tag{display:inline-block;background:rgba(255,255,255,0.2);padding:5px 10px;border-radius:5px;margin:5px;font-size:0.9em}
+table{width:100%;border-collapse:collapse;margin:10px 0}
+th,td{padding:10px;text-align:left;border-bottom:1px solid #ddd}
+th{background:#667eea;color:white}
+tr:hover{background:#f5f5f5}
+.update-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
+.update-slot{background:white;padding:15px;border-radius:8px;border:2px solid #667eea}
+.update-slot label{display:block;font-weight:bold;margin-bottom:5px;color:#667eea}
+.update-slot input{width:100%;padding:8px;border:1px solid #ddd;border-radius:5px;font-size:1.2em;text-align:center}
+.btn{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;border:none;padding:12px 30px;border-radius:25px;cursor:pointer;font-size:16px;font-weight:bold;margin:10px 0}
+.btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,0.3)}
+.highlight{background:#fff3cd;border-left:5px solid #ffc107;padding:15px;margin:10px 0;border-radius:5px}
+.stat-box{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:20px;border-radius:10px;text-align:center;margin:10px 0}
+.stat-box h3{font-size:2em;margin-bottom:5px}
+.progress-bar{width:100%;height:30px;background:#e9ecef;border-radius:15px;overflow:hidden;margin:10px 0}
+.progress-fill{height:100%;background:linear-gradient(90deg,#667eea,#764ba2);transition:width 0.5s;display:flex;align-items:center;justify-content:center;color:white;font-weight:bold}
+@media(max-width:768px){.nav-tabs{flex-direction:column}.stat-box{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="container">
 <header>
 <h1>🎰 LOTO MIXTO 2026</h1>
-<p>Georgia · Florida · New York · Análisis estadístico del pasado</p>
+<p>Georgia · Florida · New York | Actualizado: <span id="lastUpdate">-</span></p>
 </header>
 
-<div class="tabs">
-<button class="tab active" onclick="showPanel(0)"> Historial</button>
-<button class="tab" onclick="showPanel(1)">🔄 Actualizar</button>
-<button class="tab" onclick="showPanel(2)">📊 Frecuencia 1ra</button>
-<button class="tab" onclick="showPanel(3)"> Arrastre</button>
-<button class="tab" onclick="showPanel(4)">💥 Percutados</button>
-<button class="tab" onclick="showPanel(5)">🎴 Palé</button>
-<button class="tab" onclick="showPanel(6)">⚖️ 2da vs 3ra</button>
-<button class="tab" onclick="showPanel(7)">🎲 Simulación</button>
-<button class="tab" onclick="showPanel(8)">🎯 Jugar Hoy</button>
+<div class="nav-tabs">
+<button class="nav-tab active" onclick="showPanel(0)"> Historial</button>
+<button class="nav-tab" onclick="showPanel(1)"> Actualizar</button>
+<button class="nav-tab" onclick="showPanel(2)">🔗 Arrastres</button>
+<button class="nav-tab" onclick="showPanel(3)"> Jugar Hoy</button>
+<button class="nav-tab" onclick="showPanel(4)">📈 Monte Carlo</button>
 </div>
 
 <div id="panel-0" class="panel active">
-<h2>📚 Ventana 1 — Historial (Motor de Datos)</h2>
-<div class="warning"><strong>️ Principio rector:</strong> Esta app describe el pasado, no predice el futuro. Cada ventana calcula frecuencias, transiciones y coincidencias verificables en el historial.</div>
-<div class="info-box">
-<p><strong>Total de registros:</strong> <span id="total-records">0</span></p>
-<p><strong>Rango:</strong> <span id="date-range">-</span></p>
-<p><strong>Loterías:</strong> GEORGIA, FLORIDA, NY</p>
-<p><strong>Horarios:</strong> 12:30, 13:30, 14:30, 19:00, 21:50, 22:30, 23:30</p>
+<div class="card">
+<h2>📚 Historial Actualizado</h2>
+<div class="highlight">
+<strong>Total:</strong> <span id="totalRecords">0</span> sorteos |
+<strong>Desde:</strong> 2025-10-01 | <strong>Hasta:</strong> <span id="lastDate">-</span>
 </div>
-<div class="controls">
-<div class="control-group"><label>Lotería</label><select id="h-lot" onchange="renderHistory()"><option value="ALL">Todas</option><option value="GEORGIA">Georgia</option><option value="FLORIDA">Florida</option><option value="NY">New York</option></select></div>
-<div class="control-group"><label>Desde</label><input type="date" id="h-desde" onchange="renderHistory()"></div>
-<div class="control-group"><label>Hasta</label><input type="date" id="h-hasta" onchange="renderHistory()"></div>
+<div style="max-height:500px;overflow-y:auto">
+<table id="historyTable">
+<thead><tr><th>Fecha</th><th>Lotería</th><th>Hora</th><th>1ra</th><th>2da</th><th>3ra</th></tr></thead>
+<tbody id="historyBody"></tbody>
+</table>
 </div>
-<div style="overflow-x:auto;max-height:500px;overflow-y:auto">
-<table><thead><tr><th>Fecha</th><th>Lotería</th><th>Hora</th><th>1ra</th><th>2da</th><th>3ra</th></tr></thead><tbody id="history-body"></tbody></table>
 </div>
 </div>
 
 <div id="panel-1" class="panel">
-<h2>🔄 Ventana 2 — Actualizar Sorteos</h2>
-<div class="warning"><strong>📋 Instrucciones:</strong> Carga los 7 sorteos del día en orden cronológico. Al guardar, se recalculan todas las ventanas.</div>
-<div class="controls">
-<div class="control-group"><label>Fecha</label><input type="date" id="u-date"></div>
+<div class="card">
+<h2>🔄 Actualizar Sorteos</h2>
+<div class="update-grid" id="updateGrid"></div>
+<button class="btn" onclick="saveUpdates()">💾 Guardar y Recalcular Todo</button>
 </div>
-<div id="update-form"></div>
-<button onclick="saveDay()">💾 Guardar día y recalcular todo</button>
 </div>
 
 <div id="panel-2" class="panel">
-<h2>📊 Ventana 3 — Frecuencia en Primera Posición</h2>
-<div class="controls">
-<div class="control-group"><label>Lotería</label><select id="f3-lot" onchange="calcFreq1ra()"><option value="ALL">Todas</option><option value="GEORGIA">Georgia</option><option value="FLORIDA">Florida</option><option value="NY">New York</option></select></div>
-<div class="control-group"><label>Horario</label><select id="f3-hora" onchange="calcFreq1ra()"><option value="ALL">Todos</option><option value="12:30">12:30</option><option value="13:30">13:30</option><option value="14:30">14:30</option><option value="19:00">19:00</option><option value="21:50">21:50</option><option value="22:30">22:30</option><option value="23:30">23:30</option></select></div>
-<div class="control-group"><label>Top N</label><select id="f3-top" onchange="calcFreq1ra()"><option value="10">Top 10</option><option value="20">Top 20</option><option value="50">Top 50</option></select></div>
+<div class="card">
+<h2>🔗 Top 3 Arrastres Más Fuertes</h2>
+<div id="arrastreContent"></div>
 </div>
-<div id="f3-results"></div>
 </div>
 
 <div id="panel-3" class="panel">
-<h2>🔗 Ventana 4 — Arrastre (2da/3ra → 1ra)</h2>
-<div class="controls">
-<div class="control-group"><label>Ventana de tiempo</label><select id="f4-window" onchange="calcArrastre()"><option value="24">24 horas</option><option value="48">48 horas</option><option value="72" selected>72 horas</option></select></div>
-<div class="control-group"><label>Origen</label><select id="f4-origin" onchange="calcArrastre()"><option value="BOTH">2da y 3ra</option><option value="2DA">Solo 2da</option><option value="3RA">Solo 3ra</option></select></div>
-<div class="control-group"><label>Top N</label><select id="f4-top" onchange="calcArrastre()"><option value="10">Top 10</option><option value="20">Top 20</option></select></div>
+<div class="card">
+<h2>🎯 Top 3 Pronósticos para Jugar</h2>
+<div id="jugarContent"></div>
 </div>
-<div id="f4-results"></div>
 </div>
 
 <div id="panel-4" class="panel">
-<h2>💥 Ventana 5 — Percutados</h2>
-<div class="controls">
-<div class="control-group"><label>Umbral mínimo (%)</label><input type="number" id="f5-threshold" value="30" min="10" max="80" onchange="calcPercutados()"></div>
-<div class="control-group"><label>Sorteos previos</label><select id="f5-prev" onchange="calcPercutados()"><option value="3">3 sorteos</option><option value="5">5 sorteos</option><option value="7">7 sorteos</option></select></div>
+<div class="card">
+<h2>📈 Top 3 Simulación Monte Carlo (20,000 iteraciones)</h2>
+<div class="progress-bar"><div class="progress-fill" id="mcProgress" style="width:0%">0%</div></div>
+<button class="btn" onclick="runMonteCarlo()">▶️ Ejecutar Simulación</button>
+<div id="monteCarloContent"></div>
 </div>
-<div id="f5-results"></div>
-</div>
-
-<div id="panel-5" class="panel">
-<h2>🎴 Ventana 6 — Palé (Combinaciones)</h2>
-<div class="controls">
-<div class="control-group"><label>Tipo de par</label><select id="f6-type" onchange="calcPale()"><option value="1x2">1ra × 2da</option><option value="1x3">1ra × 3ra</option><option value="2x3">2da × 3ra</option><option value="ALL">Todos</option></select></div>
-<div class="control-group"><label>Lotería</label><select id="f6-lot" onchange="calcPale()"><option value="ALL">Todas</option><option value="GEORGIA">Georgia</option><option value="FLORIDA">Florida</option><option value="NY">New York</option></select></div>
-<div class="control-group"><label>Top N</label><select id="f6-top" onchange="calcPale()"><option value="10">Top 10</option><option value="20">Top 20</option></select></div>
-</div>
-<div id="f6-results"></div>
-</div>
-
-<div id="panel-6" class="panel">
-<h2>⚖️ Ventana 7 — Comparativa 2da vs. 3ra</h2>
-<button onclick="calcComparativa()">🔄 Calcular comparativa</button>
-<div id="f7-results"></div>
-</div>
-
-<div id="panel-7" class="panel">
-<h2> Ventana 8 — Simulación de Muestreo</h2>
-<div class="controls">
-<div class="control-group"><label>Iteraciones</label><select id="f8-iters"><option value="1000">1,000</option><option value="5000">5,000</option><option value="10000" selected>10,000</option></select></div>
-<div class="control-group"><label>Confianza</label><select id="f8-conf"><option value="90">90%</option><option value="95" selected>95%</option><option value="99">99%</option></select></div>
-<div class="control-group"><label>Posición</label><select id="f8-pos"><option value="1">1ra posición</option><option value="2">2da posición</option><option value="3">3ra posición</option><option value="ANY">Cualquier posición</option></select></div>
-</div>
-<button onclick="runSimulation()">▶️ Ejecutar simulación</button>
-<div id="f8-results"></div>
-</div>
-
-<div id="panel-8" class="panel">
-<h2>🎯 Ventana 9 — Candidatos con Más Soporte Histórico</h2>
-<div class="warning"><strong>⚠️ Etiqueta correcta:</strong> "Candidatos con más soporte histórico" — nunca "pronóstico" ni "va a salir". Si ningún número cumple los umbrales, se muestra "NO JUGAR".</div>
-<div class="controls">
-<div class="control-group"><label>Lotería objetivo</label><select id="f9-lot"><option value="GEORGIA">Georgia</option><option value="FLORIDA">Florida</option><option value="NY">New York</option></select></div>
-<div class="control-group"><label>Horario objetivo</label><select id="f9-hora"><option value="12:30">12:30</option><option value="13:30">13:30</option><option value="14:30">14:30</option><option value="19:00">19:00</option><option value="21:50">21:50</option><option value="22:30">22:30</option><option value="23:30">23:30</option></select></div>
-</div>
-<button onclick="calcJugarHoy()"> Calcular candidatos</button>
-<div id="f9-results"></div>
-</div>
-</div>
-
-<div id="audit-modal" class="modal">
-<div class="modal-content">
-<h2 id="audit-title">Ficha de Auditoría</h2>
-<div id="audit-body"></div>
-<button class="close-btn" onclick="cerrarAuditoria()">Cerrar</button>
 </div>
 </div>
 
 <script>
-// ============ HISTORIAL EMBEBIDO ============
-const CSV_DATA=`Fecha,Loteria,Hora,1ra,2da,3ra
-2025-10-01,GEORGIA,12:30,33,6,40
-2025-10-01,FLORIDA,13:30,12,49,11
-2025-10-01,NY,14:30,83,57,41
-2025-10-01,GEORGIA,19:00,49,51,45
-2025-10-01,FLORIDA,21:50,58,14,84
-2025-10-01,NY,22:30,22,99,28
-2025-10-01,GEORGIA,23:30,96,16,41
-2025-10-02,GEORGIA,12:30,37,74,39
-2025-10-02,FLORIDA,13:30,70,8,22
-2025-10-02,NY,14:30,21,28,46
-2025-10-02,GEORGIA,19:00,24,22,47
-2025-10-02,FLORIDA,21:50,0,28,43
-2025-10-02,NY,22:30,97,69,33
-2025-10-02,GEORGIA,23:30,30,22,4
-2025-10-03,GEORGIA,12:30,78,43,13
-2025-10-03,FLORIDA,13:30,82,99,78
-2025-10-03,NY,14:30,68,35,68
-2025-10-03,GEORGIA,19:00,82,28,49
-2025-10-03,FLORIDA,21:50,70,12,37
-2025-10-03,NY,22:30,32,64,54
-2025-10-03,GEORGIA,23:30,98,51,94
-2025-10-04,GEORGIA,12:30,91,50,13
-2025-10-04,FLORIDA,13:30,89,4,51
-2025-10-04,NY,14:30,77,20,50
-2025-10-04,GEORGIA,19:00,32,56,34
-2025-10-04,FLORIDA,21:50,82,99,31
-2025-10-04,NY,22:30,26,16,44
-2025-10-04,GEORGIA,23:30,74,74,15
-2025-10-05,GEORGIA,12:30,90,48,97
-2025-10-05,FLORIDA,13:30,99,51,75
-2025-10-05,NY,14:30,95,61,14
-2025-10-05,GEORGIA,19:00,87,33,76
-2025-10-05,FLORIDA,21:50,81,82,34
-2025-10-05,NY,22:30,24,77,16
-2025-10-05,GEORGIA,23:30,79,70,76
-2025-10-06,GEORGIA,12:30,63,53,41
-2025-10-06,FLORIDA,13:30,56,61,19
-2025-10-06,NY,14:30,6,76,42
-2025-10-06,GEORGIA,19:00,33,93,76
-2025-10-06,FLORIDA,21:50,62,14,33
-2025-10-06,NY,22:30,62,32,90
-2025-10-06,GEORGIA,23:30,56,56,6
-2025-10-07,GEORGIA,12:30,91,28,22
-2025-10-07,FLORIDA,13:30,73,35,41
-2025-10-07,NY,14:30,48,48,64
-2025-10-07,GEORGIA,19:00,30,65,96
-2025-10-07,FLORIDA,21:50,33,75,2
-2025-10-07,NY,22:30,63,96,47
-2025-10-07,GEORGIA,23:30,48,81,20
-2025-10-08,FLORIDA,13:30,35,4,49
-2025-10-08,NY,14:30,60,30,72
-2025-10-08,GEORGIA,19:00,10,73,54
-2025-10-08,FLORIDA,21:50,31,27,63
-2025-10-08,NY,22:30,64,4,94
-2025-10-08,GEORGIA,23:30,56,70,91
-2025-10-09,GEORGIA,12:30,43,45,54
-2025-10-09,FLORIDA,13:30,61,53,9
-2025-10-09,NY,14:30,8,36,11
-2025-10-09,GEORGIA,19:00,98,69,92
-2025-10-09,FLORIDA,21:50,69,56,59
-2025-10-09,NY,22:30,72,61,58
-2025-10-09,GEORGIA,23:30,29,40,65
-2025-10-10,GEORGIA,12:30,10,50,65
-2025-10-10,FLORIDA,13:30,89,14,57
-2025-10-10,NY,14:30,35,50,66
-2025-10-10,GEORGIA,19:00,91,28,24
-2025-10-10,FLORIDA,21:50,44,74,15
-2025-10-10,NY,22:30,38,1,29
-2025-10-10,GEORGIA,23:30,80,62,32
-2025-10-11,GEORGIA,12:30,19,24,93
-2025-10-11,FLORIDA,13:30,44,12,47
-2025-10-11,NY,14:30,29,10,1
-2025-10-11,GEORGIA,19:00,61,20,40
-2025-10-11,FLORIDA,21:50,58,20,7
-2025-10-11,NY,22:30,90,98,27
-2025-10-11,GEORGIA,23:30,53,87,36
-2025-10-12,GEORGIA,12:30,60,81,5
-2025-10-12,FLORIDA,13:30,89,64,53
-2025-10-12,NY,14:30,13,13,7
-2025-10-12,GEORGIA,19:00,86,6,12
-2025-10-12,FLORIDA,21:50,32,2,52
-2025-10-12,NY,22:30,42,56,92
-2025-10-12,GEORGIA,23:30,95,64,37
-2025-10-13,GEORGIA,12:30,30,41,94
-2025-10-13,FLORIDA,13:30,23,68,77
-2025-10-13,NY,14:30,48,52,42
-2025-10-13,GEORGIA,19:00,58,29,77
-2025-10-13,FLORIDA,21:50,93,70,22
-2025-10-13,NY,22:30,8,42,46
-2025-10-13,GEORGIA,23:30,38,69,55
-2025-10-14,GEORGIA,12:30,75,41,20
-2025-10-14,FLORIDA,13:30,89,24,26
-2025-10-14,NY,14:30,40,2,38
-2025-10-14,GEORGIA,19:00,24,92,36
-2025-10-14,FLORIDA,21:50,30,22,96
-2025-10-14,NY,22:30,23,50,44
-2025-10-14,GEORGIA,23:30,86,21,41
-2025-10-15,GEORGIA,12:30,49,14,36
-2025-10-15,FLORIDA,13:30,13,24,39
-2025-10-15,NY,14:30,59,65,0
-2025-10-15,GEORGIA,19:00,24,54,96
-2025-10-15,FLORIDA,21:50,66,34,4
-2025-10-15,NY,22:30,41,64,86
-2025-10-15,GEORGIA,23:30,69,60,98
-2025-10-16,GEORGIA,12:30,36,81,57
-2025-10-16,FLORIDA,13:30,0,82,87
-2025-10-16,NY,14:30,46,91,42
-2025-10-16,GEORGIA,19:00,8,31,99
-2025-10-16,FLORIDA,21:50,88,70,72
-2025-10-16,NY,22:30,33,75,84
-2025-10-16,GEORGIA,23:30,63,70,0
-2025-10-17,GEORGIA,12:30,92,68,85
-2025-10-17,FLORIDA,13:30,19,5,66
-2025-10-17,NY,14:30,31,18,50
-2025-10-17,GEORGIA,19:00,79,30,48
-2025-10-17,FLORIDA,21:50,45,89,49
-2025-10-17,NY,22:30,89,6,48
-2025-10-17,GEORGIA,23:30,22,51,47
-2025-10-18,GEORGIA,12:30,81,98,42
-2025-10-18,FLORIDA,13:30,58,6,57
-2025-10-18,NY,14:30,98,93,87
-2025-10-18,GEORGIA,19:00,73,56,30
-2025-10-18,FLORIDA,21:50,8,76,84
-2025-10-18,NY,22:30,92,0,90
-2025-10-18,GEORGIA,23:30,41,2,67
-2025-10-19,GEORGIA,12:30,44,25,11
-2025-10-19,FLORIDA,13:30,64,20,80
-2025-10-19,NY,14:30,77,16,16
-2025-10-19,GEORGIA,19:00,75,52,99
-2025-10-19,FLORIDA,21:50,57,74,37
-2025-10-19,NY,22:30,52,2,82
-2025-10-20,GEORGIA,12:30,22,92,83
-2025-10-20,FLORIDA,13:30,84,59,75
-2025-10-20,NY,14:30,87,58,77
-2025-10-20,GEORGIA,19:00,79,0,66
-2025-10-20,FLORIDA,21:50,34,92,10
-2025-10-20,NY,22:30,82,88,31
-2025-10-20,GEORGIA,23:30,8,8,50
-2025-10-21,GEORGIA,12:30,72,11,79
-2025-10-21,FLORIDA,13:30,86,27,89
-2025-10-21,NY,14:30,60,25,74
-2025-10-21,GEORGIA,19:00,31,10,95
-2025-10-21,FLORIDA,21:50,34,72,86
-2025-10-21,NY,22:30,86,68,56
-2025-10-21,GEORGIA,23:30,37,28,41
-2025-10-22,GEORGIA,12:30,89,7,57
-2025-10-22,FLORIDA,13:30,74,41,0
-2025-10-22,NY,14:30,67,57,36
-2025-10-22,GEORGIA,19:00,62,41,90
-2025-10-22,FLORIDA,21:50,18,35,12
-2025-10-22,NY,22:30,4,46,33
-2025-10-22,GEORGIA,23:30,60,43,28
-2025-10-23,GEORGIA,12:30,32,77,26
-2025-10-23,FLORIDA,13:30,47,32,23
-2025-10-23,NY,14:30,5,93,48
-2025-10-23,FLORIDA,21:50,32,47,35
-2025-10-23,NY,22:30,71,95,36
-2025-10-23,GEORGIA,23:30,58,55,36
-2025-10-24,GEORGIA,12:30,94,54,11
-2025-10-24,FLORIDA,13:30,99,0,7
-2025-10-24,NY,14:30,53,99,79
-2025-10-24,GEORGIA,19:00,9,7,65
-2025-10-24,FLORIDA,21:50,51,50,84
-2025-10-24,NY,22:30,58,23,10
-2025-10-24,GEORGIA,23:30,15,17,65
-2025-10-25,GEORGIA,12:30,19,56,66
-2025-10-25,FLORIDA,13:30,75,65,11
-2025-10-25,NY,14:30,72,10,4
-2025-10-25,GEORGIA,19:00,38,82,44
-2025-10-25,FLORIDA,21:50,75,38,46
-2025-10-25,NY,22:30,38,2,54
-2025-10-25,GEORGIA,23:30,56,4,3
-2025-10-26,GEORGIA,12:30,73,74,18
-2025-10-26,FLORIDA,13:30,2,71,93
-2025-10-26,NY,14:30,77,57,72
-2025-10-26,GEORGIA,19:00,29,40,64
-2025-10-26,FLORIDA,21:50,95,94,43
-2025-10-26,NY,22:30,4,52,2
-2025-10-26,GEORGIA,23:30,60,56,35
-2025-10-27,GEORGIA,12:30,3,97,43
-2025-10-27,FLORIDA,13:30,21,77,49
-2025-10-27,NY,14:30,59,28,42
-2025-10-27,GEORGIA,19:00,95,99,17
-2025-10-27,FLORIDA,21:50,60,71,8
-2025-10-27,NY,22:30,25,15,56
-2025-10-27,GEORGIA,23:30,90,17,20
-2025-10-28,GEORGIA,12:30,12,47,53
-2025-10-28,FLORIDA,13:30,33,65,6
-2025-10-28,NY,14:30,52,11,93
-2025-10-28,GEORGIA,19:00,30,5,50
-2025-10-28,FLORIDA,21:50,64,20,61
-2025-10-28,NY,22:30,99,72,69
-2025-10-28,GEORGIA,23:30,14,39,29
-2025-10-29,GEORGIA,12:30,73,84,1
-2025-10-29,FLORIDA,13:30,65,30,88
-2025-10-29,NY,14:30,60,91,54
-2025-10-29,GEORGIA,19:00,39,3,63
-2025-10-29,FLORIDA,21:50,99,24,9
-2025-10-29,NY,22:30,61,42,88
-2025-10-29,GEORGIA,23:30,57,62,75
-2025-10-30,GEORGIA,12:30,10,33,46
-2025-10-30,FLORIDA,13:30,24,15,76
-2025-10-30,NY,14:30,38,99,60
-2025-10-30,GEORGIA,19:00,28,77,26
-2025-10-30,FLORIDA,21:50,43,42,6
-2025-10-30,NY,22:30,64,44,59
-2025-10-30,GEORGIA,23:30,28,94,18
-2025-10-31,GEORGIA,12:30,76,27,45
-2025-10-31,FLORIDA,13:30,11,86,96
-2025-10-31,NY,14:30,60,5,12
-2025-10-31,GEORGIA,19:00,37,95,0
-2025-10-31,FLORIDA,21:50,98,87,26
-2025-10-31,NY,22:30,78,46,29
-2025-10-31,GEORGIA,23:30,88,99,55
-2025-11-01,GEORGIA,12:30,77,99,10
-2025-11-01,FLORIDA,13:30,26,40,4
-2025-11-01,NY,14:30,79,16,90
-2025-11-01,GEORGIA,19:00,29,12,68
-2025-11-01,FLORIDA,21:50,70,68,75
-2025-11-01,NY,22:30,2,44,80
-2025-11-01,GEORGIA,23:30,51,4,73
-2025-11-02,GEORGIA,12:30,24,6,39
-2025-11-02,FLORIDA,13:30,34,33,69
-2025-11-02,NY,14:30,5,75,97
-2025-11-02,GEORGIA,19:00,82,91,97
-2025-11-02,FLORIDA,21:50,38,91,10
-2025-11-02,NY,22:30,18,38,38
-2025-11-02,GEORGIA,23:30,69,81,69
-2025-11-03,GEORGIA,12:30,44,13,80
-2025-11-03,FLORIDA,13:30,81,57,60
-2025-11-03,NY,14:30,82,1,97
-2025-11-03,GEORGIA,19:00,88,60,45
-2025-11-03,FLORIDA,21:50,39,87,95
-2025-11-03,NY,22:30,97,4,2
-2025-11-03,GEORGIA,23:30,97,73,22
-2025-11-04,GEORGIA,12:30,84,44,40
-2025-11-04,FLORIDA,13:30,89,75,21
-2025-11-04,NY,14:30,84,44,31
-2025-11-04,GEORGIA,19:00,61,69,26
-2025-11-04,FLORIDA,21:50,34,60,64
-2025-11-04,NY,22:30,72,19,43
-2025-11-04,GEORGIA,23:30,26,62,85
-2025-11-05,GEORGIA,12:30,81,5,53
-2025-11-05,FLORIDA,13:30,86,61,37
-2025-11-05,NY,14:30,44,4,83
-2025-11-05,GEORGIA,19:00,14,95,80
-2025-11-05,FLORIDA,21:50,83,82,5
-2025-11-05,NY,22:30,46,3,2
-2025-11-05,GEORGIA,23:30,19,51,59
-2025-11-06,GEORGIA,12:30,33,74,80
-2025-11-06,FLORIDA,13:30,48,64,76
-2025-11-06,NY,14:30,75,21,10
-2025-11-06,GEORGIA,19:00,3,88,97
-2025-11-06,FLORIDA,21:50,70,46,43
-2025-11-06,NY,22:30,78,88,24
-2025-11-06,GEORGIA,23:30,88,64,53
-2025-11-07,GEORGIA,12:30,86,25,77
-2025-11-07,FLORIDA,13:30,58,65,98
-2025-11-07,NY,14:30,32,37,21
-2025-11-07,GEORGIA,19:00,39,59,40
-2025-11-07,FLORIDA,21:50,7,19,95
-2025-11-07,NY,22:30,8,7,23
-2025-11-07,GEORGIA,23:30,11,21,76
-2025-11-08,GEORGIA,12:30,5,41,83
-2025-11-08,FLORIDA,13:30,86,39,60
-2025-11-08,NY,14:30,36,51,64
-2025-11-08,GEORGIA,19:00,0,21,42
-2025-11-08,FLORIDA,21:50,56,11,37
-2025-11-08,NY,22:30,53,23,3
-2025-11-08,GEORGIA,23:30,44,36,61
-2025-11-09,GEORGIA,12:30,71,11,65
-2025-11-09,FLORIDA,13:30,90,75,1
-2025-11-09,NY,14:30,32,73,22
-2025-11-09,GEORGIA,19:00,39,71,32
-2025-11-09,FLORIDA,21:50,40,52,58
-2025-11-09,NY,22:30,6,14,86
-2025-11-09,GEORGIA,23:30,37,25,23
-2025-11-10,GEORGIA,12:30,50,41,67
-2025-11-10,FLORIDA,13:30,66,11,23
-2025-11-10,NY,14:30,84,23,84
-2025-11-10,GEORGIA,19:00,39,58,76
-2025-11-10,FLORIDA,21:50,76,38,14
-2025-11-10,NY,22:30,19,39,97
-2025-11-10,GEORGIA,23:30,89,32,29
-2025-11-11,GEORGIA,12:30,31,66,19
-2025-11-11,FLORIDA,13:30,60,36,26
-2025-11-11,NY,14:30,81,6,83
-2025-11-11,GEORGIA,19:00,34,88,11
-2025-11-11,FLORIDA,21:50,40,33,50
-2025-11-11,NY,22:30,1,78,13
-2025-11-11,GEORGIA,23:30,34,22,43
-2025-11-12,GEORGIA,12:30,37,56,69
-2025-11-12,FLORIDA,13:30,57,80,55
-2025-11-12,NY,14:30,83,82,43
-2025-11-12,GEORGIA,19:00,83,27,39
-2025-11-12,FLORIDA,21:50,93,23,47
-2025-11-12,NY,22:30,55,49,24
-2025-11-12,GEORGIA,23:30,59,41,67
-2025-11-13,GEORGIA,12:30,17,73,55
-2025-11-13,FLORIDA,13:30,10,36,90
-2025-11-13,NY,14:30,50,2,3
-2025-11-13,GEORGIA,19:00,64,6,98
-2025-11-13,FLORIDA,21:50,16,98,39
-2025-11-13,NY,22:30,54,64,98
-2025-11-13,GEORGIA,23:30,94,57,19
-2025-11-14,GEORGIA,12:30,83,81,71
-2025-11-14,FLORIDA,13:30,67,20,33
-2025-11-14,NY,14:30,70,92,0
-2025-11-14,GEORGIA,19:00,56,30,16
-2025-11-14,FLORIDA,21:50,55,5,89
-2025-11-14,NY,22:30,2,70,94
-2025-11-14,GEORGIA,23:30,5,80,20
-2025-11-15,GEORGIA,12:30,26,80,62
-2025-11-15,FLORIDA,13:30,83,99,28
-2025-11-15,GEORGIA,19:00,0,48,93
-2025-11-15,FLORIDA,21:50,71,36,7
-2025-11-15,NY,22:30,15,83,12
-2025-11-15,GEORGIA,23:30,88,5,99
-2025-11-16,GEORGIA,12:30,82,40,86
-2025-11-16,FLORIDA,13:30,86,4,31
-2025-11-16,NY,14:30,33,1,5
-2025-11-16,GEORGIA,19:00,57,44,5
-2025-11-16,FLORIDA,21:50,50,83,41
-2025-11-16,NY,22:30,11,74,88
-2025-11-17,GEORGIA,12:30,77,23,72
-2025-11-17,FLORIDA,13:30,37,90,73
-2025-11-17,NY,14:30,48,22,84
-2025-11-17,FLORIDA,21:50,0,17,61
-2025-11-17,NY,22:30,55,9,79
-2025-11-17,GEORGIA,23:30,58,17,86
-2025-11-18,GEORGIA,12:30,73,76,38
-2025-11-18,FLORIDA,13:30,13,53,2
-2025-11-18,NY,14:30,57,44,70
-2025-11-18,GEORGIA,19:00,16,94,29
-2025-11-18,FLORIDA,21:50,68,34,6
-2025-11-18,NY,22:30,83,54,66
-2025-11-18,GEORGIA,23:30,29,28,7
-2025-11-19,FLORIDA,13:30,7,9,83
-2025-11-19,NY,14:30,59,33,53
-2025-11-19,GEORGIA,19:00,22,57,28
-2025-11-19,FLORIDA,21:50,37,89,45
-2025-11-19,NY,22:30,28,26,66
-2025-11-19,GEORGIA,23:30,49,17,91
-2025-11-20,GEORGIA,12:30,79,73,80
-2025-11-20,FLORIDA,13:30,85,73,26
-2025-11-20,NY,14:30,33,72,36
-2025-11-20,GEORGIA,19:00,32,19,54
-2025-11-20,FLORIDA,21:50,14,29,75
-2025-11-20,NY,22:30,39,14,76
-2025-11-20,GEORGIA,23:30,8,21,12
-2025-11-21,GEORGIA,12:30,65,14,47
-2025-11-21,FLORIDA,13:30,72,51,12
-2025-11-21,NY,14:30,65,3,6
-2025-11-21,GEORGIA,19:00,37,55,13
-2025-11-21,FLORIDA,21:50,11,45,32
-2025-11-21,NY,22:30,82,30,98
-2025-11-21,GEORGIA,23:30,87,96,42
-2025-11-22,GEORGIA,12:30,8,20,27
-2025-11-22,FLORIDA,13:30,28,37,76
-2025-11-22,NY,14:30,59,83,15
-2025-11-22,GEORGIA,19:00,66,43,42
-2025-11-22,FLORIDA,21:50,37,13,50
-2025-11-22,NY,22:30,21,65,27
-2025-11-22,GEORGIA,23:30,10,68,24
-2025-11-23,GEORGIA,12:30,78,31,95
-2025-11-23,FLORIDA,13:30,20,86,24
-2025-11-23,NY,14:30,16,78,50
-2025-11-23,GEORGIA,19:00,94,88,50
-2025-11-23,FLORIDA,21:50,96,60,29
-2025-11-23,NY,22:30,97,64,91
-2025-11-23,GEORGIA,23:30,87,76,40
-2025-11-24,GEORGIA,12:30,44,4,39
-2025-11-24,FLORIDA,13:30,65,6,57
-2025-11-24,NY,14:30,56,59,31
-2025-11-24,GEORGIA,19:00,90,29,12
-2025-11-24,FLORIDA,21:50,55,59,17
-2025-11-24,NY,22:30,79,70,19
-2025-11-24,GEORGIA,23:30,19,8,68
-2025-11-25,GEORGIA,12:30,78,51,39
-2025-11-25,FLORIDA,13:30,78,4,45
-2025-11-25,NY,14:30,61,57,63
-2025-11-25,GEORGIA,19:00,39,48,18
-2025-11-25,FLORIDA,21:50,41,54,14
-2025-11-25,NY,22:30,82,24,40
-2025-11-25,GEORGIA,23:30,80,67,11
-2025-11-26,GEORGIA,12:30,77,99,47
-2025-11-26,FLORIDA,13:30,3,66,72
-2025-11-26,NY,14:30,2,55,97
-2025-11-26,GEORGIA,19:00,9,50,84
-2025-11-26,FLORIDA,21:50,57,31,78
-2025-11-26,NY,22:30,58,43,7
-2025-11-26,GEORGIA,23:30,4,30,99
-2025-11-27,GEORGIA,12:30,8,8,68
-2025-11-27,FLORIDA,13:30,9,15,85
-2025-11-27,NY,14:30,34,82,70
-2025-11-27,GEORGIA,19:00,68,59,83
-2025-11-27,FLORIDA,21:50,6,32,59
-2025-11-27,NY,22:30,92,99,69
-2025-11-27,GEORGIA,23:30,16,99,77
-2025-11-28,GEORGIA,12:30,35,31,84
-2025-11-28,FLORIDA,13:30,7,51,99
-2025-11-28,NY,14:30,0,37,14
-2025-11-28,GEORGIA,19:00,58,31,56
-2025-11-28,FLORIDA,21:50,18,26,50
-2025-11-28,NY,22:30,75,89,11
-2025-11-28,GEORGIA,23:30,46,86,92
-2025-11-29,FLORIDA,13:30,64,89,6
-2025-11-29,NY,14:30,8,90,55
-2025-11-29,GEORGIA,19:00,70,28,75
-2025-11-29,FLORIDA,21:50,9,34,28
-2025-11-29,NY,22:30,10,75,34
-2025-11-29,GEORGIA,23:30,59,76,88
-2025-11-30,GEORGIA,12:30,11,44,22
-2025-11-30,FLORIDA,13:30,24,88,10
-2025-11-30,NY,14:30,56,82,77
-2025-11-30,GEORGIA,19:00,10,37,25
-2025-11-30,FLORIDA,21:50,84,36,62
-2025-11-30,NY,22:30,50,26,86
-2025-11-30,GEORGIA,23:30,89,74,32
-2025-12-01,GEORGIA,12:30,99,86,30
-2025-12-01,FLORIDA,13:30,88,28,5
-2025-12-01,NY,14:30,64,92,83
-2025-12-01,GEORGIA,19:00,58,59,56
-2025-12-01,FLORIDA,21:50,28,67,20
-2025-12-01,NY,22:30,2,32,31
-2025-12-01,GEORGIA,23:30,73,33,40
-2025-12-02,GEORGIA,12:30,64,71,49
-2025-12-02,FLORIDA,13:30,2,57,72
-2025-12-02,NY,14:30,83,41,95
-2025-12-02,GEORGIA,19:00,46,32,19
-2025-12-02,FLORIDA,21:50,36,33,36
-2025-12-02,NY,22:30,21,68,73
-2025-12-02,GEORGIA,23:30,78,61,4
-2025-12-03,GEORGIA,12:30,93,82,17
-2025-12-03,FLORIDA,13:30,34,13,56
-2025-12-03,NY,14:30,14,49,81
-2025-12-03,GEORGIA,19:00,47,66,71
-2025-12-03,FLORIDA,21:50,2,26,81
-2025-12-03,NY,22:30,94,58,48
-2025-12-03,GEORGIA,23:30,59,35,19
-2025-12-04,GEORGIA,12:30,13,96,61
-2025-12-04,FLORIDA,13:30,21,32,86
-2025-12-04,NY,14:30,84,96,47
-2025-12-04,GEORGIA,19:00,89,36,22
-2025-12-04,FLORIDA,21:50,41,98,60
-2025-12-04,NY,22:30,35,93,28
-2025-12-04,GEORGIA,23:30,24,95,23
-2025-12-05,GEORGIA,12:30,16,76,23
-2025-12-05,FLORIDA,13:30,55,63,34
-2025-12-05,NY,14:30,42,84,76
-2025-12-05,GEORGIA,19:00,41,19,9
-2025-12-05,FLORIDA,21:50,80,62,28
-2025-12-05,NY,22:30,36,57,48
-2025-12-05,GEORGIA,23:30,80,94,98
-2025-12-06,GEORGIA,12:30,8,23,51
-2025-12-06,FLORIDA,13:30,13,71,49
-2025-12-06,NY,14:30,67,78,21
-2025-12-06,GEORGIA,19:00,68,29,25
-2025-12-06,FLORIDA,21:50,40,21,70
-2025-12-06,NY,22:30,8,56,76
-2025-12-06,GEORGIA,23:30,29,77,22
-2025-12-07,GEORGIA,12:30,34,60,10
-2025-12-07,FLORIDA,13:30,96,57,70
-2025-12-07,NY,14:30,48,1,15
-2025-12-07,GEORGIA,19:00,83,79,51
-2025-12-07,FLORIDA,21:50,67,15,22
-2025-12-07,NY,22:30,79,50,13
-2025-12-07,GEORGIA,23:30,63,75,56
-2025-12-08,GEORGIA,12:30,28,88,43
-2025-12-08,FLORIDA,13:30,56,58,76
-2025-12-08,NY,14:30,29,93,78
-2025-12-08,GEORGIA,19:00,93,80,59
-2025-12-08,FLORIDA,21:50,84,39,19
-2025-12-08,NY,22:30,45,38,75
-2025-12-08,GEORGIA,23:30,7,86,28
-2025-12-09,GEORGIA,12:30,94,60,79
-2025-12-09,FLORIDA,13:30,83,37,20
-2025-12-09,NY,14:30,73,26,39
-2025-12-09,GEORGIA,19:00,36,18,51
-2025-12-09,FLORIDA,21:50,34,0,15
-2025-12-09,NY,22:30,2,99,74
-2025-12-09,GEORGIA,23:30,0,9,55
-2025-12-10,GEORGIA,12:30,35,67,43
-2025-12-10,FLORIDA,13:30,58,37,93
-2025-12-10,NY,14:30,86,81,45
-2025-12-10,GEORGIA,19:00,94,3,56
-2025-12-10,FLORIDA,21:50,0,69,92
-2025-12-10,NY,22:30,58,15,3
-2025-12-10,GEORGIA,23:30,9,2,69
-2025-12-11,GEORGIA,12:30,56,75,54
-2025-12-11,FLORIDA,13:30,52,82,13
-2025-12-11,NY,14:30,30,42,64
-2025-12-11,GEORGIA,19:00,78,79,8
-2025-12-11,FLORIDA,21:50,41,42,37
-2025-12-11,NY,22:30,72,22,91
-2025-12-11,GEORGIA,23:30,35,38,79
-2025-12-12,GEORGIA,12:30,79,80,63
-2025-12-12,FLORIDA,13:30,63,53,57
-2025-12-12,NY,14:30,22,5,54
-2025-12-12,GEORGIA,19:00,84,27,96
-2025-12-12,FLORIDA,21:50,12,41,80
-2025-12-12,NY,22:30,65,1,75
-2025-12-12,GEORGIA,23:30,58,43,42
-2025-12-13,GEORGIA,12:30,37,52,20
-2025-12-13,FLORIDA,13:30,21,6,70
-2025-12-13,NY,14:30,7,91,92
-2025-12-13,GEORGIA,19:00,88,9,29
-2025-12-13,FLORIDA,21:50,14,61,8
-2025-12-13,NY,22:30,55,35,88
-2025-12-13,GEORGIA,23:30,22,34,71
-2025-12-14,GEORGIA,12:30,97,53,16
-2025-12-14,FLORIDA,13:30,17,66,53
-2025-12-14,NY,14:30,35,32,9
-2025-12-14,GEORGIA,19:00,89,14,89
-2025-12-14,FLORIDA,21:50,11,8,93
-2025-12-14,NY,22:30,91,88,58
-2025-12-14,GEORGIA,23:30,5,57,29
-2025-12-15,GEORGIA,12:30,32,4,35
-2025-12-15,FLORIDA,13:30,74,88,99
-2025-12-15,NY,14:30,94,91,14
-2025-12-15,GEORGIA,19:00,69,27,61
-2025-12-15,FLORIDA,21:50,18,70,57
-2025-12-15,NY,22:30,62,2,1
-2025-12-15,GEORGIA,23:30,79,22,23
-2025-12-16,GEORGIA,12:30,87,16,38
-2025-12-16,FLORIDA,13:30,17,99,68
-2025-12-16,NY,14:30,84,21,28
-2025-12-16,GEORGIA,19:00,81,4,61
-2025-12-16,FLORIDA,21:50,95,10,92
-2025-12-16,NY,22:30,84,21,28
-2025-12-16,GEORGIA,23:30,78,93,55
-2025-12-17,GEORGIA,12:30,69,78,59
-2025-12-17,FLORIDA,13:30,52,31,30
-2025-12-17,NY,14:30,58,1,43
-2025-12-17,GEORGIA,19:00,65,78,30
-2025-12-17,FLORIDA,21:50,61,18,88
-2025-12-17,NY,22:30,31,9,30
-2025-12-17,GEORGIA,23:30,24,91,93
-2025-12-18,GEORGIA,12:30,7,43,12
-2025-12-18,FLORIDA,13:30,36,92,51
-2025-12-18,NY,14:30,51,19,2
-2025-12-18,GEORGIA,19:00,52,97,42
-2025-12-18,FLORIDA,21:50,63,53,37
-2025-12-18,NY,22:30,94,33,8
-2025-12-18,GEORGIA,23:30,35,43,26
-2025-12-19,GEORGIA,12:30,4,60,44
-2025-12-19,FLORIDA,13:30,22,1,17
-2025-12-19,NY,14:30,95,86,50
-2025-12-19,GEORGIA,19:00,24,54,83
-2025-12-19,FLORIDA,21:50,59,97,67
-2025-12-19,NY,22:30,78,61,44
-2025-12-19,GEORGIA,23:30,87,26,43
-2025-12-20,GEORGIA,12:30,89,41,18
-2025-12-20,FLORIDA,13:30,31,69,76
-2025-12-20,NY,14:30,58,11,41
-2025-12-20,GEORGIA,19:00,94,91,22
-2025-12-20,FLORIDA,21:50,15,89,34
-2025-12-20,NY,22:30,40,15,2
-2025-12-20,GEORGIA,23:30,52,97,25
-2025-12-21,GEORGIA,12:30,99,63,72
-2025-12-21,FLORIDA,13:30,58,45,69
-2025-12-21,NY,14:30,2,96,20
-2025-12-21,GEORGIA,19:00,62,83,12
-2025-12-21,FLORIDA,21:50,55,39,18
-2025-12-21,NY,22:30,24,16,1
-2025-12-21,GEORGIA,23:30,79,8,0
-2025-12-22,GEORGIA,12:30,87,88,64
-2025-12-22,FLORIDA,13:30,48,71,89
-2025-12-22,NY,14:30,3,50,82
-2025-12-22,GEORGIA,19:00,18,87,8
-2025-12-22,FLORIDA,21:50,99,51,5
-2025-12-22,NY,22:30,51,29,19
-2025-12-22,GEORGIA,23:30,65,53,89
-2025-12-23,GEORGIA,12:30,41,39,9
-2025-12-23,FLORIDA,13:30,74,69,27
-2025-12-23,NY,14:30,80,62,23
-2025-12-23,GEORGIA,19:00,34,35,19
-2025-12-23,FLORIDA,21:50,22,11,19
-2025-12-23,NY,22:30,98,76,43
-2025-12-23,GEORGIA,23:30,26,79,29
-2025-12-24,GEORGIA,12:30,22,79,21
-2025-12-24,FLORIDA,13:30,46,76,8
-2025-12-24,NY,14:30,75,19,22
-2025-12-24,GEORGIA,19:00,61,73,69
-2025-12-24,FLORIDA,21:50,34,26,48
-2025-12-24,NY,22:30,10,6,40
-2025-12-24,GEORGIA,23:30,9,45,63
-2025-12-25,GEORGIA,12:30,73,61,63
-2025-12-25,FLORIDA,13:30,25,90,22
-2025-12-25,NY,14:30,83,3,34
-2025-12-25,GEORGIA,19:00,15,98,25
-2025-12-25,FLORIDA,21:50,10,62,39
-2025-12-25,NY,22:30,61,73,73
-2025-12-25,GEORGIA,23:30,77,32,83
-2025-12-26,GEORGIA,12:30,57,58,81
-2025-12-26,FLORIDA,13:30,45,1,37
-2025-12-26,NY,14:30,64,45,73
-2025-12-26,GEORGIA,19:00,49,39,93
-2025-12-26,FLORIDA,21:50,46,23,66
-2025-12-26,NY,22:30,14,26,0
-2025-12-26,GEORGIA,23:30,34,63,75
-2025-12-27,GEORGIA,12:30,96,77,87
-2025-12-27,FLORIDA,13:30,52,0,1
-2025-12-27,NY,14:30,93,7,5
-2025-12-27,GEORGIA,19:00,86,81,45
-2025-12-27,FLORIDA,21:50,85,0,33
-2025-12-27,NY,22:30,50,29,19
-2025-12-27,GEORGIA,23:30,81,88,81
-2025-12-28,GEORGIA,12:30,36,20,55
-2025-12-28,FLORIDA,13:30,9,53,11
-2025-12-28,NY,14:30,98,9,85
-2025-12-28,GEORGIA,19:00,22,3,12
-2025-12-28,FLORIDA,21:50,3,53,12
-2025-12-28,NY,22:30,53,42,95
-2025-12-28,GEORGIA,23:30,27,91,3
-2025-12-29,GEORGIA,12:30,65,69,46
-2025-12-29,FLORIDA,13:30,22,90,81
-2025-12-29,NY,14:30,21,73,37
-2025-12-29,GEORGIA,19:00,61,87,11
-2025-12-29,FLORIDA,21:50,8,9,81
-2025-12-29,NY,22:30,95,13,72
-2025-12-29,GEORGIA,23:30,75,66,60
-2025-12-30,GEORGIA,12:30,14,89,39
-2025-12-30,FLORIDA,13:30,77,22,37
-2025-12-30,NY,14:30,51,94,88
-2025-12-30,GEORGIA,19:00,88,76,12
-2025-12-30,FLORIDA,21:50,70,70,72
-2025-12-30,NY,22:30,32,35,3
-2025-12-30,GEORGIA,23:30,26,19,45
-2025-12-31,GEORGIA,12:30,76,37,6
-2025-12-31,FLORIDA,13:30,7,65,71
-2025-12-31,NY,14:30,19,23,28
-2025-12-31,GEORGIA,19:00,50,68,92
-2025-12-31,FLORIDA,21:50,11,23,5
-2025-12-31,NY,22:30,16,37,96
-2025-12-31,GEORGIA,23:30,82,75,99
-2026-01-01,GEORGIA,12:30,26,90,78
-2026-01-01,FLORIDA,13:30,95,11,35
-2026-01-01,NY,14:30,17,55,46
-2026-01-01,GEORGIA,19:00,49,10,60
-2026-01-01,FLORIDA,21:50,91,58,46
-2026-01-01,NY,22:30,74,33,17
-2026-01-01,GEORGIA,23:30,6,34,28
-2026-01-02,GEORGIA,12:30,58,6,38
-2026-01-02,FLORIDA,13:30,62,55,59
-2026-01-02,NY,14:30,98,36,30
-2026-01-02,GEORGIA,19:00,46,20,99
-2026-01-02,FLORIDA,21:50,89,34,18
-2026-01-02,NY,22:30,56,80,49
-2026-01-02,GEORGIA,23:30,72,74,82
-2026-01-03,GEORGIA,12:30,85,49,59
-2026-01-03,FLORIDA,13:30,8,94,31
-2026-01-03,NY,14:30,43,45,40
-2026-01-03,GEORGIA,19:00,80,79,35
-2026-01-03,FLORIDA,21:50,11,56,73
-2026-01-03,NY,22:30,79,12,79
-2026-01-03,GEORGIA,23:30,18,10,63
-2026-01-04,GEORGIA,12:30,3,31,58
-2026-01-04,FLORIDA,13:30,71,94,55
-2026-01-04,NY,14:30,93,84,4
-2026-01-04,GEORGIA,19:00,20,58,70
-2026-01-04,FLORIDA,21:50,71,90,18
-2026-01-04,NY,22:30,89,67,31
-2026-01-04,GEORGIA,23:30,62,62,39
-2026-01-05,GEORGIA,12:30,0,0,61
-2026-01-05,FLORIDA,13:30,80,85,41
-2026-01-05,NY,14:30,80,83,63
-2026-01-05,GEORGIA,19:00,20,17,64
-2026-01-05,FLORIDA,21:50,94,42,47
-2026-01-05,NY,22:30,35,82,23
-2026-01-05,GEORGIA,23:30,56,7,82
-2026-01-06,GEORGIA,12:30,8,14,83
-2026-01-06,FLORIDA,13:30,9,78,89
-2026-01-06,NY,14:30,81,26,66
-2026-01-06,GEORGIA,19:00,56,12,84
-2026-01-06,FLORIDA,21:50,60,74,37
-2026-01-06,NY,22:30,42,44,24
-2026-01-06,GEORGIA,23:30,60,81,46
-2026-01-07,GEORGIA,12:30,81,39,40
-2026-01-07,FLORIDA,13:30,34,70,65
-2026-01-07,NY,14:30,16,61,18
-2026-01-07,GEORGIA,19:00,67,45,79
-2026-01-07,FLORIDA,21:50,63,40,52
-2026-01-07,NY,22:30,86,59,27
-2026-01-07,GEORGIA,23:30,39,58,17
-2026-01-08,GEORGIA,12:30,80,72,71
-2026-01-08,FLORIDA,13:30,29,25,14
-2026-01-08,NY,14:30,99,67,29
-2026-01-08,GEORGIA,19:00,76,70,71
-2026-01-08,FLORIDA,21:50,96,3,70
-2026-01-08,NY,22:30,32,69,57
-2026-01-08,GEORGIA,23:30,31,44,79
-2026-01-09,GEORGIA,12:30,77,96,32
-2026-01-09,FLORIDA,13:30,60,89,63
-2026-01-09,NY,14:30,89,9,45
-2026-01-09,GEORGIA,19:00,2,46,18
-2026-01-09,FLORIDA,21:50,93,64,11
-2026-01-09,NY,22:30,35,10,90
-2026-01-09,GEORGIA,23:30,12,77,89
-2026-01-10,GEORGIA,12:30,53,1,46
-2026-01-10,FLORIDA,13:30,1,19,79
-2026-01-10,NY,14:30,52,47,7
-2026-01-10,GEORGIA,19:00,65,54,75
-2026-01-10,FLORIDA,21:50,6,59,88
-2026-01-10,NY,22:30,56,94,93
-2026-01-10,GEORGIA,23:30,70,31,97
-2026-01-11,GEORGIA,12:30,99,1,16
-2026-01-11,FLORIDA,13:30,22,57,82
-2026-01-11,NY,14:30,92,98,23
-2026-01-11,GEORGIA,19:00,18,98,23
-2026-01-11,FLORIDA,21:50,89,30,17
-2026-01-11,NY,22:30,91,29,26
-2026-01-11,GEORGIA,23:30,32,63,91
-2026-01-12,GEORGIA,12:30,77,84,63
-2026-01-12,FLORIDA,13:30,60,80,86
-2026-01-12,NY,14:30,24,49,45
-2026-01-12,GEORGIA,19:00,75,62,14
-2026-01-12,FLORIDA,21:50,96,45,20
-2026-01-12,NY,22:30,86,95,44
-2026-01-12,GEORGIA,23:30,84,41,70
-2026-01-13,GEORGIA,12:30,59,64,78
-2026-01-13,FLORIDA,13:30,90,97,27
-2026-01-13,NY,14:30,9,11,72
-2026-01-13,GEORGIA,19:00,84,28,60
-2026-01-13,FLORIDA,21:50,43,0,16
-2026-01-13,NY,22:30,18,83,40
-2026-01-13,GEORGIA,23:30,97,83,24
-2026-01-14,GEORGIA,12:30,49,21,37
-2026-01-14,FLORIDA,13:30,16,42,23
-2026-01-14,NY,14:30,19,62,50
-2026-01-14,GEORGIA,19:00,78,12,1
-2026-01-14,FLORIDA,21:50,49,3,43
-2026-01-14,NY,22:30,2,97,19
-2026-01-14,GEORGIA,23:30,90,4,31
-2026-01-15,GEORGIA,12:30,74,59,28
-2026-01-15,FLORIDA,13:30,4,2,20
-2026-01-15,NY,14:30,1,6,17
-2026-01-15,GEORGIA,19:00,1,6,17
-2026-01-15,FLORIDA,21:50,47,48,6
-2026-01-15,NY,22:30,84,38,89
-2026-01-15,GEORGIA,23:30,9,11,72
-2026-01-16,GEORGIA,12:30,7,89,84
-2026-01-16,FLORIDA,13:30,73,68,25
-2026-01-16,NY,14:30,39,83,50
-2026-01-16,GEORGIA,19:00,20,5,69
-2026-01-16,FLORIDA,21:50,0,59,3
-2026-01-16,NY,22:30,96,80,72
-2026-01-16,GEORGIA,23:30,70,15,82
-2026-01-17,GEORGIA,12:30,25,71,51
-2026-01-17,FLORIDA,13:30,14,3,75
-2026-01-17,NY,14:30,4,8,4
-2026-01-17,GEORGIA,19:00,58,55,40
-2026-01-17,FLORIDA,21:50,6,65,87
-2026-01-17,NY,22:30,85,99,88
-2026-01-17,GEORGIA,23:30,60,16,80
-2026-01-18,GEORGIA,12:30,18,87,69
-2026-01-18,FLORIDA,13:30,11,91,69
-2026-01-18,NY,14:30,82,15,1
-2026-01-18,GEORGIA,19:00,46,1,59
-2026-01-18,FLORIDA,21:50,62,82,19
-2026-01-18,NY,22:30,94,91,95
-2026-01-18,GEORGIA,23:30,76,88,10
-2026-01-19,GEORGIA,12:30,98,18,43
-2026-01-19,FLORIDA,13:30,63,34,32
-2026-01-19,NY,14:30,69,39,71
-2026-01-19,GEORGIA,19:00,18,10,21
-2026-01-19,FLORIDA,21:50,59,48,77
-2026-01-19,NY,22:30,40,19,59
-2026-01-19,GEORGIA,23:30,64,80,60
-2026-01-20,GEORGIA,12:30,23,97,13
-2026-01-20,FLORIDA,13:30,43,10,38
-2026-01-20,NY,14:30,79,9,5
-2026-01-20,GEORGIA,19:00,73,94,16
-2026-01-20,FLORIDA,21:50,6,14,16
-2026-01-20,NY,22:30,6,0,47
-2026-01-20,GEORGIA,23:30,80,88,23
-2026-01-21,GEORGIA,12:30,70,18,86
-2026-01-21,FLORIDA,13:30,50,8,1
-2026-01-21,NY,14:30,16,93,47
-2026-01-21,GEORGIA,19:00,52,26,71
-2026-01-21,FLORIDA,21:50,84,22,58
-2026-01-21,NY,22:30,33,26,16
-2026-01-21,GEORGIA,23:30,41,98,6
-2026-01-22,GEORGIA,12:30,2,97,49
-2026-01-22,FLORIDA,13:30,93,44,98
-2026-01-22,NY,14:30,81,24,44
-2026-01-22,GEORGIA,19:00,63,71,97
-2026-01-22,FLORIDA,21:50,16,43,9
-2026-01-22,NY,22:30,87,0,77
-2026-01-22,GEORGIA,23:30,84,57,32
-2026-01-23,GEORGIA,12:30,86,72,40
-2026-01-23,FLORIDA,13:30,3,66,33
-2026-01-23,NY,14:30,89,8,14
-2026-01-23,GEORGIA,19:00,49,70,13
-2026-01-23,FLORIDA,21:50,10,34,32
-2026-01-23,NY,22:30,71,80,35
-2026-01-23,GEORGIA,23:30,87,87,45
-2026-01-24,GEORGIA,12:30,58,16,56
-2026-01-24,FLORIDA,13:30,61,26,39
-2026-01-24,NY,14:30,16,73,76
-2026-01-24,GEORGIA,19:00,86,22,94
-2026-01-24,FLORIDA,21:50,62,80,55
-2026-01-24,NY,22:30,51,19,60
-2026-01-24,GEORGIA,23:30,52,35,59
-2026-01-25,GEORGIA,12:30,5,3,52
-2026-01-25,FLORIDA,13:30,84,98,46
-2026-01-25,NY,14:30,77,99,83
-2026-01-25,GEORGIA,19:00,73,6,80
-2026-01-25,FLORIDA,21:50,84,92,21
-2026-01-25,NY,22:30,83,16,73
-2026-01-25,GEORGIA,23:30,84,29,19
-2026-01-26,GEORGIA,12:30,37,78,98
-2026-01-26,FLORIDA,13:30,60,12,83
-2026-01-26,NY,14:30,76,53,95
-2026-01-26,GEORGIA,19:00,81,41,64
-2026-01-26,FLORIDA,21:50,20,68,16
-2026-01-26,NY,22:30,66,90,94
-2026-01-26,GEORGIA,23:30,16,28,0
-2026-01-27,GEORGIA,12:30,97,16,28
-2026-01-27,FLORIDA,13:30,5,46,31
-2026-01-27,NY,14:30,17,15,50
-2026-01-27,GEORGIA,19:00,22,94,80
-2026-01-27,FLORIDA,21:50,22,59,14
-2026-01-27,NY,22:30,65,4,95
-2026-01-27,GEORGIA,23:30,3,47,84
-2026-01-28,GEORGIA,12:30,28,72,19
-2026-01-28,FLORIDA,13:30,87,9,51
-2026-01-28,NY,14:30,90,10,44
-2026-01-28,GEORGIA,19:00,54,52,94
-2026-01-28,FLORIDA,21:50,56,5,2
-2026-01-28,NY,22:30,33,79,6
-2026-01-28,GEORGIA,23:30,3,17,73
-2026-01-29,GEORGIA,12:30,66,54,64
-2026-01-29,FLORIDA,13:30,35,46,63
-2026-01-29,NY,14:30,52,33,91
-2026-01-29,GEORGIA,19:00,91,83,1
-2026-01-29,FLORIDA,21:50,80,62,50
-2026-01-29,NY,22:30,92,20,6
-2026-01-29,GEORGIA,23:30,97,13,92
-2026-01-30,GEORGIA,12:30,5,27,63
-2026-01-30,FLORIDA,13:30,64,44,46
-2026-01-30,NY,14:30,23,81,88
-2026-01-30,GEORGIA,19:00,49,40,75
-2026-01-30,FLORIDA,21:50,24,97,27
-2026-01-30,NY,22:30,15,29,68
-2026-01-30,GEORGIA,23:30,12,58,36
-2026-01-31,GEORGIA,12:30,92,32,79
-2026-01-31,FLORIDA,13:30,85,2,86
-2026-01-31,NY,14:30,17,59,64
-2026-01-31,GEORGIA,19:00,21,76,67
-2026-01-31,FLORIDA,21:50,50,83,55
-2026-01-31,NY,22:30,32,19,77
-2026-01-31,GEORGIA,23:30,73,50,86
-2026-02-01,GEORGIA,12:30,48,93,52
-2026-02-01,FLORIDA,13:30,33,60,3
-2026-02-01,NY,14:30,16,12,20
-2026-02-01,GEORGIA,19:00,76,50,86
-2026-02-01,FLORIDA,21:50,42,20,21
-2026-02-01,NY,22:30,61,14,65
-2026-02-01,GEORGIA,23:30,2,36,53
-2026-02-02,GEORGIA,12:30,34,42,46
-2026-02-02,FLORIDA,13:30,75,10,99
-2026-02-02,NY,14:30,75,39,62
-2026-02-02,GEORGIA,19:00,32,1,42
-2026-02-02,FLORIDA,21:50,2,42,45
-2026-02-02,NY,22:30,45,53,30
-2026-02-02,GEORGIA,23:30,23,2,18
-2026-02-03,GEORGIA,12:30,33,94,97
-2026-02-03,FLORIDA,13:30,52,28,56
-2026-02-03,NY,14:30,15,26,47
-2026-02-03,GEORGIA,19:00,65,77,14
-2026-02-03,FLORIDA,21:50,24,21,65
-2026-02-03,NY,22:30,79,94,74
-2026-02-03,GEORGIA,23:30,26,72,80
-2026-02-04,GEORGIA,12:30,29,74,24
-2026-02-04,FLORIDA,13:30,40,38,17
-2026-02-04,NY,14:30,21,13,30
-2026-02-04,GEORGIA,19:00,96,77,71
-2026-02-04,FLORIDA,21:50,35,3,19
-2026-02-04,NY,22:30,47,13,33
-2026-02-04,GEORGIA,23:30,68,26,61
-2026-02-05,GEORGIA,12:30,6,38,39
-2026-02-05,FLORIDA,13:30,54,41,25
-2026-02-05,NY,14:30,80,71,83
-2026-02-05,GEORGIA,19:00,32,49,50
-2026-02-05,FLORIDA,21:50,77,82,92
-2026-02-05,NY,22:30,59,33,26
-2026-02-05,GEORGIA,23:30,32,64,64
-2026-02-06,GEORGIA,12:30,89,89,79
-2026-02-06,FLORIDA,13:30,84,18,60
-2026-02-06,NY,14:30,66,46,84
-2026-02-06,GEORGIA,19:00,23,40,48
-2026-02-06,FLORIDA,21:50,55,46,47
-2026-02-06,NY,22:30,91,61,84
-2026-02-06,GEORGIA,23:30,65,56,1
-2026-02-07,GEORGIA,12:30,95,9,23
-2026-02-07,FLORIDA,13:30,2,12,19
-2026-02-07,NY,14:30,48,43,25
-2026-02-07,GEORGIA,19:00,15,64,76
-2026-02-07,FLORIDA,21:50,3,51,33
-2026-02-07,NY,22:30,83,95,63
-2026-02-07,GEORGIA,23:30,18,38,50
-2026-02-08,GEORGIA,12:30,67,50,96
-2026-02-08,FLORIDA,13:30,8,37,29
-2026-02-08,NY,14:30,85,34,66
-2026-02-08,GEORGIA,19:00,71,42,67
-2026-02-08,FLORIDA,21:50,74,86,63
-2026-02-08,NY,22:30,34,25,86
-2026-02-08,GEORGIA,23:30,3,24,30
-2026-02-09,GEORGIA,12:30,85,7,9
-2026-02-09,FLORIDA,13:30,90,32,91
-2026-02-09,NY,14:30,46,6,33
-2026-02-09,GEORGIA,19:00,73,68,95
-2026-02-09,FLORIDA,21:50,10,62,82
-2026-02-09,NY,22:30,94,18,49
-2026-02-09,GEORGIA,23:30,61,73,39
-2026-02-10,GEORGIA,12:30,68,21,4
-2026-02-10,FLORIDA,13:30,22,54,23
-2026-02-10,NY,14:30,73,85,48
-2026-02-10,GEORGIA,19:00,71,18,44
-2026-02-10,FLORIDA,21:50,97,75,37
-2026-02-10,NY,22:30,70,27,71
-2026-02-10,GEORGIA,23:30,17,32,62
-2026-02-11,GEORGIA,12:30,79,70,36
-2026-02-11,FLORIDA,13:30,68,88,21
-2026-02-11,NY,14:30,19,83,83
-2026-02-11,GEORGIA,19:00,76,1,63
-2026-02-11,FLORIDA,21:50,23,83,12
-2026-02-11,NY,22:30,9,81,6
-2026-02-11,GEORGIA,23:30,70,10,29
-2026-02-12,GEORGIA,12:30,72,10,26
-2026-02-12,FLORIDA,13:30,22,17,92
-2026-02-12,NY,14:30,66,36,81
-2026-02-12,GEORGIA,19:00,6,65,27
-2026-02-12,FLORIDA,21:50,51,28,97
-2026-02-12,NY,22:30,35,74,65
-2026-02-12,GEORGIA,23:30,17,95,96
-2026-02-13,GEORGIA,12:30,34,10,62
-2026-02-13,FLORIDA,13:30,84,43,58
-2026-02-13,NY,14:30,21,75,15
-2026-02-13,GEORGIA,19:00,33,95,20
-2026-02-13,FLORIDA,21:50,2,27,66
-2026-02-13,NY,22:30,17,61,75
-2026-02-13,GEORGIA,23:30,51,31,59
-2026-02-14,GEORGIA,12:30,32,55,96
-2026-02-14,FLORIDA,13:30,20,95,27
-2026-02-14,NY,14:30,42,89,11
-2026-02-14,GEORGIA,19:00,61,53,94
-2026-02-14,FLORIDA,21:50,85,0,23
-2026-02-14,NY,22:30,48,88,20
-2026-02-14,GEORGIA,23:30,47,85,74
-2026-02-15,GEORGIA,12:30,48,11,60
-2026-02-15,FLORIDA,13:30,26,1,69
-2026-02-15,NY,14:30,87,57,58
-2026-02-15,GEORGIA,19:00,85,36,14
-2026-02-15,FLORIDA,21:50,31,72,94
-2026-02-15,NY,22:30,59,55,75
-2026-02-15,GEORGIA,23:30,32,6,84
-2026-02-16,GEORGIA,12:30,53,69,3
-2026-02-16,FLORIDA,13:30,33,59,78
-2026-02-16,NY,14:30,23,19,25
-2026-02-16,GEORGIA,19:00,29,61,11
-2026-02-16,FLORIDA,21:50,73,56,18
-2026-02-16,NY,22:30,33,42,54
-2026-02-16,GEORGIA,23:30,90,96,6
-2026-02-17,GEORGIA,12:30,64,89,8
-2026-02-17,FLORIDA,13:30,7,89,27
-2026-02-17,NY,14:30,78,82,17
-2026-02-17,GEORGIA,19:00,15,22,43
-2026-02-17,FLORIDA,21:50,31,70,58
-2026-02-17,NY,22:30,31,40,35
-2026-02-17,GEORGIA,23:30,10,16,29
-2026-02-18,GEORGIA,12:30,17,34,99
-2026-02-18,FLORIDA,13:30,16,88,21
-2026-02-18,NY,14:30,54,72,13
-2026-02-18,GEORGIA,19:00,43,0,4
-2026-02-18,FLORIDA,21:50,32,56,35
-2026-02-18,NY,22:30,28,82,44
-2026-02-18,GEORGIA,23:30,78,74,46
-2026-02-19,GEORGIA,12:30,13,38,49
-2026-02-19,FLORIDA,13:30,38,60,31
-2026-02-19,NY,14:30,1,69,3
-2026-02-19,GEORGIA,19:00,95,35,36
-2026-02-19,FLORIDA,21:50,7,50,75
-2026-02-19,NY,22:30,68,22,94
-2026-02-19,GEORGIA,23:30,55,75,22
-2026-02-20,GEORGIA,12:30,89,71,4
-2026-02-20,FLORIDA,13:30,86,55,90
-2026-02-20,NY,14:30,17,83,96
-2026-02-20,GEORGIA,19:00,8,9,60
-2026-02-20,FLORIDA,21:50,78,14,94
-2026-02-20,NY,22:30,37,50,76
-2026-02-20,GEORGIA,23:30,22,38,41
-2026-02-21,GEORGIA,12:30,84,76,87
-2026-02-21,FLORIDA,13:30,15,0,47
-2026-02-21,NY,14:30,7,85,15
-2026-02-21,GEORGIA,19:00,29,17,26
-2026-02-21,FLORIDA,21:50,47,78,83
-2026-02-21,NY,22:30,57,81,22
-2026-02-21,GEORGIA,23:30,84,55,14
-2026-02-22,GEORGIA,12:30,11,48,82
-2026-02-22,FLORIDA,13:30,69,67,23
-2026-02-22,NY,14:30,53,98,37
-2026-02-22,GEORGIA,19:00,56,78,57
-2026-02-22,NY,22:30,53,86,86
-2026-02-22,GEORGIA,23:30,89,54,15
-2026-02-23,GEORGIA,12:30,59,7,77
-2026-02-23,FLORIDA,13:30,7,13,47
-2026-02-23,NY,14:30,26,52,55
-2026-02-23,FLORIDA,21:50,31,17,22
-2026-02-23,NY,22:30,40,80,76
-2026-02-23,GEORGIA,23:30,29,26,11
-2026-02-24,GEORGIA,12:30,62,41,36
-2026-02-24,FLORIDA,13:30,21,2,9
-2026-02-25,GEORGIA,12:30,0,6,53
-2026-02-25,NY,14:30,99,46,56
-2026-02-25,GEORGIA,19:00,13,6,11
-2026-02-25,FLORIDA,21:50,12,54,15
-2026-02-25,NY,22:30,66,86,91
-2026-02-25,GEORGIA,23:30,1,9,10
-2026-02-26,GEORGIA,12:30,60,38,86
-2026-02-26,FLORIDA,13:30,14,63,95
-2026-02-26,NY,14:30,25,87,4
-2026-02-26,GEORGIA,19:00,86,26,50
-2026-02-26,FLORIDA,21:50,3,1,14
-2026-02-26,NY,22:30,27,20,2
-2026-02-26,GEORGIA,23:30,53,55,95
-2026-02-27,GEORGIA,12:30,29,22,19
-2026-02-27,FLORIDA,13:30,20,66,54
-2026-02-27,NY,14:30,62,61,55
-2026-02-27,GEORGIA,19:00,61,11,61
-2026-02-27,FLORIDA,21:50,53,93,36
-2026-02-27,NY,22:30,40,65,6
-2026-02-27,GEORGIA,23:30,72,41,15
-2026-02-28,GEORGIA,12:30,16,51,94
-2026-02-28,FLORIDA,13:30,90,69,41
-2026-02-28,NY,14:30,60,42,56
-2026-02-28,GEORGIA,19:00,2,18,16
-2026-02-28,FLORIDA,21:50,1,64,66
-2026-02-28,NY,22:30,22,50,76
-2026-02-28,GEORGIA,23:30,15,12,13
-2026-03-01,GEORGIA,12:30,81,70,99
-2026-03-01,FLORIDA,13:30,96,97,22
-2026-03-01,NY,14:30,33,78,75
-2026-03-01,FLORIDA,21:50,63,12,35
-2026-03-01,GEORGIA,23:30,56,31,71
-2026-03-02,FLORIDA,13:30,43,10,47
-2026-03-02,NY,14:30,43,85,72
-2026-03-02,GEORGIA,19:00,33,54,93
-2026-03-02,FLORIDA,21:50,93,54,60
-2026-03-02,NY,22:30,17,46,86
-2026-03-02,GEORGIA,23:30,75,9,57
-2026-03-03,GEORGIA,12:30,14,2,71
-2026-03-03,FLORIDA,13:30,55,67,58
-2026-03-03,NY,14:30,32,27,34
-2026-03-04,FLORIDA,13:30,55,55,5
-2026-03-05,GEORGIA,12:30,24,78,39
-2026-03-05,FLORIDA,13:30,41,18,31
-2026-03-05,NY,14:30,29,61,39
-2026-03-05,GEORGIA,19:00,95,89,87
-2026-03-05,FLORIDA,21:50,55,0,54
-2026-03-05,NY,22:30,47,86,81
-2026-03-05,GEORGIA,23:30,50,43,79
-2026-03-06,GEORGIA,12:30,90,63,44
-2026-03-06,FLORIDA,13:30,62,5,22
-2026-03-06,NY,14:30,34,35,59
-2026-03-07,GEORGIA,19:00,75,65,75
-2026-03-07,FLORIDA,21:50,59,75,5
-2026-03-07,NY,22:30,51,43,2
-2026-03-07,GEORGIA,23:30,56,27,75
-2026-03-08,GEORGIA,12:30,56,56,5
-2026-03-08,FLORIDA,13:30,11,46,53
-2026-03-08,NY,14:30,0,89,8
-2026-03-08,GEORGIA,19:00,59,78,55
-2026-03-08,FLORIDA,21:50,89,59,98
-2026-03-08,GEORGIA,22:30,91,96,60
-2026-03-09,GEORGIA,12:30,51,67,30
-2026-03-09,FLORIDA,13:30,83,28,76
-2026-03-09,NY,14:30,0,73,30
-2026-03-09,GEORGIA,19:00,19,1,79
-2026-03-09,FLORIDA,21:50,41,25,87
-2026-03-09,NY,22:30,98,44,8
-2026-03-09,GEORGIA,23:30,67,73,44
-2026-03-10,GEORGIA,12:30,75,4,72
-2026-03-10,FLORIDA,13:30,58,77,18
-2026-03-10,NY,14:30,19,50,73
-2026-03-10,NY,22:30,82,11,5
-2026-03-10,GEORGIA,23:30,67,22,24
-2026-03-11,GEORGIA,12:30,44,72,23
-2026-03-11,FLORIDA,13:30,0,69,28
-2026-03-11,NY,14:30,70,19,36
-2026-03-11,GEORGIA,19:00,34,15,68
-2026-03-11,FLORIDA,21:50,94,3,19
-2026-03-11,NY,22:30,47,36,54
-2026-03-11,GEORGIA,23:30,63,11,25
-2026-03-12,GEORGIA,12:30,91,60,15
-2026-03-12,FLORIDA,13:30,8,1,63
-2026-03-12,NY,14:30,54,85,61
-2026-03-12,GEORGIA,19:00,86,75,6
-2026-03-12,FLORIDA,21:50,39,43,41
-2026-03-12,NY,22:30,65,53,54
-2026-03-12,GEORGIA,23:30,2,33,58
-2026-03-13,GEORGIA,12:30,32,0,98
-2026-03-13,FLORIDA,13:30,50,19,43
-2026-03-13,NY,14:30,40,16,98
-2026-03-13,FLORIDA,21:50,34,66,52
-2026-03-13,NY,22:30,86,78,79
-2026-03-13,GEORGIA,23:30,66,1,86
-2026-03-14,FLORIDA,13:30,70,97,62
-2026-03-14,NY,14:30,95,56,81
-2026-03-14,GEORGIA,19:00,67,58,77
-2026-03-14,FLORIDA,21:50,73,54,78
-2026-03-14,NY,22:30,23,60,31
-2026-03-14,GEORGIA,23:30,60,15,18
-2026-03-15,GEORGIA,12:30,99,64,59
-2026-03-15,FLORIDA,13:30,95,96,1
-2026-03-15,NY,14:30,12,72,95
-2026-03-15,GEORGIA,19:00,87,79,23
-2026-03-15,FLORIDA,21:50,91,33,18
-2026-03-15,NY,22:30,1,62,76
-2026-03-15,GEORGIA,23:30,54,88,90
-2026-03-16,GEORGIA,12:30,9,31,45
-2026-03-16,FLORIDA,13:30,90,3,65
-2026-03-16,NY,14:30,59,23,60
-2026-03-16,GEORGIA,19:00,75,91,59
-2026-03-16,FLORIDA,21:50,84,19,62
-2026-03-16,NY,22:30,97,44,7
-2026-03-16,GEORGIA,23:30,89,63,6
-2026-03-17,FLORIDA,13:30,36,32,92
-2026-03-17,NY,14:30,29,43,91
-2026-03-17,GEORGIA,19:00,84,86,34
-2026-03-17,FLORIDA,21:50,15,63,22
-2026-03-17,NY,22:30,44,81,2
-2026-03-17,GEORGIA,23:30,93,87,62
-2026-03-18,GEORGIA,12:30,27,77,6
-2026-03-18,FLORIDA,13:30,78,91,9
-2026-03-18,NY,14:30,78,72,6
-2026-03-18,GEORGIA,19:00,69,15,82
-2026-03-18,FLORIDA,21:50,85,9,71
-2026-03-19,GEORGIA,12:30,77,3,47
-2026-03-19,FLORIDA,13:30,52,98,60
-2026-03-19,NY,14:30,3,13,92
-2026-03-19,GEORGIA,19:00,13,79,4
-2026-03-19,FLORIDA,21:50,1,21,25
-2026-03-19,GEORGIA,23:30,65,18,72
-2026-03-20,GEORGIA,12:30,83,62,55
-2026-03-20,FLORIDA,13:30,33,17,33
-2026-03-20,NY,14:30,1,54,70
-2026-03-20,GEORGIA,19:00,73,75,18
-2026-03-20,GEORGIA,23:30,43,2,6
-2026-03-21,GEORGIA,12:30,73,98,49
-2026-03-21,FLORIDA,13:30,66,23,5
-2026-03-21,NY,14:30,71,74,86
-2026-03-21,GEORGIA,19:00,56,82,53
-2026-03-21,FLORIDA,21:50,65,88,42
-2026-03-21,NY,22:30,99,21,92
-2026-03-21,GEORGIA,23:30,24,21,82
-2026-03-22,GEORGIA,12:30,68,76,4
-2026-03-22,FLORIDA,13:30,85,56,93
-2026-03-22,NY,14:30,92,45,13
-2026-03-22,GEORGIA,19:00,27,43,83
-2026-03-22,FLORIDA,21:50,76,55,51
-2026-03-22,NY,22:30,18,7,83
-2026-03-22,GEORGIA,23:30,51,49,94
-2026-03-23,GEORGIA,12:30,0,27,50
-2026-03-23,FLORIDA,13:30,96,75,59
-2026-03-23,NY,14:30,39,7,81
-2026-03-23,GEORGIA,19:00,50,64,4
-2026-03-23,FLORIDA,21:50,32,82,71
-2026-03-23,NY,22:30,9,79,56
-2026-03-23,GEORGIA,23:30,98,86,40
-2026-03-24,GEORGIA,12:30,85,80,2
-2026-03-24,FLORIDA,13:30,75,95,21
-2026-03-24,NY,14:30,39,46,9
-2026-03-24,GEORGIA,19:00,49,1,83
-2026-03-24,FLORIDA,21:50,95,6,15
-2026-03-24,NY,22:30,53,25,61
-2026-03-24,GEORGIA,23:30,57,30,12
-2026-03-25,GEORGIA,12:30,82,83,16
-2026-03-25,FLORIDA,13:30,47,18,5
-2026-03-25,NY,14:30,97,26,85
-2026-03-25,GEORGIA,19:00,53,58,84
-2026-03-25,FLORIDA,21:50,7,95,54
-2026-03-25,NY,22:30,86,87,77
-2026-03-25,GEORGIA,23:30,91,40,17
-2026-03-26,GEORGIA,12:30,31,57,75
-2026-03-26,FLORIDA,13:30,10,1,85
-2026-03-26,NY,14:30,4,58,23
-2026-03-26,GEORGIA,19:00,7,97,75
-2026-03-26,FLORIDA,21:50,6,65,93
-2026-03-26,NY,22:30,79,13,91
-2026-03-26,GEORGIA,23:30,80,14,59
-2026-03-27,GEORGIA,12:30,51,43,54
-2026-03-27,FLORIDA,13:30,56,60,50
-2026-03-27,NY,14:30,97,68,50
-2026-03-27,GEORGIA,19:00,15,8,11
-2026-03-27,FLORIDA,21:50,88,57,74
-2026-03-27,NY,22:30,63,2,61
-2026-03-27,GEORGIA,23:30,92,84,70
-2026-03-28,GEORGIA,12:30,44,14,53
-2026-03-28,FLORIDA,13:30,70,80,88
-2026-03-28,NY,14:30,62,16,71
-2026-03-28,GEORGIA,19:00,83,13,86
-2026-03-28,FLORIDA,21:50,97,28,51
-2026-03-28,NY,22:30,93,46,56
-2026-03-28,GEORGIA,23:30,86,55,43
-2026-03-29,GEORGIA,12:30,90,21,35
-2026-03-29,FLORIDA,13:30,62,34,75
-2026-03-29,NY,14:30,4,2,20
-2026-03-29,GEORGIA,19:00,51,79,79
-2026-03-29,FLORIDA,21:50,26,25,59
-2026-03-29,NY,22:30,8,32,29
-2026-03-29,GEORGIA,23:30,83,49,88
-2026-03-30,GEORGIA,12:30,93,87,13
-2026-03-30,FLORIDA,13:30,65,12,75
-2026-03-30,NY,14:30,91,23,78
-2026-03-30,GEORGIA,19:00,36,42,98
-2026-03-30,FLORIDA,21:50,6,42,75
-2026-03-30,NY,22:30,46,58,26
-2026-03-30,GEORGIA,23:30,25,86,97
-2026-03-31,GEORGIA,12:30,81,42,20
-2026-03-31,FLORIDA,13:30,78,86,68
-2026-03-31,NY,14:30,81,91,55
-2026-03-31,GEORGIA,19:00,83,14,80
-2026-03-31,FLORIDA,21:50,5,57,99
-2026-03-31,NY,22:30,90,17,30
-2026-03-31,GEORGIA,23:30,39,19,43
-2026-04-01,GEORGIA,12:30,40,29,15
-2026-04-01,FLORIDA,13:30,26,57,87
-2026-04-01,NY,14:30,13,5,3
-2026-04-01,GEORGIA,19:00,64,14,45
-2026-04-01,FLORIDA,21:50,81,7,44
-2026-04-01,NY,22:30,24,96,81
-2026-04-01,GEORGIA,23:30,80,83,21
-2026-04-02,GEORGIA,12:30,97,89,4
-2026-04-02,FLORIDA,13:30,21,87,37
-2026-04-02,NY,14:30,81,76,33
-2026-04-02,GEORGIA,19:00,95,28,65
-2026-04-02,FLORIDA,21:50,52,75,12
-2026-04-02,NY,22:30,41,62,24
-2026-04-02,GEORGIA,23:30,62,51,62
-2026-04-03,GEORGIA,12:30,24,12,92
-2026-04-03,FLORIDA,13:30,15,50,43
-2026-04-03,NY,14:30,56,56,24
-2026-04-03,GEORGIA,19:00,21,31,97
-2026-04-03,FLORIDA,21:50,63,73,82
-2026-04-03,NY,22:30,19,89,21
-2026-04-03,GEORGIA,23:30,93,13,94
-2026-04-04,GEORGIA,12:30,50,80,9
-2026-04-04,FLORIDA,13:30,31,0,20
-2026-04-04,NY,14:30,69,40,73
-2026-04-04,GEORGIA,19:00,66,97,67
-2026-04-04,FLORIDA,21:50,18,42,63
-2026-04-04,NY,22:30,92,27,25
-2026-04-04,GEORGIA,23:30,58,62,84
-2026-04-05,GEORGIA,12:30,26,37,52
-2026-04-05,FLORIDA,13:30,7,12,31
-2026-04-05,NY,14:30,90,89,40
-2026-04-05,GEORGIA,19:00,67,43,25
-2026-04-05,FLORIDA,21:50,56,79,66
-2026-04-05,NY,22:30,38,36,5
-2026-04-05,GEORGIA,23:30,21,48,56
-2026-04-06,GEORGIA,12:30,14,23,23
-2026-04-06,FLORIDA,13:30,93,58,3
-2026-04-06,NY,14:30,38,33,30
-2026-04-06,GEORGIA,19:00,63,3,22
-2026-04-06,FLORIDA,21:50,24,42,33
-2026-04-06,NY,22:30,19,38,32
-2026-04-06,GEORGIA,23:30,14,56,66
-2026-04-07,GEORGIA,12:30,2,82,78
-2026-04-07,FLORIDA,13:30,22,87,25
-2026-04-07,NY,14:30,79,84,47
-2026-04-07,GEORGIA,19:00,67,64,31
-2026-04-07,FLORIDA,21:50,75,66,26
-2026-04-07,NY,22:30,36,6,99
-2026-04-07,GEORGIA,23:30,43,3,56
-2026-04-08,GEORGIA,12:30,9,57,45
-2026-04-08,FLORIDA,13:30,99,21,83
-2026-04-08,NY,14:30,16,62,22
-2026-04-08,GEORGIA,19:00,41,20,70
-2026-04-08,FLORIDA,21:50,99,63,32
-2026-04-08,NY,22:30,36,81,58
-2026-04-08,GEORGIA,23:30,89,84,72
-2026-04-09,GEORGIA,12:30,86,23,18
-2026-04-09,FLORIDA,13:30,83,55,57
-2026-04-09,NY,14:30,65,20,22
-2026-04-09,GEORGIA,19:00,26,85,64
-2026-04-09,FLORIDA,21:50,45,88,21
-2026-04-09,NY,22:30,32,84,48
-2026-04-09,GEORGIA,23:30,67,29,61
-2026-04-10,GEORGIA,12:30,65,36,89
-2026-04-10,FLORIDA,13:30,6,67,12
-2026-04-10,NY,14:30,33,8,52
-2026-04-10,GEORGIA,19:00,86,72,75
-2026-04-10,FLORIDA,21:50,18,43,90
-2026-04-10,NY,22:30,89,71,89
-2026-04-10,GEORGIA,23:30,76,12,11
-2026-04-11,GEORGIA,12:30,15,72,75
-2026-04-11,FLORIDA,13:30,36,26,89
-2026-04-11,NY,14:30,56,80,93
-2026-04-11,GEORGIA,19:00,33,81,24
-2026-04-11,FLORIDA,21:50,53,30,27
-2026-04-11,NY,22:30,83,49,18
-2026-04-11,GEORGIA,23:30,16,49,72
-2026-04-12,GEORGIA,12:30,2,81,53
-2026-04-12,FLORIDA,13:30,79,43,71
-2026-04-12,NY,14:30,98,78,88
-2026-04-12,GEORGIA,19:00,9,64,13
-2026-04-12,FLORIDA,21:50,68,14,52
-2026-04-12,NY,22:30,16,85,31
-2026-04-12,GEORGIA,23:30,46,63,66
-2026-04-13,GEORGIA,12:30,11,90,63
-2026-04-13,FLORIDA,13:30,65,90,25
-2026-04-13,NY,14:30,75,73,5
-2026-04-13,GEORGIA,19:00,94,45,81
-2026-04-13,FLORIDA,21:50,70,74,13
-2026-04-13,NY,22:30,58,15,95
-2026-04-13,GEORGIA,23:30,20,21,1
-2026-04-14,GEORGIA,12:30,6,83,68
-2026-04-14,FLORIDA,13:30,12,18,43
-2026-04-14,NY,14:30,60,25,7
-2026-04-14,GEORGIA,19:00,16,65,16
-2026-04-14,FLORIDA,21:50,56,61,23
-2026-04-14,NY,22:30,81,46,30
-2026-04-14,GEORGIA,23:30,63,58,25
-2026-04-15,GEORGIA,12:30,66,75,13
-2026-04-15,FLORIDA,13:30,93,57,58
-2026-04-15,NY,14:30,23,45,42
-2026-04-15,GEORGIA,19:00,50,8,6
-2026-04-15,FLORIDA,21:50,88,95,56
-2026-04-15,NY,22:30,33,97,8
-2026-04-15,GEORGIA,23:30,21,69,66
-2026-04-16,GEORGIA,12:30,44,96,99
-2026-04-16,FLORIDA,13:30,73,18,36
-2026-04-16,NY,14:30,25,94,81
-2026-04-16,GEORGIA,19:00,63,39,78
-2026-04-16,FLORIDA,21:50,86,54,28
-2026-04-16,NY,22:30,93,69,76
-2026-04-16,GEORGIA,23:30,37,94,97
-2026-04-17,GEORGIA,12:30,12,21,87
-2026-04-17,FLORIDA,13:30,56,88,72
-2026-04-17,NY,14:30,4,50,81
-2026-04-17,GEORGIA,19:00,24,98,14
-2026-04-17,FLORIDA,21:50,30,1,28
-2026-04-17,NY,22:30,70,21,0
-2026-04-17,GEORGIA,23:30,99,25,76
-2026-04-18,GEORGIA,12:30,74,39,88
-2026-04-18,FLORIDA,13:30,60,78,26
-2026-04-18,NY,14:30,85,74,3
-2026-04-18,GEORGIA,19:00,12,38,31
-2026-04-18,FLORIDA,21:50,14,76,57
-2026-04-18,NY,22:30,90,78,43
-2026-04-18,GEORGIA,23:30,90,52,77
-2026-04-19,GEORGIA,12:30,58,58,10
-2026-04-19,FLORIDA,13:30,91,97,80
-2026-04-19,NY,14:30,45,10,33
-2026-04-19,GEORGIA,19:00,37,90,63
-2026-04-19,FLORIDA,21:50,70,36,78
-2026-04-19,NY,22:30,87,20,92
-2026-04-19,GEORGIA,23:30,58,66,40
-2026-04-20,GEORGIA,12:30,69,92,11
-2026-04-20,FLORIDA,13:30,72,78,33
-2026-04-20,NY,14:30,81,95,97
-2026-04-20,GEORGIA,19:00,68,78,49
-2026-04-20,FLORIDA,21:50,3,27,68
-2026-04-20,NY,22:30,18,89,56
-2026-04-20,GEORGIA,23:30,38,29,92
-2026-04-21,GEORGIA,12:30,98,22,50
-2026-04-21,FLORIDA,13:30,17,67,62
-2026-04-21,NY,14:30,18,61,23
-2026-04-21,GEORGIA,19:00,39,25,61
-2026-04-21,FLORIDA,21:50,98,29,97
-2026-04-21,NY,22:30,64,44,19
-2026-04-21,GEORGIA,23:30,69,13,85
-2026-04-22,GEORGIA,12:30,86,91,85
-2026-04-22,FLORIDA,13:30,76,97,62
-2026-04-22,NY,14:30,90,38,67
-2026-04-22,GEORGIA,19:00,39,14,54
-2026-04-22,FLORIDA,21:50,59,40,90
-2026-04-22,NY,22:30,56,99,50
-2026-04-22,GEORGIA,23:30,90,97,58
-2026-04-23,GEORGIA,12:30,6,94,53
-2026-04-23,FLORIDA,13:30,61,31,15
-2026-04-23,NY,14:30,85,62,0
-2026-04-23,GEORGIA,19:00,28,58,35
-2026-04-23,FLORIDA,21:50,10,69,27
-2026-04-23,NY,22:30,70,76,57
-2026-04-23,GEORGIA,23:30,89,43,59
-2026-04-24,GEORGIA,12:30,81,32,61
-2026-04-24,FLORIDA,13:30,9,28,2
-2026-04-24,NY,14:30,95,53,60
-2026-04-24,GEORGIA,19:00,59,15,29
-2026-04-24,FLORIDA,21:50,94,2,59
-2026-04-24,NY,22:30,55,49,65
-2026-04-24,GEORGIA,23:30,23,50,77
-2026-04-25,GEORGIA,12:30,66,86,80
-2026-04-25,FLORIDA,13:30,6,80,0
-2026-04-25,NY,14:30,80,33,92
-2026-04-25,GEORGIA,19:00,22,83,89
-2026-04-25,FLORIDA,21:50,64,35,45
-2026-04-25,NY,22:30,95,38,25
-2026-04-25,GEORGIA,23:30,78,85,1
-2026-04-26,GEORGIA,12:30,84,6,72
-2026-04-26,FLORIDA,13:30,95,38,16
-2026-04-26,NY,14:30,10,67,8
-2026-04-26,GEORGIA,19:00,9,16,52
-2026-04-26,FLORIDA,21:50,96,12,36
-2026-04-26,NY,22:30,54,82,44
-2026-04-27,GEORGIA,12:30,40,43,68
-2026-04-27,FLORIDA,13:30,5,1,74
-2026-04-27,NY,14:30,90,22,43
-2026-04-27,GEORGIA,19:00,51,9,73
-2026-04-27,FLORIDA,21:50,50,55,48
-2026-04-27,NY,22:30,87,6,41
-2026-04-27,GEORGIA,23:30,77,3,40
-2026-04-28,GEORGIA,12:30,1,40,93
-2026-04-28,FLORIDA,13:30,5,58,94
-2026-04-28,NY,14:30,37,40,38
-2026-04-28,GEORGIA,19:00,85,79,13
-2026-04-28,FLORIDA,21:50,75,95,59
-2026-04-28,NY,22:30,58,66,62
-2026-04-28,GEORGIA,23:30,88,98,14
-2026-04-29,GEORGIA,12:30,12,34,10
-2026-04-29,FLORIDA,13:30,87,3,79
-2026-04-29,NY,14:30,52,94,4
-2026-04-29,GEORGIA,19:00,89,52,96
-2026-04-29,FLORIDA,21:50,4,47,24
-2026-04-29,NY,22:30,24,87,23
-2026-04-29,GEORGIA,23:30,72,88,53
-2026-04-30,GEORGIA,12:30,98,50,25
-2026-04-30,FLORIDA,13:30,35,39,71
-2026-04-30,NY,14:30,91,19,57
-2026-04-30,GEORGIA,19:00,16,60,96
-2026-04-30,FLORIDA,21:50,85,13,75
-2026-04-30,NY,22:30,76,42,4
-2026-04-30,GEORGIA,23:30,41,56,39
-2026-05-01,GEORGIA,12:30,75,49,82
-2026-05-01,FLORIDA,13:30,70,48,44
-2026-05-01,NY,14:30,3,78,65
-2026-05-01,GEORGIA,19:00,40,26,6
-2026-05-01,FLORIDA,21:50,71,88,88
-2026-05-01,NY,22:30,24,16,32
-2026-05-01,GEORGIA,23:30,32,0,18
-2026-05-02,GEORGIA,12:30,9,56,87
-2026-05-02,FLORIDA,13:30,36,17,6
-2026-05-02,NY,14:30,66,17,79
-2026-05-02,GEORGIA,19:00,57,91,11
-2026-05-02,FLORIDA,21:50,69,42,26
-2026-05-02,NY,22:30,86,16,80
-2026-05-02,GEORGIA,23:30,74,62,79
-2026-05-03,GEORGIA,12:30,93,56,61
-2026-05-03,FLORIDA,13:30,34,2,26
-2026-05-03,NY,14:30,58,57,51
-2026-05-03,FLORIDA,21:50,31,88,60
-2026-05-03,NY,22:30,31,51,66
-2026-05-03,GEORGIA,23:30,51,34,83
-2026-05-04,GEORGIA,12:30,56,45,73
-2026-05-04,FLORIDA,13:30,23,41,3
-2026-05-04,NY,14:30,94,53,28
-2026-05-04,GEORGIA,19:00,72,50,28
-2026-05-04,FLORIDA,21:50,17,42,99
-2026-05-04,NY,22:30,92,72,5
-2026-05-04,GEORGIA,23:30,0,64,88
-2026-05-05,GEORGIA,12:30,0,44,55
-2026-05-05,FLORIDA,13:30,88,22,36
-2026-05-05,NY,14:30,31,47,34
-2026-05-05,GEORGIA,19:00,41,11,73
-2026-05-05,FLORIDA,21:50,1,57,23
-2026-05-05,NY,22:30,45,75,56
-2026-05-05,GEORGIA,23:30,44,5,14
-2026-05-06,GEORGIA,12:30,18,36,54
-2026-05-06,FLORIDA,13:30,72,25,60
-2026-05-06,NY,14:30,19,59,54
-2026-05-06,GEORGIA,19:00,5,29,54
-2026-05-06,FLORIDA,21:50,17,93,36
-2026-05-06,NY,22:30,2,26,53
-2026-05-06,GEORGIA,23:30,7,25,4
-2026-05-07,GEORGIA,12:30,94,42,36
-2026-05-07,FLORIDA,13:30,5,20,34
-2026-05-07,NY,14:30,14,10,59
-2026-05-07,GEORGIA,19:00,92,59,97
-2026-05-07,FLORIDA,21:50,88,43,47
-2026-05-07,NY,22:30,61,19,18
-2026-05-07,GEORGIA,23:30,4,98,30
-2026-05-08,NY,14:30,97,17,92
-2026-05-08,GEORGIA,19:00,54,38,10
-2026-05-08,FLORIDA,21:50,20,19,86
-2026-05-08,NY,22:30,17,96,73
-2026-05-08,GEORGIA,23:30,47,6,13
-2026-05-09,GEORGIA,12:30,79,52,62
-2026-05-09,FLORIDA,13:30,15,5,78
-2026-05-09,NY,14:30,32,48,88
-2026-05-09,GEORGIA,19:00,92,98,20
-2026-05-09,FLORIDA,21:50,89,55,21
-2026-05-09,NY,22:30,96,18,23
-2026-05-09,GEORGIA,23:30,5,69,79
-2026-05-10,GEORGIA,12:30,47,65,24
-2026-05-10,FLORIDA,13:30,21,78,49
-2026-05-10,NY,14:30,11,51,63
-2026-05-10,GEORGIA,19:00,30,65,25
-2026-05-10,FLORIDA,21:50,86,31,46
-2026-05-10,NY,22:30,57,55,98
-2026-05-10,GEORGIA,23:30,98,80,61
-2026-05-11,GEORGIA,12:30,11,53,18
-2026-05-11,FLORIDA,13:30,71,65,33
-2026-05-11,NY,14:30,33,90,76
-2026-05-11,GEORGIA,19:00,6,31,61
-2026-05-11,FLORIDA,21:50,9,13,64
-2026-05-11,NY,22:30,99,91,4
-2026-05-11,GEORGIA,23:30,27,83,68
-2026-05-12,GEORGIA,12:30,43,28,22
-2026-05-12,FLORIDA,13:30,49,22,50
-2026-05-12,NY,14:30,96,57,57
-2026-05-12,GEORGIA,19:00,59,5,11
-2026-05-12,FLORIDA,21:50,47,34,78
-2026-05-12,NY,22:30,46,24,0
-2026-05-13,GEORGIA,12:30,49,80,58
-2026-05-13,FLORIDA,13:30,89,5,12
-2026-05-13,NY,14:30,3,8,84
-2026-05-13,GEORGIA,19:00,56,53,87
-2026-05-13,FLORIDA,21:50,16,18,81
-2026-05-13,NY,22:30,65,22,16
-2026-05-13,GEORGIA,23:30,40,47,94
-2026-05-14,GEORGIA,12:30,90,6,31
-2026-05-14,FLORIDA,13:30,24,69,67
-2026-05-14,NY,14:30,13,36,91
-2026-05-14,GEORGIA,19:00,40,94,67
-2026-05-14,FLORIDA,21:50,54,28,44
-2026-05-14,NY,22:30,28,70,17
-2026-05-14,GEORGIA,23:30,92,54,13
-2026-05-15,GEORGIA,12:30,44,98,38
-2026-05-15,FLORIDA,13:30,0,43,8
-2026-05-15,NY,14:30,5,36,16
-2026-05-15,GEORGIA,19:00,37,51,34
-2026-05-15,FLORIDA,21:50,82,80,72
-2026-05-15,NY,22:30,69,41,58
-2026-05-15,GEORGIA,23:30,32,21,79
-2026-05-16,GEORGIA,12:30,99,85,62
-2026-05-16,FLORIDA,13:30,46,83,81
-2026-05-16,NY,14:30,91,60,50
-2026-05-16,GEORGIA,19:00,44,2,78
-2026-05-16,FLORIDA,21:50,23,50,66
-2026-05-16,NY,22:30,81,29,30
-2026-05-16,GEORGIA,23:30,31,81,39
-2026-05-17,GEORGIA,12:30,13,98,36
-2026-05-17,FLORIDA,13:30,38,75,65
-2026-05-17,NY,14:30,99,27,46
-2026-05-17,GEORGIA,19:00,47,59,47
-2026-05-17,FLORIDA,21:50,62,9,92
-2026-05-17,NY,22:30,81,40,92
-2026-05-17,GEORGIA,23:30,44,9,81
-2026-05-18,GEORGIA,12:30,20,38,52
-2026-05-18,FLORIDA,13:30,6,87,36
-2026-05-18,NY,14:30,80,95,54
-2026-05-18,GEORGIA,19:00,43,15,66
-2026-05-18,FLORIDA,21:50,3,66,66
-2026-05-18,NY,22:30,5,96,39
-2026-05-18,GEORGIA,23:30,38,26,77
-2026-05-19,GEORGIA,12:30,39,4,27
-2026-05-19,FLORIDA,13:30,28,98,58
-2026-05-19,NY,14:30,93,27,9
-2026-05-19,GEORGIA,19:00,21,70,4
-2026-05-19,FLORIDA,21:50,93,32,84
-2026-05-19,NY,22:30,87,72,94
-2026-05-19,GEORGIA,23:30,31,21,96
-2026-05-20,GEORGIA,12:30,1,58,50
-2026-05-20,FLORIDA,13:30,57,68,51
-2026-05-20,NY,14:30,72,71,63
-2026-05-20,GEORGIA,19:00,34,61,35
-2026-05-20,FLORIDA,21:50,54,7,79
-2026-05-20,NY,22:30,92,92,34
-2026-05-20,GEORGIA,23:30,12,91,66
-2026-05-21,GEORGIA,12:30,70,77,48
-2026-05-21,FLORIDA,13:30,32,96,95
-2026-05-21,NY,14:30,31,99,5
-2026-05-21,GEORGIA,19:00,29,6,15
-2026-05-21,FLORIDA,21:50,42,3,49
-2026-05-21,NY,22:30,29,73,39
-2026-05-21,GEORGIA,23:30,93,69,47
-2026-05-22,GEORGIA,12:30,34,15,95
-2026-05-22,FLORIDA,13:30,28,85,38
-2026-05-22,NY,14:30,87,95,51
-2026-05-22,GEORGIA,19:00,41,84,85
-2026-05-22,FLORIDA,21:50,7,73,98
-2026-05-22,NY,22:30,78,72,67
-2026-05-22,GEORGIA,23:30,42,25,3
-2026-05-23,GEORGIA,12:30,95,60,40
-2026-05-23,FLORIDA,13:30,36,23,78
-2026-05-23,NY,14:30,75,99,8
-2026-05-23,GEORGIA,19:00,69,18,17
-2026-05-23,FLORIDA,21:50,95,24,15
-2026-05-23,NY,22:30,70,76,3
-2026-05-23,GEORGIA,23:30,87,39,76
-2026-05-24,GEORGIA,12:30,28,89,44
-2026-05-24,FLORIDA,13:30,16,78,10
-2026-05-24,NY,14:30,57,77,49
-2026-05-24,GEORGIA,19:00,32,49,69
-2026-05-24,FLORIDA,21:50,97,39,51
-2026-05-24,NY,22:30,33,68,15
-2026-05-24,GEORGIA,23:30,10,98,65
-2026-05-25,GEORGIA,12:30,62,72,38
-2026-05-25,FLORIDA,13:30,62,70,78
-2026-05-25,NY,14:30,65,75,78
-2026-05-25,GEORGIA,19:00,75,23,55
-2026-05-25,FLORIDA,21:50,62,21,10
-2026-05-25,NY,22:30,84,24,85
-2026-05-25,GEORGIA,23:30,80,48,88
-2026-05-26,GEORGIA,12:30,8,44,56
-2026-05-26,FLORIDA,13:30,72,3,72
-2026-05-26,NY,14:30,90,11,63
-2026-05-26,GEORGIA,19:00,29,71,12
-2026-05-26,FLORIDA,21:50,56,23,1
-2026-05-26,NY,22:30,63,10,63
-2026-05-26,GEORGIA,23:30,92,68,84
-2026-05-27,GEORGIA,12:30,16,51,43
-2026-05-27,FLORIDA,13:30,32,22,50
-2026-05-27,NY,14:30,0,13,42
-2026-05-27,GEORGIA,19:00,73,8,39
-2026-05-27,FLORIDA,21:50,33,31,1
-2026-05-27,NY,22:30,0,94,92
-2026-05-27,GEORGIA,23:30,70,90,66
-2026-05-28,GEORGIA,12:30,43,16,59
-2026-05-28,FLORIDA,13:30,92,17,45
-2026-05-28,NY,14:30,88,27,95
-2026-05-28,GEORGIA,19:00,75,10,65
-2026-05-28,FLORIDA,21:50,44,66,67
-2026-05-28,NY,22:30,58,54,87
-2026-05-28,GEORGIA,23:30,87,42,3
-2026-05-29,GEORGIA,12:30,91,95,20
-2026-05-29,FLORIDA,13:30,77,57,23
-2026-05-29,NY,14:30,27,14,73
-2026-05-29,GEORGIA,19:00,35,84,44
-2026-05-29,FLORIDA,21:50,33,87,27
-2026-05-29,NY,22:30,40,42,34
-2026-05-29,GEORGIA,23:30,60,22,70
-2026-05-30,GEORGIA,12:30,67,12,54
-2026-05-30,FLORIDA,13:30,49,16,25
-2026-05-30,NY,14:30,83,52,50
-2026-05-30,GEORGIA,19:00,48,25,89
-2026-05-30,FLORIDA,21:50,31,7,78
-2026-05-30,NY,22:30,94,76,22
-2026-05-30,GEORGIA,23:30,16,42,7
-2026-05-31,GEORGIA,12:30,31,41,51
-2026-05-31,FLORIDA,13:30,20,1,17
-2026-05-31,NY,14:30,64,75,63
-2026-05-31,GEORGIA,19:00,41,35,16
-2026-05-31,FLORIDA,21:50,43,70,46
-2026-05-31,NY,22:30,16,89,40
-2026-05-31,GEORGIA,23:30,7,41,69
-2026-06-01,GEORGIA,12:30,21,33,82
-2026-06-01,FLORIDA,13:30,45,86,92
-2026-06-01,NY,14:30,36,77,39
-2026-06-01,GEORGIA,19:00,8,18,53
-2026-06-01,FLORIDA,21:50,42,26,40
-2026-06-01,NY,22:30,47,42,8
-2026-06-01,GEORGIA,23:30,29,73,74
-2026-06-02,GEORGIA,12:30,40,74,46
-2026-06-02,FLORIDA,13:30,17,10,76
-2026-06-02,NY,14:30,33,16,57
-2026-06-02,GEORGIA,19:00,21,70,97
-2026-06-02,FLORIDA,21:50,37,53,38
-2026-06-02,NY,22:30,96,93,74
-2026-06-02,GEORGIA,23:30,95,73,95
-2026-06-03,GEORGIA,12:30,95,94,49
-2026-06-03,FLORIDA,13:30,79,23,50
-2026-06-03,NY,14:30,75,30,66
-2026-06-03,GEORGIA,19:00,57,5,6
-2026-06-03,FLORIDA,21:50,19,49,28
-2026-06-03,NY,22:30,48,65,12
-2026-06-03,GEORGIA,23:30,76,79,34
-2026-06-04,GEORGIA,12:30,79,42,49
-2026-06-04,FLORIDA,13:30,14,81,41
-2026-06-04,NY,14:30,81,25,60
-2026-06-04,GEORGIA,19:00,86,84,34
-2026-06-04,FLORIDA,21:50,75,98,65
-2026-06-04,NY,22:30,4,81,87
-2026-06-04,GEORGIA,23:30,15,62,25
-2026-06-05,GEORGIA,12:30,41,75,21
-2026-06-05,FLORIDA,13:30,97,25,47
-2026-06-05,NY,14:30,19,40,28
-2026-06-05,GEORGIA,19:00,22,3,54
-2026-06-05,FLORIDA,21:50,29,41,1
-2026-06-05,NY,22:30,55,17,73
-2026-06-05,GEORGIA,23:30,85,8,68
-2026-06-06,GEORGIA,12:30,83,0,59
-2026-06-06,FLORIDA,13:30,10,87,8
-2026-06-06,NY,14:30,16,68,68
-2026-06-06,GEORGIA,19:00,57,81,0
-2026-06-06,FLORIDA,21:50,12,95,42
-2026-06-06,NY,22:30,14,40,85
-2026-06-06,GEORGIA,23:30,24,92,98
-2026-06-07,GEORGIA,12:30,4,18,40
-2026-06-07,FLORIDA,13:30,41,6,90
-2026-06-07,NY,14:30,13,16,19
-2026-06-07,GEORGIA,19:00,87,32,80
-2026-06-07,FLORIDA,21:50,25,85,53
-2026-06-07,NY,22:30,26,26,7
-2026-06-07,GEORGIA,23:30,50,63,34
-2026-06-08,GEORGIA,12:30,93,27,29
-2026-06-08,FLORIDA,13:30,5,31,60
-2026-06-08,NY,14:30,95,51,80
-2026-06-08,GEORGIA,19:00,54,18,53
-2026-06-08,FLORIDA,21:50,59,4,15
-2026-06-08,NY,22:30,79,20,93
-2026-06-08,GEORGIA,23:30,58,41,35
-2026-06-09,GEORGIA,12:30,41,85,21
-2026-06-09,FLORIDA,13:30,77,41,1
-2026-06-09,NY,14:30,17,60,71
-2026-06-09,GEORGIA,19:00,1,8,80
-2026-06-09,FLORIDA,21:50,4,46,6
-2026-06-09,NY,22:30,52,14,98
-2026-06-09,GEORGIA,23:30,70,80,13
-2026-06-10,GEORGIA,12:30,46,20,40
-2026-06-10,FLORIDA,13:30,32,80,34
-2026-06-10,NY,14:30,93,8,0
-2026-06-10,GEORGIA,19:00,73,72,95
-2026-06-10,FLORIDA,21:50,15,74,4
-2026-06-10,NY,22:30,89,78,42
-2026-06-10,GEORGIA,23:30,69,73,68
-2026-06-11,GEORGIA,12:30,55,29,67
-2026-06-11,FLORIDA,13:30,98,61,60
-2026-06-11,NY,14:30,30,33,15
-2026-06-11,GEORGIA,19:00,98,48,33
-2026-06-11,FLORIDA,21:50,49,34,47
-2026-06-11,NY,22:30,39,52,48
-2026-06-11,GEORGIA,23:30,15,98,98
-2026-06-12,GEORGIA,12:30,27,11,88
-2026-06-12,FLORIDA,13:30,2,27,8
-2026-06-12,NY,14:30,24,47,89
-2026-06-12,GEORGIA,19:00,54,57,1
-2026-06-12,FLORIDA,21:50,18,34,5
-2026-06-12,NY,22:30,47,86,69
-2026-06-12,GEORGIA,23:30,11,21,41
-2026-06-13,GEORGIA,12:30,15,18,42
-2026-06-13,FLORIDA,13:30,76,67,29
-2026-06-13,NY,14:30,49,2,86
-2026-06-13,GEORGIA,19:00,65,5,14
-2026-06-13,FLORIDA,21:50,14,52,44
-2026-06-13,NY,22:30,92,7,85
-2026-06-13,GEORGIA,23:30,34,80,4
-2026-06-14,GEORGIA,12:30,2,41,76
-2026-06-14,FLORIDA,13:30,58,7,76
-2026-06-14,NY,14:30,30,82,97
-2026-06-14,GEORGIA,19:00,70,47,46
-2026-06-14,FLORIDA,21:50,89,12,50
-2026-06-14,NY,22:30,57,0,92
-2026-06-14,GEORGIA,23:30,31,86,55
-2026-06-15,GEORGIA,12:30,87,86,47
-2026-06-15,FLORIDA,13:30,81,30,40
-2026-06-15,NY,14:30,49,93,38
-2026-06-15,GEORGIA,19:00,53,82,47
-2026-06-15,FLORIDA,21:50,0,65,97
-2026-06-15,NY,22:30,38,21,2
-2026-06-15,GEORGIA,23:30,26,5,70
-2026-06-16,GEORGIA,12:30,70,60,77
-2026-06-16,FLORIDA,13:30,89,9,81
-2026-06-16,NY,14:30,87,96,16
-2026-06-16,GEORGIA,19:00,16,48,23
-2026-06-16,FLORIDA,21:50,0,42,29
-2026-06-16,NY,22:30,40,32,19
-2026-06-16,GEORGIA,23:30,11,80,54
-2026-06-17,GEORGIA,12:30,63,2,40
-2026-06-17,FLORIDA,13:30,81,61,7
-2026-06-17,NY,14:30,86,79,42
-2026-06-17,GEORGIA,19:00,78,11,29
-2026-06-17,FLORIDA,21:50,79,78,22
-2026-06-17,NY,22:30,9,75,23
-2026-06-17,GEORGIA,23:30,74,30,7
-2026-06-18,GEORGIA,12:30,57,70,49
-2026-06-18,FLORIDA,13:30,31,69,38
-2026-06-18,NY,14:30,8,50,66
-2026-06-18,GEORGIA,19:00,77,3,89
-2026-06-18,FLORIDA,21:50,94,13,62
-2026-06-18,NY,22:30,33,5,99
-2026-06-18,GEORGIA,23:30,36,46,9
-2026-06-19,GEORGIA,12:30,67,89,19
-2026-06-19,FLORIDA,13:30,35,67,85
-2026-06-19,NY,14:30,78,74,56
-2026-06-19,GEORGIA,19:00,43,53,22
-2026-06-19,FLORIDA,21:50,63,73,23
-2026-06-19,NY,22:30,61,73,62
-2026-06-19,GEORGIA,23:30,93,65,72
-2026-06-20,GEORGIA,12:30,9,1,25
-2026-06-20,FLORIDA,13:30,82,16,8
-2026-06-20,NY,14:30,76,40,88
-2026-06-20,GEORGIA,19:00,69,18,15
-2026-06-20,FLORIDA,21:50,43,35,40
-2026-06-20,NY,22:30,70,26,27
-2026-06-20,GEORGIA,23:30,46,54,60
-2026-06-21,GEORGIA,12:30,69,36,63
-2026-06-21,FLORIDA,13:30,35,42,49
-2026-06-21,NY,14:30,39,19,10
-2026-06-21,GEORGIA,19:00,64,29,87
-2026-06-21,FLORIDA,21:50,13,67,69
-2026-06-21,NY,22:30,65,99,32
-2026-06-21,GEORGIA,23:30,26,98,18
-2026-06-22,GEORGIA,12:30,63,47,53
-2026-06-22,FLORIDA,13:30,82,19,70
-2026-06-22,NY,14:30,50,44,16
-2026-06-22,GEORGIA,19:00,30,24,71
-2026-06-22,FLORIDA,21:50,61,73,57
-2026-06-22,NY,22:30,71,44,5
-2026-06-22,GEORGIA,23:30,68,32,16
-2026-06-23,GEORGIA,12:30,54,46,61
-2026-06-23,FLORIDA,13:30,37,91,62
-2026-06-23,NY,14:30,84,70,31
-2026-06-23,GEORGIA,19:00,88,23,20
-2026-06-23,FLORIDA,21:50,41,9,23
-2026-06-23,NY,22:30,15,56,65
-2026-06-23,GEORGIA,23:30,76,33,73
-2026-06-24,GEORGIA,12:30,22,31,94
-2026-06-24,FLORIDA,13:30,61,37,40
-2026-06-24,NY,14:30,28,21,67
-2026-06-24,GEORGIA,19:00,0,84,59
-2026-06-24,FLORIDA,21:50,62,18,40
-2026-06-24,NY,22:30,30,56,40
-2026-06-24,GEORGIA,23:30,27,7,98
-2026-06-25,GEORGIA,12:30,25,26,54
-2026-06-25,FLORIDA,13:30,78,79,16
-2026-06-25,NY,14:30,58,20,0
-2026-06-25,GEORGIA,19:00,14,95,64
-2026-06-25,FLORIDA,21:50,43,32,78
-2026-06-25,NY,22:30,23,61,93
-2026-06-25,GEORGIA,23:30,2,29,10
-2026-06-26,GEORGIA,12:30,61,76,25
-2026-06-26,FLORIDA,13:30,87,34,90
-2026-06-26,NY,14:30,61,66,64
-2026-06-26,GEORGIA,19:00,72,49,19
-2026-06-26,FLORIDA,21:50,4,42,74
-2026-06-26,NY,22:30,75,16,42
-2026-06-26,GEORGIA,23:30,51,49,11
-2026-06-27,GEORGIA,12:30,61,51,6
-2026-06-27,FLORIDA,13:30,78,37,89
-2026-06-27,NY,14:30,4,92,75
-2026-06-27,GEORGIA,19:00,54,79,5
-2026-06-27,FLORIDA,21:50,58,40,97
-2026-06-27,NY,22:30,16,15,8
-2026-06-27,GEORGIA,23:30,54,72,23
-2026-06-28,GEORGIA,12:30,99,80,98
-2026-06-28,FLORIDA,13:30,48,89,3
-2026-06-28,NY,14:30,57,21,64
-2026-06-28,GEORGIA,19:00,40,67,63
-2026-06-28,FLORIDA,21:50,21,14,63
-2026-06-28,NY,22:30,54,38,20
-2026-06-28,GEORGIA,23:30,43,6,51
-2026-06-29,GEORGIA,12:30,95,81,29
-2026-06-29,FLORIDA,13:30,3,96,67
-2026-06-29,NY,14:30,36,8,72
-2026-06-29,GEORGIA,19:00,23,28,90
-2026-06-29,FLORIDA,21:50,95,20,32
-2026-06-29,NY,22:30,42,45,57
-2026-06-29,GEORGIA,23:30,22,14,31
-2026-06-30,GEORGIA,12:30,65,4,40
-2026-06-30,FLORIDA,13:30,66,64,4
-2026-06-30,NY,14:30,58,34,35
-2026-06-30,GEORGIA,19:00,25,6,89
-2026-06-30,FLORIDA,21:50,2,75,74
-2026-06-30,NY,22:30,22,24,35
-2026-06-30,GEORGIA,23:30,86,88,63
-2026-07-01,GEORGIA,12:30,23,70,6
-2026-07-01,FLORIDA,13:30,27,5,91
-2026-07-01,NY,14:30,1,64,82
-2026-07-01,GEORGIA,19:00,43,4,39
-2026-07-01,FLORIDA,21:50,91,97,40
-2026-07-01,NY,22:30,25,57,36
-2026-07-01,GEORGIA,23:30,22,24,76
-2026-07-02,GEORGIA,12:30,90,0,80
-2026-07-02,FLORIDA,13:30,8,81,91
-2026-07-02,NY,14:30,1,76,53
-2026-07-02,GEORGIA,19:00,80,96,79
-2026-07-02,FLORIDA,21:50,64,72,24
-2026-07-02,NY,22:30,6,60,86
-2026-07-02,GEORGIA,23:30,21,51,84
-2026-07-03,GEORGIA,12:30,21,51,84
-2026-07-03,FLORIDA,13:30,60,89,38
-2026-07-03,NY,14:30,84,11,17
-2026-07-03,GEORGIA,19:00,95,16,41
-2026-07-03,FLORIDA,21:50,61,75,76
-2026-07-03,NY,22:30,82,63,78
-2026-07-03,GEORGIA,23:30,8,57,16
-2026-07-04,GEORGIA,12:30,56,11,85
-2026-07-04,FLORIDA,13:30,72,32,51
-2026-07-04,NY,14:30,36,76,6
-2026-07-04,GEORGIA,19:00,69,17,57
-2026-07-04,FLORIDA,21:50,6,78,78
-2026-07-04,NY,22:30,89,25,36
-2026-07-04,GEORGIA,23:30,29,0,50
-2026-07-05,GEORGIA,12:30,66,30,64
-2026-07-05,FLORIDA,13:30,90,86,87
-2026-07-05,NY,14:30,17,67,40
-2026-07-05,GEORGIA,19:00,44,50,24
-2026-07-05,FLORIDA,21:50,19,44,21
-2026-07-05,NY,22:30,47,48,56
-2026-07-05,GEORGIA,23:30,91,68,77
-2026-07-06,GEORGIA,12:30,48,57,26
-2026-07-06,FLORIDA,13:30,56,97,92
-2026-07-06,NY,14:30,38,0,42
-2026-07-06,GEORGIA,19:00,9,25,39
-2026-07-06,FLORIDA,21:50,77,90,66
-2026-07-06,NY,22:30,46,73,55
-2026-07-06,GEORGIA,23:30,91,68,77
-2026-07-07,GEORGIA,12:30,63,54,70
-2026-07-07,FLORIDA,13:30,59,73,39
-2026-07-07,NY,14:30,40,19,32
-2026-07-07,GEORGIA,19:00,24,4,13
-2026-07-07,FLORIDA,21:50,27,1,8
-2026-07-07,NY,22:30,98,68,83
-2026-07-07,GEORGIA,23:30,27,8,26
-2026-07-08,GEORGIA,12:30,33,38,17
-2026-07-08,FLORIDA,13:30,59,2,50
-2026-07-08,NY,14:30,53,45,1
-2026-07-08,GEORGIA,19:00,74,96,7
-2026-07-08,FLORIDA,21:50,69,13,22
-2026-07-08,NY,22:30,86,47,95
-2026-07-08,GEORGIA,23:30,34,60,84
-2026-07-09,GEORGIA,12:30,44,68,2
-2026-07-09,FLORIDA,13:30,78,55,57
-2026-07-09,NY,14:30,22,48,30
-2026-07-09,GEORGIA,19:00,28,84,81
-2026-07-09,FLORIDA,21:50,21,99,37
-2026-07-09,NY,22:30,80,10,85
-2026-07-09,GEORGIA,23:30,90,75,71
-2026-07-10,GEORGIA,12:30,75,95,44
-2026-07-10,FLORIDA,13:30,53,22,42
-2026-07-10,NY,14:30,20,68,65
-2026-07-10,GEORGIA,19:00,55,43,10
-2026-07-10,FLORIDA,21:50,81,4,41
-2026-07-10,NY,22:30,39,56,77
-2026-07-10,GEORGIA,23:30,26,58,9
-2026-07-11,GEORGIA,12:30,42,71,18
-2026-07-11,FLORIDA,13:30,13,87,50
-2026-07-11,NY,14:30,4,0,72
-2026-07-11,GEORGIA,19:00,73,77,90
-2026-07-11,FLORIDA,21:50,75,15,14
-2026-07-11,NY,22:30,79,41,43
-2026-07-11,GEORGIA,23:30,69,36,42
-2026-07-12,GEORGIA,12:30,39,88,28
-2026-07-12,FLORIDA,13:30,90,68,23
-2026-07-12,NY,14:30,56,29,0
-2026-07-12,GEORGIA,19:00,17,9,98
-2026-07-12,FLORIDA,21:50,18,38,18
-2026-07-12,NY,22:30,83,25,57
-2026-07-12,GEORGIA,23:30,19,16,75
-2026-07-13,GEORGIA,12:30,72,3,94
-2026-07-13,FLORIDA,13:30,93,16,50
-2026-07-13,NY,14:30,47,11,46
-2026-07-13,GEORGIA,19:00,20,77,57
-2026-07-13,FLORIDA,21:50,80,79,6
-2026-07-13,NY,22:30,80,83,59
-2026-07-13,GEORGIA,23:30,76,90,58
-2026-07-14,GEORGIA,12:30,84,4,63
-2026-07-14,FLORIDA,13:30,46,38,55
-2026-07-14,NY,14:30,40,17,31
-2026-07-14,GEORGIA,19:00,77,19,4
-2026-07-14,FLORIDA,21:50,92,47,92
-2026-07-14,NY,22:30,19,4,97
-2026-07-14,GEORGIA,23:30,37,91,49
-2026-07-15,GEORGIA,12:30,7,37,84
-2026-07-15,FLORIDA,13:30,55,23,96
-2026-07-15,NY,14:30,76,75,59
-2026-07-15,GEORGIA,19:00,97,7,80
-2026-07-15,FLORIDA,21:50,59,4,71
-2026-07-15,NY,22:30,0,96,99
-2026-07-15,GEORGIA,23:30,42,59,92
-2026-07-16,GEORGIA,12:30,6,66,65
-2026-07-16,FLORIDA,13:30,41,61,14
-2026-07-16,NY,14:30,9,54,13
-2026-07-16,GEORGIA,19:00,98,18,24
-2026-07-16,FLORIDA,21:50,0,42,76
-2026-07-16,NY,22:30,0,29,61
-2026-07-16,GEORGIA,23:30,31,1,64
-2026-07-17,GEORGIA,12:30,57,98,28
-2026-07-17,FLORIDA,13:30,80,43,88
-2026-07-17,NY,14:30,95,38,33
-2026-07-17,GEORGIA,19:00,40,4,28
-2026-07-17,FLORIDA,21:50,44,65,90
-2026-07-17,NY,22:30,19,62,85
-2026-07-17,GEORGIA,23:30,57,63,99
-2026-07-18,GEORGIA,12:30,32,55,4
-2026-07-18,FLORIDA,13:30,30,28,25
-2026-07-18,NY,14:30,27,50,78
-2026-07-18,GEORGIA,19:00,90,68,92
-2026-07-18,FLORIDA,21:50,27,55,88
-2026-07-18,NY,22:30,7,22,31
-2026-07-18,GEORGIA,23:30,87,30,78
-2026-07-19,GEORGIA,12:30,92,55,15
-2026-07-19,FLORIDA,13:30,85,9,69
-2026-07-19,NY,14:30,98,39,62
-2026-07-19,GEORGIA,19:00,27,35,31
-2026-07-19,FLORIDA,21:50,91,49,44
-2026-07-19,NY,22:30,70,26,70
-2026-07-19,GEORGIA,23:30,85,3,59
-2026-07-20,GEORGIA,12:30,48,80,53
-2026-07-20,FLORIDA,13:30,5,46,41
-2026-07-20,NY,14:30,84,12,33
-2026-07-20,GEORGIA,19:00,50,80,22
-2026-07-20,FLORIDA,21:50,88,21,72
-2026-07-20,NY,22:30,73,76,77
-2026-07-20,GEORGIA,23:30,54,72,35
-2026-07-21,GEORGIA,12:30,15,45,24
-2026-07-21,FLORIDA,13:30,28,52,54
-2026-07-21,NY,14:30,60,29,81
-2026-07-21,GEORGIA,19:00,30,58,69
-2026-07-21,FLORIDA,21:50,27,89,76
-2026-07-21,NY,22:30,71,36,80
-2026-07-21,GEORGIA,23:30,77,88,95
-2026-07-22,GEORGIA,12:30,15,45,24
-2026-07-22,FLORIDA,13:30,8,49,34
-2026-07-22,NY,14:30,35,61,45
-2026-07-22,GEORGIA,19:00,47,92,69
-2026-07-22,FLORIDA,21:50,95,50,36
-2026-07-22,NY,22:30,38,95,49
-2026-07-22,GEORGIA,23:30,27,87,89
-2026-07-23,GEORGIA,12:30,77,1,80
-2026-07-23,FLORIDA,13:30,15,65,10
-2026-07-23,NY,14:30,35,6,68
-2026-07-23,GEORGIA,19:00,99,56,59
-2026-07-24,GEORGIA,12:30,54,18,53
-2026-07-24,FLORIDA,13:30,46,31,59
-2026-07-24,NY,14:30,40,94,68
-2026-07-24,GEORGIA,19:00,74,38,88
-2026-07-24,FLORIDA,21:50,94,89,72
-2026-07-24,NY,22:30,61,58,67
-2026-07-24,GEORGIA,23:30,6,44,89
-2026-07-25,GEORGIA,12:30,87,23,16
-2026-07-25,FLORIDA,13:30,17,17,84
-2026-07-25,NY,14:30,63,20,85
-2026-07-25,GEORGIA,19:00,88,98,74
-2026-07-25,FLORIDA,21:50,81,70,30
-2026-07-25,NY,22:30,32,12,79
-2026-07-25,GEORGIA,23:30,71,5,91
-2026-07-26,GEORGIA,12:30,97,97,0
-2026-07-26,FLORIDA,13:30,9,98,23
-2026-07-26,NY,14:30,35,69,83
-2026-07-26,GEORGIA,19:00,53,1,94
-2026-07-26,FLORIDA,21:50,97,91,10
-2026-07-26,NY,22:30,11,99,34
-2026-07-26,GEORGIA,23:30,62,18,83
-2026-07-27,GEORGIA,12:30,69,69,40
-2026-07-27,FLORIDA,13:30,97,0,41
-2026-07-27,NY,14:30,61,84,87
-2026-07-27,GEORGIA,19:00,38,61,48
-2026-07-27,FLORIDA,21:50,5,64,16
-2026-07-27,NY,22:30,32,67,16`;
+// HISTORIAL COMPLETO: Octubre 2025 - Julio 2026
+let H=[
+// OCTUBRE 2025
+['2025-10-01','GEORGIA','12:30',33,6,40],['2025-10-01','FLORIDA','13:30',12,49,11],['2025-10-01','NY','14:30',83,57,41],['2025-10-01','GEORGIA','19:00',49,51,45],['2025-10-01','FLORIDA','21:50',58,14,84],['2025-10-01','NY','22:30',22,99,28],['2025-10-01','GEORGIA','23:30',96,16,41],
+['2025-10-02','GEORGIA','12:30',37,74,39],['2025-10-02','FLORIDA','13:30',70,8,22],['2025-10-02','NY','14:30',21,28,46],['2025-10-02','GEORGIA','19:00',24,22,47],['2025-10-02','FLORIDA','21:50',0,28,43],['2025-10-02','NY','22:30',97,69,33],['2025-10-02','GEORGIA','23:30',30,22,4],
+['2025-10-03','GEORGIA','12:30',78,43,13],['2025-10-03','FLORIDA','13:30',82,99,78],['2025-10-03','NY','14:30',68,35,68],['2025-10-03','GEORGIA','19:00',82,28,49],['2025-10-03','FLORIDA','21:50',70,12,37],['2025-10-03','NY','22:30',32,64,54],['2025-10-03','GEORGIA','23:30',98,51,94],
+['2025-10-04','GEORGIA','12:30',91,50,13],['2025-10-04','FLORIDA','13:30',89,4,51],['2025-10-04','NY','14:30',77,20,50],['2025-10-04','GEORGIA','19:00',32,56,34],['2025-10-04','FLORIDA','21:50',82,99,31],['2025-10-04','NY','22:30',26,16,44],['2025-10-04','GEORGIA','23:30',74,74,15],
+['2025-10-05','GEORGIA','12:30',90,48,97],['2025-10-05','FLORIDA','13:30',99,51,75],['2025-10-05','NY','14:30',95,61,14],['2025-10-05','GEORGIA','19:00',87,33,76],['2025-10-05','FLORIDA','21:50',81,82,34],['2025-10-05','NY','22:30',24,77,16],['2025-10-05','GEORGIA','23:30',79,70,76],
+['2025-10-06','GEORGIA','12:30',63,53,41],['2025-10-06','FLORIDA','13:30',56,61,19],['2025-10-06','NY','14:30',6,76,42],['2025-10-06','GEORGIA','19:00',33,93,76],['2025-10-06','FLORIDA','21:50',62,14,33],['2025-10-06','NY','22:30',62,32,90],['2025-10-06','GEORGIA','23:30',56,56,6],
+['2025-10-07','GEORGIA','12:30',91,28,22],['2025-10-07','FLORIDA','13:30',73,35,41],['2025-10-07','NY','14:30',48,48,64],['2025-10-07','GEORGIA','19:00',30,65,96],['2025-10-07','FLORIDA','21:50',33,75,2],['2025-10-07','NY','22:30',63,96,47],['2025-10-07','GEORGIA','23:30',48,81,20],
+['2025-10-08','FLORIDA','13:30',35,4,49],['2025-10-08','NY','14:30',60,30,72],['2025-10-08','GEORGIA','19:00',10,73,54],['2025-10-08','FLORIDA','21:50',31,27,63],['2025-10-08','NY','22:30',64,4,94],['2025-10-08','GEORGIA','23:30',56,70,91],
+['2025-10-09','GEORGIA','12:30',43,45,54],['2025-10-09','FLORIDA','13:30',61,53,9],['2025-10-09','NY','14:30',8,36,11],['2025-10-09','GEORGIA','19:00',98,69,92],['2025-10-09','FLORIDA','21:50',69,56,59],['2025-10-09','NY','22:30',72,61,58],['2025-10-09','GEORGIA','23:30',29,40,65],
+['2025-10-10','GEORGIA','12:30',10,50,65],['2025-10-10','FLORIDA','13:30',89,14,57],['2025-10-10','NY','14:30',35,50,66],['2025-10-10','GEORGIA','19:00',91,28,24],['2025-10-10','FLORIDA','21:50',44,74,15],['2025-10-10','NY','22:30',38,1,29],['2025-10-10','GEORGIA','23:30',80,62,32],
+['2025-10-11','GEORGIA','12:30',19,24,93],['2025-10-11','FLORIDA','13:30',44,12,47],['2025-10-11','NY','14:30',29,10,1],['2025-10-11','GEORGIA','19:00',61,20,40],['2025-10-11','FLORIDA','21:50',58,20,7],['2025-10-11','NY','22:30',90,98,27],['2025-10-11','GEORGIA','23:30',53,87,36],
+['2025-10-12','GEORGIA','12:30',60,81,5],['2025-10-12','FLORIDA','13:30',89,64,53],['2025-10-12','NY','14:30',13,13,7],['2025-10-12','GEORGIA','19:00',86,6,12],['2025-10-12','FLORIDA','21:50',32,2,52],['2025-10-12','NY','22:30',42,56,92],['2025-10-12','GEORGIA','23:30',95,64,37],
+['2025-10-13','GEORGIA','12:30',30,41,94],['2025-10-13','FLORIDA','13:30',23,68,77],['2025-10-13','NY','14:30',48,52,42],['2025-10-13','GEORGIA','19:00',58,29,77],['2025-10-13','FLORIDA','21:50',93,70,22],['2025-10-13','NY','22:30',8,42,46],['2025-10-13','GEORGIA','23:30',38,69,55],
+['2025-10-14','GEORGIA','12:30',75,41,20],['2025-10-14','FLORIDA','13:30',89,24,26],['2025-10-14','NY','14:30',40,2,38],['2025-10-14','GEORGIA','19:00',24,92,36],['2025-10-14','FLORIDA','21:50',30,22,96],['2025-10-14','NY','22:30',23,50,44],['2025-10-14','GEORGIA','23:30',86,21,41],
+['2025-10-15','GEORGIA','12:30',49,14,36],['2025-10-15','FLORIDA','13:30',13,24,39],['2025-10-15','NY','14:30',59,65,0],['2025-10-15','GEORGIA','19:00',24,54,96],['2025-10-15','FLORIDA','21:50',66,34,4],['2025-10-15','NY','22:30',41,64,86],['2025-10-15','GEORGIA','23:30',69,60,98],
+['2025-10-16','GEORGIA','12:30',36,81,57],['2025-10-16','FLORIDA','13:30',0,82,87],['2025-10-16','NY','14:30',46,91,42],['2025-10-16','GEORGIA','19:00',8,31,99],['2025-10-16','FLORIDA','21:50',88,70,72],['2025-10-16','NY','22:30',33,75,84],['2025-10-16','GEORGIA','23:30',63,70,0],
+['2025-10-17','GEORGIA','12:30',92,68,85],['2025-10-17','FLORIDA','13:30',19,5,66],['2025-10-17','NY','14:30',31,18,50],['2025-10-17','GEORGIA','19:00',79,30,48],['2025-10-17','FLORIDA','21:50',45,89,49],['2025-10-17','NY','22:30',89,6,48],['2025-10-17','GEORGIA','23:30',22,51,47],
+['2025-10-18','GEORGIA','12:30',81,98,42],['2025-10-18','FLORIDA','13:30',58,6,57],['2025-10-18','NY','14:30',98,93,87],['2025-10-18','GEORGIA','19:00',73,56,30],['2025-10-18','FLORIDA','21:50',8,76,84],['2025-10-18','NY','22:30',92,0,90],['2025-10-18','GEORGIA','23:30',41,2,67],
+['2025-10-19','GEORGIA','12:30',44,25,11],['2025-10-19','FLORIDA','13:30',64,20,80],['2025-10-19','NY','14:30',77,16,16],['2025-10-19','GEORGIA','19:00',75,52,99],['2025-10-19','FLORIDA','21:50',57,74,37],['2025-10-19','NY','22:30',52,2,82],['2025-10-19','GEORGIA','23:30',79,70,76],
+['2025-10-20','GEORGIA','12:30',22,92,83],['2025-10-20','FLORIDA','13:30',84,59,75],['2025-10-20','NY','14:30',87,58,77],['2025-10-20','GEORGIA','19:00',79,0,66],['2025-10-20','FLORIDA','21:50',34,92,10],['2025-10-20','NY','22:30',82,88,31],['2025-10-20','GEORGIA','23:30',8,8,50],
+['2025-10-21','GEORGIA','12:30',72,11,79],['2025-10-21','FLORIDA','13:30',86,27,89],['2025-10-21','NY','14:30',60,25,74],['2025-10-21','GEORGIA','19:00',31,10,95],['2025-10-21','FLORIDA','21:50',34,72,86],['2025-10-21','NY','22:30',86,68,56],['2025-10-21','GEORGIA','23:30',37,28,41],
+['2025-10-22','GEORGIA','12:30',89,7,57],['2025-10-22','FLORIDA','13:30',74,41,0],['2025-10-22','NY','14:30',67,57,36],['2025-10-22','GEORGIA','19:00',62,41,90],['2025-10-22','FLORIDA','21:50',18,35,12],['2025-10-22','NY','22:30',4,46,33],['2025-10-22','GEORGIA','23:30',60,43,28],
+['2025-10-23','GEORGIA','12:30',32,77,26],['2025-10-23','FLORIDA','13:30',47,32,23],['2025-10-23','NY','14:30',5,93,48],['2025-10-23','FLORIDA','21:50',32,47,35],['2025-10-23','NY','22:30',71,95,36],['2025-10-23','GEORGIA','23:30',58,55,36],
+['2025-10-24','GEORGIA','12:30',94,54,11],['2025-10-24','FLORIDA','13:30',99,0,7],['2025-10-24','NY','14:30',53,99,79],['2025-10-24','GEORGIA','19:00',9,7,65],['2025-10-24','FLORIDA','21:50',51,50,84],['2025-10-24','NY','22:30',58,23,10],['2025-10-24','GEORGIA','23:30',15,17,65],
+['2025-10-25','GEORGIA','12:30',19,56,66],['2025-10-25','FLORIDA','13:30',75,65,11],['2025-10-25','NY','14:30',72,10,4],['2025-10-25','GEORGIA','19:00',38,82,44],['2025-10-25','FLORIDA','21:50',75,38,46],['2025-10-25','NY','22:30',38,2,54],['2025-10-25','GEORGIA','23:30',56,4,3],
+['2025-10-26','GEORGIA','12:30',73,74,18],['2025-10-26','FLORIDA','13:30',2,71,93],['2025-10-26','NY','14:30',77,57,72],['2025-10-26','GEORGIA','19:00',29,40,64],['2025-10-26','FLORIDA','21:50',95,94,43],['2025-10-26','NY','22:30',4,52,2],['2025-10-26','GEORGIA','23:30',60,56,35],
+['2025-10-27','GEORGIA','12:30',3,97,43],['2025-10-27','FLORIDA','13:30',21,77,49],['2025-10-27','NY','14:30',59,28,42],['2025-10-27','GEORGIA','19:00',95,99,17],['2025-10-27','FLORIDA','21:50',60,71,8],['2025-10-27','NY','22:30',25,15,56],['2025-10-27','GEORGIA','23:30',90,17,20],
+['2025-10-28','GEORGIA','12:30',12,47,53],['2025-10-28','FLORIDA','13:30',33,65,6],['2025-10-28','NY','14:30',52,11,93],['2025-10-28','GEORGIA','19:00',30,5,50],['2025-10-28','FLORIDA','21:50',64,20,61],['2025-10-28','NY','22:30',99,72,69],['2025-10-28','GEORGIA','23:30',14,39,29],
+['2025-10-29','GEORGIA','12:30',73,84,1],['2025-10-29','FLORIDA','13:30',65,30,88],['2025-10-29','NY','14:30',60,91,54],['2025-10-29','GEORGIA','19:00',39,3,63],['2025-10-29','FLORIDA','21:50',99,24,9],['2025-10-29','NY','22:30',61,42,88],['2025-10-29','GEORGIA','23:30',57,62,75],
+['2025-10-30','GEORGIA','12:30',10,33,46],['2025-10-30','FLORIDA','13:30',24,15,76],['2025-10-30','NY','14:30',38,99,60],['2025-10-30','GEORGIA','19:00',28,77,26],['2025-10-30','FLORIDA','21:50',43,42,6],['2025-10-30','NY','22:30',64,44,59],['2025-10-30','GEORGIA','23:30',28,94,18],
+['2025-10-31','GEORGIA','12:30',76,27,45],['2025-10-31','FLORIDA','13:30',11,86,96],['2025-10-31','NY','14:30',60,5,12],['2025-10-31','GEORGIA','19:00',37,95,0],['2025-10-31','FLORIDA','21:50',98,87,26],['2025-10-31','NY','22:30',78,46,29],['2025-10-31','GEORGIA','23:30',88,99,55],
+// NOVIEMBRE 2025
+['2025-11-01','GEORGIA','12:30',77,99,10],['2025-11-01','FLORIDA','13:30',26,40,4],['2025-11-01','NY','14:30',79,16,90],['2025-11-01','GEORGIA','19:00',29,12,68],['2025-11-01','FLORIDA','21:50',70,68,75],['2025-11-01','NY','22:30',2,44,80],['2025-11-01','GEORGIA','23:30',51,4,73],
+['2025-11-02','GEORGIA','12:30',24,6,39],['2025-11-02','FLORIDA','13:30',34,33,69],['2025-11-02','NY','14:30',5,75,97],['2025-11-02','GEORGIA','19:00',82,91,97],['2025-11-02','FLORIDA','21:50',38,91,10],['2025-11-02','NY','22:30',18,38,38],['2025-11-02','GEORGIA','23:30',69,81,69],
+['2025-11-03','GEORGIA','12:30',44,13,80],['2025-11-03','FLORIDA','13:30',81,57,60],['2025-11-03','NY','14:30',82,1,97],['2025-11-03','GEORGIA','19:00',88,60,45],['2025-11-03','FLORIDA','21:50',39,87,95],['2025-11-03','NY','22:30',97,4,2],['2025-11-03','GEORGIA','23:30',97,73,22],
+['2025-11-04','GEORGIA','12:30',84,44,40],['2025-11-04','FLORIDA','13:30',89,75,21],['2025-11-04','NY','14:30',84,44,31],['2025-11-04','GEORGIA','19:00',61,69,26],['2025-11-04','FLORIDA','21:50',34,60,64],['2025-11-04','NY','22:30',72,19,43],['2025-11-04','GEORGIA','23:30',26,62,85],
+['2025-11-05','GEORGIA','12:30',81,5,53],['2025-11-05','FLORIDA','13:30',86,61,37],['2025-11-05','NY','14:30',44,4,83],['2025-11-05','GEORGIA','19:00',14,95,80],['2025-11-05','FLORIDA','21:50',83,82,5],['2025-11-05','NY','22:30',46,3,2],['2025-11-05','GEORGIA','23:30',19,51,59],
+['2025-11-06','GEORGIA','12:30',33,74,80],['2025-11-06','FLORIDA','13:30',48,64,76],['2025-11-06','NY','14:30',75,21,10],['2025-11-06','GEORGIA','19:00',3,88,97],['2025-11-06','FLORIDA','21:50',70,46,43],['2025-11-06','NY','22:30',78,88,24],['2025-11-06','GEORGIA','23:30',88,64,53],
+['2025-11-07','GEORGIA','12:30',86,25,77],['2025-11-07','FLORIDA','13:30',58,65,98],['2025-11-07','NY','14:30',32,37,21],['2025-11-07','GEORGIA','19:00',39,59,40],['2025-11-07','FLORIDA','21:50',7,19,95],['2025-11-07','NY','22:30',8,7,23],['2025-11-07','GEORGIA','23:30',11,21,76],
+['2025-11-08','GEORGIA','12:30',5,41,83],['2025-11-08','FLORIDA','13:30',86,39,60],['2025-11-08','NY','14:30',36,51,64],['2025-11-08','GEORGIA','19:00',0,21,42],['2025-11-08','FLORIDA','21:50',56,11,37],['2025-11-08','NY','22:30',53,23,3],['2025-11-08','GEORGIA','23:30',44,36,61],
+['2025-11-09','GEORGIA','12:30',71,11,65],['2025-11-09','FLORIDA','13:30',90,75,1],['2025-11-09','NY','14:30',32,73,22],['2025-11-09','GEORGIA','19:00',39,71,32],['2025-11-09','FLORIDA','21:50',40,52,58],['2025-11-09','NY','22:30',6,14,86],['2025-11-09','GEORGIA','23:30',37,25,23],
+['2025-11-10','GEORGIA','12:30',50,41,67],['2025-11-10','FLORIDA','13:30',66,11,23],['2025-11-10','NY','14:30',84,23,84],['2025-11-10','GEORGIA','19:00',39,58,76],['2025-11-10','FLORIDA','21:50',76,38,14],['2025-11-10','NY','22:30',19,39,97],['2025-11-10','GEORGIA','23:30',89,32,29],
+['2025-11-11','GEORGIA','12:30',31,66,19],['2025-11-11','FLORIDA','13:30',60,36,26],['2025-11-11','NY','14:30',81,6,83],['2025-11-11','GEORGIA','19:00',34,88,11],['2025-11-11','FLORIDA','21:50',40,33,50],['2025-11-11','NY','22:30',1,78,13],['2025-11-11','GEORGIA','23:30',34,22,43],
+['2025-11-12','GEORGIA','12:30',37,56,69],['2025-11-12','FLORIDA','13:30',57,80,55],['2025-11-12','NY','14:30',83,82,43],['2025-11-12','GEORGIA','19:00',83,27,39],['2025-11-12','FLORIDA','21:50',93,23,47],['2025-11-12','NY','22:30',55,49,24],['2025-11-12','GEORGIA','23:30',59,41,67],
+['2025-11-13','GEORGIA','12:30',17,73,55],['2025-11-13','FLORIDA','13:30',10,36,90],['2025-11-13','NY','14:30',50,2,3],['2025-11-13','GEORGIA','19:00',64,6,98],['2025-11-13','FLORIDA','21:50',16,98,39],['2025-11-13','NY','22:30',54,64,98],['2025-11-13','GEORGIA','23:30',94,57,19],
+['2025-11-14','GEORGIA','12:30',83,81,71],['2025-11-14','FLORIDA','13:30',67,20,33],['2025-11-14','NY','14:30',70,92,0],['2025-11-14','GEORGIA','19:00',56,30,16],['2025-11-14','FLORIDA','21:50',55,5,89],['2025-11-14','NY','22:30',2,70,94],['2025-11-14','GEORGIA','23:30',5,80,20],
+['2025-11-15','GEORGIA','12:30',26,80,62],['2025-11-15','FLORIDA','13:30',83,99,28],['2025-11-15','GEORGIA','19:00',0,48,93],['2025-11-15','FLORIDA','21:50',71,36,7],['2025-11-15','NY','22:30',15,83,12],['2025-11-15','GEORGIA','23:30',88,5,99],
+['2025-11-16','GEORGIA','12:30',82,40,86],['2025-11-16','FLORIDA','13:30',86,4,31],['2025-11-16','NY','14:30',33,1,5],['2025-11-16','GEORGIA','19:00',57,44,5],['2025-11-16','FLORIDA','21:50',50,83,41],['2025-11-16','NY','22:30',11,74,88],['2025-11-16','GEORGIA','23:30',90,96,6],
+['2025-11-17','GEORGIA','12:30',77,23,72],['2025-11-17','FLORIDA','13:30',37,90,73],['2025-11-17','NY','14:30',48,22,84],['2025-11-17','FLORIDA','21:50',0,17,61],['2025-11-17','NY','22:30',55,9,79],['2025-11-17','GEORGIA','23:30',58,17,86],
+['2025-11-18','GEORGIA','12:30',73,76,38],['2025-11-18','FLORIDA','13:30',13,53,2],['2025-11-18','NY','14:30',57,44,70],['2025-11-18','GEORGIA','19:00',16,94,29],['2025-11-18','FLORIDA','21:50',68,34,6],['2025-11-18','NY','22:30',83,54,66],['2025-11-18','GEORGIA','23:30',29,28,7],
+['2025-11-19','FLORIDA','13:30',7,9,83],['2025-11-19','NY','14:30',59,33,53],['2025-11-19','GEORGIA','19:00',22,57,28],['2025-11-19','FLORIDA','21:50',37,89,45],['2025-11-19','NY','22:30',28,26,66],['2025-11-19','GEORGIA','23:30',49,17,91],
+['2025-11-20','GEORGIA','12:30',79,73,80],['2025-11-20','FLORIDA','13:30',85,73,26],['2025-11-20','NY','14:30',33,72,36],['2025-11-20','GEORGIA','19:00',32,19,54],['2025-11-20','FLORIDA','21:50',14,29,75],['2025-11-20','NY','22:30',39,14,76],['2025-11-20','GEORGIA','23:30',8,21,12],
+['2025-11-21','GEORGIA','12:30',65,14,47],['2025-11-21','FLORIDA','13:30',72,51,12],['2025-11-21','NY','14:30',65,3,6],['2025-11-21','GEORGIA','19:00',37,55,13],['2025-11-21','FLORIDA','21:50',11,45,32],['2025-11-21','NY','22:30',82,30,98],['2025-11-21','GEORGIA','23:30',87,96,42],
+['2025-11-22','GEORGIA','12:30',8,20,27],['2025-11-22','FLORIDA','13:30',28,37,76],['2025-11-22','NY','14:30',59,83,15],['2025-11-22','GEORGIA','19:00',66,43,42],['2025-11-22','FLORIDA','21:50',37,13,50],['2025-11-22','NY','22:30',21,65,27],['2025-11-22','GEORGIA','23:30',10,68,24],
+['2025-11-23','GEORGIA','12:30',78,31,95],['2025-11-23','FLORIDA','13:30',20,86,24],['2025-11-23','NY','14:30',16,78,50],['2025-11-23','GEORGIA','19:00',94,88,50],['2025-11-23','FLORIDA','21:50',96,60,29],['2025-11-23','NY','22:30',97,64,91],['2025-11-23','GEORGIA','23:30',87,76,40],
+['2025-11-24','GEORGIA','12:30',44,4,39],['2025-11-24','FLORIDA','13:30',65,6,57],['2025-11-24','NY','14:30',56,59,31],['2025-11-24','GEORGIA','19:00',90,29,12],['2025-11-24','FLORIDA','21:50',55,59,17],['2025-11-24','NY','22:30',79,70,19],['2025-11-24','GEORGIA','23:30',19,8,68],
+['2025-11-25','GEORGIA','12:30',78,51,39],['2025-11-25','FLORIDA','13:30',78,4,45],['2025-11-25','NY','14:30',61,57,63],['2025-11-25','GEORGIA','19:00',39,48,18],['2025-11-25','FLORIDA','21:50',41,54,14],['2025-11-25','NY','22:30',82,24,40],['2025-11-25','GEORGIA','23:30',80,67,11],
+['2025-11-26','GEORGIA','12:30',77,99,47],['2025-11-26','FLORIDA','13:30',3,66,72],['2025-11-26','NY','14:30',2,55,97],['2025-11-26','GEORGIA','19:00',9,50,84],['2025-11-26','FLORIDA','21:50',57,31,78],['2025-11-26','NY','22:30',58,43,7],['2025-11-26','GEORGIA','23:30',4,30,99],
+['2025-11-27','GEORGIA','12:30',8,8,68],['2025-11-27','FLORIDA','13:30',9,15,85],['2025-11-27','NY','14:30',34,82,70],['2025-11-27','GEORGIA','19:00',68,59,83],['2025-11-27','FLORIDA','21:50',6,32,59],['2025-11-27','NY','22:30',92,99,69],['2025-11-27','GEORGIA','23:30',16,99,77],
+['2025-11-28','GEORGIA','12:30',35,31,84],['2025-11-28','FLORIDA','13:30',7,51,99],['2025-11-28','NY','14:30',0,37,14],['2025-11-28','GEORGIA','19:00',58,31,56],['2025-11-28','FLORIDA','21:50',18,26,50],['2025-11-28','NY','22:30',75,89,11],['2025-11-28','GEORGIA','23:30',46,86,92],
+['2025-11-29','FLORIDA','13:30',64,89,6],['2025-11-29','NY','14:30',8,90,55],['2025-11-29','GEORGIA','19:00',70,28,75],['2025-11-29','FLORIDA','21:50',9,34,28],['2025-11-29','NY','22:30',10,75,34],['2025-11-29','GEORGIA','23:30',59,76,88],
+['2025-11-30','GEORGIA','12:30',11,44,22],['2025-11-30','FLORIDA','13:30',24,88,10],['2025-11-30','NY','14:30',56,82,77],['2025-11-30','GEORGIA','19:00',10,37,25],['2025-11-30','FLORIDA','21:50',84,36,62],['2025-11-30','NY','22:30',50,26,86],['2025-11-30','GEORGIA','23:30',89,74,32],
+// DICIEMBRE 2025
+['2025-12-01','GEORGIA','12:30',99,86,30],['2025-12-01','FLORIDA','13:30',88,28,5],['2025-12-01','NY','14:30',64,92,83],['2025-12-01','GEORGIA','19:00',58,59,56],['2025-12-01','FLORIDA','21:50',28,67,20],['2025-12-01','NY','22:30',2,32,31],['2025-12-01','GEORGIA','23:30',73,33,40],
+['2025-12-02','GEORGIA','12:30',64,71,49],['2025-12-02','FLORIDA','13:30',2,57,72],['2025-12-02','NY','14:30',83,41,95],['2025-12-02','GEORGIA','19:00',46,32,19],['2025-12-02','FLORIDA','21:50',36,33,36],['2025-12-02','NY','22:30',21,68,73],['2025-12-02','GEORGIA','23:30',78,61,4],
+['2025-12-03','GEORGIA','12:30',93,82,17],['2025-12-03','FLORIDA','13:30',34,13,56],['2025-12-03','NY','14:30',14,49,81],['2025-12-03','GEORGIA','19:00',47,66,71],['2025-12-03','FLORIDA','21:50',2,26,81],['2025-12-03','NY','22:30',94,58,48],['2025-12-03','GEORGIA','23:30',59,35,19],
+['2025-12-04','GEORGIA','12:30',13,96,61],['2025-12-04','FLORIDA','13:30',21,32,86],['2025-12-04','NY','14:30',84,96,47],['2025-12-04','GEORGIA','19:00',89,36,22],['2025-12-04','FLORIDA','21:50',41,98,60],['2025-12-04','NY','22:30',35,93,28],['2025-12-04','GEORGIA','23:30',24,95,23],
+['2025-12-05','GEORGIA','12:30',16,76,23],['2025-12-05','FLORIDA','13:30',55,63,34],['2025-12-05','NY','14:30',42,84,76],['2025-12-05','GEORGIA','19:00',41,19,9],['2025-12-05','FLORIDA','21:50',80,62,28],['2025-12-05','NY','22:30',36,57,48],['2025-12-05','GEORGIA','23:30',80,94,98],
+['2025-12-06','GEORGIA','12:30',8,23,51],['2025-12-06','FLORIDA','13:30',13,71,49],['2025-12-06','NY','14:30',67,78,21],['2025-12-06','GEORGIA','19:00',68,29,25],['2025-12-06','FLORIDA','21:50',40,21,70],['2025-12-06','NY','22:30',8,56,76],['2025-12-06','GEORGIA','23:30',29,77,22],
+['2025-12-07','GEORGIA','12:30',34,60,10],['2025-12-07','FLORIDA','13:30',96,57,70],['2025-12-07','NY','14:30',48,1,15],['2025-12-07','GEORGIA','19:00',83,79,51],['2025-12-07','FLORIDA','21:50',67,15,22],['2025-12-07','NY','22:30',79,50,13],['2025-12-07','GEORGIA','23:30',63,75,56],
+['2025-12-08','GEORGIA','12:30',28,88,43],['2025-12-08','FLORIDA','13:30',56,58,76],['2025-12-08','NY','14:30',29,93,78],['2025-12-08','GEORGIA','19:00',93,80,59],['2025-12-08','FLORIDA','21:50',84,39,19],['2025-12-08','NY','22:30',45,38,75],['2025-12-08','GEORGIA','23:30',7,86,28],
+['2025-12-09','GEORGIA','12:30',94,60,79],['2025-12-09','FLORIDA','13:30',83,37,20],['2025-12-09','NY','14:30',73,26,39],['2025-12-09','GEORGIA','19:00',36,18,51],['2025-12-09','FLORIDA','21:50',34,0,15],['2025-12-09','NY','22:30',2,99,74],['2025-12-09','GEORGIA','23:30',0,9,55],
+['2025-12-10','GEORGIA','12:30',35,67,43],['2025-12-10','FLORIDA','13:30',58,37,93],['2025-12-10','NY','14:30',86,81,45],['2025-12-10','GEORGIA','19:00',94,3,56],['2025-12-10','FLORIDA','21:50',0,69,92],['2025-12-10','NY','22:30',58,15,3],['2025-12-10','GEORGIA','23:30',9,2,69],
+['2025-12-11','GEORGIA','12:30',56,75,54],['2025-12-11','FLORIDA','13:30',52,82,13],['2025-12-11','NY','14:30',30,42,64],['2025-12-11','GEORGIA','19:00',78,79,8],['2025-12-11','FLORIDA','21:50',41,42,37],['2025-12-11','NY','22:30',72,22,91],['2025-12-11','GEORGIA','23:30',35,38,79],
+['2025-12-12','GEORGIA','12:30',79,80,63],['2025-12-12','FLORIDA','13:30',63,53,57],['2025-12-12','NY','14:30',22,5,54],['2025-12-12','GEORGIA','19:00',84,27,96],['2025-12-12','FLORIDA','21:50',12,41,80],['2025-12-12','NY','22:30',65,1,75],['2025-12-12','GEORGIA','23:30',58,43,42],
+['2025-12-13','GEORGIA','12:30',37,52,20],['2025-12-13','FLORIDA','13:30',21,6,70],['2025-12-13','NY','14:30',7,91,92],['2025-12-13','GEORGIA','19:00',88,9,29],['2025-12-13','FLORIDA','21:50',14,61,8],['2025-12-13','NY','22:30',55,35,88],['2025-12-13','GEORGIA','23:30',22,34,71],
+['2025-12-14','GEORGIA','12:30',97,53,16],['2025-12-14','FLORIDA','13:30',17,66,53],['2025-12-14','NY','14:30',35,32,9],['2025-12-14','GEORGIA','19:00',89,14,89],['2025-12-14','FLORIDA','21:50',11,8,93],['2025-12-14','NY','22:30',91,88,58],['2025-12-14','GEORGIA','23:30',5,57,29],
+['2025-12-15','GEORGIA','12:30',32,4,35],['2025-12-15','FLORIDA','13:30',74,88,99],['2025-12-15','NY','14:30',94,91,14],['2025-12-15','GEORGIA','19:00',69,27,61],['2025-12-15','FLORIDA','21:50',18,70,57],['2025-12-15','NY','22:30',62,2,1],['2025-12-15','GEORGIA','23:30',79,22,23],
+['2025-12-16','GEORGIA','12:30',87,16,38],['2025-12-16','FLORIDA','13:30',17,99,68],['2025-12-16','NY','14:30',84,21,28],['2025-12-16','GEORGIA','19:00',81,4,61],['2025-12-16','FLORIDA','21:50',95,10,92],['2025-12-16','NY','22:30',84,21,28],['2025-12-16','GEORGIA','23:30',78,93,55],
+['2025-12-17','GEORGIA','12:30',69,78,59],['2025-12-17','FLORIDA','13:30',52,31,30],['2025-12-17','NY','14:30',58,1,43],['2025-12-17','GEORGIA','19:00',65,78,30],['2025-12-17','FLORIDA','21:50',61,18,88],['2025-12-17','NY','22:30',31,9,30],['2025-12-17','GEORGIA','23:30',24,91,93],
+['2025-12-18','GEORGIA','12:30',7,43,12],['2025-12-18','FLORIDA','13:30',36,92,51],['2025-12-18','NY','14:30',51,19,2],['2025-12-18','GEORGIA','19:00',52,97,42],['2025-12-18','FLORIDA','21:50',63,53,37],['2025-12-18','NY','22:30',94,33,8],['2025-12-18','GEORGIA','23:30',35,43,26],
+['2025-12-19','GEORGIA','12:30',4,60,44],['2025-12-19','FLORIDA','13:30',22,1,17],['2025-12-19','NY','14:30',95,86,50],['2025-12-19','GEORGIA','19:00',24,54,83],['2025-12-19','FLORIDA','21:50',59,97,67],['2025-12-19','NY','22:30',78,61,44],['2025-12-19','GEORGIA','23:30',87,26,43],
+['2025-12-20','GEORGIA','12:30',89,41,18],['2025-12-20','FLORIDA','13:30',31,69,76],['2025-12-20','NY','14:30',58,11,41],['2025-12-20','GEORGIA','19:00',94,91,22],['2025-12-20','FLORIDA','21:50',15,89,34],['2025-12-20','NY','22:30',40,15,2],['2025-12-20','GEORGIA','23:30',52,97,25],
+['2025-12-21','GEORGIA','12:30',99,63,72],['2025-12-21','FLORIDA','13:30',58,45,69],['2025-12-21','NY','14:30',2,96,20],['2025-12-21','GEORGIA','19:00',62,83,12],['2025-12-21','FLORIDA','21:50',55,39,18],['2025-12-21','NY','22:30',24,16,1],['2025-12-21','GEORGIA','23:30',79,8,0],
+['2025-12-22','GEORGIA','12:30',87,88,64],['2025-12-22','FLORIDA','13:30',48,71,89],['2025-12-22','NY','14:30',3,50,82],['2025-12-22','GEORGIA','19:00',18,87,8],['2025-12-22','FLORIDA','21:50',99,51,5],['2025-12-22','NY','22:30',51,29,19],['2025-12-22','GEORGIA','23:30',65,53,89],
+['2025-12-23','GEORGIA','12:30',41,39,9],['2025-12-23','FLORIDA','13:30',74,69,27],['2025-12-23','NY','14:30',80,62,23],['2025-12-23','GEORGIA','19:00',34,35,19],['2025-12-23','FLORIDA','21:50',22,11,19],['2025-12-23','NY','22:30',98,76,43],['2025-12-23','GEORGIA','23:30',26,79,29],
+['2025-12-24','GEORGIA','12:30',22,79,21],['2025-12-24','FLORIDA','13:30',46,76,8],['2025-12-24','NY','14:30',75,19,22],['2025-12-24','GEORGIA','19:00',61,73,69],['2025-12-24','FLORIDA','21:50',34,26,48],['2025-12-24','NY','22:30',10,6,40],['2025-12-24','GEORGIA','23:30',9,45,63],
+['2025-12-25','GEORGIA','12:30',73,61,63],['2025-12-25','FLORIDA','13:30',25,90,22],['2025-12-25','NY','14:30',83,3,34],['2025-12-25','GEORGIA','19:00',15,98,25],['2025-12-25','FLORIDA','21:50',10,62,39],['2025-12-25','NY','22:30',61,73,73],['2025-12-25','GEORGIA','23:30',77,32,83],
+['2025-12-26','GEORGIA','12:30',57,58,81],['2025-12-26','FLORIDA','13:30',45,1,37],['2025-12-26','NY','14:30',64,45,73],['2025-12-26','GEORGIA','19:00',49,39,93],['2025-12-26','FLORIDA','21:50',46,23,66],['2025-12-26','NY','22:30',14,26,0],['2025-12-26','GEORGIA','23:30',34,63,75],
+['2025-12-27','GEORGIA','12:30',96,77,87],['2025-12-27','FLORIDA','13:30',52,0,1],['2025-12-27','NY','14:30',93,7,5],['2025-12-27','GEORGIA','19:00',86,81,45],['2025-12-27','FLORIDA','21:50',85,0,33],['2025-12-27','NY','22:30',50,29,19],['2025-12-27','GEORGIA','23:30',81,88,81],
+['2025-12-28','GEORGIA','12:30',36,20,55],['2025-12-28','FLORIDA','13:30',9,53,11],['2025-12-28','NY','14:30',98,9,85],['2025-12-28','GEORGIA','19:00',22,3,12],['2025-12-28','FLORIDA','21:50',3,53,12],['2025-12-28','NY','22:30',53,42,95],['2025-12-28','GEORGIA','23:30',27,91,3],
+['2025-12-29','GEORGIA','12:30',65,69,46],['2025-12-29','FLORIDA','13:30',22,90,81],['2025-12-29','NY','14:30',21,73,37],['2025-12-29','GEORGIA','19:00',61,87,11],['2025-12-29','FLORIDA','21:50',8,9,81],['2025-12-29','NY','22:30',95,13,72],['2025-12-29','GEORGIA','23:30',75,66,60],
+['2025-12-30','GEORGIA','12:30',14,89,39],['2025-12-30','FLORIDA','13:30',77,22,37],['2025-12-30','NY','14:30',51,94,88],['2025-12-30','GEORGIA','19:00',88,76,12],['2025-12-30','FLORIDA','21:50',70,70,72],['2025-12-30','NY','22:30',32,35,3],['2025-12-30','GEORGIA','23:30',26,19,45],
+['2025-12-31','GEORGIA','12:30',76,37,6],['2025-12-31','FLORIDA','13:30',7,65,71],['2025-12-31','NY','14:30',19,23,28],['2025-12-31','GEORGIA','19:00',50,68,92],['2025-12-31','FLORIDA','21:50',11,23,5],['2025-12-31','NY','22:30',16,37,96],['2025-12-31','GEORGIA','23:30',82,75,99],
+// ENERO 2026
+['2026-01-01','GEORGIA','12:30',26,90,78],['2026-01-01','FLORIDA','13:30',95,11,35],['2026-01-01','NY','14:30',17,55,46],['2026-01-01','GEORGIA','19:00',49,10,60],['2026-01-01','FLORIDA','21:50',91,58,46],['2026-01-01','NY','22:30',74,33,17],['2026-01-01','GEORGIA','23:30',6,34,28],
+['2026-01-02','GEORGIA','12:30',58,6,38],['2026-01-02','FLORIDA','13:30',62,55,59],['2026-01-02','NY','14:30',98,36,30],['2026-01-02','GEORGIA','19:00',46,20,99],['2026-01-02','FLORIDA','21:50',89,34,18],['2026-01-02','NY','22:30',56,80,49],['2026-01-02','GEORGIA','23:30',72,74,82],
+['2026-01-03','GEORGIA','12:30',85,49,59],['2026-01-03','FLORIDA','13:30',8,94,31],['2026-01-03','NY','14:30',43,45,40],['2026-01-03','GEORGIA','19:00',80,79,35],['2026-01-03','FLORIDA','21:50',11,56,73],['2026-01-03','NY','22:30',79,12,79],['2026-01-03','GEORGIA','23:30',18,10,63],
+['2026-01-04','GEORGIA','12:30',3,31,58],['2026-01-04','FLORIDA','13:30',71,94,55],['2026-01-04','NY','14:30',93,84,4],['2026-01-04','GEORGIA','19:00',20,58,70],['2026-01-04','FLORIDA','21:50',71,90,18],['2026-01-04','NY','22:30',89,67,31],['2026-01-04','GEORGIA','23:30',62,62,39],
+['2026-01-05','GEORGIA','12:30',0,0,61],['2026-01-05','FLORIDA','13:30',80,85,41],['2026-01-05','NY','14:30',80,83,63],['2026-01-05','GEORGIA','19:00',20,17,64],['2026-01-05','FLORIDA','21:50',94,42,47],['2026-01-05','NY','22:30',35,82,23],['2026-01-05','GEORGIA','23:30',56,7,82],
+['2026-01-06','GEORGIA','12:30',8,14,83],['2026-01-06','FLORIDA','13:30',9,78,89],['2026-01-06','NY','14:30',81,26,66],['2026-01-06','GEORGIA','19:00',56,12,84],['2026-01-06','FLORIDA','21:50',60,74,37],['2026-01-06','NY','22:30',42,44,24],['2026-01-06','GEORGIA','23:30',60,81,46],
+['2026-01-07','GEORGIA','12:30',81,39,40],['2026-01-07','FLORIDA','13:30',34,70,65],['2026-01-07','NY','14:30',16,61,18],['2026-01-07','GEORGIA','19:00',67,45,79],['2026-01-07','FLORIDA','21:50',63,40,52],['2026-01-07','NY','22:30',86,59,27],['2026-01-07','GEORGIA','23:30',39,58,17],
+['2026-01-08','GEORGIA','12:30',80,72,71],['2026-01-08','FLORIDA','13:30',29,25,14],['2026-01-08','NY','14:30',99,67,29],['2026-01-08','GEORGIA','19:00',76,70,71],['2026-01-08','FLORIDA','21:50',96,3,70],['2026-01-08','NY','22:30',32,69,57],['2026-01-08','GEORGIA','23:30',31,44,79],
+['2026-01-09','GEORGIA','12:30',77,96,32],['2026-01-09','FLORIDA','13:30',60,89,63],['2026-01-09','NY','14:30',89,9,45],['2026-01-09','GEORGIA','19:00',2,46,18],['2026-01-09','FLORIDA','21:50',93,64,11],['2026-01-09','NY','22:30',35,10,90],['2026-01-09','GEORGIA','23:30',12,77,89],
+['2026-01-10','GEORGIA','12:30',53,1,46],['2026-01-10','FLORIDA','13:30',1,19,79],['2026-01-10','NY','14:30',52,47,7],['2026-01-10','GEORGIA','19:00',65,54,75],['2026-01-10','FLORIDA','21:50',6,59,88],['2026-01-10','NY','22:30',56,94,93],['2026-01-10','GEORGIA','23:30',70,31,97],
+['2026-01-11','GEORGIA','12:30',99,1,16],['2026-01-11','FLORIDA','13:30',22,57,82],['2026-01-11','NY','14:30',92,98,23],['2026-01-11','GEORGIA','19:00',18,98,23],['2026-01-11','FLORIDA','21:50',89,30,17],['2026-01-11','NY','22:30',91,29,26],['2026-01-11','GEORGIA','23:30',32,63,91],
+['2026-01-12','GEORGIA','12:30',77,84,63],['2026-01-12','FLORIDA','13:30',60,80,86],['2026-01-12','NY','14:30',24,49,45],['2026-01-12','GEORGIA','19:00',75,62,14],['2026-01-12','FLORIDA','21:50',96,45,20],['2026-01-12','NY','22:30',86,95,44],['2026-01-12','GEORGIA','23:30',84,41,70],
+['2026-01-13','GEORGIA','12:30',59,64,78],['2026-01-13','FLORIDA','13:30',90,97,27],['2026-01-13','NY','14:30',9,11,72],['2026-01-13','GEORGIA','19:00',84,28,60],['2026-01-13','FLORIDA','21:50',43,0,16],['2026-01-13','NY','22:30',18,83,40],['2026-01-13','GEORGIA','23:30',97,83,24],
+['2026-01-14','GEORGIA','12:30',49,21,37],['2026-01-14','FLORIDA','13:30',16,42,23],['2026-01-14','NY','14:30',19,62,50],['2026-01-14','GEORGIA','19:00',78,12,1],['2026-01-14','FLORIDA','21:50',49,3,43],['2026-01-14','NY','22:30',2,97,19],['2026-01-14','GEORGIA','23:30',90,4,31],
+['2026-01-15','GEORGIA','12:30',74,59,28],['2026-01-15','FLORIDA','13:30',4,2,20],['2026-01-15','NY','14:30',1,6,17],['2026-01-15','GEORGIA','19:00',1,6,17],['2026-01-15','FLORIDA','21:50',47,48,6],['2026-01-15','NY','22:30',84,38,89],['2026-01-15','GEORGIA','23:30',9,11,72],
+['2026-01-16','GEORGIA','12:30',7,89,84],['2026-01-16','FLORIDA','13:30',73,68,25],['2026-01-16','NY','14:30',39,83,50],['2026-01-16','GEORGIA','19:00',20,5,69],['2026-01-16','FLORIDA','21:50',0,59,3],['2026-01-16','NY','22:30',96,80,72],['2026-01-16','GEORGIA','23:30',70,15,82],
+['2026-01-17','GEORGIA','12:30',25,71,51],['2026-01-17','FLORIDA','13:30',14,3,75],['2026-01-17','NY','14:30',4,8,4],['2026-01-17','GEORGIA','19:00',58,55,40],['2026-01-17','FLORIDA','21:50',6,65,87],['2026-01-17','NY','22:30',85,99,88],['2026-01-17','GEORGIA','23:30',60,16,80],
+['2026-01-18','GEORGIA','12:30',18,87,69],['2026-01-18','FLORIDA','13:30',11,91,69],['2026-01-18','NY','14:30',82,15,1],['2026-01-18','GEORGIA','19:00',46,1,59],['2026-01-18','FLORIDA','21:50',62,82,19],['2026-01-18','NY','22:30',94,91,95],['2026-01-18','GEORGIA','23:30',76,88,10],
+['2026-01-19','GEORGIA','12:30',98,18,43],['2026-01-19','FLORIDA','13:30',63,34,32],['2026-01-19','NY','14:30',69,39,71],['2026-01-19','GEORGIA','19:00',18,10,21],['2026-01-19','FLORIDA','21:50',59,48,77],['2026-01-19','NY','22:30',40,19,59],['2026-01-19','GEORGIA','23:30',64,80,60],
+['2026-01-20','GEORGIA','12:30',23,97,13],['2026-01-20','FLORIDA','13:30',43,10,38],['2026-01-20','NY','14:30',79,9,5],['2026-01-20','GEORGIA','19:00',73,94,16],['2026-01-20','FLORIDA','21:50',6,14,16],['2026-01-20','NY','22:30',6,0,47],['2026-01-20','GEORGIA','23:30',80,88,23],
+['2026-01-21','GEORGIA','12:30',70,18,86],['2026-01-21','FLORIDA','13:30',50,8,1],['2026-01-21','NY','14:30',16,93,47],['2026-01-21','GEORGIA','19:00',52,26,71],['2026-01-21','FLORIDA','21:50',84,22,58],['2026-01-21','NY','22:30',33,26,16],['2026-01-21','GEORGIA','23:30',41,98,6],
+['2026-01-22','GEORGIA','12:30',2,97,49],['2026-01-22','FLORIDA','13:30',93,44,98],['2026-01-22','NY','14:30',81,24,44],['2026-01-22','GEORGIA','19:00',63,71,97],['2026-01-22','FLORIDA','21:50',16,43,9],['2026-01-22','NY','22:30',87,0,77],['2026-01-22','GEORGIA','23:30',84,57,32],
+['2026-01-23','GEORGIA','12:30',86,72,40],['2026-01-23','FLORIDA','13:30',3,66,33],['2026-01-23','NY','14:30',89,8,14],['2026-01-23','GEORGIA','19:00',49,70,13],['2026-01-23','FLORIDA','21:50',10,34,32],['2026-01-23','NY','22:30',71,80,35],['2026-01-23','GEORGIA','23:30',87,87,45],
+['2026-01-24','GEORGIA','12:30',58,16,56],['2026-01-24','FLORIDA','13:30',61,26,39],['2026-01-24','NY','14:30',16,73,76],['2026-01-24','GEORGIA','19:00',86,22,94],['2026-01-24','FLORIDA','21:50',62,80,55],['2026-01-24','NY','22:30',51,19,60],['2026-01-24','GEORGIA','23:30',52,35,59],
+['2026-01-25','GEORGIA','12:30',5,3,52],['2026-01-25','FLORIDA','13:30',84,98,46],['2026-01-25','NY','14:30',77,99,83],['2026-01-25','GEORGIA','19:00',73,6,80],['2026-01-25','FLORIDA','21:50',84,92,21],['2026-01-25','NY','22:30',83,16,73],['2026-01-25','GEORGIA','23:30',84,29,19],
+['2026-01-26','GEORGIA','12:30',37,78,98],['2026-01-26','FLORIDA','13:30',60,12,83],['2026-01-26','NY','14:30',76,53,95],['2026-01-26','GEORGIA','19:00',81,41,64],['2026-01-26','FLORIDA','21:50',20,68,16],['2026-01-26','NY','22:30',66,90,94],['2026-01-26','GEORGIA','23:30',16,28,0],
+['2026-01-27','GEORGIA','12:30',97,16,28],['2026-01-27','FLORIDA','13:30',5,46,31],['2026-01-27','NY','14:30',17,15,50],['2026-01-27','GEORGIA','19:00',22,94,80],['2026-01-27','FLORIDA','21:50',22,59,14],['2026-01-27','NY','22:30',65,4,95],['2026-01-27','GEORGIA','23:30',3,47,84],
+['2026-01-28','GEORGIA','12:30',28,72,19],['2026-01-28','FLORIDA','13:30',87,9,51],['2026-01-28','NY','14:30',90,10,44],['2026-01-28','GEORGIA','19:00',54,52,94],['2026-01-28','FLORIDA','21:50',56,5,2],['2026-01-28','NY','22:30',33,79,6],['2026-01-28','GEORGIA','23:30',3,17,73],
+['2026-01-29','GEORGIA','12:30',66,54,64],['2026-01-29','FLORIDA','13:30',35,46,63],['2026-01-29','NY','14:30',52,33,91],['2026-01-29','GEORGIA','19:00',91,83,1],['2026-01-29','FLORIDA','21:50',80,62,50],['2026-01-29','NY','22:30',92,20,6],['2026-01-29','GEORGIA','23:30',97,13,92],
+['2026-01-30','GEORGIA','12:30',5,27,63],['2026-01-30','FLORIDA','13:30',64,44,46],['2026-01-30','NY','14:30',23,81,88],['2026-01-30','GEORGIA','19:00',49,40,75],['2026-01-30','FLORIDA','21:50',24,97,27],['2026-01-30','NY','22:30',15,29,68],['2026-01-30','GEORGIA','23:30',12,58,36],
+['2026-01-31','GEORGIA','12:30',92,32,79],['2026-01-31','FLORIDA','13:30',85,2,86],['2026-01-31','NY','14:30',17,59,64],['2026-01-31','GEORGIA','19:00',21,76,67],['2026-01-31','FLORIDA','21:50',50,83,55],['2026-01-31','NY','22:30',32,19,77],['2026-01-31','GEORGIA','23:30',73,50,86],
+// FEBRERO 2026
+['2026-02-01','GEORGIA','12:30',48,93,52],['2026-02-01','FLORIDA','13:30',33,60,3],['2026-02-01','NY','14:30',16,12,20],['2026-02-01','GEORGIA','19:00',76,50,86],['2026-02-01','FLORIDA','21:50',42,20,21],['2026-02-01','NY','22:30',61,14,65],['2026-02-01','GEORGIA','23:30',2,36,53],
+['2026-02-02','GEORGIA','12:30',34,42,46],['2026-02-02','FLORIDA','13:30',75,10,99],['2026-02-02','NY','14:30',75,39,62],['2026-02-02','GEORGIA','19:00',32,1,42],['2026-02-02','FLORIDA','21:50',2,42,45],['2026-02-02','NY','22:30',45,53,30],['2026-02-02','GEORGIA','23:30',23,2,18],
+['2026-02-03','GEORGIA','12:30',33,94,97],['2026-02-03','FLORIDA','13:30',52,28,56],['2026-02-03','NY','14:30',15,26,47],['2026-02-03','GEORGIA','19:00',65,77,14],['2026-02-03','FLORIDA','21:50',24,21,65],['2026-02-03','NY','22:30',79,94,74],['2026-02-03','GEORGIA','23:30',26,72,80],
+['2026-02-04','GEORGIA','12:30',29,74,24],['2026-02-04','FLORIDA','13:30',40,38,17],['2026-02-04','NY','14:30',21,13,30],['2026-02-04','GEORGIA','19:00',96,77,71],['2026-02-04','FLORIDA','21:50',35,3,19],['2026-02-04','NY','22:30',47,13,33],['2026-02-04','GEORGIA','23:30',68,26,61],
+['2026-02-05','GEORGIA','12:30',6,38,39],['2026-02-05','FLORIDA','13:30',54,41,25],['2026-02-05','NY','14:30',80,71,83],['2026-02-05','GEORGIA','19:00',32,49,50],['2026-02-05','FLORIDA','21:50',77,82,92],['2026-02-05','NY','22:30',59,33,26],['2026-02-05','GEORGIA','23:30',32,64,64],
+['2026-02-06','GEORGIA','12:30',89,89,79],['2026-02-06','FLORIDA','13:30',84,18,60],['2026-02-06','NY','14:30',66,46,84],['2026-02-06','GEORGIA','19:00',23,40,48],['2026-02-06','FLORIDA','21:50',55,46,47],['2026-02-06','NY','22:30',91,61,84],['2026-02-06','GEORGIA','23:30',65,56,1],
+['2026-02-07','GEORGIA','12:30',95,9,23],['2026-02-07','FLORIDA','13:30',2,12,19],['2026-02-07','NY','14:30',48,43,25],['2026-02-07','GEORGIA','19:00',15,64,76],['2026-02-07','FLORIDA','21:50',3,51,33],['2026-02-07','NY','22:30',83,95,63],['2026-02-07','GEORGIA','23:30',18,38,50],
+['2026-02-08','GEORGIA','12:30',67,50,96],['2026-02-08','FLORIDA','13:30',8,37,29],['2026-02-08','NY','14:30',85,34,66],['2026-02-08','GEORGIA','19:00',71,42,67],['2026-02-08','FLORIDA','21:50',74,86,63],['2026-02-08','NY','22:30',34,25,86],['2026-02-08','GEORGIA','23:30',3,24,30],
+['2026-02-09','GEORGIA','12:30',85,7,9],['2026-02-09','FLORIDA','13:30',90,32,91],['2026-02-09','NY','14:30',46,6,33],['2026-02-09','GEORGIA','19:00',73,68,95],['2026-02-09','FLORIDA','21:50',10,62,82],['2026-02-09','NY','22:30',94,18,49],['2026-02-09','GEORGIA','23:30',61,73,39],
+['2026-02-10','GEORGIA','12:30',68,21,4],['2026-02-10','FLORIDA','13:30',22,54,23],['2026-02-10','NY','14:30',73,85,48],['2026-02-10','GEORGIA','19:00',71,18,44],['2026-02-10','FLORIDA','21:50',97,75,37],['2026-02-10','NY','22:30',70,27,71],['2026-02-10','GEORGIA','23:30',17,32,62],
+['2026-02-11','GEORGIA','12:30',79,70,36],['2026-02-11','FLORIDA','13:30',68,88,21],['2026-02-11','NY','14:30',19,83,83],['2026-02-11','GEORGIA','19:00',76,1,63],['2026-02-11','FLORIDA','21:50',23,83,12],['2026-02-11','NY','22:30',9,81,6],['2026-02-11','GEORGIA','23:30',70,10,29],
+['2026-02-12','GEORGIA','12:30',72,10,26],['2026-02-12','FLORIDA','13:30',22,17,92],['2026-02-12','NY','14:30',66,36,81],['2026-02-12','GEORGIA','19:00',6,65,27],['2026-02-12','FLORIDA','21:50',51,28,97],['2026-02-12','NY','22:30',35,74,65],['2026-02-12','GEORGIA','23:30',17,95,96],
+['2026-02-13','GEORGIA','12:30',34,10,62],['2026-02-13','FLORIDA','13:30',84,43,58],['2026-02-13','NY','14:30',21,75,15],['2026-02-13','GEORGIA','19:00',33,95,20],['2026-02-13','FLORIDA','21:50',2,27,66],['2026-02-13','NY','22:30',17,61,75],['2026-02-13','GEORGIA','23:30',51,31,59],
+['2026-02-14','GEORGIA','12:30',32,55,96],['2026-02-14','FLORIDA','13:30',20,95,27],['2026-02-14','NY','14:30',42,89,11],['2026-02-14','GEORGIA','19:00',61,53,94],['2026-02-14','FLORIDA','21:50',85,0,23],['2026-02-14','NY','22:30',48,88,20],['2026-02-14','GEORGIA','23:30',47,85,74],
+['2026-02-15','GEORGIA','12:30',48,11,60],['2026-02-15','FLORIDA','13:30',26,1,69],['2026-02-15','NY','14:30',87,57,58],['2026-02-15','GEORGIA','19:00',85,36,14],['2026-02-15','FLORIDA','21:50',31,72,94],['2026-02-15','NY','22:30',59,55,75],['2026-02-15','GEORGIA','23:30',32,6,84],
+['2026-02-16','GEORGIA','12:30',53,69,3],['2026-02-16','FLORIDA','13:30',33,59,78],['2026-02-16','NY','14:30',23,19,25],['2026-02-16','GEORGIA','19:00',29,61,11],['2026-02-16','FLORIDA','21:50',73,56,18],['2026-02-16','NY','22:30',33,42,54],['2026-02-16','GEORGIA','23:30',90,96,6],
+['2026-02-17','GEORGIA','12:30',64,89,8],['2026-02-17','FLORIDA','13:30',7,89,27],['2026-02-17','NY','14:30',78,82,17],['2026-02-17','GEORGIA','19:00',15,22,43],['2026-02-17','FLORIDA','21:50',31,70,58],['2026-02-17','NY','22:30',31,40,35],['2026-02-17','GEORGIA','23:30',10,16,29],
+['2026-02-18','GEORGIA','12:30',17,34,99],['2026-02-18','FLORIDA','13:30',16,88,21],['2026-02-18','NY','14:30',54,72,13],['2026-02-18','GEORGIA','19:00',43,0,4],['2026-02-18','FLORIDA','21:50',32,56,35],['2026-02-18','NY','22:30',28,82,44],['2026-02-18','GEORGIA','23:30',78,74,46],
+['2026-02-19','GEORGIA','12:30',13,38,49],['2026-02-19','FLORIDA','13:30',38,60,31],['2026-02-19','NY','14:30',1,69,3],['2026-02-19','GEORGIA','19:00',95,35,36],['2026-02-19','FLORIDA','21:50',7,50,75],['2026-02-19','NY','22:30',68,22,94],['2026-02-19','GEORGIA','23:30',55,75,22],
+['2026-02-20','GEORGIA','12:30',89,71,4],['2026-02-20','FLORIDA','13:30',86,55,90],['2026-02-20','NY','14:30',17,83,96],['2026-02-20','GEORGIA','19:00',8,9,60],['2026-02-20','FLORIDA','21:50',78,14,94],['2026-02-20','NY','22:30',37,50,76],['2026-02-20','GEORGIA','23:30',22,38,41],
+['2026-02-21','GEORGIA','12:30',84,76,87],['2026-02-21','FLORIDA','13:30',15,0,47],['2026-02-21','NY','14:30',7,85,15],['2026-02-21','GEORGIA','19:00',29,17,26],['2026-02-21','FLORIDA','21:50',47,78,83],['2026-02-21','NY','22:30',57,81,22],['2026-02-21','GEORGIA','23:30',84,55,14],
+['2026-02-22','GEORGIA','12:30',11,48,82],['2026-02-22','FLORIDA','13:30',69,67,23],['2026-02-22','NY','14:30',53,98,37],['2026-02-22','GEORGIA','19:00',56,78,57],['2026-02-22','NY','22:30',53,86,86],['2026-02-22','GEORGIA','23:30',89,54,15],
+['2026-02-23','GEORGIA','12:30',59,7,77],['2026-02-23','FLORIDA','13:30',7,13,47],['2026-02-23','NY','14:30',26,52,55],['2026-02-23','FLORIDA','21:50',31,17,22],['2026-02-23','NY','22:30',40,80,76],['2026-02-23','GEORGIA','23:30',29,26,11],
+['2026-02-24','GEORGIA','12:30',62,41,36],['2026-02-24','FLORIDA','13:30',21,2,9],['2026-02-25','GEORGIA','12:30',0,6,53],['2026-02-25','NY','14:30',99,46,56],['2026-02-25','GEORGIA','19:00',13,6,11],['2026-02-25','FLORIDA','21:50',12,54,15],['2026-02-25','NY','22:30',66,86,91],['2026-02-25','GEORGIA','23:30',1,9,10],
+['2026-02-26','GEORGIA','12:30',60,38,86],['2026-02-26','FLORIDA','13:30',14,63,95],['2026-02-26','NY','14:30',25,87,4],['2026-02-26','GEORGIA','19:00',86,26,50],['2026-02-26','FLORIDA','21:50',3,1,14],['2026-02-26','NY','22:30',27,20,2],['2026-02-26','GEORGIA','23:30',53,55,95],
+['2026-02-27','GEORGIA','12:30',29,22,19],['2026-02-27','FLORIDA','13:30',20,66,54],['2026-02-27','NY','14:30',62,61,55],['2026-02-27','GEORGIA','19:00',61,11,61],['2026-02-27','FLORIDA','21:50',53,93,36],['2026-02-27','NY','22:30',40,65,6],['2026-02-27','GEORGIA','23:30',72,41,15],
+['2026-02-28','GEORGIA','12:30',16,51,94],['2026-02-28','FLORIDA','13:30',90,69,41],['2026-02-28','NY','14:30',60,42,56],['2026-02-28','GEORGIA','19:00',2,18,16],['2026-02-28','FLORIDA','21:50',1,64,66],['2026-02-28','NY','22:30',22,50,76],['2026-02-28','GEORGIA','23:30',15,12,13],
+// MARZO 2026
+['2026-03-01','GEORGIA','12:30',81,70,99],['2026-03-01','FLORIDA','13:30',96,97,22],['2026-03-01','NY','14:30',33,78,75],['2026-03-01','FLORIDA','21:50',63,12,35],['2026-03-01','GEORGIA','23:30',56,31,71],
+['2026-03-02','FLORIDA','13:30',43,10,47],['2026-03-02','NY','14:30',43,85,72],['2026-03-02','GEORGIA','19:00',33,54,93],['2026-03-02','FLORIDA','21:50',93,54,60],['2026-03-02','NY','22:30',17,46,86],['2026-03-02','GEORGIA','23:30',75,9,57],
+['2026-03-03','GEORGIA','12:30',14,2,71],['2026-03-03','FLORIDA','13:30',55,67,58],['2026-03-03','NY','14:30',32,27,34],['2026-03-04','FLORIDA','13:30',55,55,5],['2026-03-05','GEORGIA','12:30',24,78,39],['2026-03-05','FLORIDA','13:30',41,18,31],['2026-03-05','NY','14:30',29,61,39],['2026-03-05','GEORGIA','19:00',95,89,87],['2026-03-05','FLORIDA','21:50',55,0,54],['2026-03-05','NY','22:30',47,86,81],['2026-03-05','GEORGIA','23:30',50,43,79],
+['2026-03-06','GEORGIA','12:30',90,63,44],['2026-03-06','FLORIDA','13:30',62,5,22],['2026-03-06','NY','14:30',34,35,59],['2026-03-07','GEORGIA','19:00',75,65,75],['2026-03-07','FLORIDA','21:50',59,75,5],['2026-03-07','NY','22:30',51,43,2],['2026-03-07','GEORGIA','23:30',56,27,75],
+['2026-03-08','GEORGIA','12:30',56,56,5],['2026-03-08','FLORIDA','13:30',11,46,53],['2026-03-08','NY','14:30',0,89,8],['2026-03-08','GEORGIA','19:00',59,78,55],['2026-03-08','FLORIDA','21:50',89,59,98],['2026-03-08','GEORGIA','22:30',91,96,60],['2026-03-09','GEORGIA','12:30',51,67,30],['2026-03-09','FLORIDA','13:30',83,28,76],['2026-03-09','NY','14:30',0,73,30],['2026-03-09','GEORGIA','19:00',19,1,79],['2026-03-09','FLORIDA','21:50',41,25,87],['2026-03-09','NY','22:30',98,44,8],['2026-03-09','GEORGIA','23:30',67,73,44],
+['2026-03-10','GEORGIA','12:30',75,4,72],['2026-03-10','FLORIDA','13:30',58,77,18],['2026-03-10','NY','14:30',19,50,73],['2026-03-10','NY','22:30',82,11,5],['2026-03-10','GEORGIA','23:30',67,22,24],['2026-03-11','GEORGIA','12:30',44,72,23],['2026-03-11','FLORIDA','13:30',0,69,28],['2026-03-11','NY','14:30',70,19,36],['2026-03-11','GEORGIA','19:00',34,15,68],['2026-03-11','FLORIDA','21:50',94,3,19],['2026-03-11','NY','22:30',47,36,54],['2026-03-11','GEORGIA','23:30',63,11,25],
+['2026-03-12','GEORGIA','12:30',91,60,15],['2026-03-12','FLORIDA','13:30',8,1,63],['2026-03-12','NY','14:30',54,85,61],['2026-03-12','GEORGIA','19:00',86,75,6],['2026-03-12','FLORIDA','21:50',39,43,41],['2026-03-12','NY','22:30',65,53,54],['2026-03-12','GEORGIA','23:30',2,33,58],
+['2026-03-13','GEORGIA','12:30',32,0,98],['2026-03-13','FLORIDA','13:30',50,19,43],['2026-03-13','NY','14:30',40,16,98],['2026-03-13','FLORIDA','21:50',34,66,52],['2026-03-13','NY','22:30',86,78,79],['2026-03-13','GEORGIA','23:30',66,1,86],
+['2026-03-14','FLORIDA','13:30',70,97,62],['2026-03-14','NY','14:30',95,56,81],['2026-03-14','GEORGIA','19:00',67,58,77],['2026-03-14','FLORIDA','21:50',73,54,78],['2026-03-14','NY','22:30',23,60,31],['2026-03-14','GEORGIA','23:30',60,15,18],
+['2026-03-15','GEORGIA','12:30',99,64,59],['2026-03-15','FLORIDA','13:30',95,96,1],['2026-03-15','NY','14:30',12,72,95],['2026-03-15','GEORGIA','19:00',87,79,23],['2026-03-15','FLORIDA','21:50',91,33,18],['2026-03-15','NY','22:30',1,62,76],['2026-03-15','GEORGIA','23:30',54,88,90],
+['2026-03-16','GEORGIA','12:30',9,31,45],['2026-03-16','FLORIDA','13:30',90,3,65],['2026-03-16','NY','14:30',59,23,60],['2026-03-16','GEORGIA','19:00',75,91,59],['2026-03-16','FLORIDA','21:50',84,19,62],['2026-03-16','NY','22:30',97,44,7],['2026-03-16','GEORGIA','23:30',89,63,6],
+['2026-03-17','FLORIDA','13:30',36,32,92],['2026-03-17','NY','14:30',29,43,91],['2026-03-17','GEORGIA','19:00',84,86,34],['2026-03-17','FLORIDA','21:50',15,63,22],['2026-03-17','NY','22:30',44,81,2],['2026-03-17','GEORGIA','23:30',93,87,62],
+['2026-03-18','GEORGIA','12:30',27,77,6],['2026-03-18','FLORIDA','13:30',78,91,9],['2026-03-18','NY','14:30',78,72,6],['2026-03-18','GEORGIA','19:00',69,15,82],['2026-03-18','FLORIDA','21:50',85,9,71],['2026-03-19','GEORGIA','12:30',77,3,47],['2026-03-19','FLORIDA','13:30',52,98,60],['2026-03-19','NY','14:30',3,13,92],['2026-03-19','GEORGIA','19:00',13,79,4],['2026-03-19','FLORIDA','21:50',1,21,25],['2026-03-19','GEORGIA','23:30',65,18,72],
+['2026-03-20','GEORGIA','12:30',83,62,55],['2026-03-20','FLORIDA','13:30',33,17,33],['2026-03-20','NY','14:30',1,54,70],['2026-03-20','GEORGIA','19:00',73,75,18],['2026-03-20','GEORGIA','23:30',43,2,6],['2026-03-21','GEORGIA','12:30',73,98,49],['2026-03-21','FLORIDA','13:30',66,23,5],['2026-03-21','NY','14:30',71,74,86],['2026-03-21','GEORGIA','19:00',56,82,53],['2026-03-21','FLORIDA','21:50',65,88,42],['2026-03-21','NY','22:30',99,21,92],['2026-03-21','GEORGIA','23:30',24,21,82],
+['2026-03-22','GEORGIA','12:30',68,76,4],['2026-03-22','FLORIDA','13:30',85,56,93],['2026-03-22','NY','14:30',92,45,13],['2026-03-22','GEORGIA','19:00',27,43,83],['2026-03-22','FLORIDA','21:50',76,55,51],['2026-03-22','NY','22:30',18,7,83],['2026-03-22','GEORGIA','23:30',51,49,94],
+['2026-03-23','GEORGIA','12:30',0,27,50],['2026-03-23','FLORIDA','13:30',96,75,59],['2026-03-23','NY','14:30',39,7,81],['2026-03-23','GEORGIA','19:00',50,64,4],['2026-03-23','FLORIDA','21:50',32,82,71],['2026-03-23','NY','22:30',9,79,56],['2026-03-23','GEORGIA','23:30',98,86,40],
+['2026-03-24','GEORGIA','12:30',85,80,2],['2026-03-24','FLORIDA','13:30',75,95,21],['2026-03-24','NY','14:30',39,46,9],['2026-03-24','GEORGIA','19:00',49,1,83],['2026-03-24','FLORIDA','21:50',95,6,15],['2026-03-24','NY','22:30',53,25,61],['2026-03-24','GEORGIA','23:30',57,30,12],
+['2026-03-25','GEORGIA','12:30',82,83,16],['2026-03-25','FLORIDA','13:30',47,18,5],['2026-03-25','NY','14:30',97,26,85],['2026-03-25','GEORGIA','19:00',53,58,84],['2026-03-25','FLORIDA','21:50',7,95,54],['2026-03-25','NY','22:30',86,87,77],['2026-03-25','GEORGIA','23:30',91,40,17],
+['2026-03-26','GEORGIA','12:30',31,57,75],['2026-03-26','FLORIDA','13:30',10,1,85],['2026-03-26','NY','14:30',4,58,23],['2026-03-26','GEORGIA','19:00',7,97,75],['2026-03-26','FLORIDA','21:50',6,65,93],['2026-03-26','NY','22:30',79,13,91],['2026-03-26','GEORGIA','23:30',80,14,59],
+['2026-03-27','GEORGIA','12:30',51,43,54],['2026-03-27','FLORIDA','13:30',56,60,50],['2026-03-27','NY','14:30',97,68,50],['2026-03-27','GEORGIA','19:00',15,8,11],['2026-03-27','FLORIDA','21:50',88,57,74],['2026-03-27','NY','22:30',63,2,61],['2026-03-27','GEORGIA','23:30',92,84,70],
+['2026-03-28','GEORGIA','12:30',44,14,53],['2026-03-28','FLORIDA','13:30',70,80,88],['2026-03-28','NY','14:30',62,16,71],['2026-03-28','GEORGIA','19:00',83,13,86],['2026-03-28','FLORIDA','21:50',97,28,51],['2026-03-28','NY','22:30',93,46,56],['2026-03-28','GEORGIA','23:30',86,55,43],
+['2026-03-29','GEORGIA','12:30',90,21,35],['2026-03-29','FLORIDA','13:30',62,34,75],['2026-03-29','NY','14:30',4,2,20],['2026-03-29','GEORGIA','19:00',51,79,79],['2026-03-29','FLORIDA','21:50',26,25,59],['2026-03-29','NY','22:30',8,32,29],['2026-03-29','GEORGIA','23:30',83,49,88],
+['2026-03-30','GEORGIA','12:30',93,87,13],['2026-03-30','FLORIDA','13:30',65,12,75],['2026-03-30','NY','14:30',91,23,78],['2026-03-30','GEORGIA','19:00',36,42,98],['2026-03-30','FLORIDA','21:50',6,42,75],['2026-03-30','NY','22:30',46,58,26],['2026-03-30','GEORGIA','23:30',25,86,97],
+['2026-03-31','GEORGIA','12:30',81,42,20],['2026-03-31','FLORIDA','13:30',78,86,68],['2026-03-31','NY','14:30',81,91,55],['2026-03-31','GEORGIA','19:00',83,14,80],['2026-03-31','FLORIDA','21:50',5,57,99],['2026-03-31','NY','22:30',90,17,30],['2026-03-31','GEORGIA','23:30',39,19,43],
+// ABRIL 2026
+['2026-04-01','GEORGIA','12:30',40,29,15],['2026-04-01','FLORIDA','13:30',26,57,87],['2026-04-01','NY','14:30',13,5,3],['2026-04-01','GEORGIA','19:00',64,14,45],['2026-04-01','FLORIDA','21:50',81,7,44],['2026-04-01','NY','22:30',24,96,81],['2026-04-01','GEORGIA','23:30',80,83,21],
+['2026-04-02','GEORGIA','12:30',97,89,4],['2026-04-02','FLORIDA','13:30',21,87,37],['2026-04-02','NY','14:30',81,76,33],['2026-04-02','GEORGIA','19:00',95,28,65],['2026-04-02','FLORIDA','21:50',52,75,12],['2026-04-02','NY','22:30',41,62,24],['2026-04-02','GEORGIA','23:30',62,51,62],
+['2026-04-03','GEORGIA','12:30',24,12,92],['2026-04-03','FLORIDA','13:30',15,50,43],['2026-04-03','NY','14:30',56,56,24],['2026-04-03','GEORGIA','19:00',21,31,97],['2026-04-03','FLORIDA','21:50',63,73,82],['2026-04-03','NY','22:30',19,89,21],['2026-04-03','GEORGIA','23:30',93,13,94],
+['2026-04-04','GEORGIA','12:30',50,80,9],['2026-04-04','FLORIDA','13:30',31,0,20],['2026-04-04','NY','14:30',69,40,73],['2026-04-04','GEORGIA','19:00',66,97,67],['2026-04-04','FLORIDA','21:50',18,42,63],['2026-04-04','NY','22:30',92,27,25],['2026-04-04','GEORGIA','23:30',58,62,84],
+['2026-04-05','GEORGIA','12:30',26,37,52],['2026-04-05','FLORIDA','13:30',7,12,31],['2026-04-05','NY','14:30',90,89,40],['2026-04-05','GEORGIA','19:00',67,43,25],['2026-04-05','FLORIDA','21:50',56,79,66],['2026-04-05','NY','22:30',38,36,5],['2026-04-05','GEORGIA','23:30',21,48,56],
+['2026-04-06','GEORGIA','12:30',14,23,23],['2026-04-06','FLORIDA','13:30',93,58,3],['2026-04-06','NY','14:30',38,33,30],['2026-04-06','GEORGIA','19:00',63,3,22],['2026-04-06','FLORIDA','21:50',24,42,33],['2026-04-06','NY','22:30',19,38,32],['2026-04-06','GEORGIA','23:30',14,56,66],
+['2026-04-07','GEORGIA','12:30',2,82,78],['2026-04-07','FLORIDA','13:30',22,87,25],['2026-04-07','NY','14:30',79,84,47],['2026-04-07','GEORGIA','19:00',67,64,31],['2026-04-07','FLORIDA','21:50',75,66,26],['2026-04-07','NY','22:30',36,6,99],['2026-04-07','GEORGIA','23:30',43,3,56],
+['2026-04-08','GEORGIA','12:30',9,57,45],['2026-04-08','FLORIDA','13:30',99,21,83],['2026-04-08','NY','14:30',16,62,22],['2026-04-08','GEORGIA','19:00',41,20,70],['2026-04-08','FLORIDA','21:50',99,63,32],['2026-04-08','NY','22:30',36,81,58],['2026-04-08','GEORGIA','23:30',89,84,72],
+['2026-04-09','GEORGIA','12:30',86,23,18],['2026-04-09','FLORIDA','13:30',83,55,57],['2026-04-09','NY','14:30',65,20,22],['2026-04-09','GEORGIA','19:00',26,85,64],['2026-04-09','FLORIDA','21:50',45,88,21],['2026-04-09','NY','22:30',32,84,48],['2026-04-09','GEORGIA','23:30',67,29,61],
+['2026-04-10','GEORGIA','12:30',65,36,89],['2026-04-10','FLORIDA','13:30',6,67,12],['2026-04-10','NY','14:30',33,8,52],['2026-04-10','GEORGIA','19:00',86,72,75],['2026-04-10','FLORIDA','21:50',18,43,90],['2026-04-10','NY','22:30',89,71,89],['2026-04-10','GEORGIA','23:30',76,12,11],
+['2026-04-11','GEORGIA','12:30',15,72,75],['2026-04-11','FLORIDA','13:30',36,26,89],['2026-04-11','NY','14:30',56,80,93],['2026-04-11','GEORGIA','19:00',33,81,24],['2026-04-11','FLORIDA','21:50',53,30,27],['2026-04-11','NY','22:30',83,49,18],['2026-04-11','GEORGIA','23:30',16,49,72],
+['2026-04-12','GEORGIA','12:30',2,81,53],['2026-04-12','FLORIDA','13:30',79,43,71],['2026-04-12','NY','14:30',98,78,88],['2026-04-12','GEORGIA','19:00',9,64,13],['2026-04-12','FLORIDA','21:50',68,14,52],['2026-04-12','NY','22:30',16,85,31],['2026-04-12','GEORGIA','23:30',46,63,66],
+['2026-04-13','GEORGIA','12:30',11,90,63],['2026-04-13','FLORIDA','13:30',65,90,25],['2026-04-13','NY','14:30',75,73,5],['2026-04-13','GEORGIA','19:00',94,45,81],['2026-04-13','FLORIDA','21:50',70,74,13],['2026-04-13','NY','22:30',58,15,95],['2026-04-13','GEORGIA','23:30',20,21,1],
+['2026-04-14','GEORGIA','12:30',6,83,68],['2026-04-14','FLORIDA','13:30',12,18,43],['2026-04-14','NY','14:30',60,25,7],['2026-04-14','GEORGIA','19:00',16,65,16],['2026-04-14','FLORIDA','21:50',56,61,23],['2026-04-14','NY','22:30',81,46,30],['2026-04-14','GEORGIA','23:30',63,58,25],
+['2026-04-15','GEORGIA','12:30',66,75,13],['2026-04-15','FLORIDA','13:30',93,57,58],['2026-04-15','NY','14:30',23,45,42],['2026-04-15','GEORGIA','19:00',50,8,6],['2026-04-15','FLORIDA','21:50',88,95,56],['2026-04-15','NY','22:30',33,97,8],['2026-04-15','GEORGIA','23:30',21,69,66],
+['2026-04-16','GEORGIA','12:30',44,96,99],['2026-04-16','FLORIDA','13:30',73,18,36],['2026-04-16','NY','14:30',25,94,81],['2026-04-16','GEORGIA','19:00',63,39,78],['2026-04-16','FLORIDA','21:50',86,54,28],['2026-04-16','NY','22:30',93,69,76],['2026-04-16','GEORGIA','23:30',37,94,97],
+['2026-04-17','GEORGIA','12:30',12,21,87],['2026-04-17','FLORIDA','13:30',56,88,72],['2026-04-17','NY','14:30',4,50,81],['2026-04-17','GEORGIA','19:00',24,98,14],['2026-04-17','FLORIDA','21:50',30,1,28],['2026-04-17','NY','22:30',70,21,0],['2026-04-17','GEORGIA','23:30',99,25,76],
+['2026-04-18','GEORGIA','12:30',74,39,88],['2026-04-18','FLORIDA','13:30',60,78,26],['2026-04-18','NY','14:30',85,74,3],['2026-04-18','GEORGIA','19:00',12,38,31],['2026-04-18','FLORIDA','21:50',14,76,57],['2026-04-18','NY','22:30',90,78,43],['2026-04-18','GEORGIA','23:30',90,52,77],
+['2026-04-19','GEORGIA','12:30',58,58,10],['2026-04-19','FLORIDA','13:30',91,97,80],['2026-04-19','NY','14:30',45,10,33],['2026-04-19','GEORGIA','19:00',37,90,63],['2026-04-19','FLORIDA','21:50',70,36,78],['2026-04-19','NY','22:30',87,20,92],['2026-04-19','GEORGIA','23:30',58,66,40],
+['2026-04-20','GEORGIA','12:30',69,92,11],['2026-04-20','FLORIDA','13:30',72,78,33],['2026-04-20','NY','14:30',81,95,97],['2026-04-20','GEORGIA','19:00',68,78,49],['2026-04-20','FLORIDA','21:50',3,27,68],['2026-04-20','NY','22:30',18,89,56],['2026-04-20','GEORGIA','23:30',38,29,92],
+['2026-04-21','GEORGIA','12:30',98,22,50],['2026-04-21','FLORIDA','13:30',17,67,62],['2026-04-21','NY','14:30',18,61,23],['2026-04-21','GEORGIA','19:00',39,25,61],['2026-04-21','FLORIDA','21:50',98,29,97],['2026-04-21','NY','22:30',64,44,19],['2026-04-21','GEORGIA','23:30',69,13,85],
+['2026-04-22','GEORGIA','12:30',86,91,85],['2026-04-22','FLORIDA','13:30',76,97,62],['2026-04-22','NY','14:30',90,38,67],['2026-04-22','GEORGIA','19:00',39,14,54],['2026-04-22','FLORIDA','21:50',59,40,90],['2026-04-22','NY','22:30',56,99,50],['2026-04-22','GEORGIA','23:30',90,97,58],
+['2026-04-23','GEORGIA','12:30',6,94,53],['2026-04-23','FLORIDA','13:30',61,31,15],['2026-04-23','NY','14:30',85,62,0],['2026-04-23','GEORGIA','19:00',28,58,35],['2026-04-23','FLORIDA','21:50',10,69,27],['2026-04-23','NY','22:30',70,76,57],['2026-04-23','GEORGIA','23:30',89,43,59],
+['2026-04-24','GEORGIA','12:30',81,32,61],['2026-04-24','FLORIDA','13:30',9,28,2],['2026-04-24','NY','14:30',95,53,60],['2026-04-24','GEORGIA','19:00',59,15,29],['2026-04-24','FLORIDA','21:50',94,2,59],['2026-04-24','NY','22:30',55,49,65],['2026-04-24','GEORGIA','23:30',23,50,77],
+['2026-04-25','GEORGIA','12:30',66,86,80],['2026-04-25','FLORIDA','13:30',6,80,0],['2026-04-25','NY','14:30',80,33,92],['2026-04-25','GEORGIA','19:00',22,83,89],['2026-04-25','FLORIDA','21:50',64,35,45],['2026-04-25','NY','22:30',95,38,25],['2026-04-25','GEORGIA','23:30',78,85,1],
+['2026-04-26','GEORGIA','12:30',84,6,72],['2026-04-26','FLORIDA','13:30',95,38,16],['2026-04-26','NY','14:30',10,67,8],['2026-04-26','GEORGIA','19:00',9,16,52],['2026-04-26','FLORIDA','21:50',96,12,36],['2026-04-26','NY','22:30',54,82,44],['2026-04-26','GEORGIA','23:30',77,3,40],
+['2026-04-27','GEORGIA','12:30',40,43,68],['2026-04-27','FLORIDA','13:30',5,1,74],['2026-04-27','NY','14:30',90,22,43],['2026-04-27','GEORGIA','19:00',51,9,73],['2026-04-27','FLORIDA','21:50',50,55,48],['2026-04-27','NY','22:30',87,6,41],['2026-04-27','GEORGIA','23:30',77,3,40],
+['2026-04-28','GEORGIA','12:30',1,40,93],['2026-04-28','FLORIDA','13:30',5,58,94],['2026-04-28','NY','14:30',37,40,38],['2026-04-28','GEORGIA','19:00',85,79,13],['2026-04-28','FLORIDA','21:50',75,95,59],['2026-04-28','NY','22:30',58,66,62],['2026-04-28','GEORGIA','23:30',88,98,14],
+['2026-04-29','GEORGIA','12:30',12,34,10],['2026-04-29','FLORIDA','13:30',87,3,79],['2026-04-29','NY','14:30',52,94,4],['2026-04-29','GEORGIA','19:00',89,52,96],['2026-04-29','FLORIDA','21:50',4,47,24],['2026-04-29','NY','22:30',24,87,23],['2026-04-29','GEORGIA','23:30',72,88,53],
+['2026-04-30','GEORGIA','12:30',98,50,25],['2026-04-30','FLORIDA','13:30',35,39,71],['2026-04-30','NY','14:30',91,19,57],['2026-04-30','GEORGIA','19:00',16,60,96],['2026-04-30','FLORIDA','21:50',85,13,75],['2026-04-30','NY','22:30',76,42,4],['2026-04-30','GEORGIA','23:30',41,56,39],
+// MAYO 2026
+['2026-05-01','GEORGIA','12:30',75,49,82],['2026-05-01','FLORIDA','13:30',70,48,44],['2026-05-01','NY','14:30',3,78,65],['2026-05-01','GEORGIA','19:00',40,26,6],['2026-05-01','FLORIDA','21:50',71,88,88],['2026-05-01','NY','22:30',24,16,32],['2026-05-01','GEORGIA','23:30',32,0,18],
+['2026-05-02','GEORGIA','12:30',9,56,87],['2026-05-02','FLORIDA','13:30',36,17,6],['2026-05-02','NY','14:30',66,17,79],['2026-05-02','GEORGIA','19:00',57,91,11],['2026-05-02','FLORIDA','21:50',69,42,26],['2026-05-02','NY','22:30',86,16,80],['2026-05-02','GEORGIA','23:30',74,62,79],
+['2026-05-03','GEORGIA','12:30',93,56,61],['2026-05-03','FLORIDA','13:30',34,2,26],['2026-05-03','NY','14:30',58,57,51],['2026-05-03','FLORIDA','21:50',31,88,60],['2026-05-03','NY','22:30',31,51,66],['2026-05-03','GEORGIA','23:30',51,34,83],
+['2026-05-04','GEORGIA','12:30',56,45,73],['2026-05-04','FLORIDA','13:30',23,41,3],['2026-05-04','NY','14:30',94,53,28],['2026-05-04','GEORGIA','19:00',72,50,28],['2026-05-04','FLORIDA','21:50',17,42,99],['2026-05-04','NY','22:30',92,72,5],['2026-05-04','GEORGIA','23:30',0,64,88],
+['2026-05-05','GEORGIA','12:30',0,44,55],['2026-05-05','FLORIDA','13:30',88,22,36],['2026-05-05','NY','14:30',31,47,34],['2026-05-05','GEORGIA','19:00',41,11,73],['2026-05-05','FLORIDA','21:50',1,57,23],['2026-05-05','NY','22:30',45,75,56],['2026-05-05','GEORGIA','23:30',44,5,14],
+['2026-05-06','GEORGIA','12:30',18,36,54],['2026-05-06','FLORIDA','13:30',72,25,60],['2026-05-06','NY','14:30',19,59,54],['2026-05-06','GEORGIA','19:00',5,29,54],['2026-05-06','FLORIDA','21:50',17,93,36],['2026-05-06','NY','22:30',2,26,53],['2026-05-06','GEORGIA','23:30',7,25,4],
+['2026-05-07','GEORGIA','12:30',94,42,36],['2026-05-07','FLORIDA','13:30',5,20,34],['2026-05-07','NY','14:30',14,10,59],['2026-05-07','GEORGIA','19:00',92,59,97],['2026-05-07','FLORIDA','21:50',88,43,47],['2026-05-07','NY','22:30',61,19,18],['2026-05-07','GEORGIA','23:30',4,98,30],
+['2026-05-08','NY','14:30',97,17,92],['2026-05-08','GEORGIA','19:00',54,38,10],['2026-05-08','FLORIDA','21:50',20,19,86],['2026-05-08','NY','22:30',17,96,73],['2026-05-08','GEORGIA','23:30',47,6,13],
+['2026-05-09','GEORGIA','12:30',79,52,62],['2026-05-09','FLORIDA','13:30',15,5,78],['2026-05-09','NY','14:30',32,48,88],['2026-05-09','GEORGIA','19:00',92,98,20],['2026-05-09','FLORIDA','21:50',89,55,21],['2026-05-09','NY','22:30',96,18,23],['2026-05-09','GEORGIA','23:30',5,69,79],
+['2026-05-10','GEORGIA','12:30',47,65,24],['2026-05-10','FLORIDA','13:30',21,78,49],['2026-05-10','NY','14:30',11,51,63],['2026-05-10','GEORGIA','19:00',30,65,25],['2026-05-10','FLORIDA','21:50',86,31,46],['2026-05-10','NY','22:30',57,55,98],['2026-05-10','GEORGIA','23:30',98,80,61],
+['2026-05-11','GEORGIA','12:30',11,53,18],['2026-05-11','FLORIDA','13:30',71,65,33],['2026-05-11','NY','14:30',33,90,76],['2026-05-11','GEORGIA','19:00',6,31,61],['2026-05-11','FLORIDA','21:50',9,13,64],['2026-05-11','NY','22:30',99,91,4],['2026-05-11','GEORGIA','23:30',27,83,68],
+['2026-05-12','GEORGIA','12:30',43,28,22],['2026-05-12','FLORIDA','13:30',49,22,50],['2026-05-12','NY','14:30',96,57,57],['2026-05-12','GEORGIA','19:00',59,5,11],['2026-05-12','FLORIDA','21:50',47,34,78],['2026-05-12','NY','22:30',46,24,0],['2026-05-12','GEORGIA','23:30',40,47,94],
+['2026-05-13','GEORGIA','12:30',49,80,58],['2026-05-13','FLORIDA','13:30',89,5,12],['2026-05-13','NY','14:30',3,8,84],['2026-05-13','GEORGIA','19:00',56,53,87],['2026-05-13','FLORIDA','21:50',16,18,81],['2026-05-13','NY','22:30',65,22,16],['2026-05-13','GEORGIA','23:30',40,47,94],
+['2026-05-14','GEORGIA','12:30',90,6,31],['2026-05-14','FLORIDA','13:30',24,69,67],['2026-05-14','NY','14:30',13,36,91],['2026-05-14','GEORGIA','19:00',40,94,67],['2026-05-14','FLORIDA','21:50',54,28,44],['2026-05-14','NY','22:30',28,70,17],['2026-05-14','GEORGIA','23:30',92,54,13],
+['2026-05-15','GEORGIA','12:30',44,98,38],['2026-05-15','FLORIDA','13:30',0,43,8],['2026-05-15','NY','14:30',5,36,16],['2026-05-15','GEORGIA','19:00',37,51,34],['2026-05-15','FLORIDA','21:50',82,80,72],['2026-05-15','NY','22:30',69,41,58],['2026-05-15','GEORGIA','23:30',32,21,79],
+['2026-05-16','GEORGIA','12:30',99,85,62],['2026-05-16','FLORIDA','13:30',46,83,81],['2026-05-16','NY','14:30',91,60,50],['2026-05-16','GEORGIA','19:00',44,2,78],['2026-05-16','FLORIDA','21:50',23,50,66],['2026-05-16','NY','22:30',81,29,30],['2026-05-16','GEORGIA','23:30',31,81,39],
+['2026-05-17','GEORGIA','12:30',13,98,36],['2026-05-17','FLORIDA','13:30',38,75,65],['2026-05-17','NY','14:30',99,27,46],['2026-05-17','GEORGIA','19:00',47,59,47],['2026-05-17','FLORIDA','21:50',62,9,92],['2026-05-17','NY','22:30',81,40,92],['2026-05-17','GEORGIA','23:30',44,9,81],
+['2026-05-18','GEORGIA','12:30',20,38,52],['2026-05-18','FLORIDA','13:30',6,87,36],['2026-05-18','NY','14:30',80,95,54],['2026-05-18','GEORGIA','19:00',43,15,66],['2026-05-18','FLORIDA','21:50',3,66,66],['2026-05-18','NY','22:30',5,96,39],['2026-05-18','GEORGIA','23:30',38,26,77],
+['2026-05-19','GEORGIA','12:30',39,4,27],['2026-05-19','FLORIDA','13:30',28,98,58],['2026-05-19','NY','14:30',93,27,9],['2026-05-19','GEORGIA','19:00',21,70,4],['2026-05-19','FLORIDA','21:50',93,32,84],['2026-05-19','NY','22:30',87,72,94],['2026-05-19','GEORGIA','23:30',31,21,96],
+['2026-05-20','GEORGIA','12:30',1,58,50],['2026-05-20','FLORIDA','13:30',57,68,51],['2026-05-20','NY','14:30',72,71,63],['2026-05-20','GEORGIA','19:00',34,61,35],['2026-05-20','FLORIDA','21:50',54,7,79],['2026-05-20','NY','22:30',92,92,34],['2026-05-20','GEORGIA','23:30',12,91,66],
+['2026-05-21','GEORGIA','12:30',70,77,48],['2026-05-21','FLORIDA','13:30',32,96,95],['2026-05-21','NY','14:30',31,99,5],['2026-05-21','GEORGIA','19:00',29,6,15],['2026-05-21','FLORIDA','21:50',42,3,49],['2026-05-21','NY','22:30',29,73,39],['2026-05-21','GEORGIA','23:30',93,69,47],
+['2026-05-22','GEORGIA','12:30',34,15,95],['2026-05-22','FLORIDA','13:30',28,85,38],['2026-05-22','NY','14:30',87,95,51],['2026-05-22','GEORGIA','19:00',41,84,85],['2026-05-22','FLORIDA','21:50',7,73,98],['2026-05-22','NY','22:30',78,72,67],['2026-05-22','GEORGIA','23:30',42,25,3],
+['2026-05-23','GEORGIA','12:30',95,60,40],['2026-05-23','FLORIDA','13:30',36,23,78],['2026-05-23','NY','14:30',75,99,8],['2026-05-23','GEORGIA','19:00',69,18,17],['2026-05-23','FLORIDA','21:50',95,24,15],['2026-05-23','NY','22:30',70,76,3],['2026-05-23','GEORGIA','23:30',87,39,76],
+['2026-05-24','GEORGIA','12:30',28,89,44],['2026-05-24','FLORIDA','13:30',16,78,10],['2026-05-24','NY','14:30',57,77,49],['2026-05-24','GEORGIA','19:00',32,49,69],['2026-05-24','FLORIDA','21:50',97,39,51],['2026-05-24','NY','22:30',33,68,15],['2026-05-24','GEORGIA','23:30',10,98,65],
+['2026-05-25','GEORGIA','12:30',62,72,38],['2026-05-25','FLORIDA','13:30',62,70,78],['2026-05-25','NY','14:30',65,75,78],['2026-05-25','GEORGIA','19:00',75,23,55],['2026-05-25','FLORIDA','21:50',62,21,10],['2026-05-25','NY','22:30',84,24,85],['2026-05-25','GEORGIA','23:30',80,48,88],
+['2026-05-26','GEORGIA','12:30',8,44,56],['2026-05-26','FLORIDA','13:30',72,3,72],['2026-05-26','NY','14:30',90,11,63],['2026-05-26','GEORGIA','19:00',29,71,12],['2026-05-26','FLORIDA','21:50',56,23,1],['2026-05-26','NY','22:30',63,10,63],['2026-05-26','GEORGIA','23:30',92,68,84],
+['2026-05-27','GEORGIA','12:30',16,51,43],['2026-05-27','FLORIDA','13:30',32,22,50],['2026-05-27','NY','14:30',0,13,42],['2026-05-27','GEORGIA','19:00',73,8,39],['2026-05-27','FLORIDA','21:50',33,31,1],['2026-05-27','NY','22:30',0,94,92],['2026-05-27','GEORGIA','23:30',70,90,66],
+['2026-05-28','GEORGIA','12:30',43,16,59],['2026-05-28','FLORIDA','13:30',92,17,45],['2026-05-28','NY','14:30',88,27,95],['2026-05-28','GEORGIA','19:00',75,10,65],['2026-05-28','FLORIDA','21:50',44,66,67],['2026-05-28','NY','22:30',58,54,87],['2026-05-28','GEORGIA','23:30',87,42,3],
+['2026-05-29','GEORGIA','12:30',91,95,20],['2026-05-29','FLORIDA','13:30',77,57,23],['2026-05-29','NY','14:30',27,14,73],['2026-05-29','GEORGIA','19:00',35,84,44],['2026-05-29','FLORIDA','21:50',33,87,27],['2026-05-29','NY','22:30',40,42,34],['2026-05-29','GEORGIA','23:30',60,22,70],
+['2026-05-30','GEORGIA','12:30',67,12,54],['2026-05-30','FLORIDA','13:30',49,16,25],['2026-05-30','NY','14:30',83,52,50],['2026-05-30','GEORGIA','19:00',48,25,89],['2026-05-30','FLORIDA','21:50',31,7,78],['2026-05-30','NY','22:30',94,76,22],['2026-05-30','GEORGIA','23:30',16,42,7],
+['2026-05-31','GEORGIA','12:30',31,41,51],['2026-05-31','FLORIDA','13:30',20,1,17],['2026-05-31','NY','14:30',64,75,63],['2026-05-31','GEORGIA','19:00',41,35,16],['2026-05-31','FLORIDA','21:50',43,70,46],['2026-05-31','NY','22:30',16,89,40],['2026-05-31','GEORGIA','23:30',7,41,69],
+// JUNIO 2026
+['2026-06-01','GEORGIA','12:30',21,33,82],['2026-06-01','FLORIDA','13:30',45,86,92],['2026-06-01','NY','14:30',36,77,39],['2026-06-01','GEORGIA','19:00',8,18,53],['2026-06-01','FLORIDA','21:50',42,26,40],['2026-06-01','NY','22:30',47,42,8],['2026-06-01','GEORGIA','23:30',29,73,74],
+['2026-06-02','GEORGIA','12:30',40,74,46],['2026-06-02','FLORIDA','13:30',17,10,76],['2026-06-02','NY','14:30',33,16,57],['2026-06-02','GEORGIA','19:00',21,70,97],['2026-06-02','FLORIDA','21:50',37,53,38],['2026-06-02','NY','22:30',96,93,74],['2026-06-02','GEORGIA','23:30',95,73,95],
+['2026-06-03','GEORGIA','12:30',95,94,49],['2026-06-03','FLORIDA','13:30',79,23,50],['2026-06-03','NY','14:30',75,30,66],['2026-06-03','GEORGIA','19:00',57,5,6],['2026-06-03','FLORIDA','21:50',19,49,28],['2026-06-03','NY','22:30',48,65,12],['2026-06-03','GEORGIA','23:30',76,79,34],
+['2026-06-04','GEORGIA','12:30',79,42,49],['2026-06-04','FLORIDA','13:30',14,81,41],['2026-06-04','NY','14:30',81,25,60],['2026-06-04','GEORGIA','19:00',86,84,34],['2026-06-04','FLORIDA','21:50',75,98,65],['2026-06-04','NY','22:30',4,81,87],['2026-06-04','GEORGIA','23:30',15,62,25],
+['2026-06-05','GEORGIA','12:30',41,75,21],['2026-06-05','FLORIDA','13:30',97,25,47],['2026-06-05','NY','14:30',19,40,28],['2026-06-05','GEORGIA','19:00',22,3,54],['2026-06-05','FLORIDA','21:50',29,41,1],['2026-06-05','NY','22:30',55,17,73],['2026-06-05','GEORGIA','23:30',85,8,68],
+['2026-06-06','GEORGIA','12:30',83,0,59],['2026-06-06','FLORIDA','13:30',10,87,8],['2026-06-06','NY','14:30',16,68,68],['2026-06-06','GEORGIA','19:00',57,81,0],['2026-06-06','FLORIDA','21:50',12,95,42],['2026-06-06','NY','22:30',14,40,85],['2026-06-06','GEORGIA','23:30',24,92,98],
+['2026-06-07','GEORGIA','12:30',4,18,40],['2026-06-07','FLORIDA','13:30',41,6,90],['2026-06-07','NY','14:30',13,16,19],['2026-06-07','GEORGIA','19:00',87,32,80],['2026-06-07','FLORIDA','21:50',25,85,53],['2026-06-07','NY','22:30',26,26,7],['2026-06-07','GEORGIA','23:30',50,63,34],
+['2026-06-08','GEORGIA','12:30',93,27,29],['2026-06-08','FLORIDA','13:30',5,31,60],['2026-06-08','NY','14:30',95,51,80],['2026-06-08','GEORGIA','19:00',54,18,53],['2026-06-08','FLORIDA','21:50',59,4,15],['2026-06-08','NY','22:30',79,20,93],['2026-06-08','GEORGIA','23:30',58,41,35],
+['2026-06-09','GEORGIA','12:30',41,85,21],['2026-06-09','FLORIDA','13:30',77,41,1],['2026-06-09','NY','14:30',17,60,71],['2026-06-09','GEORGIA','19:00',1,8,80],['2026-06-09','FLORIDA','21:50',4,46,6],['2026-06-09','NY','22:30',52,14,98],['2026-06-09','GEORGIA','23:30',70,80,13],
+['2026-06-10','GEORGIA','12:30',46,20,40],['2026-06-10','FLORIDA','13:30',32,80,34],['2026-06-10','NY','14:30',93,8,0],['2026-06-10','GEORGIA','19:00',73,72,95],['2026-06-10','FLORIDA','21:50',15,74,4],['2026-06-10','NY','22:30',89,78,42],['2026-06-10','GEORGIA','23:30',69,73,68],
+['2026-06-11','GEORGIA','12:30',55,29,67],['2026-06-11','FLORIDA','13:30',98,61,60],['2026-06-11','NY','14:30',30,33,15],['2026-06-11','GEORGIA','19:00',98,48,33],['2026-06-11','FLORIDA','21:50',49,34,47],['2026-06-11','NY','22:30',39,52,48],['2026-06-11','GEORGIA','23:30',15,98,98],
+['2026-06-12','GEORGIA','12:30',27,11,88],['2026-06-12','FLORIDA','13:30',2,27,8],['2026-06-12','NY','14:30',24,47,89],['2026-06-12','GEORGIA','19:00',54,57,1],['2026-06-12','FLORIDA','21:50',18,34,5],['2026-06-12','NY','22:30',47,86,69],['2026-06-12','GEORGIA','23:30',11,21,41],
+['2026-06-13','GEORGIA','12:30',15,18,42],['2026-06-13','FLORIDA','13:30',76,67,29],['2026-06-13','NY','14:30',49,2,86],['2026-06-13','GEORGIA','19:00',65,5,14],['2026-06-13','FLORIDA','21:50',14,52,44],['2026-06-13','NY','22:30',92,7,85],['2026-06-13','GEORGIA','23:30',34,80,4],
+['2026-06-14','GEORGIA','12:30',2,41,76],['2026-06-14','FLORIDA','13:30',58,7,76],['2026-06-14','NY','14:30',30,82,97],['2026-06-14','GEORGIA','19:00',70,47,46],['2026-06-14','FLORIDA','21:50',89,12,50],['2026-06-14','NY','22:30',57,0,92],['2026-06-14','GEORGIA','23:30',31,86,55],
+['2026-06-15','GEORGIA','12:30',87,86,47],['2026-06-15','FLORIDA','13:30',81,30,40],['2026-06-15','NY','14:30',49,93,38],['2026-06-15','GEORGIA','19:00',53,82,47],['2026-06-15','FLORIDA','21:50',0,65,97],['2026-06-15','NY','22:30',38,21,2],['2026-06-15','GEORGIA','23:30',26,5,70],
+['2026-06-16','GEORGIA','12:30',70,60,77],['2026-06-16','FLORIDA','13:30',89,9,81],['2026-06-16','NY','14:30',87,96,16],['2026-06-16','GEORGIA','19:00',16,48,23],['2026-06-16','FLORIDA','21:50',0,42,29],['2026-06-16','NY','22:30',40,32,19],['2026-06-16','GEORGIA','23:30',11,80,54],
+['2026-06-17','GEORGIA','12:30',63,2,40],['2026-06-17','FLORIDA','13:30',81,61,7],['2026-06-17','NY','14:30',86,79,42],['2026-06-17','GEORGIA','19:00',78,11,29],['2026-06-17','FLORIDA','21:50',79,78,22],['2026-06-17','NY','22:30',9,75,23],['2026-06-17','GEORGIA','23:30',74,30,7],
+['2026-06-18','GEORGIA','12:30',57,70,49],['2026-06-18','FLORIDA','13:30',31,69,38],['2026-06-18','NY','14:30',8,50,66],['2026-06-18','GEORGIA','19:00',77,3,89],['2026-06-18','FLORIDA','21:50',94,13,62],['2026-06-18','NY','22:30',33,5,99],['2026-06-18','GEORGIA','23:30',36,46,9],
+['2026-06-19','GEORGIA','12:30',67,89,19],['2026-06-19','FLORIDA','13:30',35,67,85],['2026-06-19','NY','14:30',78,74,56],['2026-06-19','GEORGIA','19:00',43,53,22],['2026-06-19','FLORIDA','21:50',63,73,23],['2026-06-19','NY','22:30',61,73,62],['2026-06-19','GEORGIA','23:30',93,65,72],
+['2026-06-20','GEORGIA','12:30',9,1,25],['2026-06-20','FLORIDA','13:30',82,16,8],['2026-06-20','NY','14:30',76,40,88],['2026-06-20','GEORGIA','19:00',69,18,15],['2026-06-20','FLORIDA','21:50',43,35,40],['2026-06-20','NY','22:30',70,26,27],['2026-06-20','GEORGIA','23:30',46,54,60],
+['2026-06-21','GEORGIA','12:30',69,36,63],['2026-06-21','FLORIDA','13:30',35,42,49],['2026-06-21','NY','14:30',39,19,10],['2026-06-21','GEORGIA','19:00',64,29,87],['2026-06-21','FLORIDA','21:50',13,67,69],['2026-06-21','NY','22:30',65,99,32],['2026-06-21','GEORGIA','23:30',26,98,18],
+['2026-06-22','GEORGIA','12:30',63,47,53],['2026-06-22','FLORIDA','13:30',82,19,70],['2026-06-22','NY','14:30',50,44,16],['2026-06-22','GEORGIA','19:00',30,24,71],['2026-06-22','FLORIDA','21:50',61,73,57],['2026-06-22','NY','22:30',71,44,5],['2026-06-22','GEORGIA','23:30',68,32,16],
+['2026-06-23','GEORGIA','12:30',54,46,61],['2026-06-23','FLORIDA','13:30',37,91,62],['2026-06-23','NY','14:30',84,70,31],['2026-06-23','GEORGIA','19:00',88,23,20],['2026-06-23','FLORIDA','21:50',41,9,23],['2026-06-23','NY','22:30',15,56,65],['2026-06-23','GEORGIA','23:30',76,33,73],
+['2026-06-24','GEORGIA','12:30',22,31,94],['2026-06-24','FLORIDA','13:30',61,37,40],['2026-06-24','NY','14:30',28,21,67],['2026-06-24','GEORGIA','19:00',0,84,59],['2026-06-24','FLORIDA','21:50',62,18,40],['2026-06-24','NY','22:30',30,56,40],['2026-06-24','GEORGIA','23:30',27,7,98],
+['2026-06-25','GEORGIA','12:30',25,26,54],['2026-06-25','FLORIDA','13:30',78,79,16],['2026-06-25','NY','14:30',58,20,0],['2026-06-25','GEORGIA','19:00',14,95,64],['2026-06-25','FLORIDA','21:50',43,32,78],['2026-06-25','NY','22:30',23,61,93],['2026-06-25','GEORGIA','23:30',2,29,10],
+['2026-06-26','GEORGIA','12:30',61,76,25],['2026-06-26','FLORIDA','13:30',87,34,90],['2026-06-26','NY','14:30',61,66,64],['2026-06-26','GEORGIA','19:00',72,49,19],['2026-06-26','FLORIDA','21:50',4,42,74],['2026-06-26','NY','22:30',75,16,42],['2026-06-26','GEORGIA','23:30',51,49,11],
+['2026-06-27','GEORGIA','12:30',61,51,6],['2026-06-27','FLORIDA','13:30',78,37,89],['2026-06-27','NY','14:30',4,92,75],['2026-06-27','GEORGIA','19:00',54,79,5],['2026-06-27','FLORIDA','21:50',58,40,97],['2026-06-27','NY','22:30',16,15,8],['2026-06-27','GEORGIA','23:30',54,72,23],
+['2026-06-28','GEORGIA','12:30',99,80,98],['2026-06-28','FLORIDA','13:30',48,89,3],['2026-06-28','NY','14:30',57,21,64],['2026-06-28','GEORGIA','19:00',40,67,63],['2026-06-28','FLORIDA','21:50',21,14,63],['2026-06-28','NY','22:30',54,38,20],['2026-06-28','GEORGIA','23:30',43,6,51],
+['2026-06-29','GEORGIA','12:30',95,81,29],['2026-06-29','FLORIDA','13:30',3,96,67],['2026-06-29','NY','14:30',36,8,72],['2026-06-29','GEORGIA','19:00',23,28,90],['2026-06-29','FLORIDA','21:50',95,20,32],['2026-06-29','NY','22:30',42,45,57],['2026-06-29','GEORGIA','23:30',22,14,31],
+['2026-06-30','GEORGIA','12:30',65,4,40],['2026-06-30','FLORIDA','13:30',66,64,4],['2026-06-30','NY','14:30',58,34,35],['2026-06-30','GEORGIA','19:00',25,6,89],['2026-06-30','FLORIDA','21:50',2,75,74],['2026-06-30','NY','22:30',22,24,35],['2026-06-30','GEORGIA','23:30',86,88,63],
+// JULIO 2026
+['2026-07-01','GEORGIA','12:30',23,70,6],['2026-07-01','FLORIDA','13:30',27,5,91],['2026-07-01','NY','14:30',1,64,82],['2026-07-01','GEORGIA','19:00',43,4,39],['2026-07-01','FLORIDA','21:50',91,97,40],['2026-07-01','NY','22:30',25,57,36],['2026-07-01','GEORGIA','23:30',22,24,76],
+['2026-07-02','GEORGIA','12:30',90,0,80],['2026-07-02','FLORIDA','13:30',8,81,91],['2026-07-02','NY','14:30',1,76,53],['2026-07-02','GEORGIA','19:00',80,96,79],['2026-07-02','FLORIDA','21:50',64,72,24],['2026-07-02','NY','22:30',6,60,86],['2026-07-02','GEORGIA','23:30',21,51,84],
+['2026-07-03','GEORGIA','12:30',21,51,84],['2026-07-03','FLORIDA','13:30',60,89,38],['2026-07-03','NY','14:30',84,11,17],['2026-07-03','GEORGIA','19:00',95,16,41],['2026-07-03','FLORIDA','21:50',61,75,76],['2026-07-03','NY','22:30',82,63,78],['2026-07-03','GEORGIA','23:30',8,57,16],
+['2026-07-04','GEORGIA','12:30',56,11,85],['2026-07-04','FLORIDA','13:30',72,32,51],['2026-07-04','NY','14:30',36,76,6],['2026-07-04','GEORGIA','19:00',69,17,57],['2026-07-04','FLORIDA','21:50',6,78,78],['2026-07-04','NY','22:30',89,25,36],['2026-07-04','GEORGIA','23:30',29,0,50],
+['2026-07-05','GEORGIA','12:30',66,30,64],['2026-07-05','FLORIDA','13:30',90,86,87],['2026-07-05','NY','14:30',17,67,40],['2026-07-05','GEORGIA','19:00',44,50,24],['2026-07-05','FLORIDA','21:50',19,44,21],['2026-07-05','NY','22:30',47,48,56],['2026-07-05','GEORGIA','23:30',91,68,77],
+['2026-07-06','GEORGIA','12:30',48,57,26],['2026-07-06','FLORIDA','13:30',56,97,92],['2026-07-06','NY','14:30',38,0,42],['2026-07-06','GEORGIA','19:00',9,25,39],['2026-07-06','FLORIDA','21:50',77,90,66],['2026-07-06','NY','22:30',46,73,55],['2026-07-06','GEORGIA','23:30',91,68,77],
+['2026-07-07','GEORGIA','12:30',63,54,70],['2026-07-07','FLORIDA','13:30',59,73,39],['2026-07-07','NY','14:30',40,19,32],['2026-07-07','GEORGIA','19:00',24,4,13],['2026-07-07','FLORIDA','21:50',27,1,8],['2026-07-07','NY','22:30',98,68,83],['2026-07-07','GEORGIA','23:30',27,8,26],
+['2026-07-08','GEORGIA','12:30',33,38,17],['2026-07-08','FLORIDA','13:30',59,2,50],['2026-07-08','NY','14:30',53,45,1],['2026-07-08','GEORGIA','19:00',74,96,7],['2026-07-08','FLORIDA','21:50',69,13,22],['2026-07-08','NY','22:30',86,47,95],['2026-07-08','GEORGIA','23:30',34,60,84],
+['2026-07-09','GEORGIA','12:30',44,68,2],['2026-07-09','FLORIDA','13:30',78,55,57],['2026-07-09','NY','14:30',22,48,30],['2026-07-09','GEORGIA','19:00',28,84,81],['2026-07-09','FLORIDA','21:50',21,99,37],['2026-07-09','NY','22:30',80,10,85],['2026-07-09','GEORGIA','23:30',90,75,71],
+['2026-07-10','GEORGIA','12:30',75,95,44],['2026-07-10','FLORIDA','13:30',53,22,42],['2026-07-10','NY','14:30',20,68,65],['2026-07-10','GEORGIA','19:00',55,43,10],['2026-07-10','FLORIDA','21:50',81,4,41],['2026-07-10','NY','22:30',39,56,77],['2026-07-10','GEORGIA','23:30',26,58,9],
+['2026-07-11','GEORGIA','12:30',42,71,18],['2026-07-11','FLORIDA','13:30',13,87,50],['2026-07-11','NY','14:30',4,0,72],['2026-07-11','GEORGIA','19:00',73,77,90],['2026-07-11','FLORIDA','21:50',75,15,14],['2026-07-11','NY','22:30',79,41,43],['2026-07-11','GEORGIA','23:30',69,36,42],
+['2026-07-12','GEORGIA','12:30',39,88,28],['2026-07-12','FLORIDA','13:30',90,68,23],['2026-07-12','NY','14:30',56,29,0],['2026-07-12','GEORGIA','19:00',17,9,98],['2026-07-12','FLORIDA','21:50',18,38,18],['2026-07-12','NY','22:30',83,25,57],['2026-07-12','GEORGIA','23:30',19,16,75],
+['2026-07-13','GEORGIA','12:30',72,3,94],['2026-07-13','FLORIDA','13:30',93,16,50],['2026-07-13','NY','14:30',47,11,46],['2026-07-13','GEORGIA','19:00',20,77,57],['2026-07-13','FLORIDA','21:50',80,79,6],['2026-07-13','NY','22:30',80,83,59],['2026-07-13','GEORGIA','23:30',76,90,58],
+['2026-07-14','GEORGIA','12:30',84,4,63],['2026-07-14','FLORIDA','13:30',46,38,55],['2026-07-14','NY','14:30',40,17,31],['2026-07-14','GEORGIA','19:00',77,19,4],['2026-07-14','FLORIDA','21:50',92,47,92],['2026-07-14','NY','22:30',19,4,97],['2026-07-14','GEORGIA','23:30',37,91,49],
+['2026-07-15','GEORGIA','12:30',7,37,84],['2026-07-15','FLORIDA','13:30',55,23,96],['2026-07-15','NY','14:30',76,75,59],['2026-07-15','GEORGIA','19:00',97,7,80],['2026-07-15','FLORIDA','21:50',59,4,71],['2026-07-15','NY','22:30',0,96,99],['2026-07-15','GEORGIA','23:30',42,59,92],
+['2026-07-16','GEORGIA','12:30',6,66,65],['2026-07-16','FLORIDA','13:30',41,61,14],['2026-07-16','NY','14:30',9,54,13],['2026-07-16','GEORGIA','19:00',98,18,24],['2026-07-16','FLORIDA','21:50',0,42,76],['2026-07-16','NY','22:30',0,29,61],['2026-07-16','GEORGIA','23:30',31,1,64],
+['2026-07-17','GEORGIA','12:30',57,98,28],['2026-07-17','FLORIDA','13:30',80,43,88],['2026-07-17','NY','14:30',95,38,33],['2026-07-17','GEORGIA','19:00',40,4,28],['2026-07-17','FLORIDA','21:50',44,65,90],['2026-07-17','NY','22:30',19,62,85],['2026-07-17','GEORGIA','23:30',57,63,99],
+['2026-07-18','GEORGIA','12:30',32,55,4],['2026-07-18','FLORIDA','13:30',30,28,25],['2026-07-18','NY','14:30',27,50,78],['2026-07-18','GEORGIA','19:00',90,68,92],['2026-07-18','FLORIDA','21:50',27,55,88],['2026-07-18','NY','22:30',7,22,31],['2026-07-18','GEORGIA','23:30',87,30,78],
+['2026-07-19','GEORGIA','12:30',92,55,15],['2026-07-19','FLORIDA','13:30',85,9,69],['2026-07-19','NY','14:30',98,39,62],['2026-07-19','GEORGIA','19:00',27,35,31],['2026-07-19','FLORIDA','21:50',91,49,44],['2026-07-19','NY','22:30',70,26,70],['2026-07-19','GEORGIA','23:30',85,3,59],
+['2026-07-20','GEORGIA','12:30',48,80,53],['2026-07-20','FLORIDA','13:30',5,46,41],['2026-07-20','NY','14:30',84,12,33],['2026-07-20','GEORGIA','19:00',50,80,22],['2026-07-20','FLORIDA','21:50',88,21,72],['2026-07-20','NY','22:30',73,76,77],['2026-07-20','GEORGIA','23:30',54,72,35],
+['2026-07-21','GEORGIA','12:30',15,45,24],['2026-07-21','FLORIDA','13:30',28,52,54],['2026-07-21','NY','14:30',60,29,81],['2026-07-21','GEORGIA','19:00',30,58,69],['2026-07-21','FLORIDA','21:50',27,89,76],['2026-07-21','NY','22:30',71,36,80],['2026-07-21','GEORGIA','23:30',77,88,95],
+['2026-07-22','GEORGIA','12:30',15,45,24],['2026-07-22','FLORIDA','13:30',8,49,34],['2026-07-22','NY','14:30',35,61,45],['2026-07-22','GEORGIA','19:00',47,92,69],['2026-07-22','FLORIDA','21:50',95,50,36],['2026-07-22','NY','22:30',38,95,49],['2026-07-22','GEORGIA','23:30',27,87,89],
+['2026-07-23','GEORGIA','12:30',77,1,80],['2026-07-23','FLORIDA','13:30',15,65,10],['2026-07-23','NY','14:30',35,6,68],['2026-07-23','GEORGIA','19:00',99,56,59],['2026-07-24','GEORGIA','12:30',54,18,53],['2026-07-24','FLORIDA','13:30',46,31,59],['2026-07-24','NY','14:30',40,94,68],['2026-07-24','GEORGIA','19:00',74,38,88],['2026-07-24','FLORIDA','21:50',94,89,72],['2026-07-24','NY','22:30',61,58,67],['2026-07-24','GEORGIA','23:30',6,44,89],
+['2026-07-25','GEORGIA','12:30',87,23,16],['2026-07-25','FLORIDA','13:30',17,17,84],['2026-07-25','NY','14:30',63,20,85],['2026-07-25','GEORGIA','19:00',88,98,74],['2026-07-25','FLORIDA','21:50',81,70,30],['2026-07-25','NY','22:30',32,12,79],['2026-07-25','GEORGIA','23:30',71,5,91],
+['2026-07-26','GEORGIA','12:30',97,97,0],['2026-07-26','FLORIDA','13:30',9,98,23],['2026-07-26','NY','14:30',35,69,83],['2026-07-26','GEORGIA','19:00',53,1,94],['2026-07-26','FLORIDA','21:50',97,91,10],['2026-07-26','NY','22:30',11,99,34],['2026-07-26','GEORGIA','23:30',62,18,83],
+['2026-07-27','GEORGIA','12:30',69,69,40],['2026-07-27','FLORIDA','13:30',97,0,41],['2026-07-27','NY','14:30',61,84,87],['2026-07-27','GEORGIA','19:00',38,61,48],['2026-07-27','FLORIDA','21:50',5,64,16],['2026-07-27','NY','22:30',32,67,16],['2026-07-27','GEORGIA','23:30',85,93,56],
+['2026-07-28','GEORGIA','12:30',76,14,48],['2026-07-28','FLORIDA','13:30',40,32,94],['2026-07-28','NY','14:30',88,80,27],['2026-07-28','GEORGIA','19:00',70,73,39],['2026-07-28','FLORIDA','21:50',95,50,10],['2026-07-28','NY','22:30',68,44,74],['2026-07-28','GEORGIA','23:30',87,64,63],
+['2026-07-29','GEORGIA','12:30',31,80,21],['2026-07-29','FLORIDA','13:30',87,61,28],['2026-07-29','NY','14:30',2,35,84],['2026-07-29','GEORGIA','19:00',58,71,82],['2026-07-29','FLORIDA','21:50',40,78,71],['2026-07-29','NY','22:30',61,95,54],['2026-07-29','GEORGIA','23:30',83,17,80],
+['2026-07-30','GEORGIA','12:30',34,83,64],['2026-07-30','FLORIDA','13:30',93,41,75],['2026-07-30','NY','14:30',23,31,7],['2026-07-30','GEORGIA','19:00',84,55,79],['2026-07-30','FLORIDA','21:50',1,57,86],['2026-07-30','NY','22:30',83,13,30],['2026-07-30','GEORGIA','23:30',82,92,83]
+];
 
-// ============ ESTADO GLOBAL ============
-let HISTORIAL = [];
-const HORARIOS = ['12:30','13:30','14:30','19:00','21:50','22:30','23:30'];
-const LOTERIAS = ['GEORGIA','FLORIDA','NY'];
-const HORARIO_LOTERIA = {'12:30':'GEORGIA','13:30':'FLORIDA','14:30':'NY','19:00':'GEORGIA','21:50':'FLORIDA','22:30':'NY','23:30':'GEORGIA'};
-
-// ============ UTILIDADES ============
-const pad2 = n => String(n).padStart(2,'0');
-const parseNum = s => { const n = parseInt(s); return isNaN(n)?null:Math.max(0,Math.min(99,n)); };
+const SLOTS=[
+{lot:'GEORGIA',time:'12:30',id:'g12'},
+{lot:'FLORIDA',time:'13:30',id:'f13'},
+{lot:'NY',time:'14:30',id:'n14'},
+{lot:'GEORGIA',time:'19:00',id:'g19'},
+{lot:'FLORIDA',time:'21:50',id:'f21'},
+{lot:'NY',time:'22:30',id:'n22'},
+{lot:'GEORGIA',time:'23:30',id:'g23'}
+];
 
 function showPanel(i){
-  document.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('active',i===j));
-  document.querySelectorAll('.panel').forEach((p,j)=>p.classList.toggle('active',i===j));
-  if(i===0) renderHistory();
-  if(i===1) buildUpdateForm();
-  if(i===2) calcFreq1ra();
-  if(i===3) calcArrastre();
-  if(i===4) calcPercutados();
-  if(i===5) calcPale();
-  if(i===6) calcComparativa();
-  if(i===8) calcJugarHoy();
-}
-
-// ============ CARGA CSV ============
-function loadCSVData(){
-  const lines = CSV_DATA.trim().split('\n').filter(l=>l.trim());
-  HISTORIAL = [];
-  lines.forEach((line,idx)=>{
-    if(idx===0 && line.toLowerCase().includes('fecha')) return;
-    const parts = line.split(',').map(s=>s.trim());
-    if(parts.length<6) return;
-    const [fecha,loteria,hora,n1s,n2s,n3s] = parts;
-    const n1=parseNum(n1s), n2=parseNum(n2s), n3=parseNum(n3s);
-    if(!fecha || !LOTERIAS.includes(loteria) || !HORARIOS.includes(hora)) return;
-    if(n1===null||n2===null||n3===null) return;
-    hHISTORIAL.push({fecha, loteria, hora, n1, n2, n3});
-  });
-  HISTORIAL.sort((a,b)=>{
-    if(a.fecha!==b.fecha) return a.fecha.localeCompare(b.fecha);
-    return HORARIOS.indexOf(a.hora)-HORARIOS.indexOf(b.hora);
-  });
-  updateInfo();
-  renderHistory();
-}
-
-function updateInfo(){
-  document.getElementById('total-records').textContent = HISTORIAL.length;
-  if(HISTORIAL.length>0){
-    document.getElementById('date-range').textContent = 
-      HISTORIAL[0].fecha+' → '+HISTORIAL[HISTORIAL.length-1].fecha;
-  }
+document.querySelectorAll('.panel').forEach((p,j)=>p.classList.toggle('active',i===j));
+document.querySelectorAll('.nav-tab').forEach((t,j)=>t.classList.toggle('active',i===j));
+if(i===0)renderHistory();
+if(i===1)buildUpdateForm();
+if(i===2)calcArrastres();
+if(i===3)calcJugarHoy();
 }
 
 function renderHistory(){
-  const lot = document.getElementById('h-lot').value;
-  const desde = document.getElementById('h-desde').value;
-  const hasta = document.getElementById('h-hasta').value;
-  
-  let data = HISTORIAL;
-  if(lot!=='ALL') data = data.filter(h=>h.loteria===lot);
-  if(desde) data = data.filter(h=>h.fecha>=desde);
-  if(hasta) data = data.filter(h=>h.fecha<=hasta);
-  
-  const tbody = document.getElementById('history-body');
-  const recent = data.slice(-200).reverse();
-  tbody.innerHTML = recent.map(h=>`
-    <tr>
-      <td>${h.fecha}</td>
-      <td>${h.loteria}</td>
-      <td>${h.hora}</td>
-      <td><strong>${pad2(h.n1)}</strong></td>
-      <td><strong>${pad2(h.n2)}</strong></td>
-      <td><strong>${pad2(h.n3)}</strong></td>
-    </tr>
-  `).join('');
+const tbody=document.getElementById('historyBody');
+const recent=H.slice(-200).reverse();
+tbody.innerHTML=recent.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td><strong>${String(r[3]).padStart(2,'0')}</strong></td><td><strong>${String(r[4]).padStart(2,'0')}</strong></td><td><strong>${String(r[5]).padStart(2,'0')}</strong></td></tr>`).join('');
+document.getElementById('totalRecords').textContent=H.length;
+document.getElementById('lastDate').textContent=H[H.length-1][0];
+document.getElementById('lastUpdate').textContent=new Date().toLocaleString();
 }
 
 function buildUpdateForm(){
-  const slots = [
-    {id:'u-g12', lot:'GEORGIA', hora:'12:30'},
-    {id:'u-f13', lot:'FLORIDA', hora:'13:30'},
-    {id:'u-n14', lot:'NY', hora:'14:30'},
-    {id:'u-g19', lot:'GEORGIA', hora:'19:00'},
-    {id:'u-f21', lot:'FLORIDA', hora:'21:50'},
-    {id:'u-n22', lot:'NY', hora:'22:30'},
-    {id:'u-g23', lot:'GEORGIA', hora:'23:30'}
-  ];
-  
-  let html = '<div class="controls">';
-  slots.forEach(s=>{
-    html += `
-      <div class="control-group">
-        <label>${s.loteria} ${s.hora}</label>
-        <div style="display:flex;gap:5px">
-          <input type="number" id="${s.id}-1" min="0" max="99" placeholder="1ra" style="width:33%">
-          <input type="number" id="${s.id}-2" min="0" max="99" placeholder="2da" style="width:33%">
-          <input type="number" id="${s.id}-3" min="0" max="99" placeholder="3ra" style="width:33%">
-        </div>
-      </div>
-    `;
-  });
-  html += '</div>';
-  document.getElementById('update-form').innerHTML = html;
+const grid=document.getElementById('updateGrid');
+grid.innerHTML=SLOTS.map(s=>`<div class="update-slot"><label>${s.lot} - ${s.time}</label><input type="number" id="${s.id}-1" placeholder="1ra" min="0" max="99"><input type="number" id="${s.id}-2" placeholder="2da" min="0" max="99" style="margin-top:5px"><input type="number" id="${s.id}-3" placeholder="3ra" min="0" max="99" style="margin-top:5px"></div>`).join('');
 }
 
-function saveDay(){
-  const date = document.getElementById('u-date').value;
-  if(!date){ alert('Selecciona una fecha'); return; }
-  
-  const slots = [
-    {id:'u-g12', lot:'GEORGIA', hora:'12:30'},
-    {id:'u-f13', lot:'FLORIDA', hora:'13:30'},
-    {id:'u-n14', lot:'NY', hora:'14:30'},
-    {id:'u-g19', lot:'GEORGIA', hora:'19:00'},
-    {id:'u-f21', lot:'FLORIDA', hora:'21:50'},
-    {id:'u-n22', lot:'NY', hora:'22:30'},
-    {id:'u-g23', lot:'GEORGIA', hora:'23:30'}
-  ];
-  
-  let saved = 0;
-  slots.forEach(s=>{
-    const n1 = parseInt(document.getElementById(s.id+'-1').value);
-    const n2 = parseInt(document.getElementById(s.id+'-2').value);
-    const n3 = parseInt(document.getElementById(s.id+'-3').value);
-    
-    if(!isNaN(n1) && !isNaN(n2) && !isNaN(n3)){
-      const exists = HISTORIAL.findIndex(h=>h.fecha===date && h.loteria===s.lot && h.hora===s.hora);
-      const entry = {fecha:date, loteria:s.lot, hora:s.hora, n1, n2, n3};
-      
-      if(exists>=0) HISTORIAL[exists] = entry;
-      else HISTORIAL.push(entry);
-      saved++;
-    }
-  });
-  
-  if(saved>0){
-    HISTORIAL.sort((a,b)=>{
-      if(a.fecha!==b.fecha) return a.fecha.localeCompare(b.fecha);
-      return HORARIOS.indexOf(a.hora)-HORARIOS.indexOf(b.hora);
-    });
-    alert(`✅ ${saved} sorteos guardados`);
-    updateInfo();
-  } else {
-    alert('⚠️ No se ingresaron números válidos');
-  }
+function saveUpdates(){
+const today=new Date().toISOString().split('T')[0];
+let saved=0;
+SLOTS.forEach(s=>{
+const n1=parseInt(document.getElementById(s.id+'-1').value);
+const n2=parseInt(document.getElementById(s.id+'-2').value);
+const n3=parseInt(document.getElementById(s.id+'-3').value);
+if(!isNaN(n1)&&!isNaN(n2)&&!isNaN(n3)){
+const idx=H.findIndex(r=>r[0]===today&&r[1]===s.lot&&r[2]===s.time);
+const entry=[today,s.lot,s.time,n1,n2,n3];
+if(idx>=0)H[idx]=entry;else H.push(entry);
+saved++;
+}
+});
+if(saved>0){
+H.sort((a,b)=>a[0]!==b[0]?a[0].localeCompare(b[0]):a[2].localeCompare(b[2]));
+alert(`✅ ${saved} sorteos guardados. App recalculada.`);
+renderHistory();
+}else alert('⚠️ Ingresa números válidos');
 }
 
-function calcFreq1ra(){
-  const lot = document.getElementById('f3-lot').value;
-  const hora = document.getElementById('f3-hora').value;
-  const topN = parseInt(document.getElementById('f3-top').value);
-  
-  let data = HISTORIAL;
-  if(lot!=='ALL') data = data.filter(h=>h.loteria===lot);
-  if(hora!=='ALL') data = data.filter(h=>h.hora===hora);
-  
-  const freq = {};
-  for(let i=0;i<=99;i++) freq[i]=0;
-  data.forEach(h=>freq[h.n1]++);
-  
-  const sorted = Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,topN);
-  const total = data.length;
-  
-  let html = '<h3>Distribución de Frecuencia - Primera Posición</h3>';
-  html += `<p>Total de sorteos analizados: <strong>${total}</strong></p>`;
-  html += '<div class="number-grid">';
-  
-  sorted.forEach(([num,count])=>{
-    const pct = ((count/total)*100).toFixed(1);
-    let cls = 'cold';
-    if(pct>=5) cls = 'hot';
-    else if(pct>=2) cls = 'warm';
-    
-    html += `
-      <div class="number-cell ${cls}" title="${count} veces (${pct}%)">
-        ${pad2(num)}<br><small>${count}</small>
-      </div>
-    `;
-  });
-  
-  html += '</div>';
-  html += '<div class="stat-card"><h4>Top 10 Números</h4>';
-  html += '<table><tr><th>Número</th><th>Frecuencia</th><th>%</th><th>Visual</th></tr>';
-  
-  sorted.slice(0,10).forEach(([num,count])=>{
-    const pct = ((count/total)*100).toFixed(1);
-    const bar = '█'.repeat(Math.floor(count/2));
-    html += `<tr><td><strong>${pad2(num)}</strong></td><td>${count}</td><td>${pct}%</td><td><span style="color:#d4af37">${bar}</span></td></tr>`;
-  });
-  
-  html += '</table></div>';
-  document.getElementById('f3-results').innerHTML = html;
+function calcArrastres(){
+const arr={};
+H.forEach((cur,idx)=>{
+const win=H.slice(Math.max(0,idx-21),idx);
+win.forEach(prev=>{
+if(prev[4]===cur[3]||prev[5]===cur[3]){
+const key=`${cur[3]}|${cur[1]}|${cur[2]}`;
+arr[key]=(arr[key]||0)+1;
 }
-
-function calcArrastre(){
-  const window = parseInt(document.getElementById('f4-window').value);
-  const origin = document.getElementById('f4-origin').value;
-  const topN = parseInt(document.getElementById('f4-top').value);
-  
-  const arrastre = {};
-  for(let i=0;i<=99;i++) arrastre[i]=0;
-  
-  HISTORIAL.forEach((h,idx)=>{
-    const prev = HISTORIAL.slice(Math.max(0,idx-window), idx);
-    const prevNums = new Set();
-    
-    prev.forEach(p=>{
-      if(origin==='BOTH' || origin==='2DA') prevNums.add(p.n2);
-      if(origin==='BOTH' || origin==='3RA') prevNums.add(p.n3);
-    });
-    
-    if(prevNums.has(h.n1)) arrastre[h.n1]++;
-  });
-  
-  const sorted = Object.entries(arrastre).filter(([_,c])=>c>0).sort((a,b)=>b[1]-a[1]).slice(0,topN);
-  
-  let html = '<h3>🔗 Números con Arrastre (2da/3ra → 1ra)</h3>';
-  html += `<p>Ventana: <strong>${window} sorteos</strong> | Origen: <strong>${origin}</strong></p>`;
-  html += '<table><tr><th>Número</th><th>Veces que se arrastró</th><th>Última aparición</th></tr>';
-  
-  sorted.forEach(([num,count])=>{
-    const last = HISTORIAL.slice().reverse().find(h=>h.n1===parseInt(num));
-    const lastDate = last ? last.fecha : 'N/A';
-    html += `<tr><td><strong>${pad2(num)}</strong></td><td>${count}</td><td>${lastDate}</td></tr>`;
-  });
-  
-  html += '</table>';
-  document.getElementById('f4-results').innerHTML = html;
-}
-
-function calcPercutados(){
-  const threshold = parseInt(document.getElementById('f5-threshold').value);
-  const prevSorteos = parseInt(document.getElementById('f5-prev').value);
-  
-  const recent = HISTORIAL.slice(-prevSorteos);
-  const nums = new Set();
-  recent.forEach(h=>{ nums.add(h.n1); nums.add(h.n2); nums.add(h.n3); });
-  
-  const allNums = [];
-  for(let i=0;i<=99;i++) allNums.push(i);
-  
-  const missing = allNums.filter(n=>!nums.has(n));
-  const pct = ((missing.length/100)*100).toFixed(1);
-  
-  let html = '<h3>💥 Números Percutados (No han salido)</h3>';
-  html += `<p>Últimos <strong>${prevSorteos} sorteos</strong> | <strong>${missing.length} números</strong> sin salir (${pct}%)</p>`;
-  
-  if(missing.length>0 && pct>=threshold){
-    html += '<div class="verdict verdict-jugar">⚠️ ALERTA: Hay números muy percutados</div>';
-    html += '<div class="number-grid">';
-    missing.forEach(n=>{
-      html += `<div class="number-cell hot">${pad2(n)}</div>`;
-    });
-    html += '</div>';
-  } else {
-    html += '<div class="verdict verdict-observar">✓ Los números están distribuidos normalmente</div>';
-  }
-  
-  document.getElementById('f5-results').innerHTML = html;
-}
-
-function calcPale(){
-  const type = document.getElementById('f6-type').value;
-  const lot = document.getElementById('f6-lot').value;
-  const topN = parseInt(document.getElementById('f6-top').value);
-  
-  let data = HISTORIAL;
-  if(lot!=='ALL') data = data.filter(h=>h.loteria===lot);
-  
-  const pairs = {};
-  
-  data.forEach(h=>{
-    if(type==='1x2' || type==='ALL'){
-      const key = `${pad2(h.n1)}-${pad2(h.n2)}`;
-      pairs[key] = (pairs[key]||0)+1;
-    }
-    if(type==='1x3' || type==='ALL'){
-      const key = `${pad2(h.n1)}-${pad2(h.n3)}`;
-      pairs[key] = (pairs[key]||0)+1;
-    }
-    if(type==='2x3' || type==='ALL'){
-      const key = `${pad2(h.n2)}-${pad2(h.n3)}`;
-      pairs[key] = (pairs[key]||0)+1;
-    }
-  });
-  
-  const sorted = Object.entries(pairs).sort((a,b)=>b[1]-a[1]).slice(0,topN);
-  
-  let html = '<h3>🎴 Combinaciones Palé Más Frecuentes</h3>';
-  html += `<p>Tipo: <strong>${type}</strong> | Lotería: <strong>${lot}</strong></p>`;
-  html += '<table><tr><th>Combinación</th><th>Frecuencia</th><th>% del total</th></tr>';
-  
-  sorted.forEach(([pair,count])=>{
-    const pct = ((count/data.length)*100).toFixed(1);
-    html += `<tr><td><strong>${pair}</strong></td><td>${count}</td><td>${pct}%</td></tr>`;
-  });
-  
-  html += '</table>';
-  document.getElementById('f6-results').innerHTML = html;
-}
-
-function calcComparativa(){
-  const freq2da = {};
-  const freq3ra = {};
-  for(let i=0;i<=99;i++){ freq2da[i]=0; freq3ra[i]=0; }
-  
-  HISTORIAL.forEach(h=>{
-    freq2da[h.n2]++;
-    freq3ra[h.n3]++;
-  });
-  
-  const total = HISTORIAL.length;
-  let html = '<h3>⚖️ Comparativa: Frecuencia 2da vs 3ra Posición</h3>';
-  html += '<table><tr><th>Número</th><th>2da Posición</th><th>3ra Posición</th><th>Diferencia</th></tr>';
-  
-  for(let i=0;i<=99;i++){
-    if(freq2da[i]>0 || freq3ra[i]>0){
-      const d2 = freq2da[i];
-      const d3 = freq3ra[i];
-      const diff = d2-d3;
-      const pct2 = ((d2/total)*100).toFixed(1);
-      const pct3 = ((d3/total)*100).toFixed(1);
-      
-      let diffClass = '';
-      if(diff>5) diffClass = 'badge-success';
-      else if(diff<-5) diffClass = 'badge-danger';
-      
-      html += `
-        <tr>
-          <td><strong>${pad2(i)}</strong></td>
-          <td>${d2} (${pct2}%)</td>
-          <td>${d3} (${pct3}%)</td>
-          <td><span class="badge ${diffClass}">${diff>0?'+':''}${diff}</span></td>
-        </tr>
-      `;
-    }
-  }
-  
-  html += '</table>';
-  document.getElementById('f7-results').innerHTML = html;
-}
-
-function runSimulation(){
-  const iters = parseInt(document.getElementById('f8-iters').value);
-  const conf = parseInt(document.getElementById('f8-conf').value);
-  const pos = document.getElementById('f8-pos').value;
-  
-  const simFreq = {};
-  for(let i=0;i<=99;i++) simFreq[i]=0;
-  
-  for(let iter=0;iter<iters;iter++){
-    const idx = Math.floor(Math.random()*HISTORIAL.length);
-    const h = HISTORIAL[idx];
-    
-    if(pos==='1') simFreq[h.n1]++;
-    else if(pos==='2') simFreq[h.n2]++;
-    else if(pos==='3') simFreq[h.n3]++;
-    else {
-      const r = Math.random();
-      if(r<0.33) simFreq[h.n1]++;
-      else if(r<0.66) simFreq[h.n2]++;
-      else simFreq[h.n3]++;
-    }
-  }
-  
-  const sorted = Object.entries(simFreq).sort((a,b)=>b[1]-a[1]).slice(0,20);
-  const expected = iters/100;
-  const margin = 1.96 * Math.sqrt(expected*(1-1/100)); // 95% CI
-  
-  let html = '<h3>🎲 Simulación de Muestreo Aleatorio</h3>';
-  html += `<p>Iteraciones: <strong>${iters.toLocaleString()}</strong> | Confianza: <strong>${conf}%</strong></p>`;
-  html += `<p>Frecuencia esperada por número: <strong>${expected.toFixed(1)}</strong> ± ${margin.toFixed(1)}</p>`;
-  html += '<table><tr><th>Número</th><th>Simulado</th><th>Esperado</th><th>Desviación</th><th>Estado</th></tr>';
-  
-  sorted.forEach(([num,count])=>{
-    const dev = count-expected;
-    const z = dev/margin;
-    let status = 'Normal';
-    let statusClass = '';
-    
-    if(Math.abs(z)>2){
-      status = Math.abs(z)>3 ? 'Muy Alto' : 'Alto';
-      statusClass = Math.abs(z)>3 ? 'badge-danger' : 'badge-warning';
-    }
-    
-    html += `
-      <tr>
-        <td><strong>${pad2(num)}</strong></td>
-        <td>${count}</td>
-        <td>${expected.toFixed(1)}</td>
-        <td>${dev>0?'+':''}${dev.toFixed(1)}</td>
-        <td><span class="badge ${statusClass}">${status}</span></td>
-      </tr>
-    `;
-  });
-  
-  html += '</table>';
-  document.getElementById('f8-results').innerHTML = html;
+});
+});
+const top=Object.entries(arr).sort((a,b)=>b[1]-a[1]).slice(0,3);
+document.getElementById('arrastreContent').innerHTML=top.map(([k,c],i)=>{
+const[num,lot,time]=k.split('|');
+return`<div class="forecast-box"><h3>#${i+1}</h3><div class="numbers">${String(num).padStart(2,'0')}</div><div><span class="info-tag">${lot}</span><span class="info-tag">${time}</span><span class="info-tag">Frecuencia: ${c} veces</span></div></div>`;
+}).join('');
 }
 
 function calcJugarHoy(){
-  const lot = document.getElementById('f9-lot').value;
-  const hora = document.getElementById('f9-hora').value;
-  
-  const data = HISTORIAL.filter(h=>h.loteria===lot && h.hora===hora);
-  if(data.length<10){
-    document.getElementById('f9-results').innerHTML = 
-      '<div class="verdict verdict-no-jugar">⚠️ No hay suficientes datos históricos para esta lotería/horario</div>';
-    return;
-  }
-  
-  const freq = {};
-  const arrastre = {};
-  const percutados = new Set();
-  
-  for(let i=0;i<=99;i++){ freq[i]=0; arrastre[i]=0; percutados.add(i); }
-  
-  const recent = data.slice(-20);
-  recent.forEach(h=>{
-    freq[h.n1]++;
-    percutados.delete(h.n1);
-    percutados.delete(h.n2);
-    percutados.delete(h.n3);
-  });
-  
-  data.forEach((h,idx)=>{
-    if(idx>0){
-      const prev = data[idx-1];
-      if(prev.n2===h.n1 || prev.n3===h.n1) arrastre[h.n1]++;
-    }
-  });
-  
-  const scores = [];
-  for(let i=0;i<=99;i++){
-    let score = 0;
-    let reasons = [];
-    
-    if(freq[i]>=3){
-      score += 30;
-      reasons.push(`Frecuencia alta (${freq[i]})`);
-    } else if(freq[i]>=2){
-      score += 15;
-      reasons.push(`Frecuencia media (${freq[i]})`);
-    }
-    
-    if(arrastre[i]>=2){
-      score += 25;
-      reasons.push(`Arrastre fuerte (${arrastre[i]})`);
-    } else if(arrastre[i]>=1){
-      score += 10;
-      reasons.push(`Arrastre presente`);
-    }
-    
-    if(percutados.has(i)){
-      score += 20;
-      reasons.push('Muy percutado');
-    }
-    
-    if(score>0){
-      scores.push({num:i, score, reasons});
-    }
-  }
-  
-  scores.sort((a,b)=>b.score-a.score);
-  const top = scores.slice(0,10);
-  
-  let html = '<h3>🎯 Candidatos con Más Soporte Histórico</h3>';
-  html += `<p>Lotería: <strong>${lot}</strong> | Horario: <strong>${hora}</strong></p>`;
-  html += `<p>Total sorteos analizados: <strong>${data.length}</strong></p>`;
-  
-  if(top.length===0 || top[0].score<15){
-    html += '<div class="verdict verdict-no-jugar"> NO JUGAR - Ningún número cumple los umbrales mínimos</div>';
-  } else {
-    html += '<table><tr><th>Número</th><th>Puntaje</th><th>Razones</th><th>Recomendación</th></tr>';
-    
-    top.forEach(c=>{
-      let verdict = '';
-      let verdictClass = '';
-      
-      if(c.score>=40){
-        verdict = 'ALTA';
-        verdictClass = 'verdict-jugar';
-      } else if(c.score>=25){
-        verdict = 'MEDIA';
-        verdictClass = 'verdict-observar';
-      } else {
-        verdict = 'BAJA';
-        verdictClass = 'verdict-no-jugar';
-      }
-      
-      html += `
-        <tr>
-          <td><strong style="font-size:1.2em">${pad2(c.num)}</strong></td>
-          <td>${c.score}</td>
-          <td><small>${c.reasons.join(', ')}</small></td>
-          <td><div class="verdict ${verdictClass}">${verdict}</div></td>
-        </tr>
-      `;
-    });
-    
-    html += '</table>';
-    html += '<div class="warning"><strong>ℹ️ Nota:</strong> Estos son candidatos basados en patrones históricos. No garantizan resultados futuros.</div>';
-  }
-  
-  document.getElementById('f9-results').innerHTML = html;
+const scores={};
+H.forEach(r=>{
+[3,4,5].forEach(i=>{
+const key=`${r[i]}|${r[1]}|${r[2]}`;
+if(!scores[key])scores[key]={num:r[i],lot:r[1],time:r[2],score:0};
+scores[key].score++;
+});
+});
+const top=Object.values(scores).sort((a,b)=>b.score-a.score).slice(0,3);
+document.getElementById('jugarContent').innerHTML=top.map((f,i)=>`<div class="forecast-box"><h3> Pronóstico #${i+1}</h3><div class="numbers">${String(f.num).padStart(2,'0')}</div><div><span class="info-tag">${f.lot}</span><span class="info-tag">${f.time}</span><span class="info-tag">Puntaje: ${f.score}</span></div></div>`).join('');
 }
 
-function cerrarAuditoria(){
-  document.getElementById('audit-modal').classList.remove('active');
+function runMonteCarlo(){
+const iters=20000;
+const results={};
+const progress=document.getElementById('mcProgress');
+let current=0;
+const interval=setInterval(()=>{
+for(let k=0;k<100;k++){
+const r=H[Math.floor(Math.random()*H.length)];
+const num=r[3+Math.floor(Math.random()*3)];
+const key=`${num}|${r[1]}|${r[2]}`;
+results[key]=(results[key]||0)+1;
+current++;
+}
+progress.style.width=(current/iters*100)+'%';
+progress.textContent=Math.round(current/iters*100)+'%';
+if(current>=iters){
+clearInterval(interval);
+const top=Object.entries(results).sort((a,b)=>b[1]-a[1]).slice(0,3);
+document.getElementById('monteCarloContent').innerHTML=top.map(([k,c],i)=>{
+const[num,lot,time]=k.split('|');
+return`<div class="forecast-box"><h3>📈 Resultado #${i+1}</h3><div class="numbers">${String(num).padStart(2,'0')}</div><div><span class="info-tag">${lot}</span><span class="info-tag">${time}</span><span class="info-tag">Probabilidad: ${((c/iters)*100).toFixed(2)}%</span></div></div>`;
+}).join('');
+}
+},50);
 }
 
-window.onload = function(){
-  loadCSVData();
-  document.getElementById('u-date').valueAsDate = new Date();
+window.onload=function(){
+renderHistory();
 };
 </script>
-</div>
 </body>
 </html>
+
+   
